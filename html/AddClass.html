@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Creation d'une classe</title>
+      <meta charset="utf-8" name = "viewport" content = "width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="../css/AddClassDesign.css"/>
+    </head>
+    <body>
+      <div class = "AddClassPlatform">
+        <!--Texttitle-->
+          <div id = "AddClassText"><strong><label>Creation d'une classe</label></strong></div><br>
+            <div id = "AddClassConfirm"><br/>
+              <!--Libele-->
+              <div id="lebelGroup">
+                <label id="libeltext">Libele :</label>
+                <input type="text" id="libelecader" title="Donnez un nom a votre classe." onfocus="OnFocusAddClass(true, false, false);"/>
+              </div><br/><br/>
+              <!--Mode-->
+              <div id="modeGroup">
+                <label id="modetext">Taux de difficulte :</label>
+                <input type="number" id="difficultycader" title="Precisez la difficulte de votre classe." value = "1" min = "1"
+                  onfocus="OnFocusAddClass(false, true, false);"/>
+              </div><br/><br/>
+              <!--Description-->
+              <div id="descriptionGroup">
+                <label id="descriptiontext">Description :</label><br><br/>
+                <textarea id="descriptioncader" title="Situez votre classe ou donnez-en une description."
+                  placeholder = "Exemple : Salle de classe situe au 15eme etage et compose de 18 tables......"
+                  onfocus="OnFocusAddClass(false, false, true);"></textarea>
+              </div>
+              <!--Error-->
+              <div id="AddClassError"><label>Excuser-moi, mais je ne voit pas le libele de votre classe.</label></div>
+              <div id="AddClassError2"><label>Je n'accepte que des entiers comme taux de difficulte.</label></div>
+              <div id="AddClassError3"><label>Je crois que vous devez remplir ces deux champs.</label></div>
+            </div>
+        <a href="#"><button id="submitAddClass" onclick="CheckedError();" title="J'ai finis et je souhaite envoye les informations.">Valider</button></a><br><br>
+      </div>
+      <!--Code-->
+      <script type="text/javascript" src="../scripts/AddClass.js"></script>
+    </body>
+  </html>

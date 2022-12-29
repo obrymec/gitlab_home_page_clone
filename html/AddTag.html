@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Ajout de matiere</title>
+      <meta charset="utf-8" name = "viewport" content = "width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="../css/AddTagDesign.css"/>
+    </head>
+    <body>
+        <div class = "AddTagPlatform">
+            <!--Texttitle-->
+          <div id = "AddTagText"><strong><label>Insertion d'une matiere</label></strong></div><br/>
+          <div id = "AddTagConfirm">
+            <br/>
+            <!--Libele-->
+            <div id="lebelGroup">
+              <label id="libeltext">Libele :</label>
+              <input type="text" id="libelcader" title="Attribuez un nom a votre matiere." onfocus="OnFocusAddTag(true, false, false);"/>
+            </div><br/><br/>
+            <!--Coefficient-->
+            <div id = "coefficientGroup">
+              <label id="coefficienttext">Coefficient :</label>
+              <input type="number" id="CoefficientCader" title="Definir le coefficient de votre matiere."  value = "1" min = "1"
+                onfocus="OnFocusAddTag(false, true, false);"/>
+              </div><br/><br/>
+            <!--Mode-->
+            <div id="modeGroup">
+              <label id="modetext">Difficulte :</label>
+              <input type="number" id="difficultycader" title="Donnez une difficulte de votre matiere." value = "1" min = "1"
+                onfocus="OnFocusAddTag(false, false, true);"/>
+            </div><br/><br/>
+            <!--ClassList-->
+            <div class="ListClass">
+              <caption><p id= "report" ><label>Reporter cette matiere dans les classes suivantes :</p></label></caption>
+              <table>
+                    <tr>
+                      <th><a href="#"><input type ="checkbox" id = "checkTag" onclick="CheckedTag();"></a></th>
+                      <th>Classes</th>
+                    </tr>
+                    <tr>
+                      <td id = "Class"><a href="#"><input type ="checkbox" id = "checkClass"></a></td>
+                      <td id = "Classtext">4emeA</td>
+                    </tr>
+                    <tr>
+                      <td id = "Class"><a href="#"><input type ="checkbox" id = "checkClass"></a></td>
+                      <td id = "Classtext">5emeC</td>
+                    </tr>
+                    <tr>
+                      <td id = "Class"><a href="#"><input type ="checkbox" id = "checkClass"></a></td>
+                      <td id = "Classtext">Tle D</td>
+                    </tr>
+                    <tr>
+                      <td id = "Class"><a href="#"><input type ="checkbox" id = "checkClass"></a></td>
+                      <td id = "Classtext">Tle C</td>
+                    </tr>
+                    <tr>
+                      <td id = "Class"><a href="#"><input type ="checkbox" id = "checkClass"></a></td>
+                      <td id = "Classtext">Tle F</td>
+                    </tr>
+                    <tr>
+                      <td id = "Class"><a href="#"><input type ="checkbox" id = "checkClass"></a></td>
+                      <td id = "Classtext">1reF4</td>
+                    </tr>
+              </table>
+            </div>
+            <!--Error-->
+            <div id="AddTagError1"><label>Je crois que vous devez remplir ces trois champs.</label></div>
+            <div id="AddTagError2"><label>Je veux voire le coefficient et la difficulte de votre matiere.</label></div>
+            <div id="AddTagError3"><label>Le libele et la difficulte de votre matiere n'ont pas ete precise.</label></div>
+            <div id="AddTagError4"><label>Le libele et le coefficient de votre matiere ne sont pas definis.</label></div>
+            <div id="AddTagError5"><label>Excuser-moi, mais je ne voit pas le nom de votre matiere.</label></div>
+            <div id="AddTagError6"><label>Je n'accepte que des entiers comme coefficient.</label></div>
+            <div id="AddTagError7"><label>Je n'accepte que des entiers comme difficulte</label></div>
+            <div></div>
+          </div>
+          <a href="#">
+            <button id="submitAddTag" title="Je confirme et j'aimerais envoye toutes ces informations" onclick="CheckedError();">Valider</button>
+          </a><br><br>
+      </div>
+      <!--Code-->
+      <script type="text/javascript" src="../scripts/AddTag.js"></script>
+    </body>
+  </html>

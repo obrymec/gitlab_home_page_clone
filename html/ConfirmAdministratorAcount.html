@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+                <title>Confirmation de l'inscription de l'administrateur</title>
+                <meta charset="utf-8" name = "viewport" content = "width=device-width, initial-scale=1.0"/>
+                <link rel="stylesheet" href="../css/ConfirmAdministratorAcountDesign.css"/>
+</head>
+<body>
+    <div class = "ConfirmAdministratorAcountPlatform">
+        <div id = "ConfirmAdministratorText"><strong><label>Finalisation de l'inscription de l'administrateur</label></strong></div><br>
+            <div id = "ConfirmAdministrator"><br/>
+               <div class="Pictureidentity" title="Ceci est votre photo d'identite."></div>
+               <!--InformationsText.-->
+               <div id = "Identitytext"><label><strong title="A propos de vous.">TH150607CCA<br/>Monsieur Therin Zinsou HOUNNOUKPE<br/>Ne le 06 Avril 1999 a cotonou</strong></label></div><br/>
+               <!--AdministratorIdentificationFielset.-->
+               <div class="AdministratorIdentification">
+                  <fieldset id="Identification"><br>
+                         <legend><strong><label>Identification Administractive</label></strong></legend>
+                         <div id = "IdentifiantDiv"><label id = "IdentifiantText">Identifiant :</label><input id = "IdentifiantCader" title="Tapez ici votre identifiant ou numero matricule." placeholder = "monidentifiant188399" onfocus="OnFocusConfirmStudentAcount(true, false, false);"/></div><br>
+                         <div id="FunctionOptions"><label  id = "Functiontext">Fonction :</label>
+                            <a href = "#"><select id="ProfessionOptions" value="Professeur" title="Je souhaite choisir une fonction." onfocus="OnFocusConfirmStudentAcount(false, true, false);">
+                                  <option value="Teacher">Professeur</option>
+                                  <option value="5eme">Fondateur</option>
+                                  <option value="4eme">Censeur</option>
+                                  <option value="3eme">Secretaire</option>
+                                  <option value="2nd">Directeur</option>
+                            </select></a>
+                         </div><br><br>
+                         <!--Class and Matieres.-->
+                         <div id="tabletitle"><caption><label>Liste des classes et des matieres :</label></caption></div>
+                         <table id="Bigtable">
+                              <tr>
+                                 <th id = "Bigtable1"><a href = "#"><input type ="checkbox" id = "ChecboxForAll" title="Je garde toutes les classes." onclick="CheckedAllClass();"/></th></a>
+                                 <th id = "Bigtable2"><label>Classes</label></th>
+                                 <th id = "Bigtable3"><label>Matieres</label></th>
+                              </tr>
+                              <tr>
+                                 <td><a href = "#"><input type ="checkbox" id = "class"/></a></td>
+                                 <td><label>5emeB</label></td>
+                                 <td>
+                                    <table id="smalltable1">
+                                         <tr>
+                                            <td id = "MatiereCheckbox"><a href = "#"><input type ="checkbox"/></a></td>
+                                            <td id = "Matiere"><label>SPCT</label></td>
+                                         </tr>
+                                         <tr>
+                                            <td><a href = "#"><input type ="checkbox"/></a></td>
+                                            <td><label>Maths</label></td>
+                                         </tr>
+                                         <tr>
+                                            <td><a href = "#"><input type ="checkbox"/></a></td>
+                                            <td><label>Francais</label></td>
+                                         </tr>
+                                         <tr>
+                                            <td><a href = "#"><input type ="checkbox"/></a></td>
+                                            <td><label>Anglais</label></td>
+                                         </tr>
+                                   </table>
+                                </td>
+                              </tr>
+                              <tr>
+                                 <td><a href = "#"><input type ="checkbox" id = "class"/></a></td>
+                                 <td><label>6emeA</label></td>
+                                 <td>
+                                    <table id="smalltable2">
+                                         <tr>
+                                            <td id = "MatiereCheckbox"><a href = "#"><input type ="checkbox"/></a></td>
+                                            <td id = "Matiere"><label>EPS</label></td>
+                                         </tr>
+                                         <tr>
+                                            <td><a href = "#"><input type ="checkbox"/></a></td>
+                                            <td><label>Maths</label></td>
+                                         </tr>
+                                         <tr>
+                                            <td><a href = "#"><input type ="checkbox"/></a></td>
+                                            <td><label>Espagnol</label></td>
+                                         </tr>
+                                         <tr>
+                                            <td><a href = "#"><input type ="checkbox"/></a></td>
+                                            <td><label>Almand</label></td>
+                                         </tr>
+                                  </table>
+                               </td>
+                        </table>
+                  </fieldset>
+              </div>
+         <!--Motivation-->
+         <div id="motivation"><label id="motivationtext">Texte de motivation :</label><br/><textarea id="motivationcader" placeholder="Exemple: Je serais un tres bon prof! Je te le jure." title="Ecrire ici une lettre de motivation(facultatif)." onfocus="OnFocusConfirmStudentAcount(false, false, true);"></textarea></div>
+         <div id="signature"><label id="signaturetext">Signature :(facultative)</label><div id = "signatureCader" title="Une signature ici."></div><br><br><br><div id="Importbtn">Importer une signature</div><div id = "T"><a href = "#"><input type="file" id="ImportSignature" onmouseover="ImportBtnHover();" onmouseout="ImportBtnHoverDown();" title="Je souhaite importer une photo de ma signature ici."/></a></div></div>
+
+         <!--Error-->
+          <div id="ConfirmAdministratorAcountError"><label>Desole, je ne trouve pas votre identifiant.</label></div>
+        </div>
+             <a href="#"><button id="submitConfirmAdministratorAcount" title = "J'ai finis et je souhaite envoye les informations." onclick="CheckedErrorAdministratorAcount();">Valider</button></a>
+  </div>
+
+              <!--Code-->
+              <script type="text/javascript" src="../scripts/ConfirmAdministratorAcount.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+                <title>Confirmation de l'inscription des eleves</title>
+                <meta charset="utf-8" name = "viewport" content = "width=device-width, initial-scale=1.0"/>
+                <link rel="stylesheet" href="../css/ConfirmStudentAcountDesign.css"/>
+</head>
+<body>
+     <div class = "ConfirmStudentAcountPlatform">
+        <div id = "finalConfirntext"><strong><label>Finalisation de l'inscription de l'eleve</label></strong></div><br>
+           <div id = "confirmFinalStudent"><br/>
+              <div class="Pictureidentity" title="Ceci est votre photo d'identite."></div><br/>
+              <!--Matricule.-->
+                 <div  id = "matricultext" title="Ceci est votre nunero matricule."><label><strong>TH150607CCSA<!--Value--></strong></label></div><br/>
+                 <div  id = "nametext" title="Ceci est votre nom."><label> Nom :</label><p id="namecader"><!--Value--></p></div><br/>
+	               <div  id = "sexetext" title="Ceci est votre sexe."><label> Sexe :</label><p id="sexecader"><!--Value--></p></div><br/>
+	               <div  id = "surnametext" title="Ceci est votre/vos prenom(s)."><label> Prenom(s) :</label><p id="surnamecader"><!--Value--></p></div><br/>
+	               <div  id = "datetext" title="Ceci est votre date et lieu de naissance."><label> Date et lieu de naissance :</label><p id="datecader"><!--Value--></p></div><br/><br>
+              <!--ClassOptions-->
+                 <div id="classOptions">
+	                  <label  id = "classtext">Classe :</label>
+		                     <a href = "#"><select value="6eme" id = "ClassOptionsSelect" onfocus="OnFocusConfirmStudentAcount(true);" title="Selectionner la classe ou se trouve votre eleve.">
+	                             <option value="6eme">6eme</option>
+			                         <option value="5eme">5eme</option>
+			                         <option value="4eme">4eme</option>
+			                         <option value="3eme">3eme</option>
+		                           <option value="2nd">2nd</option>
+			                         <option value="1ere">1ere</option>
+			                         <option value="Terminale">Terminale</option>
+	                       </select></a>
+		             </div><br>
+          </div>
+            <a href = "#"><button id="submitStudentAcount" onclick="ConfirmInformationsAcount();" title="J'ai termine et je souhaite envoye les informations.">Valider</button></a><br><br>
+      </div>
+               <!--Code-->
+               <script type="text/javascript" src="../scripts/ConfirmStudentAcount.js"></script>
+</body>
+</html>

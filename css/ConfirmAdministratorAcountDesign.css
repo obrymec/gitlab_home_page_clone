@@ -1,0 +1,569 @@
+@charset "UTF-8";
+
+body
+{
+  padding:0;
+  margin:0;
+  background-image:radial-gradient(farthest-corner circle, rgb(248,248,248) 20%, #c4d1d6);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/*Platform*/
+@keyframes ConfirmAdministratorAcountPlatformAction
+{
+  from
+  {
+    opacity: 0.0;
+    visibility: hidden;
+  }
+  to
+  {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+div.ConfirmAdministratorAcountPlatform
+{
+  width:550px;
+  background-image:radial-gradient(circle, #FFF 35%, #ccd8dd);
+  border-radius:15px;
+  border:6px solid #ccd8dd;
+  box-shadow:0px 0px 6px 2px #ccd8dd;
+  margin-left: 33%;
+  margin-top: 0.5%;
+  font-family:Ubuntu;
+  animation: ConfirmAdministratorAcountPlatformAction 600ms;
+  animation-fill-mode: forwards;
+  letter-spacing: 1px;
+  font-size: 15px;
+}
+
+/*Texttitle*/
+@keyframes ConfirmAdministratorTextAction
+{
+  from
+  {
+    font-size: 0px;
+    text-align:center;
+    opacity: 0.0;
+  }
+  to
+  {
+    font-size: 18px;
+    text-align:center;
+    visibility: visible;
+    opacity: 1;
+  }
+}
+div#ConfirmAdministratorText
+{
+  color: #3789ac;
+  font-family: sans-serif;
+  margin-top: 20px;
+  text-align:center;
+  visibility: hidden;
+  animation: ConfirmAdministratorTextAction 500ms;
+  animation-fill-mode: forwards;
+  animation-delay: 400ms;
+  letter-spacing: 1px;
+}
+
+/*ClassConfirm*/
+@keyframes ConfirmAdministratorAction
+{
+  from
+  {
+    opacity: 0.0;
+  }
+  to
+  {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+div#ConfirmAdministrator
+{
+  width:534px;
+  margin-left:8px;
+  background-color: rgb(248,248,248);
+  animation: ConfirmAdministratorAction 400ms;
+  animation-fill-mode: forwards;
+  animation-delay: 550ms;
+  visibility: hidden;
+  letter-spacing: 1px;
+  font-size: 15px;
+}
+
+/*IdentityPicture*/
+@keyframes PictureidentityAction
+{
+  from
+  {
+    transform: scale(0,0);
+  }
+  to
+  {
+    transform: scale(1,1);
+    visibility: visible;
+  }
+}
+div.Pictureidentity
+{
+  width:160px;
+  height:160px;
+  background-color:white;
+  border:1px ridge silver;
+  margin-left:185px;
+  border-radius:10px;
+  box-shadow:0px 0px 2px 2px silver;
+  animation: PictureidentityAction 300ms;
+  animation-fill-mode: forwards;
+  animation-delay: 650ms;
+  visibility: hidden;
+}
+div.Pictureidentity:hover
+{
+  box-shadow:0px 0px 2px 2px #55c2f5;
+}
+
+/*TextIdentify*/
+@keyframes IdentitytextAction
+{
+  from
+  {
+    opacity: 0.0;
+  }
+  to
+  {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+div#Identitytext
+{
+  margin-left:65px;
+  margin-top:18px;
+  width:400px;
+  height:60px;
+  text-align:center;
+  animation: IdentitytextAction 300ms;
+  animation-fill-mode: forwards;
+  animation-delay: 800ms;
+  opacity: 0.0;
+  visibility: hidden;
+  color: #000;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+}
+
+/*AdministratorIdentification*/
+@keyframes AdministratorIdentificationAction
+{
+  from
+  {
+    opacity: 0.0;
+  }
+  to
+  {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+div.AdministratorIdentification
+{
+  animation: IdentitytextAction 300ms;
+  animation-fill-mode: forwards;
+  animation-delay: 800ms;
+  visibility: hidden;
+  letter-spacing: 1.5px;
+  color: #000;
+  font-size: 15px;
+}
+fieldset#Identification
+{
+  width:480px;
+  margin-bottom:4%;
+  margin-left:3%;
+  border-radius:10px;
+  border:1px solid #3789ac;
+  font-size: 16px;
+  color: #000;
+  letter-spacing: 1.5px;
+}
+
+/*IdentifiantText*/
+@keyframes IdentifiantDivAction
+{
+  from
+  {
+    opacity: 0.0;
+    margin-left:-50%;
+  }
+  to
+  {
+    visibility: visible;
+    opacity: 1;
+    margin-left:2.3%;
+  }
+}
+div#IdentifiantDiv
+{
+  animation: IdentifiantDivAction 300ms;
+  animation-fill-mode: forwards;
+  animation-delay: 900ms;
+  visibility: hidden;
+}
+label#IdentifiantText
+{
+  letter-spacing: 1.5px;
+  font-size: 15px;
+  color: #000;
+}
+input#IdentifiantCader
+{
+  width:215px;
+  height:30px;
+  margin-left: 26%;
+  border-radius:5px;
+  box-shadow:0px 0px 2px 2px silver;
+  border:1px solid silver;
+  outline: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #fff;
+  color: #000;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+}
+
+/*FunctionsOptions*/
+@keyframes FunctionOptionsAction
+{
+  from
+  {
+    opacity: 0.0;
+    margin-left:65%;
+  }
+  to
+  {
+    visibility: visible;
+    opacity: 1;
+    margin-left:2.3%;
+  }
+}
+label#Functiontext
+{
+  letter-spacing: 1.5px;
+  font-size: 15px;
+  color: #000;
+}
+div#FunctionOptions
+{
+  animation: FunctionOptionsAction 300ms;
+  animation-fill-mode: forwards;
+  animation-delay: 1000ms;
+  visibility: hidden;
+}
+select#ProfessionOptions
+{
+  width:135px;
+  height:30px;
+  margin-left:28.1%;
+  box-shadow:0px 0px 2px 2px silver;
+  border:1px solid silver;
+  border-radius:5px;
+  outline: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #fff;
+  color: #000;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+  cursor: inherit;
+}
+
+/*BigTableForClassAndMatieres*/
+@keyframes RepportAdministratorAction
+{
+  from{opacity: 0.0; margin-left:-50%;}
+  to{opacity: 1; visibility: visible; margin-left:3%;}
+}
+@keyframes BigTableAdministratorAction
+{
+  from{opacity: 0.0;}
+  to{opacity: 1; visibility: visible;}
+}
+div#tabletitle
+{
+  animation: RepportAdministratorAction 300ms;
+  animation-fill-mode: forwards;
+  animation-delay: 1150ms;
+  visibility: hidden;
+  color: #000;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+}
+table#Bigtable
+{
+  width:453px;
+  border-collapse:collapse;
+  margin-left:3%;
+  margin-top:1%;
+  border:0px solid #3789ac;
+  border-radius:15px;
+  animation: BigTableAdministratorAction 300ms;
+  animation-fill-mode: forwards;
+  animation-delay: 1250ms;
+  visibility: hidden;
+  color: #000;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+}
+input[type = checkbox]
+{
+  cursor: inherit;
+}
+td, th
+{
+  border:1px solid #3789ac;
+  text-align:center;
+}
+th#Bigtable1
+{
+  width: 20px;
+}
+th#Bigtable2
+{
+  width: 90px;
+}
+table#smalltable1
+{
+  width:324px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 1%;
+  border-collapse:collapse;
+  height: 50px;
+  border:1px solid red;
+}
+td#MatiereCheckbox
+{
+   width: 20px;
+}
+table#smalltable2
+{
+  width:324px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 1%;
+  border-collapse:collapse;
+  height: 50px;
+  border:1px solid red;
+}
+
+/*Motivations*/
+@keyframes MotivationsAction
+{
+  from
+  {
+    opacity: 0.0;
+    margin-left:-60%;
+  }
+  to
+  {
+    visibility: visible;
+    opacity: 1;
+    margin-left:3.5%;
+  }
+}
+div#motivation
+{
+  width: 200px;
+  margin-left: 3.5%;
+  margin-top: -2.8%;
+  animation: MotivationsAction 300ms;
+  animation-fill-mode: forwards;
+  animation-delay: 1350ms;
+  visibility: hidden;
+}
+label#motivationtext
+{
+  margin-left:9%;
+  color: #000;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+}
+textarea#motivationcader
+{
+  width:192px;
+  height:120px;
+  margin-top:4%;
+  border:1px solid silver;
+  border-radius:10px;
+  box-shadow:0px 0px 2px 2px silver;
+  overflow-y: scroll;
+  outline: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #fff;
+  text-align: justify;
+  color: #000;
+  line-height: 20px;
+  letter-spacing: 1.5px;
+  font-size: 13px;
+}
+
+/*Signature*/
+@keyframes SignatureAction
+{
+  from
+  {
+    opacity: 0.0;
+    margin-left:90%;
+  }
+  to
+  {
+    visibility: visible;
+    opacity: 1;
+    margin-left:61%;
+  }
+}
+div#signature
+{
+  height:150px;
+  width:200px;
+  margin-top:-28.7%;
+  animation: SignatureAction 300ms;
+  animation-fill-mode: forwards;
+  animation-delay: 1350ms;
+  visibility: hidden;
+}
+label#signaturetext
+{
+  margin-left: 2.6%;
+  color: #000;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+}
+div#signatureCader
+{
+  width:170px;
+  height:70px;
+  margin-top:4%;
+  margin-left:5.8%;
+  border:1px solid #3789ac;
+  border-radius:10px;
+  box-shadow:0px 0px 1px 1px silver;
+  background-color: #FFF;
+}
+input#ImportSignature
+{
+  height: 27px;
+  width:185px;
+  cursor: inherit;
+}
+div#T
+{
+  margin-top: -14%;
+  height: 27px;
+  width: 180px;
+  opacity: 0;
+}
+a{
+  text-decoration: none;
+}
+div#Importbtn
+{
+  width:180px;
+  height:27px;
+  text-align: center;
+  line-height:24px;
+  border:1px solid black;
+  margin-top:-20%;
+  margin-left:3.2%;
+  border-radius:10px;
+  background-image:linear-gradient(#10C2F6,#3789ac);
+  color:white;
+  border:1px ridge #3789ac;
+  box-shadow: 0px 2px 1px #b1b7ba;
+  transition-property:background-image, box-shadow;
+  transition-duration:500ms;
+  letter-spacing: 1.5px;
+  font-size: 13px;
+  outline: none;
+}
+div#Importbtn:hover
+{
+  background-image:linear-gradient(#10C2F6,#3cbaf4);
+  box-shadow: 0px 3px 3px #b1b7ba;
+}
+
+/*Error*/
+@keyframes ConfirmAdministratorAcountErrorAction
+{
+  from{opacity: 0.0;}
+  to{opacity: 1; visibility: visible;}
+}
+@keyframes ConfirmAdministratorAcountErrorRAction
+{
+  to{opacity: 0.0;visibility: hidden;}
+  from{opacity: 1;}
+}
+div#ConfirmAdministratorAcountError
+{
+  color: #ff007d;
+  margin-top: 1%;
+  text-align: center;
+  margin-left: 3px;
+  opacity: 0.0;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+  visibility: hidden;
+}
+
+/*submitConfirmAdministratorAcount*/
+@keyframes submitConfirmAdministratorAcountAction
+{
+  from
+  {
+    opacity: 0.0;
+    transform: scale(0,0);
+  }
+  to
+  {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1,1);
+  }
+}
+button#submitConfirmAdministratorAcount
+{
+  background-image:linear-gradient(#a7e1fc,#3cbaf4);
+  border-radius: 20px;
+  border:1px ridge #55c2f5;
+  box-shadow: 0px 2px 1px #b1b7ba;
+  padding: 8px;
+  width: 90px;
+  color:#fff;
+  transition-property:box-shadow;
+  transition-duration:300ms;
+  margin-left:78%;
+  margin-bottom:3%;
+  margin-top:2%;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+  outline: none;
+  cursor: inherit;
+  transform: scale(0,0);
+  visibility: hidden;
+  animation: submitConfirmAdministratorAcountAction 400ms;
+  animation-fill-mode: forwards;
+  animation-delay: 1700ms;
+}
+button#submitConfirmAdministratorAcount:hover
+{
+   box-shadow: 1px 1px 4px 4px #a7e1fc;
+}
