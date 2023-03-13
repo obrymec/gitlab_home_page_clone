@@ -1,4 +1,4 @@
-# School Manager
+# School Manager Web Pages
 ![](https://img.shields.io/badge/javascript-ES6-orange)
 ![](https://img.shields.io/badge/css-%203-lightgrey)
 ![](https://img.shields.io/badge/html-%205-blue)
