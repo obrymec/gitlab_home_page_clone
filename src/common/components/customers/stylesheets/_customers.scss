@@ -1,0 +1,72 @@
+/**
+* @fileoverview: GitLab app global organizations stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: organizations.scss
+* @created: 2023-06-21
+* @updated: 2023-06-23
+* @version: 0.0.1
+*/
+
+// Custom dependencies.
+@import "./_placeholders.scss";
+@import "./_variables.scss";
+
+// Right customers.
+div.right-customers {
+	@extend %customers-inline-flexbox;
+	align-items: center;
+	column-gap: 5%;
+}
+
+// Left customers.
+div.left-customers {
+	@extend %customers-inline-flexbox;
+	align-items: center;
+	column-gap: 5%;
+}
+
+// Customers logos.
+section.customers {
+	transition: padding .2s ease-in-out;
+	@extend %customers-inline-flexbox;
+	justify-content: center;
+	padding: 5% 6% 4% 5%;
+	align-items: center;
+	column-gap: 2.5%;
+	width: 100%;
+	// From 766 to 500.
+	@media #{$customers-766} {
+		flex-direction: column;
+	}
+	// From 500 to 0.
+	@media #{$customers-500} {
+		padding: 10% 4% 12% 4%;
+	}
+	// Trusted text.
+	& > label {
+		color: $customers-text-color;
+		display: inline-block;
+		white-space: nowrap;
+		font-size: 20px;
+	}
+	// For all logos.
+	img {
+		object-fit: cover;
+		height: 100%;
+		width: 100%;
+	}
+	// Customers container.
+	& > div {
+		@extend %customers-inline-flexbox;
+		transition: gap .2s ease-in-out;
+		gap: 3%;
+		// From 766 to 0.
+		@media #{$customers-766} {
+			flex-direction: column;
+			margin-top: 34px;
+			gap: 10px;
+		}
+	}
+}

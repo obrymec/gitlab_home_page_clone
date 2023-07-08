@@ -1,0 +1,23 @@
+/**
+* @fileoverview: GitLab app global banner variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-06-17
+* @updated: 2023-06-21
+* @version: 0.0.1
+*/
+
+// Resources.
+$banner-bg-image-path: "../../../../../assets/images/gradient-desktop.jpg" !default;
+
+// Responsive breakpoints.
+$banner-1080: "only screen and (max-width: 1080px) and (min-width: 771px)" !default;
+$banner-420: "only screen and (max-width: 420px)" !default;
+$banner-770: "only screen and (max-width: 770px)" !default;
+
+// Colors theme.
+$banner-free-trial-color: $primary-color !default;
+$banner-label-bg-start-color: #f5f1ff !default;
+$banner-label-bg-end-color: #eee7fd !default;

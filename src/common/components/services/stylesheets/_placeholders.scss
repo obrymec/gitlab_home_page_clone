@@ -1,0 +1,22 @@
+/**
+* @fileoverview: GitLab app global services placeholders stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: placeholders.scss
+* @created: 2023-06-24
+* @updated: 2023-06-24
+* @version: 0.0.1
+*/
+
+// Inline flexbox.
+%services-inline-flexbox {
+	display: inline-flex;
+	flex-direction: row;
+}
+  
+// Column flexbox.
+%services-column-flexbox {
+	flex-direction: column;
+	display: flex;
+}

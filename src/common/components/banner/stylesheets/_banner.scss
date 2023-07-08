@@ -1,0 +1,246 @@
+/**
+* @fileoverview: GitLab app global banner stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @created: 2023-06-17
+* @updated: 2023-06-21
+* @file: banner.scss
+* @version: 0.0.1
+*/
+
+// Custom dependencies.
+@import "./_placeholders.scss";
+@import "./_animations.scss";
+@import "./_variables.scss";
+
+// Progress bar thumb animation.
+.progress-thumb {
+	animation: progressBar 4s linear 0s 1 normal backwards;
+}
+
+// Fade in animation.
+img.fade-in {
+	opacity: 1 !important;
+}
+
+// Banner section.
+section.banner {
+  background-image: url($banner-bg-image-path);
+	@extend %banner-inline-center-flexbox;
+	background-repeat: no-repeat;
+	background-position: 80%;
+	padding: 104px 4vw 0 4vw;
+	background-size: cover;
+	position: relative;
+	margin-top: 85px;
+	width: 100%;
+	z-index: 0;
+}
+
+// Right banner part.
+div.right-part {
+	transform: translate3d(0, 0, 0);
+	@extend %banner-column-flexbox;
+	align-items: center;
+	height: 100%;
+	width: 75%;
+	// From 770 to 0.
+	@media #{$banner-770} {
+		display: none;
+	}
+	// Any screenshot.
+	img {
+		transition: opacity .6s linear;
+		object-fit: cover;
+		height: 100%;
+		width: 100%;
+	}
+	// First screenshot.
+	& > img:first-child {
+		opacity: 0;
+	}
+	// Second screenshot.
+	& > img:nth-child(2) {
+		position: fixed;
+		opacity: 0;
+		top: 0;
+	}
+	// Third screenshot.
+	& > img:last-child {
+		position: fixed;
+		opacity: 0;
+		top: 0;
+	}
+}
+
+// Left banner part.
+div.left-part {
+	transition: all .2s ease-in-out;
+	@extend %banner-column-flexbox;
+	padding-right: 2vw;
+	row-gap: 18px;
+	width: 50%;
+	// From 770 to 0.
+	@media #{$banner-770} {
+		justify-content: center;
+		align-items: center;
+		padding-right: 0;
+		width: 100%;
+	}
+	// First label.
+	& > label:first-child {
+		transition: all .2s ease-in-out;
+		color: $banner-free-trial-color;
+		padding: 4px 0 4px 16px;
+		border-radius: 20px;
+		margin-top: 78px;
+		font-size: 14px;
+		cursor: pointer;
+		display: block;
+		background-image: linear-gradient(
+			-90deg,
+			$banner-label-bg-start-color,
+			$banner-label-bg-end-color
+		);
+		// Hover effect.
+		&:hover {
+			background-image: linear-gradient(
+				-90deg,
+				lighten($banner-label-bg-start-color, 1.5%),
+				lighten($banner-label-bg-end-color, 1.5%)
+			);
+		}
+		// From 1080 to 770.
+		@media #{$banner-1080} {
+			letter-spacing: 1.1px;
+			font-size: 13px;
+			margin-top: 0;
+		}
+		// From 770 to 0.
+		@media #{$banner-770} {
+			padding-right: 16px;
+			text-align: center;
+			margin-top: 0;
+		}
+	}
+	// Big title.
+	h1:nth-child(2) {
+		transition: all .2s ease-in-out;
+		color: $banner-free-trial-color;
+    letter-spacing: -1.4px;
+    line-height: 60px;
+    font-weight: 600;
+		font-size: 50px;
+		// From 1080 to 770.
+		@media #{$banner-1080} {
+			letter-spacing: 1.1px;
+			line-height: 44px;
+			font-size: 35px;
+		}
+		// From 770 to 0.
+		@media #{$banner-770} {
+			text-align: center;
+		}
+	}
+	// Little description.
+	& > label:nth-child(3) {	
+		transition: all .2s ease-in-out;
+		color: $banner-free-trial-color;
+		font-size: 20px;
+		// From 1080 to 770.
+		@media #{$banner-1080} {
+			letter-spacing: 1.1px;
+			font-size: 15px;
+		}
+		// From 770 to 0.
+		@media #{$banner-770} {
+			text-align: center;
+		}
+	}
+	// Free trial and about container.
+	div:nth-child(4) {
+		transition: padding-bottom .2s ease-out;
+		// From 770 to 420.
+		@media #{$banner-770} {
+			padding-bottom: 65px;
+		}
+		// From 420 to 0.	
+		@media #{$banner-420} {
+			flex-direction: column;
+			display: flex;
+			width: 100%;
+		}
+	}
+	// Free trial button.
+	div:nth-child(4) > button:first-child {
+		border: 1px solid $banner-free-trial-color;
+		@extend %banner-free-trial;
+		display: inline-block;
+		margin-bottom: 20px;
+		border-radius: 4px;
+		margin-right: 13px;
+	}
+	// About gitlab.
+	div:nth-child(4) > button:last-child {
+		transition: all .2s ease-in-out;
+    color: $banner-free-trial-color;
+    text-underline-offset: 2px;
+		font-weight: 600;
+		font-size: 18px;
+		// Hover effect.
+		&:hover {
+			text-decoration: underline;
+		}
+		// Rounded play img.
+		img {
+			transition: transform .2s ease-in-out;
+			transform: translate(0, -1.5px);
+			display: inline-block;
+			margin-left: 5px;
+		}
+		// Move img hover.
+		&:hover > img {
+			transform: translate(6px, -1.5px);
+		}
+		// From 1080 to 0.
+		@media #{$banner-1080} {
+			letter-spacing: 1.1px;
+			font-size: 15px;
+		}
+	}
+	// Caroussel container.
+	div:nth-child(5) {
+		@extend %banner-inline-center-flexbox;
+		transition: all .2s ease-in-out;
+		column-gap: 28px;
+		margin-top: 35%;
+		width: 82%;
+		// From 1080 to 770.
+		@media #{$banner-1080} {
+			margin-top: 8%;
+			width: 100%;
+		}
+		// From 770 to 0.
+		@media #{$banner-770} {
+			display: none;
+		}
+		// Progress container.
+		& > span {
+			border-radius: 10px;
+			width: 33.33%;
+			height: 2px;
+			background-color: darken(
+				$color: $banner-label-bg-start-color,
+				$amount: 5%
+			);
+		}
+		// Progress.
+		& > span > div {
+			background-color: $banner-free-trial-color;
+			border-radius: 10px;
+			height: 2px;
+			width: 0;
+		}
+	}
+}

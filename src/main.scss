@@ -1,0 +1,44 @@
+/**
+* @fileoverview: GitLab app global stylesheets.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @created: 2023-06-16
+* @updated: 2023-07-07
+* @file: main.scss
+* @version: 0.0.5
+*/
+
+// Custom dependencies.
+@import "./common/utilities/reset/_reset.scss";
+@import "./common/themes/_light.scss";
+@import "./common/components/collaborators/stylesheets/_collaborators.scss";
+@import "./common/components/methodologies/stylesheets/_methodologies.scss";
+@import "./common/components/customers/stylesheets/_customers.scss";
+@import "./common/components/services/stylesheets/_services.scss";
+@import "./common/components/navbar/stylesheets/_navbar.scss";
+@import "./common/components/banner/stylesheets/_banner.scss";
+
+// Inter regular font definition.
+@font-face {
+	src: url("../assets/fonts/inter-regular.ttf");
+	font-family: "InterRegular";
+}
+
+// The main.
+main {
+	// overflow-x: hidden;
+	overflow-y: auto;
+}
+
+// Body.
+body {
+	font-family: $inter-regular-sans-serif;
+	color: $primary-color;
+	//overflow-x: hidden;
+	line-height: 24px;
+	user-select: none;
+	font-weight: 400;
+	overflow-y: auto;
+	font-size: 16px;
+}

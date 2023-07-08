@@ -1,0 +1,243 @@
+/**
+* @fileoverview: GitLab app global navbar stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @created: 2023-06-16
+* @updated: 2023-06-21
+* @file: navbar.scss
+* @version: 0.0.1
+*/
+
+// Custom dependencies.
+@import "./_placeholders.scss";
+@import "./_animations.scss";
+@import "./_variables.scss";
+
+// Shows menu popup.
+.display-popup-menu {
+	display: flex;
+}
+
+// NavBar global container.
+nav.navbar {
+	transition: top .2s ease-in-out;
+	@extend %navbar-column-flexbox;
+	@extend %navbar-top-fixed;
+	z-index: 1;
+	top: -43px;
+	// From 575 to 0.
+	@media #{$less-than-or-equal-575} {
+		top: 0;
+	}
+}
+
+// NavBar data section container.
+section.nav-data {
+	transition: padding .2s ease-in-out;
+	background-color: $navbar-bg-color;
+	justify-content: space-between;
+	@extend %navbar-inline-flexbox;
+	padding: 20px 32px 20px 32px;
+	// From 1050 to 575.
+	@media #{$less-than-or-equal-1050} {
+		padding: 20px 18px 20px 18px;
+	}
+}
+
+// Free trial button with no radius.
+button.free-trial-btn-no-radius {
+	border-bottom: 1px solid $navbar-free-trial-color;
+	@extend %navbar-free-trial;
+	// Hover effect.
+	&:hover > svg {
+		fill: $navbar-free-trial-color;
+	}
+	// Right arrow svg.
+	& > svg {
+		transition: fill .3s cubic-bezier(.7, 0, .3, 1);
+		fill: $navbar-primary-color;
+	}
+}
+
+// Menu popup.
+menu.nav-menu-popup {
+	background-color: $navbar-primary-color;
+	@extend %navbar-column-flexbox;
+	@extend %navbar-top-fixed;
+	padding: 8px 16px 0 16px;
+	display: none;
+	row-gap: 8px;
+	z-index: 2;
+	bottom: 0;
+	// Header.
+	header {
+		justify-content: space-between;
+		@extend %navbar-inline-flexbox;
+		// Close icon.
+		& > svg {
+			cursor: pointer;
+		}
+	}
+	// Options.
+	section > div {
+		border-bottom: 1px solid $navbar-menu-items-border-color;
+		transition: font-size .2s ease-in-out;
+		color: $navbar-free-trial-color;
+		justify-content: space-between;
+		@extend %navbar-inline-flexbox;
+		padding: 12px 0 12px 0;
+		align-items: center;
+		font-size: 19px;
+		cursor: pointer;
+		// From 575 to 0.
+		@media #{$less-than-or-equal-575} {
+			font-size: 16px;
+		}
+		// Label.
+		label {
+			cursor: pointer;
+		}
+	}
+	// Last option.
+	section div:last-child {
+		justify-content: flex-start;
+		margin-top: 15px;
+		column-gap: 8px;
+	}
+	// Free trial button.
+	button {
+		border: 1px solid $navbar-free-trial-color;
+		@extend %navbar-free-trial;
+		border-radius: 4px;
+		margin-top: 23px;
+		width: 100%;
+	}
+}
+
+// Left data.
+div.left-data {
+	transition: column-gap .2s ease-in-out;
+	@extend %navbar-inline-flexbox;
+	column-gap: 25px;
+	// From 1170 to 575.
+	@media #{$less-than-or-equal-1170} {
+		column-gap: 15px;
+	}
+	// From 575 to 0.
+	@media #{$less-than-or-equal-575} {
+		width: 100%;
+	}
+	// Svg icon option.
+	svg {
+		@extend %navbar-icon-option;	
+	}
+	// Search icon.
+	& > span {
+		@extend %navbar-inline-flexbox;
+		display: none;
+		// From 575 to 0.
+		@media #{$less-than-or-equal-575} {
+			animation: navbarResponiveWidth 200ms ease-in-out 0ms 1 normal forwards;
+			display: flex;
+		}
+	}
+	// Options.
+	label {
+		transition: all .2s ease-in-out;
+		color: $navbar-option-color;
+		cursor: pointer;
+		// Hover effect.
+		&:hover {
+			color: $navbar-free-trial-color;
+		}
+		// From 1170 to 1050.
+		@media #{$less-than-or-equal-1170} {
+			letter-spacing: 1.1px;
+			font-size: 15px;
+		}
+		// From 1050 to 0.
+		@media #{$less-than-or-equal-1050} {
+			display: none;
+		}
+	}
+}
+
+// Right data.
+div.right-data {
+	@extend %navbar-inline-flexbox;
+	column-gap: 25px;
+	// The first search icon.
+	& > svg:first-child {
+		// From 1050 to 0.
+		@media #{$less-than-or-equal-1050} {
+			display: none;
+		}
+	}
+	// Svg icon option.
+	svg {
+		@extend %navbar-icon-option;
+	}
+	// Free trial button.
+	button.free-trial-btn {
+		border: 1px solid $navbar-free-trial-color;
+		@extend %navbar-free-trial;
+		border-radius: 4px;
+		// From 575 to 0.
+		@media #{$less-than-or-equal-575} {
+			display: none;
+		}
+	}
+	// Sign in button.
+	button.sign-in-btn {
+		transition: font-size .2s ease-in-out;
+		color: $navbar-option-color;
+		font-size: 18px;
+		border: none;
+		padding: 8px;
+		// Hover effect.
+		&:hover {
+			color: $navbar-free-trial-color;
+		}
+		// From 1170 to 1050.
+		@media #{$less-than-or-equal-1170} {
+			font-size: 15px;
+		}
+		// From 1050 to 0.
+		@media #{$less-than-or-equal-1050} {
+			display: none;
+		}
+	}
+	// Sign in icon.
+	svg.sign-in {
+		display: none;
+		// From 1050 to 575.
+		@media #{$less-than-or-equal-1050} {
+			display: inline-block;
+		}
+		// From 575 to 0.
+		@media #{$less-than-or-equal-575} {
+			display: none;
+		}
+	}
+	// The second search icon.
+	& > svg:nth-child(5) {
+		display: none;
+		// From 1050 to 575.
+		@media #{$less-than-or-equal-1050} {
+			display: inline-block;
+		}
+		// From 575 to 0.
+		@media #{$less-than-or-equal-575} {
+			display: none;
+		}
+	}
+	// Emburger menu.
+	svg.emburger-menu {
+		display: none;
+		// From 1050 to 0.
+		@media #{$less-than-or-equal-1050} {
+			display: inline-block;
+		}
+	}
+}

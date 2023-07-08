@@ -1,0 +1,342 @@
+/**
+* @fileoverview: GitLab app global collaborators stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: collaborators.scss
+* @created: 2023-06-24
+* @updated: 2023-07-06
+* @version: 0.0.1
+*/
+
+// Dependencies.
+@import "./_placeholders.scss";
+@import "./_variables.scss";
+
+// Customer section.
+div.customer {
+	@extend %collaborators-row-flexbox;
+	transition: gap .2s ease-in-out;
+	gap: 24px;
+	// From 1030 to 0.
+	@media #{$collaborators-1030} {
+		flex-direction: column;
+		gap: 16px;
+	}
+	// Border radius for identity.
+	div.cobs-border-radius {
+		border-bottom-right-radius: 60px;
+	}
+}
+
+// Collaborators section.
+section.collaborators {
+	background-color: $collaborators-bg-color;
+	@extend %collaborators-column-flexbox;
+	color: $collaborators-text-color;
+	transform: translate3d(0, 0, 0);
+	padding: 96px 5.6%;
+	// Header title
+	div.header-title {
+		transition: font-size .2s ease-in-out;
+		color: $collaborators-text-color;
+    letter-spacing: -1px;
+		margin-bottom: 48px;
+    line-height: 48px;
+		margin-left: -2px;
+    font-weight: 600;
+		font-size: 40px;
+		// From 1170 to 0.
+		@media #{$collaborators-1170} {
+			font-size: 30px;
+		}
+	}
+	// Body.
+	div.body {
+		transition: all .3s ease-in-out;
+		margin-bottom: 50px;
+		margin-left: 16px;
+		// From 1030 to 0.
+		@media #{$collaborators-1030} {
+			margin-left: 0;
+		}
+		// Customers.
+		div.customer {
+			display: none;
+		}
+		// Display enabled.
+		div.cobs-display {
+			display: flex;
+		}
+	}
+	// Opacity disabled.
+	div.cobs-opacity {
+		opacity: 0;
+	}
+}
+
+// Industry.
+div.about {
+	@extend %collaborators-row-flexbox;
+	transition: gap .2s ease-in-out;
+	margin-top: 26px;
+	font-size: 14px;
+	gap: 24px;
+	// From 1030 to 0.
+	@media #{$collaborators-1030} {
+		flex-direction: column;
+		gap: 15px;
+	}
+	// Logo.
+	div:first-child {
+		transition: width .2s ease-out;
+		// From 1030 to 0.
+		@media #{$collaborators-1030} {
+			width: 50%;
+		}
+	}
+	// Name & role container.
+	div:last-child {
+		line-height: 20px;
+		width: 100%;
+	}
+	// Customer name.
+	div:last-child > label {
+		font-weight: 600;
+	}
+}
+
+// Controls section.
+div.controls {
+	@extend %collaborators-column-flexbox;
+	transition: all .2s ease-in-out;
+	align-items: center;
+	position: fixed;
+	left: 1.8%;
+	gap: 15px;
+	top: 38%;
+	// From 1030 to 0.
+	@media #{$collaborators-1030} {
+		flex-direction: row;
+		position: relative;
+		left: 26px;
+		top: 34px;
+		gap: 0;
+	}
+	// Top arrow.
+	svg:nth-child(1) {
+		transition: all .2s ease-out;
+		transform: rotate(90deg);
+		display: inline-block;
+		cursor: pointer;
+		// From 1030 to 0.
+		@media #{$collaborators-1030} {
+			transform: rotate(0deg);
+			margin-right: 7px;
+		}
+	}
+	// Customers.
+	div {
+		background-color: $collaborators-controls-item-bg-color;
+		transition: all .3s ease-in-out;
+    border-radius: 24px;
+    cursor: pointer;
+    margin: 0 8px;
+    height: 10px;
+    width: 10px;
+	}
+	// Selected node.
+	div.cobs-selected-node {
+		box-shadow: 0 0 0 3px $collaborators-text-color;
+		background-color: transparent;
+	}
+	// Bottom arrow.
+	svg:nth-child(7) {
+		transition: all .2s ease-out;
+		transform: rotate(90deg);
+		display: inline-block;
+		cursor: pointer;
+		// From 1030 to 0.
+		@media #{$collaborators-1030} {
+			transform: rotate(0deg);
+			margin-left: 7px;
+		}
+	}
+}
+
+// Identity section.
+div.identity {
+	border: 1px solid $collaborators-card-border-color;
+	background-color: $collaborators-card-bg-color;
+	@extend %collaborators-row-flexbox;
+	border-bottom-left-radius: 8px;
+	border-top-left-radius: 8px;
+	width: 100%;
+	// From 1030 to 0.
+	@media #{$collaborators-1030} {
+		flex-direction: column;
+	}
+	// Profile container.
+	div.profile {
+		transition: all .2s ease-out;
+		position: relative;
+		min-width: 230px;
+		// From 1030 to 0.
+		@media #{$collaborators-1030} {
+			max-width: 230px;
+			height: auto;
+		}
+	}
+	// Profile image.
+	div.profile > img {
+		box-shadow: 0 16px 50px -24px $collaborators-controls-item-bg-color;
+		border-bottom-right-radius: 66px;
+		transition: all .2s ease-in-out;
+		position: absolute;
+		width: 220px;
+		left: -16px;
+		top: -16px;
+		// From 1030 to 0.
+		@media #{$collaborators-1030} {
+			position: relative;
+			margin-left: 16px;
+			margin-top: 20px;
+			left: 0;
+			top: 0;
+		}
+	}
+	// Profile box.
+	div.profile::after {
+		border-right: 1px solid $collaborators-img-color-effect;
+		border-top: 1px solid $collaborators-img-color-effect;
+		transition: all .2s ease-in-out;
+		border-radius: 0 4px;
+		position: absolute;
+		display: block;
+		height: 110px;
+		width: 110px;
+		content: '';
+		right: 21px;
+		top: -21px;
+		// From 1030 to 0.
+		@media #{$collaborators-1030} {
+			right: -12px;
+			top: 15px;
+		}
+	}
+}
+
+// Statistics section.
+div.statistics {
+	@extend %collaborators-column-flexbox;
+	transition: width .2s ease-out;
+	width: 36%;
+	gap: 20px;
+	// From 1030 to 0.
+	@media #{$collaborators-1030} {
+		width: auto;
+	}
+	// Percentage.
+	div:last-child {
+		border-bottom-right-radius: 60px;
+	}
+	// Credits and percentage.
+	div:first-child, div:last-child {
+		border: 1px solid $collaborators-card-border-color;
+		background-color: $collaborators-card-bg-color;
+    @extend %collaborators-column-flexbox;
+		transition: padding .2s ease-out;
+    justify-content: center;
+    padding: 18px 32px;
+		height: 100%;
+		// From 1030 to 0.
+		@media #{$collaborators-1030} {
+			padding: 26px 16px;
+		}
+		// Label.
+		label {
+			transition: font-size .2s ease-in-out;
+			color: $collaborators-btn-text-color;
+			letter-spacing: -1.4px;
+			line-height: 60px;
+			font-weight: 600;
+			font-size: 50px;
+		}
+		// Comment.
+		p {
+			transition: font-size .2s ease-in-out;
+			letter-spacing: -.8px;
+			line-height: 32px;
+			font-weight: 400;
+			font-size: 24px;
+		}
+	}
+	// Labels.
+	div:first-child > label, div:last-child > label {
+		// From 1170 to 0.
+		@media #{$collaborators-1170} {
+			font-size: 40px;
+		}
+	}
+	// Comments.
+	div:first-child > p, div:last-child > p {
+		// From 1170 to 0.
+		@media #{$collaborators-1170} {
+			font-size: 20px;
+		}
+	}
+}
+
+// Infos container.
+div.infos {
+	@extend %collaborators-column-flexbox;
+	transition: padding .2s ease-out;
+	padding: 48px 32px 48px 0;
+	row-gap: 13px;
+	// From 1030 to 0.
+	@media #{$collaborators-1030} {
+		padding: 16px 16px 48px 16px;
+	}
+	// Move right arrow.
+	&:hover > button.read-more > img {
+		transform: translate(8px, 1px);
+	}
+	// Underline the text.
+	&:hover > button.read-more > label {
+		text-decoration: underline;
+	}
+	// Description.
+	blockquote.description {
+		transition: font-size .2s ease-in-out;
+    font-style: italic;
+    line-height: 38px;
+		font-size: 22.5px;
+    font-weight: 400;
+		cursor: pointer;
+		// From 1170 to 0.
+		@media #{$collaborators-1170} {
+			line-height: 32px;
+			font-size: 20px;
+		}
+	}
+	// Button for read more.
+	button.read-more {
+		color: $collaborators-btn-text-color;
+		display: inline-flex;
+		align-items: center;
+		outline: none;
+		// Right arrow.
+		img {
+			transition: transform .2s ease-in-out;
+			transform: translateY(1px);
+			display: inline-block;
+			margin-left: 3px;
+		}
+	}
+	// Text.
+	button.read-more > label {
+		transition: all .2s ease-in-out;
+		line-height: 38px;
+		font-size: 23px;
+	}
+}

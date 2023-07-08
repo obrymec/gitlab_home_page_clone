@@ -1,0 +1,57 @@
+/**
+* @fileoverview: GitLab app global banne placeholders stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: placeholders.scss
+* @created: 2023-06-18
+* @updated: 2023-06-21
+* @version: 0.0.1
+*/
+
+// Dependencies.
+@import "./_variables.scss";
+
+// Inline center flexbox.
+%banner-inline-center-flexbox {
+	justify-content: center;
+  display: inline-flex;
+}
+
+// Column flexbox.
+%banner-column-flexbox {
+	flex-direction: column;
+	display: flex;
+}
+
+// Free trial button.
+%banner-free-trial {
+	transition: all .3s cubic-bezier(.7, 0, .3, 1);
+	background-color: $navbar-free-trial-color;
+	@extend %navbar-inline-flexbox;
+	color: $navbar-primary-color;
+	justify-content: center;
+	padding: 11px 16px;
+	line-height: 20px;
+	font-weight: 600;
+	min-width: 68px;
+	font-size: 18px;
+	// Hover effect.
+	&:hover {
+		background-color: $navbar-primary-color;
+		color: $navbar-free-trial-color;
+	}
+	// From 1080 to 770.
+	@media #{$banner-1080} {
+		letter-spacing: 1.1px;
+		font-size: 16px;
+	}
+	// From 420 to 0.	
+	@media #{$banner-420} {
+		width: 100%;
+	}
+	// Label.
+	label {
+		cursor: pointer;
+	}
+}

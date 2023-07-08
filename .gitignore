@@ -1,5 +1,11 @@
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/sass,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=sass,visualstudiocode
+
+### Sass ###
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
 
 ### VisualStudioCode ###
 .vscode/*
@@ -20,4 +26,4 @@
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/sass,visualstudiocode

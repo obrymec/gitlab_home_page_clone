@@ -1,0 +1,23 @@
+/**
+* @fileoverview: GitLab app global collaborators variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-06-24
+* @updated: 2023-06-30
+* @version: 0.0.1
+*/
+
+// Responsive breaking.
+$collaborators-1170: "only screen and (max-width: 1170px) and (min-width: 1031px)" !default;
+$collaborators-1030: "only screen and (max-width: 1030px)" !default;
+
+// Colors theme.
+$collaborators-controls-item-bg-color: #d1d0d3 !default;
+$collaborators-card-border-color: #e8e7eb !default;
+$collaborators-img-color-effect: #a989f5 !default;
+$collaborators-text-color: $primary-color !default;
+$collaborators-btn-text-color: #7759c2 !default;
+$collaborators-card-bg-color: #fff !default;
+$collaborators-bg-color: #f6f3fe !default;

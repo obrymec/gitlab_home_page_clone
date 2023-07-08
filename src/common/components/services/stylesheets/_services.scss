@@ -1,0 +1,147 @@
+/**
+* @fileoverview: GitLab app global services stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: services.scss
+* @created: 2023-06-23
+* @updated: 2023-06-29
+* @version: 0.0.1
+*/
+
+// Dependencies.
+@import "./_placeholders.scss";
+@import "./_variables.scss";
+
+// Services section.
+section.services {
+	transition: padding .2s ease-out;
+	@extend %services-inline-flexbox;
+	background-repeat: no-repeat;
+	padding: 80px 7% 75px 7%;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	gap: 30px;
+	background: (
+		url($services-bg-image-path) bottom 100% right 100%/2000px,
+		linear-gradient(
+			180deg,
+			$services-card-bg-color 0 50%,
+			$services-bg-color 50% 100%
+		)
+	);
+	// From 1196 to 1130.
+	@media #{$services-1196} {
+		background: $services-bg-color;
+	}
+	// From 1130 to 1025.
+	@media #{$services-1130} {
+		padding: 40px 3% 35px 3%;
+	}
+	// From 1025 to 0.
+	@media #{$services-1025} {
+		padding: 30px 5% 25px 5%;
+		flex-direction: column;
+	}
+}
+
+// Service container.
+div.service {
+	@extend %services-column-flexbox;
+	justify-content: space-between;
+	background-color: transparent;
+	transition: all .3s ease-out;
+	align-items: flex-start;
+	border-radius: 4px;
+	isolation: isolate;
+	cursor: pointer;
+	margin: 0 auto;
+	padding: 40px;
+	height: 386px;
+	width: 100%;
+	background-image: linear-gradient(
+		141.57deg,
+		$services-card-bg-color .86%, 
+		hsla(0, 0, 100%, 0) 99.96%
+	);
+	// Hover effect.
+	&:hover {
+		background-color: $services-card-bg-color;
+		border-bottom-right-radius: 100px;
+	}
+	// From 1130 to 1025.
+	@media #{$services-1130} {
+		height: 280px;
+		padding: 20px;
+	}
+	// From 1025 to 0.
+	@media #{$services-1025} {
+		justify-content: center;
+		row-gap: 30px;
+		height: auto;
+	}
+	// Header.
+	div {
+		@extend %services-column-flexbox;
+		row-gap: 16px;
+	}
+	// Description.
+	div > p {
+		transition: all .2s ease-in-out;
+		line-height: 20px;
+		font-weight: 400;
+		font-size: 16px;
+		// From 1130 to 0.
+		@media #{$services-1130} {
+			letter-spacing: 1.1px;
+			line-height: 18px;
+			font-size: 14px;
+		}
+	}
+	// Title.
+	div > label {
+		transition: all .2s ease-in-out;
+		letter-spacing: -.6px;
+		line-height: 32px;
+		font-weight: 600;
+		font-size: 24px;
+		cursor: pointer;
+		// From 1130 to 0.
+		@media #{$services-1130} {
+			line-height: 22px;
+			font-size: 18px;
+		}
+	}
+	// Button.
+	button {
+		color: $services-btn-bg-color;
+		outline: none;
+		// Move right arrow.
+		&:hover > img {
+			transform: translate(8px, -1px);
+		}
+		// Underline the text.
+		&:hover > span {
+			text-decoration: underline;
+		}
+		// Right arrow.
+		img {
+			transition: transform .2s ease-in-out;
+			transform: translateY(-1px);
+			display: inline-block;
+		}
+	}
+	// Text.
+	button > span {
+		transition: all .2s ease-in-out;
+		line-height: 24px;
+		font-weight: 600;
+		font-size: 20px;
+		// From 1130 to 0.
+		@media #{$services-1130} {
+			line-height: 18px;
+			font-size: 15px;
+		}
+	}
+}

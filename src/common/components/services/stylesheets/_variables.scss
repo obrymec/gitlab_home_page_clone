@@ -1,0 +1,24 @@
+/**
+* @fileoverview: GitLab app global services variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-06-23
+* @updated: 2023-06-24
+* @version: 0.0.1
+*/
+
+// Responsive breaking.
+$services-1130: "only screen and (max-width: 1130px) and (min-width: 1025px)" !default;
+$services-1025: "only screen and (max-width: 1025px)" !default;
+$services-1196: "only screen and (max-width: 1196px)" !default;
+
+// Resources.
+$services-bg-image-path: "../../../../../assets/images/infinity.svg" !default;
+
+// Colors theme.
+$services-text-color: $primary-color !default;
+$services-btn-bg-color: #7759c2 !default;
+$services-card-bg-color: #fff !default;
+$services-bg-color: #f6f3fe !default;

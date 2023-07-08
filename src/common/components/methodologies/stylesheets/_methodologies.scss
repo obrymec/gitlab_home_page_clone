@@ -1,0 +1,266 @@
+/**
+* @fileoverview: GitLab app global methodologies stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: methodologies.scss
+* @created: 2023-07-06
+* @updated: 2023-07-08
+* @version: 0.0.1
+*/
+
+// Custom dependencies.
+@import "./_placeholders.scss";
+@import "./_variables.scss";
+
+// Work mehodologies section.
+section.methodologies {
+  transition: padding .2s ease-in-out;
+  padding: 96px 12.8%;
+  margin-bottom: 40px;
+  // From 1300 to 0.
+  @media #{$mhds-1300} {
+    padding: 76px 4.2%;
+  }
+  // Big title.
+  & > h2:first-child {
+    letter-spacing: -1.4px;
+    margin-bottom: 96px;
+    line-height: 60px;
+    font-weight: 600;
+    font-size: 50px;
+  }
+}
+
+// Methodology section.
+div.methodology {
+  transition: all .2s ease-in-out;
+  //border-left: 1px solid black;
+  pointer-events: none;
+  opacity: .6;
+  padding: 0 0 0 80px;
+  // From 1300 to 760.
+  @media #{$mhds-1300} {
+    padding: 0 0 0 40px;
+  }
+  // From 760 to 0.
+  @media #{$mhds-760} {
+    pointer-events: all;
+    min-width: 100%;
+    padding: 24px;
+    opacity: 1;
+  }
+}
+
+// Custom scrollbar.
+div.mhds-scroll {
+  background-color: $mhds-scroll-bg-color;
+  position: absolute;
+  width: 2px;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  // From 760 to 0.
+  @media #{$mhds-760} {
+    display: none;
+  }
+  // Scroll thumb.
+  div {
+    background-color: $mhds-scoll-thumb-bg-color;
+    transition: all .3s linear;
+    position: absolute;
+    width: 2px;
+  }
+}
+
+// Learn more button.
+button.learn-more {
+  transition: margin-top .2s ease-out;
+  @extend %mhds-inline-flexbox;
+  padding: 11px 0 11px 0;
+  align-items: center;
+  font-weight: 600;
+  // Move right arrow.
+  &:hover > img {
+    transform: translateX(6.5px);
+  }
+  // Hover effect.
+  &:hover {
+    text-decoration: underline;
+  }
+  // From 760 to 0.
+  @media #{$mhds-760} {
+    margin-top: 32px;
+  }
+  // Right arrow.
+  img {
+    transition: transform .2s ease-in-out;
+    filter: brightness(0);
+    margin-left: 4px;
+  }
+}
+
+// Methodologies body content.
+div.mhds-body {
+  transition: all .2s linear;
+  scroll-behavior: smooth;
+  flex-direction: column;
+  display: flex;
+  gap: 94px;
+  // Enabled methodology.
+  .mhds-enabled {
+    pointer-events: all;
+    opacity: 1;
+  }
+  // From 760 to 0.
+  @media #{$mhds-760} {
+    box-shadow: 0 0 8px $mhds-card-shadow-color;
+    flex-direction: row;
+    border-radius: 5px;
+    overflow-x: hidden;
+    gap: 0;
+    // Override scrollbar.
+    &::-webkit-scrollbar-thumb {
+      background-color: $mhds-scoll-thumb-bg-color;
+      border-radius: 10px;
+    } &::-webkit-scrollbar-track {
+      background-color: $mhds-scroll-bg-color;
+    } &::-webkit-scrollbar {
+      height: 2px;
+    }
+  }
+}
+
+// Content.
+div.mhds-content {
+  transition: padding-bottom .2s ease-out;
+  transform: translate3d(0, 0, 0);
+  padding-bottom: 96px;
+  // From 760 to 0.
+  @media #{$mhds-760} {
+    padding-bottom: 0;
+  }
+  // Left and right arrow container.
+  div.mhds-right-arrow,
+  div.mhds-left-arrow {
+    border: 1px ridge $mhds-scoll-thumb-bg-color;
+    background-color: $mhds-arrows-bg-color;
+    transition: all 150ms linear;
+    transform: translateY(-50%);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    position: fixed;
+    display: none;
+    padding: 8px;
+    opacity: 0;
+    z-index: 1;
+    top: 50%;
+    // Focus effect.
+    &:hover {
+      filter: contrast(1.6);
+    }
+    // From 760 to 0.
+    @media #{$mhds-760} {
+      display: block;
+    }
+    // Icon.
+    img {
+      filter: brightness(50%);
+      display: block;
+      height: 30px;
+      width: 30px;
+    }
+  }
+  // Left arrow icon.
+  div.mhds-left-arrow > img {
+    transform: rotate(-180deg);
+  }
+  // Show arrow containers.
+  div.mhds-show-arrows {
+    opacity: 1;
+  }
+  // Right arrow container.
+  div.mhds-right-arrow {
+    right: 15px;
+  }
+  // Left arrow container.
+  div.mhds-left-arrow {
+    left: 15px;
+  }
+  // Move right arrow.
+  div.mhds-move-right {
+    right: 6px;
+  }
+  // Move left arrow.
+  div.mhds-move-left {
+    left: 6px;
+  }
+}
+
+// Informations.
+div.mhds-infos {
+  transition: all .2s ease-out;
+  @extend %mhds-inline-flexbox;
+  position: relative;
+  z-index: 0;
+  // From 760 to 0.
+  @media #{$mhds-760} {
+    flex-direction: column;
+    row-gap: 32px;
+  }
+  div:first-child {
+    width: 100%;
+  }
+  // Icon.
+  div:first-child > span {
+    transition: all .3s linear;
+    margin-bottom: 24px;
+    display: block;
+  }
+  // Title.
+  div:first-child > h3 {
+    transition: .2s padding-right ease-out;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    line-height: 48px;
+    font-weight: 600;
+    font-size: 40px;
+    // From 760 to 0.
+    @media #{$mhds-760} {
+      padding-right: 0;
+    }
+  }
+  // Description.
+  div:first-child > p {
+    transition: .2s padding-right ease-out;
+    padding-right: 32px;
+    line-height: 24px;
+    font-weight: 400;
+    font-size: 20px;
+    // From 760 to 0.
+    @media #{$mhds-760} {
+      padding-right: 0;
+    }
+  }
+  // Image.
+  div:nth-child(2) {
+    transition: all .4s ease-in-out;
+    @extend %mhds-inline-flexbox;
+    transform: translateX(80px);
+    align-items: center;
+    padding-top: 30px;
+    width: 100%;
+    opacity: 0;
+    // From 760 to 0.
+    @media #{$mhds-760} {
+      transform: translateX(0);
+      padding-top: 0;
+      opacity: 1;
+    }
+  }
+  // Image show.
+  div.mhds-image-show {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

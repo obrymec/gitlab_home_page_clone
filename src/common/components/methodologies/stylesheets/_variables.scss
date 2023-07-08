@@ -1,0 +1,20 @@
+/**
+* @fileoverview: GitLab app global methodologies variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-06
+* @updated: 2023-07-07
+* @version: 0.0.1
+*/
+
+// Resposive breakpoints.
+$mhds-1300: "only screen and (max-width: 1300px)" !default;
+$mhds-760: "only screen and (max-width: 760px)" !default;
+
+// Colors theme.
+$mhds-arrows-bg-color: rgba(240, 240, 240, .5);
+$mhds-scoll-thumb-bg-color: #171321 !default;
+$mhds-card-shadow-color: #d1d0d3 !default;
+$mhds-scroll-bg-color: #e8e7eb !default;

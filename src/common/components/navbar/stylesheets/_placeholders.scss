@@ -1,0 +1,75 @@
+/**
+* @fileoverview: GitLab app global navbar placeholders stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: placeholders.scss
+* @created: 2023-06-16
+* @updated: 2023-06-19
+* @version: 0.0.1
+*/
+
+// Dependencies.
+@import "./_variables.scss";
+
+// Column flex box.
+%navbar-column-flexbox {
+	flex-direction: column;
+	display: flex;
+}
+
+// Inline flex box.
+%navbar-inline-flexbox {
+	align-items: center;
+	flex-direction: row;
+	display: flex;
+}
+
+// Top fixed.
+%navbar-top-fixed {
+	position: fixed;
+	right: 0;
+	left: 0;
+	top: 0;
+}
+
+// Icon option.
+%navbar-icon-option {
+	cursor: pointer;
+	& > path {
+		transition: fill .4s ease-in-out;
+		fill: $navbar-option-color;
+	}
+	// Hover effect.
+	&:hover > path {
+		fill: $navbar-free-trial-color;
+	}
+}
+
+// Free trial button.
+%navbar-free-trial {
+	transition: all .3s cubic-bezier(.7, 0, .3, 1);
+	background-color: $navbar-free-trial-color;
+	@extend %navbar-inline-flexbox;
+	color: $navbar-primary-color;
+	justify-content: center;
+	padding: 11px 16px;
+	line-height: 20px;
+	font-weight: 600;
+	min-width: 68px;
+	font-size: 18px;
+	// Hover effect.
+	&:hover {
+		background-color: $navbar-primary-color;
+		color: $navbar-free-trial-color;
+	}
+	// From 1170 to 0.
+	@media #{$less-than-or-equal-1170} {
+		letter-spacing: 1.1px;
+		font-size: 16px;
+	}
+	// Label.
+	label {
+		cursor: pointer;
+	}
+}
