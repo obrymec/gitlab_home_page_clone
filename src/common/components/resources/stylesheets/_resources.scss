@@ -1,0 +1,150 @@
+/**
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @fileoverview: GitLab resources stylesheet.
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: resources.scss
+* @created: 2023-07-14
+* @updated: 2023-07-14
+* @version: 0.0.1
+*/
+
+// Custom dependencies.
+@import "./_placeholders.scss";
+@import "./_variables.scss";
+
+// Resources section.
+section.resources {
+  transition: padding .2s ease;
+  padding: 0 5%;
+  // From 640 to 0.
+  @media #{$resources-640} {
+    padding: 2.5%;
+  }
+}
+
+// Header.
+div.res-head {
+  border-bottom: 2px solid $resources-line-color;
+  justify-content: space-between;
+  padding-bottom: 32px;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  width: 100%;
+  // Huge title.
+  h2:first-child {
+    transition: font-size .2s ease-out;
+    letter-spacing: -1.4px;
+    line-height: 60px;
+    font-weight: 600;
+    font-size: 50px;
+    // From 580 to 0.
+    @media #{$resources-580} {
+      font-size: 40px;
+    }
+  }
+  // View more button.
+  button:last-child {
+    @extend %resources-btn-hover;
+    @extend %resources-btn;
+    font-size: 18px;
+  }
+}
+
+// Content.
+div.res-content {
+  transform: translate3d(0, 0, 0);
+  // Show arrow containers.
+  div.res-show-arrows {
+    opacity: 1;
+  }
+  // Move right arrow.
+  div.res-move-right {
+    right: 6px;
+  }
+  // Move left arrow.
+  div.res-move-left {
+    left: 6px;
+  }
+  // Right arrow container.
+  div.res-right-arrow {
+    @extend %res-arrows;
+    right: 15px;
+  }
+  // Body.
+  div.res-body {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    display: flex;
+    // From 770 to 0.
+    @media #{$resources-770} {
+      justify-content: flex-start;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      flex-wrap: nowrap;
+    }
+  }
+  // Left arrow container.
+  div.res-left-arrow {
+    @extend %res-arrows;
+    left: 15px;
+    // Image.
+    img {
+      transform: rotate(-180deg);
+    }
+  }
+}
+
+// Resource block.
+div.resource {
+  transition: all .3s ease-in-out;
+  flex-direction: column;
+  margin-bottom: 48px;
+  flex: 0 0 32.3333%;
+  width: 32.3333%;
+  cursor: pointer;
+  display: flex;
+  padding: 16px;
+  row-gap: 20px;
+  // Hover effect.
+  &:hover {
+    background-color: $resources-card-bg-color;
+    border-radius: 0 0 100px 0;
+  }
+  // From 770 to 0.
+  @media #{$resources-770} {
+    min-width: 100%;
+  }
+  // Header.
+  div:first-child {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 8px;
+    width: 100%;
+  }
+  // Image container.
+  div:nth-child(2) {
+    display: inline-flex;
+    width: 100%;
+    // Image clip.
+    img {
+      width: 100%;
+    }
+  }
+  // Description.
+  p:nth-child(3) {
+    font-size: 20px;
+  }
+  // Read more.
+  div:nth-child(4) {
+    display: inline-flex;
+    width: 100%;
+    // Button.
+    button {
+      @extend %resources-btn;
+    }
+  }
+}

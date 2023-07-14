@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: methodologies.scss
 * @created: 2023-07-06
-* @updated: 2023-07-08
+* @updated: 2023-07-14
 * @version: 0.0.1
 */
 
@@ -35,10 +35,9 @@ section.methodologies {
 // Methodology section.
 div.methodology {
   transition: all .2s ease-in-out;
-  //border-left: 1px solid black;
   pointer-events: none;
-  opacity: .6;
   padding: 0 0 0 80px;
+  opacity: .6;
   // From 1300 to 760.
   @media #{$mhds-1300} {
     padding: 0 0 0 40px;
@@ -103,7 +102,6 @@ button.learn-more {
 // Methodologies body content.
 div.mhds-body {
   transition: all .2s linear;
-  scroll-behavior: smooth;
   flex-direction: column;
   display: flex;
   gap: 94px;
@@ -115,6 +113,7 @@ div.mhds-body {
   // From 760 to 0.
   @media #{$mhds-760} {
     box-shadow: 0 0 8px $mhds-card-shadow-color;
+    scroll-behavior: smooth;
     flex-direction: row;
     border-radius: 5px;
     overflow-x: hidden;

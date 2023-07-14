@@ -1,0 +1,20 @@
+/**
+* @fileoverview: GitLab resources variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-14
+* @updated: 2023-07-14
+* @version: 0.0.1
+*/
+
+// Responsive breakpoints.
+$resources-770: "only screen and (max-width: 770px)" !default;
+$resources-640: "only screen and (max-width: 640px)" !default;
+$resources-580: "only screen and (max-width: 580px)" !default;
+
+// Color themes.
+$resources-base-color: $primary-color !default;
+$resources-card-bg-color: #eee7fd !default;
+$resources-line-color: #a2a1a6 !default;

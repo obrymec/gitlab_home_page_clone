@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-13
-* @updated: 2023-07-13
+* @updated: 2023-07-14
 * @version: 0.0.1
 */
 
@@ -35,7 +35,6 @@
   transition: all .3s cubic-bezier(.7, 0, .3, 1);
   background-color: $badges-intial-text-color;
   border: 1px solid $badges-intial-text-color;
-  color: $badges-bg-color;
   display: inline-flex;
   align-items: center;
   border-radius: 4px;
@@ -45,7 +44,10 @@
   // Hover effect.
   &:hover {
     background-color: $badges-bg-color;
-    color: $badges-intial-text-color;
+    // Button text.
+    span {
+      color: $badges-intial-text-color;
+    }
     // Right arrow.
     img {
       filter: brightness(300%);
@@ -55,6 +57,10 @@
   @media #{$badges-770} {
     justify-content: center;
     width: 100%;
+  }
+  // Button text.
+  span {
+    transition: color .3s cubic-bezier(.7, 0, .3, 1);
   }
   // Right arrow.
   img {

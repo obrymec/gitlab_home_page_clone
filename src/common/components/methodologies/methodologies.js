@@ -6,7 +6,7 @@
 * @file methodologies.js
 * @type {Methodologies}
 * @created 2023-07-06
-* @updated 2023-07-08
+* @updated 2023-07-14
 * @version 0.0.1
 */
 
@@ -14,13 +14,13 @@
 import {swipe} from "../../utilities/swipe/swipe.js";
 
 /**
- * @public @class @classdesc Builds enterprise
- *  work methodologies.
- * @param {Object<String, any>} data Contains
- *  a javascript object that supports the
- *  following key(s):
- *  - !String parentId: The parent id of
- * 		work methodologies section.
+ * @public @class @classdesc Builds
+ * 	enterprise work methodologies.
+ * @param {Object<String, any>} data A
+ *  a javascript object that supports
+ * 	the following key(s):
+ *  - !String parentId: The parent id
+ * 		of work methodologies section.
  * @returns {Methodologies} Methodologies
  */
 function Methodologies (data) {
@@ -71,9 +71,9 @@ function Methodologies (data) {
 	);
 
 	/**
-	 * @description Calculates and returns
-	 *  the scroll bar progress in
-	 * 	percentage.
+	 * @description Calculates and
+	 * 	returns the scroll bar
+	 * 	progress in percentage.
 	 * @function getScrollProgress_
 	 * @constant {Function}
 	 * @private
@@ -102,20 +102,22 @@ function Methodologies (data) {
 	 * @description Toggles effects actions
 	 * 	on the passed tag reference.
 	 * @param {Element} tag The tag to target.
-	 * @param {boolean} active Whether is
-	 * 	`true` we'll add effects. Otherwise,
-	 * 	we'll remove them.
+	 * @param {boolean} active Whether
+	 * 	is `true` we'll add effects. 
+	 * 	Otherwise, we'll remove them.
 	 * @function toggleEffects_
 	 * @constant {Function}
 	 * @private
 	 * @returns {void} void
 	 */
-	const toggleEffects_ = (tag, active) => {
+	const toggleEffects_ = (
+		tag, active
+	) => {
 		// Whether active is set to `true`.
 		if (active) {
 			// Adds `mhds-image-show`
 			// class to his image kid.
-			tag?.children [0]?.children [1]
+			tag?.children[0]?.children[1]
 			?.classList?.add (
 				"mhds-image-show"
 			);
@@ -128,7 +130,7 @@ function Methodologies (data) {
 		} else {
 			// Removes `mhds-image-show`
 			// class from his image kid.
-			tag?.children [0]?.children [1]
+			tag?.children[0]?.children[1]
 			?.classList?.remove (
 				"mhds-image-show"
 			);
@@ -304,9 +306,9 @@ function Methodologies (data) {
 	};
 
 	/**
-	 * @description Applies vertical carousel
-	 * 	according to the browser scrollbar
-	 * 	progress.
+	 * @description Applies vertical
+	 * 	carousel according to the
+	 * 	browser scrollbar progress.
 	 * @function verticalCarousel_
 	 * @constant {Function}
 	 * @private
@@ -326,8 +328,8 @@ function Methodologies (data) {
 		document.addEventListener (
 			"scroll",
 			() => {
-				// Whether window width is great
-				// than 760 pixels.
+				// Whether window width is
+				// great than 760 pixels.
 				if (window.innerWidth > 760) {
 					// The current scroll progress.
 					const progress = (
@@ -696,8 +698,7 @@ function Methodologies (data) {
 			"click",
 			() => swipeLeft (true)
 		);
-		// Starts auto carousel
-		// process.
+		// Starts auto carousel process.
 		autoCarousel = (
 			window.setInterval (
 				() => swipeRight (false),
@@ -922,7 +923,8 @@ function Methodologies (data) {
 }
 
 /**
- * @description Exports all public features.
+ * @description Exports all public
+ * 	features.
  * @exports *
  */
 export {Methodologies};

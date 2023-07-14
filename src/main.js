@@ -4,15 +4,16 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-07-13
-* @version 0.0.1
+* @updated 2023-07-14
+* @version 0.0.4
 * @file main.js
 */
 
 // Custom dependencies.
 import {Collaborators} from "./common/components/collaborators/collaborators.js";
 import {Methodologies} from "./common/components/methodologies/methodologies.js";
-import {Customers} from "./common/components/customers/customers.js"
+import {Customers} from "./common/components/customers/customers.js";
+import {Resources} from "./common/components/resources/resources.js";
 import {Services} from "./common/components/services/services.js";
 import {NavBar} from "./common/components/navbar/navbar.js";
 import {Banner} from "./common/components/banner/banner.js";
@@ -61,20 +62,27 @@ const methodologies = (
 const badges = new Badges ({
 	parentId: "main#root"
 });
+// Creates a new instance
+// of resources.
+const resources = (
+	new Resources ({
+		parentId: "main#root"
+	})
+);
 
-// Builds nav bar.
+// Builds navbar section.
 navbar.render ();
-// Builds banner.
+// Builds banner section.
 banner.render ();
-// Builds customers
-// logos support.
+// Builds customers section.
 customers.render ();
-// Builds provided
-// services support.
+// Builds services section.
 services.render ();
-// Builds collaborators.
+// Builds collaborators section.
 collaborators.render ();
-// Builds methodologies.
+// Builds methodologies section.
 methodologies.render ();
-// Builds badges.
+// Builds badges section.
 badges.render ();
+// Builds resources section.
+resources.render ();

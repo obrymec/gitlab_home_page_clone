@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-13
-* @updated 2023-07-13
+* @updated 2023-07-14
 * @file badges.js
 * @type {Badges}
 * @version 0.0.1
@@ -73,11 +73,12 @@ function Badges (data) {
 				}"
 				alt = ''
 			/>
-			<span>${
-				data?.text
-					?.replaceAll ('\n', '')
-					?.replaceAll ('\t', '')
-					?.trim ()
+			<span>
+				${
+					data?.text
+						?.replaceAll ('\n', '')
+						?.replaceAll ('\t', '')
+						?.trim ()
 				}
 			</span>
 		</button>
@@ -125,7 +126,7 @@ function Badges (data) {
 	};
   
   /**
-	 * @description Builds banner html
+	 * @description Builds badges html
 	 * 	structure as string format.
 	 * @function render
 	 * @public

@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-13
-* @updated: 2023-07-13
+* @updated: 2023-07-14
 * @file: badges.scss
 * @version: 0.0.1
 */
@@ -16,7 +16,6 @@
 // Badges section.
 section.badges {
   background-color: $badges-bg-color;
-  color: $badges-intial-text-color;
   margin-bottom: 96px;
   padding: 96px 5%;
 }
@@ -26,6 +25,7 @@ div.bds-head {
   // Huge title.
   h2:first-child {
     transition: margin-bottom .2s ease-out;
+    color: $badges-intial-text-color;
     letter-spacing: -1.4px;
     margin-bottom: 64px;
     line-height: 60px;
@@ -105,6 +105,7 @@ div.bds-left {
   width: 100%;
   // Short paragraph.
   p {
+    color: $badges-intial-text-color;
     margin-bottom: 24px;
     line-height: 40px;
     font-size: 32px;
@@ -120,6 +121,7 @@ div.bds-left {
   }
   // Medium title.
   strong {
+    color: $badges-intial-text-color;
     font-weight: bold;
   }
   // The first learn more button.

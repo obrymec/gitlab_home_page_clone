@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-06-17
+* @updated 2023-07-14
 * @file navbar.js
 * @type {NavBar}
 * @version 0.0.1
@@ -200,10 +200,12 @@ function NavBar (data) {
 							<label>Sign in</label>
 						</div>
 					</section>
-					<button>Get free trial</button>
+					<button>
+						<span>Get free trial</span>
+					</button>
 				</menu>
 				<button class = "free-trial-btn-no-radius">
-					<label>Get free trial</label>
+					<span>Get free trial</span>
 					<svg
 						viewBox = "0 0 16 16"
 						height = "16px"
@@ -250,7 +252,7 @@ function NavBar (data) {
 					<div class = "right-data">
 						${searchIcon_}
 						<button class = "free-trial-btn">
-							Get free trial
+							<span>Get free trial</span>
 						</button>
 						<button
 							class = "sign-in-btn"

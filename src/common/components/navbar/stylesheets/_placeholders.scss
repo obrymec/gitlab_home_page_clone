@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-16
-* @updated: 2023-06-19
+* @updated: 2023-07-14
 * @version: 0.0.1
 */
 
@@ -51,8 +51,8 @@
 	transition: all .3s cubic-bezier(.7, 0, .3, 1);
 	background-color: $navbar-free-trial-color;
 	@extend %navbar-inline-flexbox;
-	color: $navbar-primary-color;
 	justify-content: center;
+	color: $navbar-bg-color;
 	padding: 11px 16px;
 	line-height: 20px;
 	font-weight: 600;
@@ -61,15 +61,19 @@
 	// Hover effect.
 	&:hover {
 		background-color: $navbar-primary-color;
-		color: $navbar-free-trial-color;
+		// Text.
+		span {
+			color: $navbar-free-trial-color;
+		}
 	}
 	// From 1170 to 0.
 	@media #{$less-than-or-equal-1170} {
 		letter-spacing: 1.1px;
 		font-size: 16px;
 	}
-	// Label.
-	label {
-		cursor: pointer;
+	// Text.
+	span {
+		transition: color .3s cubic-bezier(.7, 0, .3, 1);
+		color: $navbar-bg-color;
 	}
 }

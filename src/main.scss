@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-07-13
+* @updated: 2023-07-14
 * @file: main.scss
 * @version: 0.0.5
 */
@@ -15,6 +15,7 @@
 @import "./common/components/collaborators/stylesheets/_collaborators.scss";
 @import "./common/components/methodologies/stylesheets/_methodologies.scss";
 @import "./common/components/customers/stylesheets/_customers.scss";
+@import "./common/components/resources/stylesheets/_resources.scss";
 @import "./common/components/services/stylesheets/_services.scss";
 @import "./common/components/navbar/stylesheets/_navbar.scss";
 @import "./common/components/banner/stylesheets/_banner.scss";
@@ -27,19 +28,17 @@
 }
 
 // The main.
-main {
+main, body {
 	// overflow-x: hidden;
 	overflow-y: auto;
 }
 
-// Body.
-body {
+// Any element.
+* {
 	font-family: $inter-regular-sans-serif;
 	color: $primary-color;
-	//overflow-x: hidden;
 	line-height: 24px;
 	user-select: none;
 	font-weight: 400;
-	overflow-y: auto;
 	font-size: 16px;
 }
