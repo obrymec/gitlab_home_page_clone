@@ -1,0 +1,66 @@
+/**
+* @fileoverview: GitLab badges placeholders stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: placeholders.scss
+* @created: 2023-07-13
+* @updated: 2023-07-13
+* @version: 0.0.1
+*/
+
+// Dependencies.
+@import "./_variables.scss";
+
+// Buttons design.
+%badges-btn-design {
+  transition: width .2s ease;
+  color: $badges-bg-color;
+  align-items: center;
+  border-radius: 4px;
+  font-weight: 600;
+  column-gap: 7px;
+  display: flex;
+  padding: 16px;
+  width: 360px;
+  border: none;
+  // From 770 to 0.
+  @media #{$badges-770} {
+    width: 100%;
+  }
+}
+
+// Learn more button design.
+%badges-lm-btn {
+  transition: all .3s cubic-bezier(.7, 0, .3, 1);
+  background-color: $badges-intial-text-color;
+  border: 1px solid $badges-intial-text-color;
+  color: $badges-bg-color;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  padding: 11px 16px;
+  font-weight: 600;
+  font-size: 18px;
+  // Hover effect.
+  &:hover {
+    background-color: $badges-bg-color;
+    color: $badges-intial-text-color;
+    // Right arrow.
+    img {
+      filter: brightness(300%);
+    }
+  }
+  // From 770 to 0.
+  @media #{$badges-770} {
+    justify-content: center;
+    width: 100%;
+  }
+  // Right arrow.
+  img {
+    transition: filter .3s cubic-bezier(.7, 0, .3, 1);
+    filter: brightness(1%);
+    display: inline-block;
+    margin-left: 8px;
+  }
+}

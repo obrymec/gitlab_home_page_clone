@@ -1,0 +1,21 @@
+/**
+* @fileoverview: GitLab badges variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-13
+* @updated: 2023-07-13
+* @version: 0.0.1
+*/
+
+// Responsive breakpoints.
+$badges-1350: "only screen and (max-width: 1350px)" !default;
+$badges-1150: "only screen and (max-width: 1150px)" !default;
+$badges-770: "only screen and (max-width: 770px)" !default;
+
+// Colors theme.
+$badges-intial-text-color: #fff !default;
+$badges-btn-bg-color-2: #f6f3fe !default;
+$badges-bg-color: $primary-color !default;
+$badges-btn-bg-color: #e3d6ff !default;

@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-07-07
+* @updated: 2023-07-13
 * @file: main.scss
 * @version: 0.0.5
 */
@@ -1178,13 +1178,13 @@ div.right-data {
 * @version: 0.0.1
 */
 /**
-* @fileoverview: GitLab app global banne placeholders stylesheet.
+* @fileoverview: GitLab banner placeholders stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-18
-* @updated: 2023-06-21
+* @updated: 2023-07-13
 * @version: 0.0.1
 */
 /**
@@ -1410,6 +1410,164 @@ div.left-part {
       border-radius: 10px;
       height: 2px;
       width: 0; }
+
+/**
+* @fileoverview: GitLab app global badges stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @created: 2023-07-13
+* @updated: 2023-07-13
+* @file: badges.scss
+* @version: 0.0.1
+*/
+/**
+* @fileoverview: GitLab badges placeholders stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: placeholders.scss
+* @created: 2023-07-13
+* @updated: 2023-07-13
+* @version: 0.0.1
+*/
+/**
+* @fileoverview: GitLab badges variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-13
+* @updated: 2023-07-13
+* @version: 0.0.1
+*/
+div.bds-options button:first-child, div.bds-options button:last-child {
+  transition: width .2s ease;
+  color: #171321;
+  align-items: center;
+  border-radius: 4px;
+  font-weight: 600;
+  column-gap: 7px;
+  display: flex;
+  padding: 16px;
+  width: 360px;
+  border: none; }
+  @media only screen and (max-width: 770px) {
+    div.bds-options button:first-child, div.bds-options button:last-child {
+      width: 100%; } }
+
+div.bds-foot > button:last-child, div.bds-left button:last-child {
+  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: #171321;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  padding: 11px 16px;
+  font-weight: 600;
+  font-size: 18px; }
+  div.bds-foot > button:hover:last-child, div.bds-left button:hover:last-child {
+    background-color: #171321;
+    color: #fff; }
+    div.bds-foot > button:hover:last-child img, div.bds-left button:hover:last-child img {
+      filter: brightness(300%); }
+  @media only screen and (max-width: 770px) {
+    div.bds-foot > button:last-child, div.bds-left button:last-child {
+      justify-content: center;
+      width: 100%; } }
+  div.bds-foot > button:last-child img, div.bds-left button:last-child img {
+    transition: filter 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+    filter: brightness(1%);
+    display: inline-block;
+    margin-left: 8px; }
+
+/**
+* @fileoverview: GitLab badges variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-13
+* @updated: 2023-07-13
+* @version: 0.0.1
+*/
+section.badges {
+  background-color: #171321;
+  color: #fff;
+  margin-bottom: 96px;
+  padding: 96px 5%; }
+
+div.bds-head h2:first-child {
+  transition: margin-bottom .2s ease-out;
+  letter-spacing: -1.4px;
+  margin-bottom: 64px;
+  line-height: 60px;
+  font-weight: 600;
+  font-size: 50px; }
+  @media only screen and (max-width: 770px) {
+    div.bds-head h2:first-child {
+      margin-bottom: 24px; } }
+
+div.bds-options {
+  transition: all .2s ease-in-out;
+  margin-bottom: 64px;
+  display: flex;
+  gap: 16px; }
+  @media only screen and (max-width: 770px) {
+    div.bds-options {
+      flex-direction: column;
+      margin-bottom: 24px;
+      width: 100%; } }
+  div.bds-options button:first-child {
+    background-color: #e3d6ff; }
+  div.bds-options button:last-child {
+    background-color: #f6f3fe;
+    transition: background-color .2s ease; }
+    div.bds-options button:last-child:hover {
+      background-color: #e3d6ff; }
+
+div.bds-foot {
+  display: flex; }
+  @media only screen and (max-width: 770px) {
+    div.bds-foot {
+      flex-direction: column; } }
+  div.bds-foot div.bds-right {
+    transition: margin .2s ease-in-out;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    display: flex;
+    flex: 1 0 50%;
+    gap: 42px; }
+    @media only screen and (max-width: 770px) {
+      div.bds-foot div.bds-right {
+        justify-content: center;
+        margin-bottom: 24px; } }
+  div.bds-foot > button:last-child {
+    display: none; }
+    @media only screen and (max-width: 770px) {
+      div.bds-foot > button:last-child {
+        display: inline-flex; } }
+
+div.bds-left {
+  padding-right: 24px;
+  width: 100%; }
+  div.bds-left p {
+    margin-bottom: 24px;
+    line-height: 40px;
+    font-size: 32px;
+    width: 76%; }
+    @media only screen and (max-width: 1350px) {
+      div.bds-left p {
+        width: 90%; } }
+    @media only screen and (max-width: 1150px) {
+      div.bds-left p {
+        width: auto; } }
+  div.bds-left strong {
+    font-weight: bold; }
+  @media only screen and (max-width: 770px) {
+    div.bds-left button:last-child {
+      display: none; } }
 
 @font-face {
   src: url("../assets/fonts/inter-regular.ttf");

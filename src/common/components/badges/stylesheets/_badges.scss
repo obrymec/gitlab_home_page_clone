@@ -1,0 +1,133 @@
+/**
+* @fileoverview: GitLab app global badges stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @created: 2023-07-13
+* @updated: 2023-07-13
+* @file: badges.scss
+* @version: 0.0.1
+*/
+
+// Custom dependencies.
+@import "./_placeholders.scss";
+@import "./_variables.scss";
+
+// Badges section.
+section.badges {
+  background-color: $badges-bg-color;
+  color: $badges-intial-text-color;
+  margin-bottom: 96px;
+  padding: 96px 5%;
+}
+
+// Header.
+div.bds-head {
+  // Huge title.
+  h2:first-child {
+    transition: margin-bottom .2s ease-out;
+    letter-spacing: -1.4px;
+    margin-bottom: 64px;
+    line-height: 60px;
+    font-weight: 600;
+    font-size: 50px;
+    // From 770 to 0.
+    @media #{$badges-770} {
+      margin-bottom: 24px;;
+    }
+  }
+}
+
+// Buttons container.
+div.bds-options {
+  transition: all .2s ease-in-out;
+  margin-bottom: 64px;
+  display: flex;
+  gap: 16px;
+  // From 770 to 0.
+  @media #{$badges-770} {
+    flex-direction: column;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+  // First button.
+  button:first-child {
+    background-color: $badges-btn-bg-color;
+    @extend %badges-btn-design;
+  }
+  // Last button.
+  button:last-child {
+    background-color: $badges-btn-bg-color-2;
+    transition: background-color .2s ease;
+    @extend %badges-btn-design;
+    // Hover effect.
+    &:hover {
+      background-color: $badges-btn-bg-color;
+    }
+  }
+}
+
+// Footer.
+div.bds-foot {
+  display: flex;
+  // From 770 to 0.
+  @media #{$badges-770} {
+    flex-direction: column;
+  }
+  // Right content.
+  div.bds-right {
+    transition: margin .2s ease-in-out;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    display: flex;
+    flex: 1 0 50%;
+    gap: 42px;
+    // From 770 to 0.
+    @media #{$badges-770} {
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+  }
+  // The second learn more button.
+  & > button:last-child {
+    @extend %badges-lm-btn;
+    display: none;
+    // From 770 to 0.
+    @media #{$badges-770} {
+      display: inline-flex;
+    }
+  }
+}
+
+// Left content.
+div.bds-left {
+  padding-right: 24px;
+  width: 100%;
+  // Short paragraph.
+  p {
+    margin-bottom: 24px;
+    line-height: 40px;
+    font-size: 32px;
+    width: 76%;
+    // From 1350 to 1150.
+    @media #{$badges-1350} {
+      width: 90%;
+    }
+    // From 1150 to 0.
+    @media #{$badges-1150} {
+      width: auto;
+    }
+  }
+  // Medium title.
+  strong {
+    font-weight: bold;
+  }
+  // The first learn more button.
+  button:last-child {
+    @extend %badges-lm-btn;
+    // From 770 to 0.
+    @media #{$badges-770} {
+      display: none;
+    }
+  }
+}

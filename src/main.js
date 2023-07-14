@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-07-06
+* @updated 2023-07-13
 * @version 0.0.1
 * @file main.js
 */
@@ -16,6 +16,7 @@ import {Customers} from "./common/components/customers/customers.js"
 import {Services} from "./common/components/services/services.js";
 import {NavBar} from "./common/components/navbar/navbar.js";
 import {Banner} from "./common/components/banner/banner.js";
+import {Badges} from "./common/components/badges/badges.js";
 
 // Creates a new instance
 // of nav bar.
@@ -55,6 +56,11 @@ const methodologies = (
 		parentId: "main#root"
 	})
 );
+// Creates a new instance
+// of badges.
+const badges = new Badges ({
+	parentId: "main#root"
+});
 
 // Builds nav bar.
 navbar.render ();
@@ -70,3 +76,5 @@ services.render ();
 collaborators.render ();
 // Builds methodologies.
 methodologies.render ();
+// Builds badges.
+badges.render ();
