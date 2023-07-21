@@ -1,0 +1,120 @@
+/**
+* @fileoverview: GitLab app global faq stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @created: 2023-07-20
+* @updated: 2023-07-20
+* @file: faq.scss
+* @version: 0.0.1
+*/
+
+// Custom dependencies.
+@import "./_placeholders.scss";
+@import "./_variables.scss";
+
+// Vertical line.
+div.v-line {
+  border-right: 2px solid $faq-border-color;
+  margin: 0 96px;
+  display: block;
+  // From 1024 to 0.
+  @media #{$faq-1024} {
+    display: none;
+  }
+}
+
+// FAQ section.
+section.faq {
+  transition: padding .2s ease;
+  padding: 96px 5%;
+  display: flex;
+  background: (
+    radial-gradient(
+      50.08% 44.51% at 100% 100%,
+      $faq-gradient-color-1 0,
+      $faq-gradient-color-2 100%
+    ),
+    radial-gradient(
+      60.76% 48.01% at 0 100%,
+      $faq-gradient-color-3 0,
+      $faq-gradient-color-4 100%
+    ),
+    $faq-btn-text-color
+  );
+  // From 1024 to 640.
+  @media #{$faq-1024} {
+    flex-direction: column;
+    row-gap: 64px;
+  }
+  // From 640 to 0.
+  @media #{$faq-640} {
+    padding: 0 2.5%;
+  }
+}
+
+// Left section.
+div.faq-left {
+  // Huge title.
+  h2 {
+    letter-spacing: -1.4px;
+    margin-bottom: 16px;
+    line-height: 60px;
+    font-weight: 600;
+    font-size: 50px;
+  }
+  // Description.
+  p {
+    letter-spacing: -1.1px;
+    margin-bottom: 24px;
+    line-height: 40px;
+    font-weight: 400;
+    font-size: 32px;
+  }
+  // Free trial button.
+  button {
+    @extend %faq-free-trial-btn;
+    // From 1024 to 0.
+    @media #{$faq-1024} {
+      width: 100%;
+    }
+  }
+}
+
+// Right section.
+div.faq-right {
+  transition: width .2s ease-in-out;
+  width: 48%;
+  // From 1024 to 0.
+  @media #{$faq-1024} {
+    width: 100%;
+  }
+  // Experts container.
+  div.faq-experts {
+    // From 1024 to 0.
+    @media #{$faq-1024} {
+      justify-content: center;
+      display: inline-flex;
+      width: 100%;
+    }
+  }
+  // Experts.
+  img {
+    margin-bottom: 16px;
+    max-width: 210px;
+    display: block;
+  }
+  // Description.
+  p {
+    letter-spacing: -1.1px;
+    margin-bottom: 24px;
+    line-height: 40px;
+    font-weight: 400;
+    font-size: 32px;
+  }
+  // Talk to an expert button.
+  button {
+    @extend %faq-expert-btn-hover;
+    @extend %faq-talk-expert-btn;
+  }
+}

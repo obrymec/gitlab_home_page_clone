@@ -1,11 +1,12 @@
 /**
-* @fileoverview Imports and manages available tools to build home page.
+* @fileoverview Imports and manages available
+*		tools to build home page.
 * @author Obrymec - obrymecsprinces@gmail.com
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-07-14
-* @version 0.0.4
+* @updated 2023-07-21
+* @version 0.0.5
 * @file main.js
 */
 
@@ -18,6 +19,8 @@ import {Services} from "./common/components/services/services.js";
 import {NavBar} from "./common/components/navbar/navbar.js";
 import {Banner} from "./common/components/banner/banner.js";
 import {Badges} from "./common/components/badges/badges.js";
+import {Footer} from "./common/components/footer/footer.js";
+import {FAQ} from "./common/components/faq/faq.js";
 
 // Creates a new instance
 // of nav bar.
@@ -69,6 +72,16 @@ const resources = (
 		parentId: "main#root"
 	})
 );
+// Creates a new instance
+// of FAQ section.
+const faq = new FAQ ({
+	parentId: "main#root"
+});
+// Creates a new instance
+// of footer section.
+const footer = new Footer ({
+	parentId: "main#root"
+});
 
 // Builds navbar section.
 navbar.render ();
@@ -86,3 +99,7 @@ methodologies.render ();
 badges.render ();
 // Builds resources section.
 resources.render ();
+// Builds faq section.
+faq.render ();
+// Buidls footer section.
+footer.render ();

@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-07-14
+* @updated: 2023-07-21
 * @file: main.scss
 * @version: 0.0.5
 */
@@ -20,6 +20,8 @@
 @import "./common/components/navbar/stylesheets/_navbar.scss";
 @import "./common/components/banner/stylesheets/_banner.scss";
 @import "./common/components/badges/stylesheets/_badges.scss";
+@import "./common/components/footer/stylesheets/_footer.scss";
+@import "./common/components/faq/stylesheets/_faq.scss";
 
 // Inter regular font definition.
 @font-face {

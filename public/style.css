@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-07-14
+* @updated: 2023-07-21
 * @file: main.scss
 * @version: 0.0.5
 */
@@ -1743,6 +1743,190 @@ div.bds-left {
   @media only screen and (max-width: 770px) {
     div.bds-left button:last-child {
       display: none; } }
+
+/**
+* @fileoverview: GitLab app global footer stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @created: 2023-07-21
+* @updated: 2023-07-21
+* @file: footer.scss
+* @version: 0.0.1
+*/
+/**
+* @fileoverview: GitLab footer placeholders stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: placeholders.scss
+* @created: 2023-07-21
+* @updated: 2023-07-21
+* @version: 0.0.1
+*/
+/**
+* @fileoverview: GitLab footer variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-21
+* @updated: 2023-07-21
+* @version: 0.0.1
+*/
+/**
+* @fileoverview: GitLab footer variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-21
+* @updated: 2023-07-21
+* @version: 0.0.1
+*/
+footer.footer {
+  background-color: #171321;
+  padding: 2.5% 5%; }
+
+/**
+* @fileoverview: GitLab app global faq stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @created: 2023-07-20
+* @updated: 2023-07-20
+* @file: faq.scss
+* @version: 0.0.1
+*/
+/**
+* @fileoverview: GitLab faq placeholders stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: placeholders.scss
+* @created: 2023-07-20
+* @updated: 2023-07-20
+* @version: 0.0.1
+*/
+/**
+* @fileoverview: GitLab faq variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-20
+* @updated: 2023-07-21
+* @version: 0.0.1
+*/
+div.faq-right button:hover {
+  text-decoration: underline; }
+  div.faq-right button:hover img {
+    transform: translate(8px, 8px); }
+
+div.faq-right button {
+  transition: all .2s ease-in-out;
+  color: #171321;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 18px;
+  border: none; }
+  div.faq-right button img {
+    transition: transform .2s linear;
+    transform: translateY(8px);
+    filter: brightness(25%);
+    display: inline-block;
+    margin-left: 4px; }
+
+div.faq-left button {
+  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+  background-color: #171321;
+  border: 1px solid #171321;
+  color: #fff;
+  justify-content: center;
+  display: inline-flex;
+  border-radius: 4px;
+  padding: 11px 16px;
+  line-height: 20px;
+  font-weight: 600;
+  min-width: 68px;
+  font-size: 18px; }
+  div.faq-left button:hover {
+    background-color: #fff; }
+    div.faq-left button:hover span {
+      color: #171321; }
+  div.faq-left button span {
+    transition: color 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+    color: #fff; }
+
+/**
+* @fileoverview: GitLab faq variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-20
+* @updated: 2023-07-21
+* @version: 0.0.1
+*/
+div.v-line {
+  border-right: 2px solid #74717a;
+  margin: 0 96px;
+  display: block; }
+  @media only screen and (max-width: 1024px) {
+    div.v-line {
+      display: none; } }
+
+section.faq {
+  transition: padding .2s ease;
+  padding: 96px 5%;
+  display: flex;
+  background: radial-gradient(50.08% 44.51% at 100% 100%, rgba(169, 137, 245, 0.2) 0, rgba(119, 89, 194, 0) 100%), radial-gradient(60.76% 48.01% at 0 100%, rgba(226, 67, 41, 0.2) 0, rgba(226, 67, 41, 0) 100%), #fff; }
+  @media only screen and (max-width: 1024px) {
+    section.faq {
+      flex-direction: column;
+      row-gap: 64px; } }
+  @media only screen and (max-width: 640px) {
+    section.faq {
+      padding: 0 2.5%; } }
+
+div.faq-left h2 {
+  letter-spacing: -1.4px;
+  margin-bottom: 16px;
+  line-height: 60px;
+  font-weight: 600;
+  font-size: 50px; }
+div.faq-left p {
+  letter-spacing: -1.1px;
+  margin-bottom: 24px;
+  line-height: 40px;
+  font-weight: 400;
+  font-size: 32px; }
+@media only screen and (max-width: 1024px) {
+  div.faq-left button {
+    width: 100%; } }
+
+div.faq-right {
+  transition: width .2s ease-in-out;
+  width: 48%; }
+  @media only screen and (max-width: 1024px) {
+    div.faq-right {
+      width: 100%; } }
+  @media only screen and (max-width: 1024px) {
+    div.faq-right div.faq-experts {
+      justify-content: center;
+      display: inline-flex;
+      width: 100%; } }
+  div.faq-right img {
+    margin-bottom: 16px;
+    max-width: 210px;
+    display: block; }
+  div.faq-right p {
+    letter-spacing: -1.1px;
+    margin-bottom: 24px;
+    line-height: 40px;
+    font-weight: 400;
+    font-size: 32px; }
 
 @font-face {
   src: url("../assets/fonts/inter-regular.ttf");

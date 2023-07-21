@@ -1,0 +1,23 @@
+/**
+* @fileoverview: GitLab faq variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-20
+* @updated: 2023-07-21
+* @version: 0.0.1
+*/
+
+// Responsive breakpoints.
+$faq-1024: "only screen and (max-width: 1024px)" !default;
+$faq-640: "only screen and (max-width: 640px)" !default;
+
+// Colors themes.
+$faq-gradient-color-1: rgba(169, 137, 245, .2) !default;
+$faq-gradient-color-2: rgba(119, 89, 194, 0) !default;
+$faq-gradient-color-3: rgba(226, 67, 41, .2) !default;
+$faq-gradient-color-4: rgba(226, 67, 41, 0) !default;
+$faq-btn-bg-color: $primary-color !default;
+$faq-border-color: #74717a !default;
+$faq-btn-text-color: #fff !default;

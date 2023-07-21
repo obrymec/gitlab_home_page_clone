@@ -1,0 +1,20 @@
+/**
+* @fileoverview: GitLab app global footer stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @created: 2023-07-21
+* @updated: 2023-07-21
+* @file: footer.scss
+* @version: 0.0.1
+*/
+
+// Custom dependencies.
+@import "./_placeholders.scss";
+@import "./_variables.scss";
+
+// Footer section.
+footer.footer {
+  background-color: $primary-color;
+  padding: 2.5% 5%;
+}
