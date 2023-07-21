@@ -9,5 +9,13 @@
 * @version: 0.0.1
 */
 
+// Responsive breakpoints.
+$footer-1216: "only screen and (max-width: 1216px)" !default;
+$footer-768: "only screen and (max-width: 768px)" !default;
+$footer-640: "only screen and (max-width: 640px)" !default;
+$footer-460: "only screen and (max-width: 460px)" !default;
+
 // Colors theme.
+$footer-dropdown-bg-color: transparent !default;
 $footer-bg-color: $primary-color !default;
+$footer-text-color: #fff !default;

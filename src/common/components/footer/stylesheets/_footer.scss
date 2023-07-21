@@ -13,8 +13,182 @@
 @import "./_placeholders.scss";
 @import "./_variables.scss";
 
+// Joined references.
+div.foot-joined {
+  transition: padding-right .2s ease-out;
+  // From 768 to 0.
+  @media #{$footer-768} {
+    justify-content: space-between;
+    display: inline-flex;
+    padding-right: 20px;
+  }
+}
+
+// The second joined refs.
+div.foot-joined:last-child {
+  transition: all .2s ease-out;
+  display: inline-flex;
+  column-gap: 64px;
+  // From 1216 to 768.
+  @media #{$footer-1216} {
+    column-gap: 42px;
+  }
+  // From 768 to 0.
+  @media #{$footer-768} {
+    column-gap: 0;
+  }
+}
+
+// The first joined refs.
+div.foot-joined:first-child {
+  // From 768 to 0.
+  @media #{$footer-768} {
+    padding-right: 48px;
+  }
+  // Pricing section.
+  & > div:last-child {
+    transition: margin-top .2s ease-out;
+    margin-top: 24px;
+    // From 768 to 0.
+    @media #{$footer-768} {
+      margin-top: 0;
+    }
+  }
+}
+
+// Footer bottom.
+div.foot-bottom {
+  padding-top: 64px;
+  // Bottom informations.
+  & > p {
+    margin-bottom: 8px;
+    font-size: 14px;
+    // Links.
+    a {
+      text-decoration: underline;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+}
+
 // Footer section.
 footer.footer {
+  transition: padding .2s ease-out;
   background-color: $primary-color;
-  padding: 2.5% 5%;
+  padding: 40px 5%;
+  // From 1216 to 640.
+  @media #{$footer-1216} {
+    padding: 40px 32px;
+  }
+  // From 640 to 0.
+  @media #{$footer-640} {
+    padding: 42px 24px;
+  }
+  // All text.
+  span, h3, li, p, a {
+    color: $footer-text-color;
+  }
+}
+
+// Footer top.
+div.foot-top {
+  transition: row-gap .2s ease;
+  column-gap: 42px;
+  display: flex;
+  // From 1216 to 0.
+  @media #{$footer-1216} {
+    flex-direction: column;
+    row-gap: 36px;
+  }
+  // Gitlab logo.
+  div.foot-gitlab {
+    white-space: nowrap;
+    min-width: 150px;
+  }
+  // References.
+  div.foot-refs {
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    gap: 30px;
+    // From 768 to 0.
+    @media #{$footer-768} {
+      flex-direction: column;
+    }
+  }
+}
+
+// Foot menu representation.
+div.foot-menu {
+  // Title.
+  h3 {
+    margin-bottom: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  // Options container.
+  ul[name="true"] {
+    transition: all .2s ease-in-out;
+    // Only target lists.
+    @media #{$footer-768} {
+      column-gap: calc(100% - 290px);
+      columns: 100px 2;
+    }
+  }
+  // Options.
+  ul > li {
+    margin-bottom: 8px;
+    line-height: 24px;
+    font-size: 14px;
+    cursor: pointer;
+    // Hover effect.
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Network section.
+div.foot-network {
+  border-bottom: 1px solid $footer-text-color;
+  transition: row-gap .2s ease-in-out;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+  display: flex;
+  // From 460 to 0.
+  @media #{$footer-460} {
+    flex-direction: column;
+    row-gap: 34px;
+  }
+  // Language text.
+  div.foot-langs > span {
+    margin-left: 2px;
+  }
+  // Dropdown.
+  select {
+    background-color: $footer-dropdown-bg-color;
+    color: $footer-text-color;
+    cursor: pointer;
+    border: none;
+  }
+  // Network contacts.
+  div.foot-contacts {
+    display: inline-flex;
+    column-gap: 15px;
+    // Social networks.
+    img {
+      transition: filter .2s ease-out;
+      filter: brightness(300%);
+      cursor: pointer;
+    }
+    // Hover effect on image.
+    img:hover {
+      filter: brightness(150%);
+    }
+  }
 }

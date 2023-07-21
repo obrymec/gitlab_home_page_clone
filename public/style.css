@@ -1784,9 +1784,126 @@ div.bds-left {
 * @updated: 2023-07-21
 * @version: 0.0.1
 */
+div.foot-joined {
+  transition: padding-right .2s ease-out; }
+  @media only screen and (max-width: 768px) {
+    div.foot-joined {
+      justify-content: space-between;
+      display: inline-flex;
+      padding-right: 20px; } }
+
+div.foot-joined:last-child {
+  transition: all .2s ease-out;
+  display: inline-flex;
+  column-gap: 64px; }
+  @media only screen and (max-width: 1216px) {
+    div.foot-joined:last-child {
+      column-gap: 42px; } }
+  @media only screen and (max-width: 768px) {
+    div.foot-joined:last-child {
+      column-gap: 0; } }
+
+@media only screen and (max-width: 768px) {
+  div.foot-joined:first-child {
+    padding-right: 48px; } }
+div.foot-joined:first-child > div:last-child {
+  transition: margin-top .2s ease-out;
+  margin-top: 24px; }
+  @media only screen and (max-width: 768px) {
+    div.foot-joined:first-child > div:last-child {
+      margin-top: 0; } }
+
+div.foot-bottom {
+  padding-top: 64px; }
+  div.foot-bottom > p {
+    margin-bottom: 8px;
+    font-size: 14px; }
+    div.foot-bottom > p a {
+      text-decoration: underline;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer; }
+
 footer.footer {
+  transition: padding .2s ease-out;
   background-color: #171321;
-  padding: 2.5% 5%; }
+  padding: 40px 5%; }
+  @media only screen and (max-width: 1216px) {
+    footer.footer {
+      padding: 40px 32px; } }
+  @media only screen and (max-width: 640px) {
+    footer.footer {
+      padding: 42px 24px; } }
+  footer.footer span, footer.footer h3, footer.footer li, footer.footer p, footer.footer a {
+    color: #fff; }
+
+div.foot-top {
+  transition: row-gap .2s ease;
+  column-gap: 42px;
+  display: flex; }
+  @media only screen and (max-width: 1216px) {
+    div.foot-top {
+      flex-direction: column;
+      row-gap: 36px; } }
+  div.foot-top div.foot-gitlab {
+    white-space: nowrap;
+    min-width: 150px; }
+  div.foot-top div.foot-refs {
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    gap: 30px; }
+    @media only screen and (max-width: 768px) {
+      div.foot-top div.foot-refs {
+        flex-direction: column; } }
+
+div.foot-menu h3 {
+  margin-bottom: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  font-size: 20px; }
+div.foot-menu ul[name="true"] {
+  transition: all .2s ease-in-out; }
+  @media only screen and (max-width: 768px) {
+    div.foot-menu ul[name="true"] {
+      column-gap: calc(100% - 290px);
+      columns: 100px 2; } }
+div.foot-menu ul > li {
+  margin-bottom: 8px;
+  line-height: 24px;
+  font-size: 14px;
+  cursor: pointer; }
+  div.foot-menu ul > li:hover {
+    text-decoration: underline; }
+
+div.foot-network {
+  border-bottom: 1px solid #fff;
+  transition: row-gap .2s ease-in-out;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+  display: flex; }
+  @media only screen and (max-width: 460px) {
+    div.foot-network {
+      flex-direction: column;
+      row-gap: 34px; } }
+  div.foot-network div.foot-langs > span {
+    margin-left: 2px; }
+  div.foot-network select {
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    border: none; }
+  div.foot-network div.foot-contacts {
+    display: inline-flex;
+    column-gap: 15px; }
+    div.foot-network div.foot-contacts img {
+      transition: filter .2s ease-out;
+      filter: brightness(300%);
+      cursor: pointer; }
+    div.foot-network div.foot-contacts img:hover {
+      filter: brightness(150%); }
 
 /**
 * @fileoverview: GitLab app global faq stylesheet.
@@ -1794,7 +1911,7 @@ footer.footer {
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-20
-* @updated: 2023-07-20
+* @updated: 2023-07-21
 * @file: faq.scss
 * @version: 0.0.1
 */
@@ -1888,7 +2005,7 @@ section.faq {
       row-gap: 64px; } }
   @media only screen and (max-width: 640px) {
     section.faq {
-      padding: 0 2.5%; } }
+      padding: 96px 24px; } }
 
 div.faq-left h2 {
   letter-spacing: -1.4px;

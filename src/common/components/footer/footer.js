@@ -41,6 +41,9 @@ function Footer (data) {
 	 * 	- String title: The menu's title.
 	 * 	- Array<String> options: The
 	 * 		menu options.
+	 *  - boolean stretch: Whether we
+	 *  	must subdivide these items
+	 *		into two colums.
 	 * @function buildMenu_
 	 * @private {Function}
 	 * @returns {String} String
@@ -70,7 +73,9 @@ function Footer (data) {
 		return `
 			<div class = "foot-menu">
 				<h3>${data?.title}</h3>
-				<ul>${options}</ul>
+				<ul name = "${data?.stretch}">
+					${options}
+				</ul>
 			</div>
 		`;
 	};
@@ -117,12 +122,14 @@ function Footer (data) {
 						>
 							${buildMenu_ ({
 								title: "Platform",
+								stretch: false,
 								options: [
 									"DevSecOps platform"
 								]
 							})}
 							${buildMenu_ ({
 								title: "Pricing",
+								stretch: false,
 								options: [
 									"View plans",
 									"Why premium?",
@@ -132,6 +139,7 @@ function Footer (data) {
 						</div>
 						${buildMenu_ ({
 							title: "Solutions",
+							stretch: true,
 							options: [
 								"Digital transformation",
 								"Security & Compliance",
@@ -151,6 +159,7 @@ function Footer (data) {
 						})}
 						${buildMenu_ ({
 							title: "Resources",
+							stretch: true,
 							options: [
 								"Install",
 								"Quick setup checklists",
@@ -166,32 +175,38 @@ function Footer (data) {
 								"Partners"
 							]
 						})}
-						${buildMenu_ ({
-							title: "Company",
-							options: [
-								"About",
-								"Jobs",
-								"Leadership",
-								"Team",
-								"Handbook",
-								"Investor relations",
-								"Trust Center",
-								"Newsletter",
-								"Press"
-							]
-						})}
-						${buildMenu_ ({
-							title: "Contact us",
-							options: [
-								"Contact an expert",
-								"Get help",
-								"Customer portal",
-								"Status",
-								"Terms of use",
-								"Privacy statement",
-								"Cookie preferences"
-							]
-						})}
+						<div
+							class = "foot-joined"
+						>
+							${buildMenu_ ({
+								title: "Company",
+								stretch: false,
+								options: [
+									"About",
+									"Jobs",
+									"Leadership",
+									"Team",
+									"Handbook",
+									"Investor relations",
+									"Trust Center",
+									"Newsletter",
+									"Press"
+								]
+							})}
+							${buildMenu_ ({
+								title: "Contact us",
+								stretch: false,
+								options: [
+									"Contact an expert",
+									"Get help",
+									"Customer portal",
+									"Status",
+									"Terms of use",
+									"Privacy statement",
+									"Cookie preferences"
+								]
+							})}
+						</div>
 					</div>
 				</div>
 				<div class = "foot-bottom">
@@ -229,7 +244,7 @@ function Footer (data) {
 							</select>
 						</div>
 						<div
-							class = "foot-contact"
+							class = "foot-contacts"
 						>
 							<img
 								src = "${`
