@@ -1,0 +1,21 @@
+/**
+* @fileoverview: GitLab pricing variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-27
+* @updated: 2023-07-28
+* @version: 0.0.1
+*/
+
+// Responsive breakpoints.
+$pricing-1080: "only screen and (min-width: 770px) and (max-width: 1080px)" !default;
+$pricing-770: "only screen and (max-width: 770px)" !default;
+
+// Colors theme.
+$pricing-btn-bg-color: $primary-color !default;
+$pricing-unselected-color: #d3d3d3 !default;
+$pricing-sub-bg-color-1: #f2f1f5 !default;
+$pricing-sub-bg-color-2: #eee7fd !default;
+$pricing-sub-btn-txt-color: #fff !default;

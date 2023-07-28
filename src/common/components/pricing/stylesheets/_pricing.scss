@@ -1,0 +1,224 @@
+/**
+* @fileoverview: GitLab app global pricing stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @created: 2023-07-27
+* @updated: 2023-07-28
+* @file: pricing.scss
+* @version: 0.0.1
+*/
+
+// Custom dependencies.
+@import "./_placeholders.scss";
+@import "./_variables.scss";
+
+// Subscription.
+div.subscription {
+  flex-direction: column;
+  display: flex;
+  width: 100%;
+  // From 770 to 0.
+  @media #{$pricing-770} {
+    min-width: 100%;
+    width: auto;
+  }
+}
+
+// Princing section.
+section.pricing {
+  margin-bottom: 96px;
+  padding: 16px 5%;
+  // From 1080 to 0.
+  @media #{$pricing-1080} {
+    padding: 16px 17px;
+  }
+  // Big title.
+  h2.price-title {
+    letter-spacing: -2.1px;
+    margin-bottom: 24px;
+    line-height: 72px;
+    font-weight: 600;
+    font-size: 50px;
+    // From 770 to 0.
+    @media #{$pricing-770} {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+// Subscription features.
+div.sub-features {
+  font-size: 14px;
+  // From 770 to 0.
+  @media #{$pricing-770} {
+    padding-left: 16px;
+    font-size: 16px;
+  }
+  // Title.
+  h4 {
+    margin-bottom: 8px;
+    line-height: 20px;
+    font-weight: 600;
+  }
+  // Features list.
+  div {
+    flex-direction: column;
+    display: flex;
+    row-gap: 8px;
+    // Any feature.
+    & > span {
+      display: inline-flex;
+    }
+    // Any feature checked.
+    & > span > span:first-child {
+      margin-right: 22px;
+    }
+  }
+}
+
+// Pricing header.
+div.price-head {
+  justify-content: center;
+  margin-bottom: 16px;
+  display: none;
+  width: 100%;
+  // From 770 to 0.
+  @media #{$pricing-770} {
+    display: inline-flex;
+  }
+  // Active subscription.
+  button.price-active-sub {
+    border-bottom: 1px solid $pricing-btn-bg-color;
+    color: $pricing-btn-bg-color;
+  }
+  // Any buttons.
+  button {
+    color: $pricing-unselected-color;
+    display: inline-block;
+    text-align: center;
+    line-height: 24px;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 8px 0;
+    width: 100%;
+    // From 770 to 0.
+    @media #{$pricing-770} {
+      font-size: 15px;
+    }
+  }
+}
+
+// Pricing body.
+div.price-body {
+  justify-content: space-between;
+  display: inline-flex;
+  column-gap: 50px;
+  width: 100%;
+  // From 1080 to 770.
+  @media #{$pricing-1080} {
+    column-gap: 16px;
+  }
+  // From 770 to 0.
+  @media #{$pricing-770} {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    column-gap: 0;
+  }
+  // The first subscription.
+  div:first-child > div.sub-infos {
+    background-color: $pricing-sub-bg-color-1;
+  }
+  // The second subscription.
+  div:nth-child(2) > div.sub-infos {
+    background-color: $pricing-sub-bg-color-2;
+  }
+  // The third subscription.
+  div:last-child > div.sub-infos {
+    background: url("../../../../../assets/images/ultimate.png");
+    border: 1px solid $pricing-sub-bg-color-2;
+    border-radius: 4px 4px 100px 4px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+  }
+}
+
+// Subscription price.
+span.sub-price {
+  display: inline-flex;
+  margin-bottom: 16px;
+  align-items: center;
+  // Currency.
+  label:first-child {
+    transform: translateY(-10px);
+    display: block;
+  }
+  // Price.
+  label:nth-child(2) {
+    letter-spacing: -2.1px;
+    line-height: 72px;
+    font-weight: 600;
+    font-size: 64px;
+    // From 1080 to 0.
+    @media #{$pricing-1080} {
+      font-size: 50px;
+    }
+  }
+  // Price info.
+  span:nth-child(3) {
+    margin-left: 16px;
+    // From 770 to 0.
+    @media #{$pricing-770} {
+      font-size: 15px;
+    }
+  }
+  // Price texts.
+  span:nth-child(3) > p {
+    line-height: 20px;
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
+
+// Subscription infos.
+div.sub-infos {
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 32px;
+  border-radius: 4px;
+  padding: 24px;
+  display: flex;
+  height: 362px;
+  // From 1080 to 770.
+  @media #{$pricing-1080} {
+    height: 380px;
+    padding: 16px;
+  }
+  // Title.
+  h3 {
+    letter-spacing: -1px;
+    line-height: 48px;
+    font-weight: 600;
+    font-size: 40px;
+    // From 1080 to 0.
+    @media #{$pricing-1080} {
+      font-size: 30px;
+    }
+  }
+  // Description.
+  & > p {
+    margin-bottom: 8px;
+    line-height: 24px;
+    font-weight: 600;
+    font-size: 20px;
+    // From 1080 to 0.
+    @media #{$pricing-1080} {
+      font-size: 16px;
+    }
+  }
+  // Subscription button.
+  button {
+    @extend %pricing-sub-btn;
+  }
+}

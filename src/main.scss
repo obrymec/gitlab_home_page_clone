@@ -4,9 +4,9 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-07-21
+* @updated: 2023-07-28
 * @file: main.scss
-* @version: 0.0.5
+* @version: 0.0.6
 */
 
 // Custom dependencies.
@@ -17,6 +17,7 @@
 @import "./common/components/customers/stylesheets/_customers.scss";
 @import "./common/components/resources/stylesheets/_resources.scss";
 @import "./common/components/services/stylesheets/_services.scss";
+@import "./common/components/pricing/stylesheets/_pricing.scss";
 @import "./common/components/navbar/stylesheets/_navbar.scss";
 @import "./common/components/banner/stylesheets/_banner.scss";
 @import "./common/components/badges/stylesheets/_badges.scss";
@@ -38,6 +39,7 @@ main, body {
 // Any element.
 * {
 	font-family: $inter-regular-sans-serif;
+	transition: all .2s ease-in-out;
 	color: $primary-color;
 	line-height: 24px;
 	user-select: none;

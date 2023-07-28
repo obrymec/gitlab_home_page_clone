@@ -4,9 +4,9 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-07-21
+* @updated: 2023-07-28
 * @file: main.scss
-* @version: 0.0.5
+* @version: 0.0.6
 */
 html {
   -webkit-text-size-adjust: 100%; }
@@ -1100,6 +1100,213 @@ div.service {
         font-size: 15px; } }
 
 /**
+* @fileoverview: GitLab app global pricing stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @created: 2023-07-27
+* @updated: 2023-07-28
+* @file: pricing.scss
+* @version: 0.0.1
+*/
+/**
+* @fileoverview: GitLab pricing placeholders stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: placeholders.scss
+* @created: 2023-07-27
+* @updated: 2023-07-28
+* @version: 0.0.1
+*/
+/**
+* @fileoverview: GitLab pricing variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-27
+* @updated: 2023-07-28
+* @version: 0.0.1
+*/
+div.sub-infos button {
+  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+  background-color: #171321;
+  border: 1px solid #171321;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  padding: 11px 16px;
+  line-height: 20px;
+  font-weight: 600;
+  min-width: 68px;
+  font-size: 18px; }
+  div.sub-infos button:hover {
+    background-color: #fff;
+    color: #171321; }
+  @media only screen and (min-width: 770px) and (max-width: 1080px) {
+    div.sub-infos button {
+      font-size: 15px; } }
+
+/**
+* @fileoverview: GitLab pricing variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-07-27
+* @updated: 2023-07-28
+* @version: 0.0.1
+*/
+div.subscription {
+  flex-direction: column;
+  display: flex;
+  width: 100%; }
+  @media only screen and (max-width: 770px) {
+    div.subscription {
+      min-width: 100%;
+      width: auto; } }
+
+section.pricing {
+  margin-bottom: 96px;
+  padding: 16px 5%; }
+  @media only screen and (min-width: 770px) and (max-width: 1080px) {
+    section.pricing {
+      padding: 16px 17px; } }
+  section.pricing h2.price-title {
+    letter-spacing: -2.1px;
+    margin-bottom: 24px;
+    line-height: 72px;
+    font-weight: 600;
+    font-size: 50px; }
+    @media only screen and (max-width: 770px) {
+      section.pricing h2.price-title {
+        margin-bottom: 30px; } }
+
+div.sub-features {
+  font-size: 14px; }
+  @media only screen and (max-width: 770px) {
+    div.sub-features {
+      padding-left: 16px;
+      font-size: 16px; } }
+  div.sub-features h4 {
+    margin-bottom: 8px;
+    line-height: 20px;
+    font-weight: 600; }
+  div.sub-features div {
+    flex-direction: column;
+    display: flex;
+    row-gap: 8px; }
+    div.sub-features div > span {
+      display: inline-flex; }
+    div.sub-features div > span > span:first-child {
+      margin-right: 22px; }
+
+div.price-head {
+  justify-content: center;
+  margin-bottom: 16px;
+  display: none;
+  width: 100%; }
+  @media only screen and (max-width: 770px) {
+    div.price-head {
+      display: inline-flex; } }
+  div.price-head button.price-active-sub {
+    border-bottom: 1px solid #171321;
+    color: #171321; }
+  div.price-head button {
+    color: #d3d3d3;
+    display: inline-block;
+    text-align: center;
+    line-height: 24px;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 8px 0;
+    width: 100%; }
+    @media only screen and (max-width: 770px) {
+      div.price-head button {
+        font-size: 15px; } }
+
+div.price-body {
+  justify-content: space-between;
+  display: inline-flex;
+  column-gap: 50px;
+  width: 100%; }
+  @media only screen and (min-width: 770px) and (max-width: 1080px) {
+    div.price-body {
+      column-gap: 16px; } }
+  @media only screen and (max-width: 770px) {
+    div.price-body {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      column-gap: 0; } }
+  div.price-body div:first-child > div.sub-infos {
+    background-color: #f2f1f5; }
+  div.price-body div:nth-child(2) > div.sub-infos {
+    background-color: #eee7fd; }
+  div.price-body div:last-child > div.sub-infos {
+    background: url("../../../../../assets/images/ultimate.png");
+    border: 1px solid #eee7fd;
+    border-radius: 4px 4px 100px 4px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover; }
+
+span.sub-price {
+  display: inline-flex;
+  margin-bottom: 16px;
+  align-items: center; }
+  span.sub-price label:first-child {
+    transform: translateY(-10px);
+    display: block; }
+  span.sub-price label:nth-child(2) {
+    letter-spacing: -2.1px;
+    line-height: 72px;
+    font-weight: 600;
+    font-size: 64px; }
+    @media only screen and (min-width: 770px) and (max-width: 1080px) {
+      span.sub-price label:nth-child(2) {
+        font-size: 50px; } }
+  span.sub-price span:nth-child(3) {
+    margin-left: 16px; }
+    @media only screen and (max-width: 770px) {
+      span.sub-price span:nth-child(3) {
+        font-size: 15px; } }
+  span.sub-price span:nth-child(3) > p {
+    line-height: 20px;
+    font-weight: 400;
+    font-size: 14px; }
+
+div.sub-infos {
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 32px;
+  border-radius: 4px;
+  padding: 24px;
+  display: flex;
+  height: 362px; }
+  @media only screen and (min-width: 770px) and (max-width: 1080px) {
+    div.sub-infos {
+      height: 380px;
+      padding: 16px; } }
+  div.sub-infos h3 {
+    letter-spacing: -1px;
+    line-height: 48px;
+    font-weight: 600;
+    font-size: 40px; }
+    @media only screen and (min-width: 770px) and (max-width: 1080px) {
+      div.sub-infos h3 {
+        font-size: 30px; } }
+  div.sub-infos > p {
+    margin-bottom: 8px;
+    line-height: 24px;
+    font-weight: 600;
+    font-size: 20px; }
+    @media only screen and (min-width: 770px) and (max-width: 1080px) {
+      div.sub-infos > p {
+        font-size: 16px; } }
+
+/**
 * @fileoverview: GitLab app global navbar stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
@@ -2053,10 +2260,9 @@ main, body {
 
 * {
   font-family: "InterRegular", sans-serif;
+  transition: all .2s ease-in-out;
   color: #171321;
   line-height: 24px;
   user-select: none;
   font-weight: 400;
   font-size: 16px; }
-
-/*# sourceMappingURL=style.css.map */

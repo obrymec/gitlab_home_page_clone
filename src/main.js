@@ -5,8 +5,8 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-07-21
-* @version 0.0.5
+* @updated 2023-07-27
+* @version 0.0.6
 * @file main.js
 */
 
@@ -16,6 +16,7 @@ import {Methodologies} from "./common/components/methodologies/methodologies.js"
 import {Customers} from "./common/components/customers/customers.js";
 import {Resources} from "./common/components/resources/resources.js";
 import {Services} from "./common/components/services/services.js";
+import {Pricing} from "./common/components/pricing/pricing.js";
 import {NavBar} from "./common/components/navbar/navbar.js";
 import {Banner} from "./common/components/banner/banner.js";
 import {Badges} from "./common/components/badges/badges.js";
@@ -66,6 +67,11 @@ const badges = new Badges ({
 	parentId: "main#root"
 });
 // Creates a new instance
+// of pricing section.
+const pricing = new Pricing ({
+	parentId: "main#root"
+});
+// Creates a new instance
 // of resources.
 const resources = (
 	new Resources ({
@@ -97,6 +103,8 @@ collaborators.render ();
 methodologies.render ();
 // Builds badges section.
 badges.render ();
+// Builds pricing section.
+pricing.render ();
 // Builds resources section.
 resources.render ();
 // Builds faq section.
