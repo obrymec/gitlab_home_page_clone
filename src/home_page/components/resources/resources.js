@@ -4,14 +4,14 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-14
-* @updated 2023-07-14
+* @updated 2023-07-29
 * @file resources.js
 * @type {Resources}
 * @version 0.0.1
 */
 
 // Custom dependencies.
-import {swipe} from "../../utilities/swipe/swipe.js";
+import swipe from "../../../common/utilities/swipe/swipe.js";
 
 /**
  * @public @class @classdesc Builds resources
@@ -462,19 +462,20 @@ function Resources (data) {
 			)
 		);
 		// Listens human fingers motion
-		// on mobile.
-		swipe (container, direction => {
-			// Whether the direction is
-			// left.
-			if (direction === "left") {
+		// on mobile for the left swipe.
+		swipe.swipeLeft ({
+			tagId: "div.res-body",
+			feedback: () => {
 				// Swipes resources
 				// to right.
 				swipeRight (true);
-			// Whether the direction is
-			// right.
-			} else if (
-				direction === "right"
-			) {
+			}
+		});
+		// Listens human fingers motion
+		// on mobile for the right swipe.
+		swipe.swipeRight ({
+			tagId: "div.res-body",
+			feedback: () => {
 				// Swipes resources
 				// to left.
 				swipeLeft (true);

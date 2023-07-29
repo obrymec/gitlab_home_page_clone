@@ -6,12 +6,12 @@
 * @file methodologies.js
 * @type {Methodologies}
 * @created 2023-07-06
-* @updated 2023-07-14
+* @updated 2023-07-29
 * @version 0.0.1
 */
 
 // Custom dependencies.
-import {swipe} from "../../utilities/swipe/swipe.js";
+import swipe from "../../../common/utilities/swipe/swipe.js";
 
 /**
  * @public @class @classdesc Builds
@@ -706,19 +706,20 @@ function Methodologies (data) {
 			)
 		);
 		// Listens human fingers motion
-		// on mobile.
-		swipe (container, direction => {
-			// Whether the direction is
-			// left.
-			if (direction === "left") {
+		// on mobile for the left swipe.
+		swipe.swipeLeft ({
+			tagId: "div.mhds-body",
+			feedback: () => {
 				// Swipes methodologies
 				// to right.
 				swipeRight (true);
-			// Whether the direction is
-			// right.
-			} else if (
-				direction === "right"
-			) {
+			}
+		});
+		// Listens human fingers motion
+		// on mobile for the right swipe.
+		swipe.swipeRight ({
+			tagId: "div.mhds-body",
+			feedback: () => {
 				// Swipes methodologies
 				// to left.
 				swipeLeft (true);

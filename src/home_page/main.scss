@@ -1,0 +1,48 @@
+/**
+* @fileoverview: GitLab app global stylesheets.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @created: 2023-06-16
+* @updated: 2023-07-29
+* @file: main.scss
+* @version: 0.0.6
+*/
+
+// Custom dependencies.
+@import "../common/utilities/reset/_reset.scss";
+@import "../common/themes/_light.scss";
+@import "./components/collaborators/stylesheets/_collaborators.scss";
+@import "./components/methodologies/stylesheets/_methodologies.scss";
+@import "./components/customers/stylesheets/_customers.scss";
+@import "./components/resources/stylesheets/_resources.scss";
+@import "./components/services/stylesheets/_services.scss";
+@import "./components/pricing/stylesheets/_pricing.scss";
+@import "./components/navbar/stylesheets/_navbar.scss";
+@import "./components/banner/stylesheets/_banner.scss";
+@import "./components/badges/stylesheets/_badges.scss";
+@import "./components/footer/stylesheets/_footer.scss";
+@import "./components/faq/stylesheets/_faq.scss";
+
+// Inter regular font definition.
+@font-face {
+	src: url("../assets/fonts/inter-regular.ttf");
+	font-family: "InterRegular";
+}
+
+// The main.
+main, body {
+	// overflow-x: hidden;
+	overflow-y: auto;
+}
+
+// Any element.
+* {
+	font-family: $inter-regular-sans-serif;
+	transition: all .2s ease-in-out;
+	color: $primary-color;
+	line-height: 24px;
+	user-select: none;
+	font-weight: 400;
+	font-size: 16px;
+}
