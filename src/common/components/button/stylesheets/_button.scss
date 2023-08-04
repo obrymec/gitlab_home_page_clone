@@ -1,0 +1,49 @@
+/**
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @fileoverview: GitLab button stylesheet.
+* @supported: DESKTOP, MOBILE
+* @created: 2023-08-03
+* @updated: 2023-08-04
+* @file: button.scss
+* @version: 0.0.1
+*/
+
+// Custom dependencies.
+@import "./_variables.scss";
+
+// Hybrid button.
+button.gen-btn {
+	transition: all .3s cubic-bezier(.7, 0, .3, 1);
+	background-color: $button-bg-color;
+	color: $button-text-color;
+	justify-content: center;
+  display: inline-flex;
+	padding: 11px 16px;
+	line-height: 20px;
+	font-weight: 600;
+	font-size: 18px;
+	// Hover effect.
+	&:hover {
+		background-color: $button-tr-bg;
+		// Text.
+		span {
+			color: $button-bg-color;
+		}
+	}
+	// From 1170 to 0.
+	@media #{$button-1170} {
+		font-size: 16px;
+	}
+	// Right icon.
+	img {
+		transform: translate(0, 1px);
+		display: inline-block;
+		margin-left: 8px;
+	}
+	// Text.
+	span {
+		transition: color .3s cubic-bezier(.7, 0, .3, 1);
+		color: $button-text-color;
+	}
+}
