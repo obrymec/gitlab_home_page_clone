@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-27
-* @updated 2023-07-28
+* @updated 2023-08-03
 * @file pricing.js
 * @type {Pricing}
 * @version 0.0.1
@@ -40,25 +40,6 @@ function Pricing (data) {
 		? data.parentId.replace (/ /g, '')
 		: null
 	);
-
-  /**
-   * @description Builds an icon button.
-   * @function buildIconButton_
-   * @constant {Function}
-   * @private {Function}
-   * @returns {String} String
-   */
-  const buildIconButton_ = () => `
-    <img
-      src = "${`
-        ../../../../../assets/
-        icons/right-arrow.svg
-      `.replaceAll ('\n', '')
-       .replaceAll (' ', '')
-      }"
-      alt = ''
-    />
-  `;
 
   /**
   * @description Coordinates the

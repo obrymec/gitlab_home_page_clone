@@ -1,22 +1,22 @@
 /**
-* @fileoverview: GitLab app global navbar variables stylesheet.
+* @fileoverview: GitLab navbar variables stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-16
-* @updated: 2023-06-19
-* @version: 0.0.1
+* @updated: 2023-08-04
+* @version: 0.0.2
 */
 
 // Responsive breakpoints.
-$less-than-or-equal-1170: "only screen and (max-width: 1170px)" !default;
-$less-than-or-equal-1050: "only screen and (max-width: 1050px)" !default;
-$less-than-or-equal-575: "only screen and (max-width: 575px)" !default;
+$navbar-1170: "only screen and (max-width: 1170px)" !default;
+$navbar-1050: "only screen and (max-width: 1050px)" !default;
+$navbar-575: "only screen and (max-width: 575px)" !default;
 
 // Colors theme.
-$navbar-free-trial-color: $primary-color !default;
+$navbar-menu-items-bg-color: lighten($primary-color, 80%) !default;
 $navbar-menu-items-border-color: #ccc !default;
+$navbar-btn-bg-color: $primary-color !default;
 $navbar-option-color: #74717a !default;
-$navbar-primary-color: #fff !default;
 $navbar-bg-color: #fff !default;

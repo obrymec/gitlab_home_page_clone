@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-28
-* @updated 2023-07-28
+* @updated 2023-08-03
 * @file cookies.js
 * @type {Cookies}
 * @version 0.0.2
@@ -128,8 +128,8 @@ function getCookie (name) {
 }
 
 /** 
- * @description Exports all public
- *  features.
+ * @description Exports all
+ *  public features.
  * @exports *
  */
 export {getCookie, setCookie};

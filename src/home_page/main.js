@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-07-29
+* @updated 2023-08-03
 * @version 0.0.6
 * @file main.js
 */
@@ -24,24 +24,24 @@ import {Footer} from "./components/footer/footer.js";
 import {FAQ} from "./components/faq/faq.js";
 
 // Builds navbar section.
-new NavBar ({parentId: "main"}).render ();
+new NavBar ().render ();
 // Builds banner section.
-new Banner ({parentId: "main"}).render ();
-// Builds customers section.
-new Customers ({parentId: "main"}).render ();
-// Builds services section.
-new Services ({parentId: "main"}).render ();
-// Builds collaborators section.
-new Collaborators ({parentId: "main"}).render ();
-// Builds methodologies section.
-new Methodologies ({parentId: "main"}).render ();
-// Builds badges section.
-new Badges ({parentId: "main"}).render ();
-// Builds pricing section.
-new Pricing ({parentId: "main"}).render ();
-// Builds resources section.
-new Resources ({parentId: "main"}).render ();
-// Builds faq section.
-new FAQ ({parentId: "main"}).render ();
-// Buidls footer section.
-new Footer ({parentId: "main"}).render ();
+// new Banner ({parentId: "main"}).render ();
+// // Builds customers section.
+// new Customers ({parentId: "main"}).render ();
+// // Builds services section.
+// new Services ({parentId: "main"}).render ();
+// // Builds collaborators section.
+// new Collaborators ({parentId: "main"}).render ();
+// // Builds methodologies section.
+// new Methodologies ({parentId: "main"}).render ();
+// // Builds badges section.
+// new Badges ({parentId: "main"}).render ();
+// // Builds pricing section.
+// new Pricing ({parentId: "main"}).render ();
+// // Builds resources section.
+// new Resources ({parentId: "main"}).render ();
+// // Builds faq section.
+// new FAQ ({parentId: "main"}).render ();
+// // Buidls footer section.
+// new Footer ({parentId: "main"}).render ();

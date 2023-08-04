@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-07-29
+* @updated: 2023-08-04
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -14,6 +14,7 @@
 @import "../common/themes/_light.scss";
 @import "./components/collaborators/stylesheets/_collaborators.scss";
 @import "./components/methodologies/stylesheets/_methodologies.scss";
+@import "../common/components/button/stylesheets/_button.scss";
 @import "./components/customers/stylesheets/_customers.scss";
 @import "./components/resources/stylesheets/_resources.scss";
 @import "./components/services/stylesheets/_services.scss";
@@ -30,19 +31,19 @@
 	font-family: "InterRegular";
 }
 
-// The main.
-main, body {
-	// overflow-x: hidden;
-	overflow-y: auto;
+// All tags.
+* {
+	transition: all .2s ease-in-out;
 }
 
-// Any element.
-* {
+// Root.
+body {
 	font-family: $inter-regular-sans-serif;
-	transition: all .2s ease-in-out;
 	color: $primary-color;
+	// overflow-x: hidden;
 	line-height: 24px;
 	user-select: none;
 	font-weight: 400;
+	overflow-y: auto;
 	font-size: 16px;
 }

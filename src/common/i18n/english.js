@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-07-28
+* @updated 2023-08-04
 * @file english.js
 * @type {English}
 * @version 0.0.1
@@ -33,13 +33,21 @@ const english = {
     "en"
   ],
   data: {
-
+    tr1: "Why GitLab",
+    tr2: "Platform",
+    tr3: "Solutions",
+    tr4: "Pricing",
+    tr5: "Resources",
+    tr6: "Company",
+    tr7: "Contact us",
+    tr8: "Sign in",
+    tr9: "Get free trial"
   }
 };
 
 /**
- * @description Exports this field
- *  by default.
+ * @description Exports this
+ *  field by default.
  * @exports english
  */
 export default english;

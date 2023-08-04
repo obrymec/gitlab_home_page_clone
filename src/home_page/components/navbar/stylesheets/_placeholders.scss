@@ -1,16 +1,22 @@
 /**
-* @fileoverview: GitLab app global navbar placeholders stylesheet.
+* @fileoverview: GitLab navbar placeholders stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-16
-* @updated: 2023-07-14
-* @version: 0.0.1
+* @updated: 2023-08-04
+* @version: 0.0.2
 */
 
-// Dependencies.
+// Custom dependencies.
 @import "./_variables.scss";
+
+// Free trial button with radius.
+%free-trial-radius {
+	border: 1px solid $navbar-btn-bg-color;
+	border-radius: 4px;
+}
 
 // Column flex box.
 %navbar-column-flexbox {
@@ -35,45 +41,25 @@
 
 // Icon option.
 %navbar-icon-option {
+	filter: brightness(100%);
 	cursor: pointer;
-	& > path {
-		transition: fill .4s ease-in-out;
-		fill: $navbar-option-color;
-	}
 	// Hover effect.
-	&:hover > path {
-		fill: $navbar-free-trial-color;
+	&:hover {
+		filter: brightness(1%);
 	}
 }
 
-// Free trial button.
-%navbar-free-trial {
-	transition: all .3s cubic-bezier(.7, 0, .3, 1);
-	background-color: $navbar-free-trial-color;
-	@extend %navbar-inline-flexbox;
-	justify-content: center;
-	color: $navbar-bg-color;
-	padding: 11px 16px;
-	line-height: 20px;
-	font-weight: 600;
-	min-width: 68px;
-	font-size: 18px;
+// Free trial button with no radius.
+%free-trial-no-radius {
+	border-bottom: 1px solid $navbar-btn-bg-color;
+	border-top: 2px solid $navbar-btn-bg-color;
 	// Hover effect.
-	&:hover {
-		background-color: $navbar-primary-color;
-		// Text.
-		span {
-			color: $navbar-free-trial-color;
-		}
+	&:hover > img {
+		filter: brightness(0);
 	}
-	// From 1170 to 0.
-	@media #{$less-than-or-equal-1170} {
-		letter-spacing: 1.1px;
-		font-size: 16px;
-	}
-	// Text.
-	span {
-		transition: color .3s cubic-bezier(.7, 0, .3, 1);
-		color: $navbar-bg-color;
+	// Right arrow.
+	img {
+		transition: filter .3s cubic-bezier(.7, 0, .3, 1);
+		filter: brightness(100%);
 	}
 }

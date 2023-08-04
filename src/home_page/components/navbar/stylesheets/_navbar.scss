@@ -1,12 +1,12 @@
 /**
-* @fileoverview: GitLab app global navbar stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
+* @fileoverview: GitLab navbar stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-06-21
+* @updated: 2023-08-04
 * @file: navbar.scss
-* @version: 0.0.1
+* @version: 0.0.3
 */
 
 // Custom dependencies.
@@ -14,55 +14,41 @@
 @import "./_animations.scss";
 @import "./_variables.scss";
 
-// Shows menu popup.
-.display-popup-menu {
-	display: flex;
+// NavBar data section container.
+section.nav-data {
+	background-color: $navbar-bg-color;
+	justify-content: space-between;
+	@extend %navbar-inline-flexbox;
+	padding: 20px 32px 20px 32px;
+	// From 1050 to 0.
+	@media #{$navbar-1050} {
+		padding: 16px;
+	}
 }
 
 // NavBar global container.
 nav.navbar {
-	transition: top .2s ease-in-out;
 	@extend %navbar-column-flexbox;
 	@extend %navbar-top-fixed;
 	z-index: 1;
 	top: -43px;
 	// From 575 to 0.
-	@media #{$less-than-or-equal-575} {
+	@media #{$navbar-575} {
 		top: 0;
 	}
-}
-
-// NavBar data section container.
-section.nav-data {
-	transition: padding .2s ease-in-out;
-	background-color: $navbar-bg-color;
-	justify-content: space-between;
-	@extend %navbar-inline-flexbox;
-	padding: 20px 32px 20px 32px;
-	// From 1050 to 575.
-	@media #{$less-than-or-equal-1050} {
-		padding: 20px 18px 20px 18px;
+	// Shows menu popup.
+	menu.display-popup-menu {
+		display: flex;
 	}
-}
-
-// Free trial button with no radius.
-button.free-trial-btn-no-radius {
-	border-bottom: 1px solid $navbar-free-trial-color;
-	@extend %navbar-free-trial;
-	// Hover effect.
-	&:hover > svg {
-		fill: $navbar-free-trial-color;
-	}
-	// Right arrow svg.
-	& > svg {
-		transition: fill .3s cubic-bezier(.7, 0, .3, 1);
-		fill: $navbar-primary-color;
+	// Free trial button with no radius.
+	& > button:nth-child(2) {
+		@extend %free-trial-no-radius;
 	}
 }
 
 // Menu popup.
 menu.nav-menu-popup {
-	background-color: $navbar-primary-color;
+	background-color: $navbar-bg-color;
 	@extend %navbar-column-flexbox;
 	@extend %navbar-top-fixed;
 	padding: 8px 16px 0 16px;
@@ -71,173 +57,187 @@ menu.nav-menu-popup {
 	z-index: 2;
 	bottom: 0;
 	// Header.
-	header {
+	section:first-child {
 		justify-content: space-between;
 		@extend %navbar-inline-flexbox;
 		// Close icon.
-		& > svg {
+		& > img {
 			cursor: pointer;
 		}
 	}
 	// Options.
-	section > div {
+	section:nth-child(2) > div {
 		border-bottom: 1px solid $navbar-menu-items-border-color;
-		transition: font-size .2s ease-in-out;
-		color: $navbar-free-trial-color;
 		justify-content: space-between;
 		@extend %navbar-inline-flexbox;
+		color: $navbar-btn-bg-color;
 		padding: 12px 0 12px 0;
 		align-items: center;
 		font-size: 19px;
 		cursor: pointer;
+		// Hover effect.
+		&:hover {
+			background-color: $navbar-menu-items-bg-color;
+		}
 		// From 575 to 0.
-		@media #{$less-than-or-equal-575} {
+		@media #{$navbar-575} {
 			font-size: 16px;
 		}
-		// Label.
-		label {
-			cursor: pointer;
+		// Right arrow.
+		img {
+			filter: brightness(1%);
 		}
 	}
 	// Last option.
-	section div:last-child {
+	section:nth-child(2) div:last-child {
 		justify-content: flex-start;
 		margin-top: 15px;
 		column-gap: 8px;
 	}
 	// Free trial button.
-	button {
-		border: 1px solid $navbar-free-trial-color;
-		@extend %navbar-free-trial;
-		border-radius: 4px;
+	button:last-child {
+		@extend %free-trial-radius;
 		margin-top: 23px;
 		width: 100%;
 	}
 }
 
 // Left data.
-div.left-data {
-	transition: column-gap .2s ease-in-out;
+div.nav-left {
 	@extend %navbar-inline-flexbox;
 	column-gap: 25px;
 	// From 1170 to 575.
-	@media #{$less-than-or-equal-1170} {
+	@media #{$navbar-1170} {
 		column-gap: 15px;
 	}
 	// From 575 to 0.
-	@media #{$less-than-or-equal-575} {
+	@media #{$navbar-575} {
+		column-gap: 0;
 		width: 100%;
 	}
-	// Svg icon option.
-	svg {
-		@extend %navbar-icon-option;	
-	}
-	// Search icon.
-	& > span {
-		@extend %navbar-inline-flexbox;
+	// Second search icon.
+	img:first-child {
+		@extend %navbar-icon-option;
 		display: none;
 		// From 575 to 0.
-		@media #{$less-than-or-equal-575} {
-			animation: navbarResponiveWidth 200ms ease-in-out 0ms 1 normal forwards;
-			display: flex;
+		@media #{$navbar-575} {
+			display: inline-block;
+			position: absolute;
+		}
+	}
+	// All icons unless gitlab logo.
+	img:nth-child(2) ~ img {
+		@extend %navbar-icon-option;
+	}
+	// Gitlab icon.
+	img:nth-child(2) {
+		// From 575 to 0.
+		@media #{$navbar-575} {
+			margin: auto;
 		}
 	}
 	// Options.
 	label {
-		transition: all .2s ease-in-out;
 		color: $navbar-option-color;
 		cursor: pointer;
 		// Hover effect.
 		&:hover {
-			color: $navbar-free-trial-color;
+			color: $navbar-btn-bg-color;
 		}
 		// From 1170 to 1050.
-		@media #{$less-than-or-equal-1170} {
-			letter-spacing: 1.1px;
+		@media #{$navbar-1170} {
 			font-size: 15px;
 		}
 		// From 1050 to 0.
-		@media #{$less-than-or-equal-1050} {
+		@media #{$navbar-1050} {
 			display: none;
 		}
 	}
 }
 
 // Right data.
-div.right-data {
+div.nav-right {
 	@extend %navbar-inline-flexbox;
 	column-gap: 25px;
+	// From 575 to 0.
+	@media #{$navbar-575} {
+		position: absolute;
+		column-gap: 0;
+	}
 	// The first search icon.
-	& > svg:first-child {
+	img:first-child {
 		// From 1050 to 0.
-		@media #{$less-than-or-equal-1050} {
+		@media #{$navbar-1050} {
 			display: none;
 		}
 	}
-	// Svg icon option.
-	svg {
+	// Icons option.
+	img {
 		@extend %navbar-icon-option;
 	}
 	// Free trial button.
-	button.free-trial-btn {
-		border: 1px solid $navbar-free-trial-color;
-		@extend %navbar-free-trial;
-		border-radius: 4px;
+	button:nth-child(2) {
+		@extend %free-trial-radius;
 		// From 575 to 0.
-		@media #{$less-than-or-equal-575} {
+		@media #{$navbar-575} {
 			display: none;
 		}
 	}
 	// Sign in button.
-	button.sign-in-btn {
-		transition: font-size .2s ease-in-out;
+	button:nth-child(3) {
 		color: $navbar-option-color;
 		font-size: 18px;
 		border: none;
 		padding: 8px;
 		// Hover effect.
 		&:hover {
-			color: $navbar-free-trial-color;
+			color: $navbar-btn-bg-color;
 		}
 		// From 1170 to 1050.
-		@media #{$less-than-or-equal-1170} {
+		@media #{$navbar-1170} {
 			font-size: 15px;
 		}
 		// From 1050 to 0.
-		@media #{$less-than-or-equal-1050} {
+		@media #{$navbar-1050} {
 			display: none;
 		}
 	}
 	// Sign in icon.
-	svg.sign-in {
+	img:nth-child(4) {
 		display: none;
 		// From 1050 to 575.
-		@media #{$less-than-or-equal-1050} {
+		@media #{$navbar-1050} {
 			display: inline-block;
 		}
 		// From 575 to 0.
-		@media #{$less-than-or-equal-575} {
+		@media #{$navbar-575} {
 			display: none;
 		}
 	}
 	// The second search icon.
-	& > svg:nth-child(5) {
+	img:nth-child(5) {
 		display: none;
 		// From 1050 to 575.
-		@media #{$less-than-or-equal-1050} {
+		@media #{$navbar-1050} {
 			display: inline-block;
 		}
 		// From 575 to 0.
-		@media #{$less-than-or-equal-575} {
+		@media #{$navbar-575} {
 			display: none;
 		}
 	}
 	// Emburger menu.
-	svg.emburger-menu {
+	img:nth-child(6) {
 		display: none;
-		// From 1050 to 0.
-		@media #{$less-than-or-equal-1050} {
+		// From 1050 to 575.
+		@media #{$navbar-1050} {
 			display: inline-block;
+		}
+		// From 575 to 0.
+		@media #{$navbar-575} {
+			transform: translate(-17px, -16px);
+			height: 32px;
+			width: 32px;
 		}
 	}
 }

@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-28
-* @updated 2023-07-29
+* @updated 2023-08-03
 * @type {SwipeEvent}
 * @file swipe.js
 * @version 0.0.2
@@ -126,13 +126,14 @@ function SwipeEvent () {
 				// Gets time elapsed.
 				elapsedTime = (
 					new Date ().getTime ()
-					- startTime
+						- startTime
 				);
 				// Gets horizontal distance
 				// traveled by finger while
 				// in contact with surface.
 				distX = (
-					event?.changedTouches[0]
+					event
+						?.changedTouches[0]
 						?.pageX - startX
 				);
 				// Gets vertical distance traveled
