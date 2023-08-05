@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-03
-* @updated 2023-08-04
+* @updated 2023-08-05
 * @file button.js
 * @version 0.0.1
 * @type {Button}
@@ -22,6 +22,7 @@ import {clearStr} from "../../utilities/string/string.js";
  *  iconType: String,
  *  idName: String=,
  *  title: String=,
+ *  name: String=,
  *  text: String
  * }} data The button data configs.
  *  It supports the following keys:
@@ -40,6 +41,8 @@ import {clearStr} from "../../utilities/string/string.js";
  *    id name.
  *  - String= title: The button's
  *    title text.
+ *  - String= name: The button's
+ *    name.
  * @function buildButton
  * @public
  * @returns {String} String
@@ -49,6 +52,7 @@ function buildButton ({
   className = '',
   idName = '',
   title = '',
+  name = '',
   iconType,
   text
 }) {
@@ -57,6 +61,7 @@ function buildButton ({
     <button
       class = "gen-btn ${className}"
       title = "${title}"
+      name = "${name}"
       id = "${idName}"
     >
       <span>
@@ -66,8 +71,9 @@ function buildButton ({
       </span>
       ${(
         withIcon
-        ? buildIcon (iconType)
-        : ''
+        ? buildIcon ({
+          fileName: iconType
+        }) : ''
       )}
     </button>
   `);

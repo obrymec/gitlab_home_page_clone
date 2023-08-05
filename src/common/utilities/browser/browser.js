@@ -1,14 +1,14 @@
 /**
-* @fileoverview Defines multitudes of methods
-*   to manage navigator's cookies.
+* @fileoverview Defines a multitude of methods
+*   to manage common navigator treatments.
 * @author Obrymec - obrymecsprinces@gmail.com
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-28
-* @updated 2023-08-03
-* @file cookies.js
-* @type {Cookies}
-* @version 0.0.2
+* @updated 2023-08-04
+* @file browser.js
+* @type {Browser}
+* @version 0.0.3
 */
 
 /**

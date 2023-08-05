@@ -4,9 +4,9 @@
 * @fileoverview: GitLab navbar stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-04
+* @updated: 2023-08-05
 * @file: navbar.scss
-* @version: 0.0.3
+* @version: 0.0.5
 */
 
 // Custom dependencies.
@@ -14,9 +14,22 @@
 @import "./_animations.scss";
 @import "./_variables.scss";
 
+// General header.
+header {
+	background-color: $navbar-bg-color;
+	transform: translateY(-63%);
+	@extend %navbar-top-fixed;
+	z-index: 1;
+	top: -48px;
+	// From 575 to 0.
+	@media #{$navbar-575} {
+		transform: translateY(-100%);
+		top: 0;
+	}
+}
+
 // NavBar data section container.
 section.nav-data {
-	background-color: $navbar-bg-color;
 	justify-content: space-between;
 	@extend %navbar-inline-flexbox;
 	padding: 20px 32px 20px 32px;
@@ -29,16 +42,9 @@ section.nav-data {
 // NavBar global container.
 nav.navbar {
 	@extend %navbar-column-flexbox;
-	@extend %navbar-top-fixed;
-	z-index: 1;
-	top: -43px;
-	// From 575 to 0.
-	@media #{$navbar-575} {
-		top: 0;
-	}
 	// Shows menu popup.
 	menu.display-popup-menu {
-		display: flex;
+		transform: translateX(0);
 	}
 	// Free trial button with no radius.
 	& > button:nth-child(2) {
@@ -50,9 +56,9 @@ nav.navbar {
 menu.nav-menu-popup {
 	background-color: $navbar-bg-color;
 	@extend %navbar-column-flexbox;
+	transform: translateX(100%);
 	@extend %navbar-top-fixed;
 	padding: 8px 16px 0 16px;
-	display: none;
 	row-gap: 8px;
 	z-index: 2;
 	bottom: 0;
@@ -60,9 +66,22 @@ menu.nav-menu-popup {
 	section:first-child {
 		justify-content: space-between;
 		@extend %navbar-inline-flexbox;
-		// Close icon.
-		& > img {
+		margin-top: 56px;
+		// From 575 to 0.
+		@media #{$navbar-575} {
+			margin-top: 8px;
+		}
+		// GitLab icon.
+		img:first-child {
+			margin-left: 48%;
 			cursor: pointer;
+			opacity: 0;
+		}
+		// Close icon.
+		img:last-child {
+			margin-right: 46%;
+			cursor: pointer;
+			opacity: 0;
 		}
 	}
 	// Options.
@@ -75,6 +94,7 @@ menu.nav-menu-popup {
 		align-items: center;
 		font-size: 19px;
 		cursor: pointer;
+		opacity: 0;
 		// Hover effect.
 		&:hover {
 			background-color: $navbar-menu-items-bg-color;
@@ -97,6 +117,7 @@ menu.nav-menu-popup {
 	// Free trial button.
 	button:last-child {
 		@extend %free-trial-radius;
+		transform: scaleX(0);
 		margin-top: 23px;
 		width: 100%;
 	}
@@ -115,7 +136,7 @@ div.nav-left {
 		column-gap: 0;
 		width: 100%;
 	}
-	// Second search icon.
+	// Third search icon.
 	img:first-child {
 		@extend %navbar-icon-option;
 		display: none;
@@ -131,6 +152,8 @@ div.nav-left {
 	}
 	// Gitlab icon.
 	img:nth-child(2) {
+		transform: rotate(-180deg);
+		cursor: pointer;
 		// From 575 to 0.
 		@media #{$navbar-575} {
 			margin: auto;
@@ -164,7 +187,7 @@ div.nav-right {
 		position: absolute;
 		column-gap: 0;
 	}
-	// The first search icon.
+	// First search icon.
 	img:first-child {
 		// From 1050 to 0.
 		@media #{$navbar-1050} {
@@ -214,7 +237,7 @@ div.nav-right {
 			display: none;
 		}
 	}
-	// The second search icon.
+	// Second search icon.
 	img:nth-child(5) {
 		display: none;
 		// From 1050 to 575.

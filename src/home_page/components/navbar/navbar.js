@@ -4,15 +4,14 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-04
+* @updated 2023-08-05
 * @file navbar.js
 * @type {NavBar}
-* @version 0.0.5
+* @version 0.0.7
 */
 
 // Custom dependencies.
 import {buildButton} from "../../../common/components/button/button.js";
-import {clearStr} from "../../../common/utilities/string/string.js";
 import lang from "../../../common/utilities/language/language.js";
 import {
 	buildLogo,
@@ -30,6 +29,22 @@ import {
 function NavBar () {
 	// Attributes.
 	/**
+	 * @description The nav right
+	 * 	options container tag.
+	 * @private {?Element}
+	 * @type {?Element}
+	 * @field
+	*/
+	let navRight_ = null;
+	/**
+	 * @description The nav left
+	 * 	options container tag.
+	 * @private {?Element}
+	 * @type {?Element}
+	 * @field
+	*/
+	let navLeft_ = null;
+	/**
 	 * @description The menu popup
 	 * 	tag object reference.
 	 * @private {?Element}
@@ -39,17 +54,40 @@ function NavBar () {
 	let menu_ = null;
 
 	/**
+	 * @description Animates the navbar
+	 * 	gitlab icon.
+	 * @param {!Object} timeline The last
+	 * 	entry point of an animation.
+	 * @function animateGitLabIcon_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {Object} Object
+	 */
+	const animateGitLabIcon_ = timeline => (
+		timeline?.add ({
+			targets: navLeft_?.children[1],
+			rotate: ["-180deg", "0deg"],
+			direction: "reverse"
+		})
+	);
+
+	/**
 	 * @description Closes menu.
 	 * @function closeMenu_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {void} void
 	 */
-	const closeMenu_ = () => (
+	const closeMenu_ = () => {
+		// Hides menu.
 		menu_?.classList?.remove (
 			"display-popup-menu"
-		)
-	);
+		);
+		// Hides content.
+		menuAnimation_ (
+			"reverse"
+		).play ();
+	};
 
 	/**
 	 * @description Displays menu.
@@ -58,25 +96,314 @@ function NavBar () {
 	 * @private {Function}
 	 * @returns {void} void
 	 */
-	const showMenu_ = () => (
+	const showMenu_ = () => {
+		// Shows menu.
 		menu_?.classList?.add (
 			"display-popup-menu"
-		)
-	);
+		);
+		// Shows content.
+		menuAnimation_ (
+			"normal"
+		).play ();
+	};
 
 	/**
-	 * @description Listens some
-	 * 	events to do some actions.
-	 * @function listenEvents_
+	 * @description Animates the navbar
+	 * 	for medium screen.
+	 * @function mediumAnimation_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {Object} Object
+	 */
+	const mediumAnimation_ = () => {
+		// Animates the header.
+		let timeline = animateHeader_ (63);
+		// Animates the gitlab icon.
+		timeline = animateGitLabIcon_ (
+			timeline
+		);
+		// Animates right options.
+		timeline = animateOptions_ ({
+			container: navRight_,
+			tag: "medium",
+			timeline
+		});
+		// Returns animation timeine
+		// to control it after.
+		return timeline;
+	};
+
+	/**
+	 * @description Animates the navbar
+	 * 	glabal header.
+	 * @param {int} from The starting
+	 * 	value.
+	 * @function animateHeader_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {Object} Object
+	 */
+	const animateHeader_ = from => {
+		// The animation timeline.
+		const timeline = anime.timeline ({
+			easing: "linear",
+  		duration: 100,
+			complete: () => (
+				navRight_?.children[(
+					navRight_
+						?.children?.length - 1
+				)].setAttribute ("style", '')
+			)
+		});
+		// Animates the global header.
+		return timeline.add ({
+			translateY: [`${from}%`, "0%"],
+			targets: "header"
+		});
+	};
+
+	/**
+	 * @description Animates the navbar
+	 * 	for large screen.
+	 * @function largeAnimation_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {Object} Object
+	 */
+	const largeAnimation_ = () => {
+		// Animates the header.
+		let timeline = animateHeader_ (63);
+		// Animates the gitlab icon.
+		timeline = animateGitLabIcon_ (
+			timeline
+		);
+		// Animates left options.
+		timeline = animateOptions_ ({
+			container: navLeft_,
+			tag: "large",
+			timeline
+		});
+		// Animates right options.
+		timeline = animateOptions_ ({
+			container: navRight_,
+			tag: "large",
+			timeline
+		});
+		// Returns animation timeine
+		// to control it after.
+		return timeline;
+	};
+
+	/**
+	 * @description Animates the navbar
+	 * 	regardless to the detected size.
+	 * @function animateNavBar_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {void} void
 	 */
-	const listenEvents_ = () => {
+	const animateNavBar_ = () => {
+		// Whether the screen is small.
+		if (window.innerWidth <= 575) {
+			// Runs animation for small
+			// screens.
+			smallAnimation_ ();
+		// Whether the screen is medium.
+		} else if (
+			window.innerWidth <= 1050
+		) {
+			// Runs animation for medium
+			// screens.
+			mediumAnimation_ ();
+		// Whether the screen is large.
+		} else {
+			// Runs animation for large
+			// screens.
+			largeAnimation_ ();
+		}
+	};
+
+	/**
+	 * @description Animates the navbar
+	 * 	for small screen.
+	 * @function smallAnimation_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {Object} Object
+	 */
+	const smallAnimation_ = () => {
+		// Animates the header.
+		let timeline = animateHeader_ (100);
+		// Animates the gitlab icon.
+		timeline = animateGitLabIcon_ (
+			timeline
+		);
+		// Animates the third search.
+		timeline?.add ({
+			targets: navLeft_?.children[0],
+			translateY: ["10px", "0px"],
+			opacity: [0.0, 1.0]
+		}, 300);
+		// Animates amburger menu.
+		timeline?.add ({
+			translateX: ["-17px", "-17px"],
+			translateY: ["-6px", "-16px"],
+			opacity: [0.0, 1.0],
+			targets: navRight_?.children[(
+				navRight_
+					?.children?.length - 1
+			)]
+		}, 300);
+		// Returns animation timeine
+		// to control it after.
+		return timeline;
+	};
+
+	/**
+	 * @description Animates options
+	 * 	from a container regardless
+	 * 	a criteria.
+	 * @param {{
+	 * 	container: Element,
+	 * 	timeline: Object,
+	 * 	tag: String
+	 * }} data The search data
+	 * 	configs. It supports the
+	 * 	keys following:
+	 * 	- Element container: The
+	 * 		parent of options.
+	 * 	- String tag: The tag to
+	 * 		target within parent.
+	 * 	- Object timeline: The
+	 * 		last entry point of
+	 * 		an animation.
+	 * @private {Function}
+	 * @function animateOptions_
+	 * @constant {Function}
+	 * @returns {Object} Object
+	*/
+	const animateOptions_ = ({
+		container,
+		timeline,
+		tag
+	}) => {
+		// Animating options.
+		for (
+			const option of
+			container?.children
+		) {
+			// Whether the current child
+			// has `tag` inside those
+			// keywords.
+			if (
+				option
+					.getAttribute ("name")
+					.includes (tag)
+			) {
+				// Adds the current configs
+				// to the timeline.
+				timeline?.add ({
+					translateY: ["10px", "0px"],
+					opacity: [0.0, 1.0],
+					targets: option
+				});
+			}
+		}
+		// Returns the timeline.
+		return timeline;
+	};
+
+	/**
+	 * @description Animates popup menu.
+	 * @param {String} direction The
+	 * 	animation's timeline direction.
+	 * @function menuAnimation_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {Object} Object
+	 */
+	const menuAnimation_ = direction => {
+		// The animation timeline.
+		const timeline = anime.timeline ({
+			direction: direction,
+			easing: "linear",
+			autoplay: false,
+  		duration: 100
+		});
+		// Animates the popup menu.
+		timeline.add ({
+			marginLeft: ["48%", "0%"],
+			opacity: [0.0, 1.0],
+			targets: (
+				menu_
+					?.children[0]
+					?.children[0]
+			)
+		}).add ({
+			marginRight: ["46%", "0%"],
+			opacity: [0.0, 1.0],
+			targets: (
+				menu_
+					?.children[0]
+					?.children[1]
+			)
+		}, 0).add ({
+			marginLeft: ["48%", "0%"],
+			targets: (
+				menu_
+					?.children[1]
+					?.children[0]
+			)
+		});
+		// Animating menu's options.
+		// Animating options.
+		for (
+			const option of
+			menu_?.children[1]
+				?.children
+		) {
+			// Adds the current configs
+			// to the timeline.
+			timeline.add ({
+				opacity: [0.0, 1.0],
+				targets: option
+			});
+		}	
+		// Animates free trial button.
+		timeline.add ({
+			targets: menu_?.children[2],
+			scaleX: [0.0, 1.0]
+		});
+		// Returns timeline to
+		// control it after.
+		return timeline;
+	};
+
+	/**
+	 * @description Listens some
+	 * 	events to do some actions.
+	 * @function listenTagsEvents_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const listenTagsEvents_ = () => {
 		// The popup menu tag ref.
 		menu_ = (
 			document.querySelector (
 				"menu.nav-menu-popup"
+			)
+		);
+		// The nav right tag ref.
+	 	navRight_ = (
+			document.querySelector (
+				"div.nav-right"
+			)
+		);
+		// The nav left tag ref.
+		navLeft_ = (
+			document.querySelector (
+				"div.nav-left"
 			)
 		);
 		// Listens `click` event on
@@ -89,15 +416,10 @@ function NavBar () {
 			);
 		// Listens `click` event on
 		// emburger menu icon.
-		document.querySelector (
-			clearStr ({
-				clearSpaces: true,
-				input: `
-					div.nav-right >
-					img:last-child
-				`
-			})
-		).addEventListener (
+		navRight_?.children[(
+			navRight_
+				?.children?.length - 1
+		)].addEventListener (
 			"click",
 			() => showMenu_ ()
 		);
@@ -105,7 +427,8 @@ function NavBar () {
 		// `click` event.
 		for (
 			const option of
-			menu_?.children[1]?.children
+			menu_?.children[1]
+				?.children
 		) {
 			// Listens `click` event
 			// of the current option.
@@ -124,7 +447,7 @@ function NavBar () {
 				if (
 					window.innerWidth > 1050
 				) {
-					// Closes the menu.
+					// Closes menu.
 					closeMenu_ ();
 				}
 			}
@@ -155,8 +478,12 @@ function NavBar () {
 		nav.innerHTML = `
 			<menu class = "nav-menu-popup">
 				<section>
-					${buildLogo (Logos.GITLAB)}
-					${buildIcon (Icons.CLOSE)}
+					${buildLogo ({
+						fileName: Logos.GITLAB
+					})}
+					${buildIcon ({
+						fileName: Icons.CLOSE
+					})}
 				</section>
 				<section>
 					<div>
@@ -167,35 +494,43 @@ function NavBar () {
 					</div>
 					<div>
 						${lang.getText ("tr3")}
-						${buildIcon (
-							Icons.RIGHT_ARROW
-						)}
+						${buildIcon ({
+							fileName: (
+								Icons.RIGHT_ARROW
+							)
+						})}
 					</div>
 					<div>
 						${lang.getText ("tr4")}
 					</div>
 					<div>
 						${lang.getText ("tr5")}
-						${buildIcon (
-							Icons.RIGHT_ARROW
-						)}
+						${buildIcon ({
+							fileName: (
+								Icons.RIGHT_ARROW
+							)
+						})}
 					</div>
 					<div>
 						${lang.getText ("tr6")}
-						${buildIcon (
-							Icons.RIGHT_ARROW
-						)}
+						${buildIcon ({
+							fileName: (
+								Icons.RIGHT_ARROW
+							)
+						})}
 					</div>
 					<div>
 						${lang.getText ("tr7")}
-						${buildIcon (
-							Icons.RIGHT_ARROW
-						)}
+						${buildIcon ({
+							fileName: (
+								Icons.RIGHT_ARROW
+							)
+						})}
 					</div>
 					<div>
-						${buildIcon (
-							Icons.SIGN_IN
-						)}
+						${buildIcon ({
+							fileName: Icons.SIGN_IN
+						})}
 						${lang.getText ("tr8")}
 					</div>
 				</section>
@@ -204,15 +539,28 @@ function NavBar () {
 				})}
 			</menu>
 			${buildButton ({
-				iconType: Icons.LONG_RIGHT_ARROW,
 				text: lang.getText ("tr9"),
-				withIcon: true
+				withIcon: true,
+				iconType: (
+					Icons.LONG_RIGHT_ARROW
+				)
 			})}
 			<section class = "nav-data">
 				<div class = "nav-left">
-					${buildIcon (Icons.SEARCH)}
-					${buildLogo (Logos.GITLAB)}
+					${buildIcon ({
+						fileName: Icons.SEARCH,
+						data: {name: "small"}
+					})}
+					${buildLogo ({
+						fileName: Logos.GITLAB,
+						data: {
+							name: (
+								"large-medium-small"
+							)
+						}
+					})}
 					<label
+						name = "large"
 						title = "${
 							lang.getText ("tr1")
 						}"
@@ -220,6 +568,7 @@ function NavBar () {
 						${lang.getText ("tr1")}
 					</label>
 					<label
+						name = "large"
 						title = "${
 							lang.getText ("tr2")
 						}"
@@ -227,6 +576,7 @@ function NavBar () {
 						${lang.getText ("tr2")}
 					</label>
 					<label
+						name = "large"
 						title = "${
 							lang.getText ("tr3")
 						}"
@@ -234,6 +584,7 @@ function NavBar () {
 						${lang.getText ("tr3")}
 					</label>
 					<label
+						name = "large"
 						title = "${
 							lang.getText ("tr4")
 						}"
@@ -241,6 +592,7 @@ function NavBar () {
 						${lang.getText ("tr4")}
 					</label>
 					<label
+						name = "large"
 						title = "${
 							lang.getText ("tr5")
 						}"
@@ -248,6 +600,7 @@ function NavBar () {
 						${lang.getText ("tr5")}
 					</label>
 					<label
+						name = "large"
 						title = "${
 							lang.getText ("tr6")
 						}"
@@ -255,6 +608,7 @@ function NavBar () {
 						${lang.getText ("tr6")}
 					</label>
 					<label
+						name = "large"
 						title = "${
 							lang.getText ("tr7")
 						}"
@@ -264,22 +618,38 @@ function NavBar () {
 				</div>
 				<div class = "nav-wrapper">
 					<div class = "nav-right">
-						${buildIcon (Icons.SEARCH)}
+						${buildIcon ({
+							fileName: Icons.SEARCH,
+							data: {name: "large"}
+						})}
 						${buildButton ({
-							text: lang.getText ("tr9")
+							text: lang.getText ("tr9"),
+							name: "large-medium"
 						})}
 						<button
+							name = "large"
 							title = "${
 								lang.getText ("tr8")
 							}"
 						>
 							${lang.getText ("tr8")}
 						</button>
-						${buildIcon (Icons.SIGN_IN)}
-						${buildIcon (Icons.SEARCH)}
-						${buildIcon (
-							Icons.EMBURGER_MENU
-						)}
+						${buildIcon ({
+							fileName: Icons.SIGN_IN,
+							data: {name: "medium"}
+						})}
+						${buildIcon ({
+							fileName: Icons.SEARCH,
+							data: {name: "medium"}
+						})}
+						${buildIcon ({
+							fileName: (
+								Icons.EMBURGER_MENU
+							),
+							data: {
+								name: "medium-small"
+							}
+						})}
 					</div>
 				</div>
 			</section>
@@ -289,10 +659,12 @@ function NavBar () {
 		// child.
 		document.querySelector (
 			"header"
-		).appendChild (nav);
+		).appendChild (nav)
 		// Listens some tags events
 		// to run certain actions.
-		listenEvents_ ();
+		listenTagsEvents_ ();
+		// Animates the navbar.
+		animateNavBar_ ();
 	}
 }
 

@@ -5,14 +5,14 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-07-29
+* @updated 2023-08-05
 * @file language.js
 * @type {Language}
 * @version 0.0.1
 */
 
 // Custom dependencies.
-import {getCookie, setCookie} from "../cookies/cookies.js";
+import {getCookie, setCookie} from "../browser/browser.js";
 import english from "../../i18n/english.js";
 
 /**
@@ -54,6 +54,7 @@ function Language ({
     languages || []
   )
 }) {
+  // Attributes.
   /**
    * @description The active
    *  language's id.

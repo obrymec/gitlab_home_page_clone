@@ -6,7 +6,7 @@
 * @file icon_logo_image.js
 * @type {IconLogoImage}
 * @created 2023-08-03
-* @updated 2023-08-04
+* @updated 2023-08-05
 * @version 0.0.1
 */
  
@@ -192,6 +192,7 @@ const Images = {
  *  fileName: String,
  *  idName: String=,
  *  title: String=,
+ *  name: String=,
  *  alt: String=,
  *  root: String
  * }} origin The original's path
@@ -210,6 +211,8 @@ const Images = {
  *    image or icon id name.
  *  - String= title: The image,
  *    logo or icon title text.
+ *  - String= name: The image
+ *    name.
  * @function buildView_
  * @private {Function}
  * @returns {String} String
@@ -218,6 +221,7 @@ function buildView_ ({
   className = '',
   idName = '',
   title = '',
+  name = '',
   alt = '',
   fileName,
   root
@@ -228,6 +232,7 @@ function buildView_ ({
       class = "${className}"
       title = "${title}"
       id = "${idName}"
+      name = "${name}"
       alt = "${alt}"
       src = "${
         clearStr ({
@@ -244,52 +249,88 @@ function buildView_ ({
 
 /**
  * @description Builds image view.
- * @param {String} fileName The
- *  target image file's name in
- *  app assets.
+ * @param {{
+ *  data: Object<String, String>,
+ *  fileName: String
+ * }} configs The data configs to
+ *  create the target element. It
+ *  supports the following keys:
+ *  - String fileName: The target
+ *    image file's name in app
+ *    assets.
+ *  - Object<String, String> data:
+ *    The created tag attributes.
  * @function buildIcon
  * @public
  * @returns {String} String
 */
-function buildImage (fileName) {
+function buildImage ({
+  data = {},
+  fileName
+}) {
   // Builds the target image.
   return buildView_ ({
-    fileName: fileName,
-    root: "images"
+    root: "images",
+    fileName,
+    ...data
   });
 }
 
 /**
  * @description Builds icon view.
- * @param {String} fileName The
- *  target icon file's name in
- *  app assets.
+ * @param {{
+ *  data: Object<String, String>,
+ *  fileName: String
+ * }} configs The data configs to
+ *  create the target element. It
+ *  supports the following keys:
+ *  - String fileName: The target
+ *    icon file's name in app
+ *    assets.
+ *  - Object<String, String> data:
+ *    The created tag attributes.
  * @function buildIcon
  * @public
  * @returns {String} String
  */
-function buildIcon (fileName) {
+function buildIcon ({
+  data = {},
+  fileName
+}) {
   // Builds the target icon.
   return buildView_ ({
-    fileName: fileName,
-    root: "icons"
+    root: "icons",
+    fileName,
+    ...data
   });
 }
 
 /**
  * @description Builds logo view.
- * @param {String} fileName The
- *  target logo file's name in
- *  app assets.
+ * @param {{
+ *  data: Object<String, String>,
+ *  fileName: String
+ * }} configs The data configs to
+ *  create the target element. It
+ *  supports the following keys:
+ *  - String fileName: The target
+ *    logo file's name in app
+ *    assets.
+ *  - Object<String, String> data:
+ *    The created tag attributes.
  * @function buildIcon
  * @public
  * @returns {String} String
  */
-function buildLogo (fileName) {
+function buildLogo ({
+  data = {},
+  fileName
+}) {
   // Builds the target logo.
   return buildView_ ({
-    fileName: fileName,
-    root: "logos"
+    root: "logos",
+    fileName,
+    ...data
   });
 }
 

@@ -1357,9 +1357,9 @@ div.sub-infos {
 * @fileoverview: GitLab navbar stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-04
+* @updated: 2023-08-05
 * @file: navbar.scss
-* @version: 0.0.3
+* @version: 0.0.5
 */
 /**
 * @fileoverview: GitLab navbar placeholders stylesheet.
@@ -1394,7 +1394,7 @@ section.nav-data, menu.nav-menu-popup section:first-child, menu.nav-menu-popup s
   flex-direction: row;
   display: flex; }
 
-nav.navbar, menu.nav-menu-popup {
+header, menu.nav-menu-popup {
   position: fixed;
   right: 0;
   left: 0;
@@ -1440,34 +1440,47 @@ nav.navbar > button:nth-child(2) {
 * @updated: 2023-08-04
 * @version: 0.0.2
 */
-section.nav-data {
+header {
   background-color: #fff;
+  transform: translateY(-63%);
+  z-index: 1;
+  top: -48px; }
+  @media only screen and (max-width: 575px) {
+    header {
+      transform: translateY(-100%);
+      top: 0; } }
+
+section.nav-data {
   justify-content: space-between;
   padding: 20px 32px 20px 32px; }
   @media only screen and (max-width: 1050px) {
     section.nav-data {
       padding: 16px; } }
 
-nav.navbar {
-  z-index: 1;
-  top: -43px; }
-  @media only screen and (max-width: 575px) {
-    nav.navbar {
-      top: 0; } }
-  nav.navbar menu.display-popup-menu {
-    display: flex; }
+nav.navbar menu.display-popup-menu {
+  transform: translateX(0); }
 
 menu.nav-menu-popup {
   background-color: #fff;
+  transform: translateX(100%);
   padding: 8px 16px 0 16px;
-  display: none;
   row-gap: 8px;
   z-index: 2;
   bottom: 0; }
   menu.nav-menu-popup section:first-child {
-    justify-content: space-between; }
-    menu.nav-menu-popup section:first-child > img {
-      cursor: pointer; }
+    justify-content: space-between;
+    margin-top: 56px; }
+    @media only screen and (max-width: 575px) {
+      menu.nav-menu-popup section:first-child {
+        margin-top: 8px; } }
+    menu.nav-menu-popup section:first-child img:first-child {
+      margin-left: 48%;
+      cursor: pointer;
+      opacity: 0; }
+    menu.nav-menu-popup section:first-child img:last-child {
+      margin-right: 46%;
+      cursor: pointer;
+      opacity: 0; }
   menu.nav-menu-popup section:nth-child(2) > div {
     border-bottom: 1px solid #ccc;
     justify-content: space-between;
@@ -1475,7 +1488,8 @@ menu.nav-menu-popup {
     padding: 12px 0 12px 0;
     align-items: center;
     font-size: 19px;
-    cursor: pointer; }
+    cursor: pointer;
+    opacity: 0; }
     menu.nav-menu-popup section:nth-child(2) > div:hover {
       background-color: #e3dfed; }
     @media only screen and (max-width: 575px) {
@@ -1488,6 +1502,7 @@ menu.nav-menu-popup {
     margin-top: 15px;
     column-gap: 8px; }
   menu.nav-menu-popup button:last-child {
+    transform: scaleX(0);
     margin-top: 23px;
     width: 100%; }
 
@@ -1506,9 +1521,12 @@ div.nav-left {
       div.nav-left img:first-child {
         display: inline-block;
         position: absolute; } }
-  @media only screen and (max-width: 575px) {
-    div.nav-left img:nth-child(2) {
-      margin: auto; } }
+  div.nav-left img:nth-child(2) {
+    transform: rotate(-180deg);
+    cursor: pointer; }
+    @media only screen and (max-width: 575px) {
+      div.nav-left img:nth-child(2) {
+        margin: auto; } }
   div.nav-left label {
     color: #74717a;
     cursor: pointer; }
