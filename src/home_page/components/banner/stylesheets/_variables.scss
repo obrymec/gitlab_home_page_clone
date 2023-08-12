@@ -1,12 +1,12 @@
 /**
-* @fileoverview: GitLab app global banner variables stylesheet.
+* @fileoverview: GitLab banner variables stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-17
-* @updated: 2023-06-21
-* @version: 0.0.1
+* @updated: 2023-08-11
+* @version: 0.0.2
 */
 
 // Resources.
@@ -18,6 +18,7 @@ $banner-420: "only screen and (max-width: 420px)" !default;
 $banner-770: "only screen and (max-width: 770px)" !default;
 
 // Colors theme.
-$banner-free-trial-color: $primary-color !default;
 $banner-label-bg-start-color: #f5f1ff !default;
+$banner-primary-color: $primary-color !default;
 $banner-label-bg-end-color: #eee7fd !default;
+$banner-btn-bg-color: #fff !default;

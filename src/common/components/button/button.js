@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-03
-* @updated 2023-08-05
+* @updated 2023-08-12
 * @file button.js
 * @version 0.0.1
 * @type {Button}
@@ -17,31 +17,31 @@ import {clearStr} from "../../utilities/string/string.js";
 /**
  * @description Builds a native button.
  * @param {{
- *  withIcon: boolean=,
- *  className: String=,
- *  iconType: String,
- *  idName: String=,
- *  title: String=,
- *  name: String=,
+ *  withIcon?: boolean=,
+ *  className?: String=,
+ *  iconType?: String,
+ *  idName?: String=,
+ *  title?: String=,
+ *  name?: String=,
  *  text: String
  * }} data The button data configs.
  *  It supports the following keys:
  *  - String text: The text to be
  *    displayed on the button.
- *  - boolean= withIcon: Whether
+ *  - boolean withIcon: Whether
  *    you want to add an icon to
  *    the right.
  *  - String iconType: The icon
  *    type to be displayed (If
  *    and only if `withIcon` is
  *    set to `true`).
- *  - String= className: The button
+ *  - String className: The button
  *    class name.
- *  - String= idName: The button
+ *  - String idName: The button
  *    id name.
- *  - String= title: The button's
+ *  - String title: The button's
  *    title text.
- *  - String= name: The button's
+ *  - String name: The button's
  *    name.
  * @function buildButton
  * @public
@@ -50,11 +50,11 @@ import {clearStr} from "../../utilities/string/string.js";
 function buildButton ({
   withIcon = false,
   className = '',
+  iconType = '',
   idName = '',
   title = '',
   name = '',
-  iconType,
-  text
+  text = ''
 }) {
   // Builds the target button.
   return (`
@@ -64,14 +64,23 @@ function buildButton ({
       name = "${name}"
       id = "${idName}"
     >
-      <span>
-        ${clearStr ({
-          input: text
-        })}
-      </span>
       ${(
-        withIcon
-        ? buildIcon ({
+        (
+          typeof text === "string" &&
+          text.trim ().length > 0
+        ) ? `<span>
+            ${clearStr ({
+              input: text
+            })}
+          </span>`
+        : ''
+      )}
+      ${(
+        (
+          withIcon &&
+          typeof iconType === "string" &&
+          iconType.trim ().length > 0
+        ) ? buildIcon ({
           fileName: iconType
         }) : ''
       )}

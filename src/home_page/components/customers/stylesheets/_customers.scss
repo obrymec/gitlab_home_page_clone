@@ -1,16 +1,17 @@
 /**
-* @fileoverview: GitLab app global organizations stylesheet.
+* @fileoverview: GitLab organizations stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: organizations.scss
 * @created: 2023-06-21
-* @updated: 2023-06-23
+* @updated: 2023-08-12
 * @version: 0.0.1
 */
 
 // Custom dependencies.
 @import "./_placeholders.scss";
+@import "./_animations.scss";
 @import "./_variables.scss";
 
 // Right customers.

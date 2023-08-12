@@ -1,20 +1,143 @@
 /**
-* @fileoverview: GitLab app global navbar animations stylesheet.
+* @fileoverview: GitLab navbar animations stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: animations.scss
-* @created: 2023-06-16
-* @updated: 2023-08-04
-* @version: 0.0.1
+* @created: 2023-08-11
+* @updated: 2023-08-12
+* @version: 0.0.2
 */
 
-// Animates the width of the left
-// search icon container.
-@keyframes navbarResponiveWidth {
-	from {
-		width: 0%;
-	} to {
-		width: 46%;
+// Custom dependencies.
+@import "./_variables.scss";
+
+// First gitlab animation
+// starting value.
+img.hd-first-gitlab-as {
+  transform: rotate(-180deg);
+}
+
+// First gitlab animation
+// ending value.
+img.hd-first-gitlab-af {
+  transform: rotate(0deg);
+}
+
+// Free trial animation
+// starting values.
+button.hd-menu-free-trial-as,
+button.hd-free-trial-as {
+  transition: none;
+}
+
+// Free trial animation
+// ending values.
+button.hd-menu-free-trial-af,
+button.hd-free-trial-af {
+  transition: all .3s cubic-bezier(.7, 0, .3, 1);
+}
+
+// Menu free trial animation
+// starting values.
+button.hd-menu-free-trial-as {
+  transform: scaleX(0);
+}
+
+// Menu free trial animation
+// ending values.
+button.hd-menu-free-trial-af {
+  transform: scaleX(1);
+}
+
+// Second gitlab animation
+// starting values.
+img.hd-second-gitlab-as {
+  margin-left: 48%;
+  opacity: 0;
+}
+
+// Second gitlab animation
+// ending values.
+img.hd-second-gitlab-af {
+  margin-left: 0;
+  opacity: 1;
+}
+
+// Close menu icon animation
+// starting values.
+img.hd-close-menu-as {
+  margin-right: 46%;
+  opacity: 0;
+}
+
+// Close menu icon animation
+// ending values.
+img.hd-close-menu-af {
+  margin-right: 0;
+  opacity: 1;
+}
+
+// Menu options animation
+// starting values.
+img.hd-menu-options-as {
+  margin-left: 50%;
+  opacity: 0;
+}
+
+// Menu options animation
+// ending values.
+img.hd-menu-options-af {
+  margin-left: 0;
+  opacity: 1;
+}
+
+// Header animation starting
+// values.
+header.header-as {
+  transform: translateY(-100%);
+  transition: none;
+	// From 575 to 0.
+	@media #{$navbar-575} {
+		transform: translateY(0);
 	}
+}
+
+// Header animation ending
+// values.
+header.header-af {
+  transform: translateY(-38%);
+  transition: inherit;
+  // From 575 to 0.
+	@media #{$navbar-575} {
+		transform: translateY(0);
+	}
+}
+
+// Common elements animation
+// starting values.
+label.hd-left-options-as,
+button.hd-sign-in-btn-as,
+img.hd-second-search-as,
+img.hd-emburger-menu-as,
+button.hd-free-trial-as,
+img.hd-third-search-as,
+img.hd-first-search-as,
+img.hd-sign-in-as {
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+// Common elements animation
+// ending values.
+label.hd-left-options-af,
+button.hd-sign-in-btn-af,
+img.hd-second-search-af,
+img.hd-emburger-menu-af,
+button.hd-free-trial-af,
+img.hd-third-search-af,
+img.hd-first-search-af,
+img.hd-sign-in-af {
+  transform: translateY(0);
+  opacity: 1;
 }

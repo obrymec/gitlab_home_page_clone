@@ -5,11 +5,11 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-18
-* @updated: 2023-08-03
-* @version: 0.0.1
+* @updated: 2023-08-10
+* @version: 0.0.3
 */
 
-// Dependencies.
+// Custom dependencies.
 @import "./_variables.scss";
 
 // Inline center flexbox.
@@ -25,33 +25,95 @@
 }
 
 // Free trial button.
-%banner-free-trial {
-	transition: all .3s cubic-bezier(.7, 0, .3, 1);
-	background-color: $banner-free-trial-color;
-	justify-content: center;
-	display: inline-flex;
-	padding: 11px 16px;
-	line-height: 20px;
-	font-weight: 600;
-	min-width: 68px;
-	font-size: 18px;
-	color: #fff;
+%free-trial-button {
+	border: 1px solid $banner-primary-color;
+	display: inline-block;
+	margin-bottom: 15px;
+	border-radius: 4px;
+	margin-right: 13px;
 	// Hover effect.
 	&:hover {
-		background-color: #fff;
-		color: $banner-free-trial-color;
+		background-color: $banner-btn-bg-color;
 	}
+	// From 770 to 0.
+	@media #{$banner-770} {
+		width: 100%;
+	}
+}
+
+// First label.
+%banner-first-label {
+	color: $banner-primary-color;
+	margin-top: 78px;
 	// From 1080 to 770.
 	@media #{$banner-1080} {
-		letter-spacing: 1.1px;
-		font-size: 16px;
+		font-size: 13px;
+		margin-top: 0;
 	}
-	// From 420 to 0.	
-	@media #{$banner-420} {
-		width: 100%;
+	// From 770 to 0.
+	@media #{$banner-770} {
+		text-align: center;
+		font-size: 15px;
+		margin-top: 0;
 	}
 	// Label.
 	label {
+		display: inline-block;
+		border-radius: 20px;
+		padding: 4px 16px;
 		cursor: pointer;
+		background-image: linear-gradient(
+			-90deg,
+			$banner-label-bg-start-color,
+			$banner-label-bg-end-color
+		);
+		// Hover effect.
+		&:hover {
+			background-image: linear-gradient(
+				-90deg,
+				lighten($banner-label-bg-start-color, 1.5%),
+				lighten($banner-label-bg-end-color, 1.5%)
+			);
+		}
+	}
+}
+
+// Caroussel.
+%caroussel {
+	@extend %banner-inline-center-flexbox;
+	column-gap: 28px;
+	margin-top: 35%;
+	width: 82%;
+	// From 1080 to 770.
+	@media #{$banner-1080} {
+		margin-top: 8%;
+		width: 100%;
+	}
+	// From 770 to 0.
+	@media #{$banner-770} {
+		display: none;
+	}
+	// Progress container.
+	& > span {
+		border-radius: 10px;
+		width: 33.33%;
+		height: 2px;
+		background-color: darken(
+			$color: $banner-label-bg-start-color,
+			$amount: 5%
+		);
+		// Progress bar thumb animation.
+		div.progress-thumb {
+			animation: (
+				progressBar 4s linear 0s 1 normal backwards
+			);
+		}
+	}
+	// Progress.
+	& > span > div {
+		background-color: $banner-primary-color;
+		border-radius: 10px;
+		height: 2px;
+		width: 0;
 	}
 }

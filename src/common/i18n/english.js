@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-08-04
+* @updated 2023-08-10
 * @file english.js
 * @type {English}
 * @version 0.0.1
@@ -41,7 +41,13 @@ const english = {
     tr6: "Company",
     tr7: "Contact us",
     tr8: "Sign in",
-    tr9: "Get free trial"
+    tr9: "Get free trial",
+    tr10: "Meet GitLab Duo: AI-powered workflows →",
+    tr11: "Software. Faster.",
+    tr12: "GitLab is the most comprehensive",
+    tr13: "AI-powered DevSecOps Platform.",
+    tr14: "What is GitLab?",
+    tr15: "Trusted By"
   }
 };
 

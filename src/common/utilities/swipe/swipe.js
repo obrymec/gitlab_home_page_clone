@@ -5,10 +5,10 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-28
-* @updated 2023-08-03
+* @updated 2023-08-12
 * @type {SwipeEvent}
 * @file swipe.js
-* @version 0.0.2
+* @version 0.0.3
 */
 
 // Enumerations.
@@ -52,7 +52,7 @@ function SwipeEvent () {
 	 * }} configs The swipe manager data's
 	 * 	configurations. It supports the
 	 * 	following keys:
-	 * 	- ?Function callback: The method
+	 * 	- Function callback: The method
 	 * 		to be called when a swipe is
 	 * 		detected.
 	 * 	- String tagId: The target HTML
@@ -62,129 +62,139 @@ function SwipeEvent () {
 	 * @function swipe_
 	 * @returns {void} void
 	 */
-	const swipe_ = ({tagId, callback}) => {
-		// The maximum time allowed
-		// to travel that distance.
-		let allowedTime = 300;
-		// The min distance traveled
-		// to be considered swipe.
-		let threshold = 150;
-		// The maximum distance allowed 
-		// at the same time in
-		// perpendicular direction.
-		let restraint = 100;
-		// The elapsed time since
-		// the screen drag.
-		let elapsedTime;
-		// The start time to a
-		// touch screen motion.
-		let startTime;
-		// The swipe direction.
-		let swipedir;
-		// The start point on x axis.
-		let startX;
-		// The start point on y axis.
-		let startY;
-		// The distance on x asis.
-		let distX;
-		// The distance on y asis.
-		let distY;
+	const swipe_ = ({callback, tagId}) => {
 		// The tag's reference.
-		let tag = (
+		const tag = (
 			document.querySelector (
-				tagId
+				tagId.toString ()
 			)
 		);
-		// Listens `touchstart` event.
-		tag?.addEventListener (
-			"touchstart", event => {
-				// Sets swipe direction.
-				swipedir = "none";
-				// Records time when finger
-				// first makes contact
-				// with surface.
-				startTime = (
-					new Date ().getTime ()
-				);
-				// Gets touch start x pos.
-				startX = (
-					event
-						?.changedTouches[0]
-						?.pageX
-				);
-				// Gets touch start y pos.
-				startY = (
-					event
-						?.changedTouches[0]
-						?.pageY
-				);
-			}, false
-		);
-		// Listens `touchend` event.
-		tag?.addEventListener (
-			"touchend", event => {
-				// Gets time elapsed.
-				elapsedTime = (
-					new Date ().getTime ()
-						- startTime
-				);
-				// Gets horizontal distance
-				// traveled by finger while
-				// in contact with surface.
-				distX = (
-					event
-						?.changedTouches[0]
-						?.pageX - startX
-				);
-				// Gets vertical distance traveled
-				// by finger while in contact with
-				// surface.
-				distY = (
-					event
-						?.changedTouches[0]
-						?.pageY - startY
-				);
-				// Whether swipe meets this test.
-				if (
-					elapsedTime <= allowedTime
-				) {
-					// Whether swipe meets this
-					// 2nd test for horizontal.
+		// Whether the given tag is
+		// really defined in the DOM.
+		if (tag instanceof Element) {
+			// The maximum time allowed
+			// to travel that distance.
+			let allowedTime = 300;
+			// The min distance traveled
+			// to be considered swipe.
+			let threshold = 150;
+			// The maximum distance allowed 
+			// at the same time in
+			// perpendicular direction.
+			let restraint = 100;
+			// The elapsed time since
+			// the screen drag.
+			let elapsedTime;
+			// The start time to a
+			// touch screen motion.
+			let startTime;
+			// The swipe direction.
+			let swipedir;
+			// The start point on x axis.
+			let startX;
+			// The start point on y axis.
+			let startY;
+			// The distance on x asis.
+			let distX;
+			// The distance on y asis.
+			let distY;
+			// Listens `touchstart` event.
+			tag.addEventListener (
+				"touchstart", event => {
+					// Sets swipe direction.
+					swipedir = "none";
+					// Records time when finger
+					// first makes contact
+					// with surface.
+					startTime = (
+						new Date ().getTime ()
+					);
+					// Gets touch start x pos.
+					startX = (
+						event
+							.changedTouches[0]
+							.pageX
+					);
+					// Gets touch start y pos.
+					startY = (
+						event
+							.changedTouches[0]
+							.pageY
+					);
+				}, false
+			);
+			// Listens `touchend` event.
+			tag.addEventListener (
+				"touchend", event => {
+					// Gets time elapsed.
+					elapsedTime = (
+						new Date ().getTime ()
+							- startTime
+					);
+					// Gets horizontal distance
+					// traveled by finger while
+					// in contact with surface.
+					distX = (
+						event
+							.changedTouches[0]
+							.pageX - startX
+					);
+					// Gets vertical distance traveled
+					// by finger while in contact with
+					// surface.
+					distY = (
+						event
+							.changedTouches[0]
+							.pageY - startY
+					);
+					// Whether swipe meets this test.
 					if (
-						Math.abs (distX) >= threshold &&
-						Math.abs (distY) <= restraint
+						elapsedTime <= allowedTime
 					) {
-						// Whether distance traveled
-						// is negative, it indicates
-						// left swipe.
-						swipedir = (
-							(distX < 0) ?
-							EventType.SWIPE_LEFT :
-							EventType.SWIPE_RIGHT
-						);
+						// Whether swipe meets this
+						// 2nd test for horizontal.
+						if (
+							Math.abs (distX) >= threshold &&
+							Math.abs (distY) <= restraint
+						) {
+							// Whether distance traveled
+							// is negative, it indicates
+							// left swipe.
+							swipedir = (
+								(distX < 0) ?
+								EventType.SWIPE_LEFT :
+								EventType.SWIPE_RIGHT
+							);
+						}
+						// Whether swipe meets this
+						// 2nd test for vertical.
+						else if (
+							Math.abs (distY) >= threshold &&
+							Math.abs (distX) <= restraint
+						) {
+							// Whether distance traveled
+							// is negative, it indicates
+							// up swipe.
+							swipedir = (
+								(distY < 0) ?
+								EventType.SWIPE_UP :
+								EventType.SWIPE_DOWN
+							);
+						}
 					}
-					// Whether swipe meets this
-					// 2nd test for vertical.
-					else if (
-						Math.abs (distY) >= threshold &&
-						Math.abs (distX) <= restraint
-					) {
-						// Whether distance traveled
-						// is negative, it indicates
-						// up swipe.
-						swipedir = (
-							(distY < 0) ?
-							EventType.SWIPE_UP :
-							EventType.SWIPE_DOWN
-						);
-					}
-				}
-				// Calls the passed callback
-				// with the detected swipe
-				// direction.
-				callback (swipedir);
-			}, false
-		);
+					// Calls the passed callback
+					// with the detected swipe
+					// direction.
+					callback (swipedir);
+				}, false
+			);
+		// Otherwise.
+		} else {
+			// Undefined tag.
+			throw new Error (
+				"The given tag isn't defined."
+			);
+		}
 	};
 
 	/**
@@ -196,7 +206,7 @@ function SwipeEvent () {
 	 * }} configs The swipe listener data's
 	 * 	configurations. It supports the
 	 * 	following keys:
-	 * 	- ?Function feedback: The method
+	 * 	- Function feedback: The method
 	 * 		to be called when a right swipe
 	 * 		is detected.
 	 * 	- String tagId: The target HTML
@@ -207,7 +217,8 @@ function SwipeEvent () {
 	 * @returns {void} void
 	 */
 	this.swipeRight = ({
-		feedback, tagId
+		feedback = null,
+		tagId = ''
 	}) => this.listen ({
 		eventType: EventType.SWIPE_RIGHT,
 		feedback,
@@ -223,7 +234,7 @@ function SwipeEvent () {
 	 * }} configs The swipe listener data's
 	 * 	configurations. It supports the
 	 * 	following keys:
-	 * 	- ?Function feedback: The method
+	 * 	- Function feedback: The method
 	 * 		to be called when a swipe down
 	 * 		is detected.
 	 * 	- String tagId: The target HTML
@@ -234,7 +245,8 @@ function SwipeEvent () {
 	 * @returns {void} void
 	 */
 	this.swipeDown = ({
-		feedback, tagId
+		feedback = null,
+		tagId = ''
 	}) => this.listen ({
 		eventType: EventType.SWIPE_DOWN,
 		feedback,
@@ -250,7 +262,7 @@ function SwipeEvent () {
 	 * }} configs The swipe listener data's
 	 * 	configurations. It supports the
 	 * 	following keys:
-	 * 	- ?Function feedback: The method
+	 * 	- Function feedback: The method
 	 * 		to be called when a left swipe
 	 * 		is detected.
 	 * 	- String tagId: The target HTML
@@ -261,7 +273,8 @@ function SwipeEvent () {
 	 * @returns {void} void
 	 */
 	this.swipeLeft = ({
-		feedback, tagId
+		feedback = null,
+		tagId = ''
 	}) => this.listen ({
 		eventType: EventType.SWIPE_LEFT,
 		feedback,
@@ -277,7 +290,7 @@ function SwipeEvent () {
 	 * }} configs The swipe listener data's
 	 * 	configurations. It supports the
 	 * 	following keys:
-	 * 	- ?Function feedback: The method
+	 * 	- Function feedback: The method
 	 * 		to be called when a swipe up
 	 * 		is detected.
 	 * 	- String tagId: The target HTML
@@ -288,7 +301,8 @@ function SwipeEvent () {
 	 * @returns {void} void
 	 */
 	this.swipeUp = ({
-		feedback, tagId
+		feedback = null,
+		tagId = ''
 	}) => this.listen ({
 		eventType: EventType.SWIPE_UP,
 		feedback,
@@ -304,7 +318,7 @@ function SwipeEvent () {
 	 * }} configs The swipe listener data's
 	 * 	configurations. It supports the
 	 * 	following keys:
-	 * 	- ?Function feedback: The method
+	 * 	- Function feedback: The method
 	 * 		to be called when a swipe is
 	 * 		detected.
 	 * 	- String tagId: The target HTML
@@ -317,7 +331,9 @@ function SwipeEvent () {
 	 * @returns {void} void
 	 */
 	this.listen = ({
-		eventType, feedback, tagId
+		feedback = null,
+		eventType = '',
+		tagId = ''
 	}) => swipe_ ({
 		tagId,
 		callback: direction => {

@@ -1,13 +1,16 @@
 /**
-* @fileoverview: GitLab app global banner animations stylesheet.
+* @fileoverview: GitLab banner animations stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: animations.scss
 * @created: 2023-06-16
-* @updated: 2023-06-20
-* @version: 0.0.1
+* @updated: 2023-08-11
+* @version: 0.0.2
 */
+
+// Custom dependencies.
+@import "./_variables.scss";
 
 // Caroussel progress.
 @keyframes progressBar {
@@ -15,5 +18,103 @@
 		width: 0;
 	} to {
 		width: 100%;
+	}
+}
+
+// Banner animation starting values.
+section.banner-as {
+	padding: 0;
+	width: 0;
+}
+
+// Banner animation finishing values.
+section.banner-af {
+	padding: 104px 4vw 0 4vw;
+	width: 100%;
+	// From 770 to 0.
+	@media #{$banner-770} {
+		padding: 104px 16px 0 16px;
+	}
+}
+
+// Right layout animation starting
+// values.
+div.banner-right-as {
+	transform: translateX(50%);
+	opacity: 0;
+	// From 770 to 0.
+	@media #{$banner-770} {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+// Right layout animation finishing
+// values.
+div.banner-right-af {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+// Left layout animation starting
+// values.
+div.banner-left-as {
+	transform: translateX(-50%);
+	opacity: 0;
+	// From 770 to 0.
+	@media #{$banner-770} {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+// Left layout animation finishing
+// values.
+div.banner-left-af {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+// Common elements animation
+// starting values.
+label.bl-third-as,
+span.bl-first-as {
+	// From 770 to 0.
+	@media #{$banner-770} {
+		transform: translateY(-80%);
+		opacity: 0;
+	}
+}
+
+// Common elements animation
+// finishing values.
+label.bl-third-af,
+span.bl-first-af {
+	// From 770 to 0.
+	@media #{$banner-770} {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+// Common elements animation
+// starting values.
+h1.bl-second-as,
+div.bl-four-as {
+	// From 770 to 0.
+	@media #{$banner-770} {
+		transform: translateY(80%);
+		opacity: 0;
+	}
+}
+
+// Common elements animation
+// finishing values.
+h1.bl-second-af,
+div.bl-four-af {
+	// From 770 to 0.
+	@media #{$banner-770} {
+		transform: translateY(0);
+		opacity: 1;
 	}
 }

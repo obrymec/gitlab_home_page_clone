@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-04
+* @updated: 2023-08-11
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -776,28 +776,44 @@ button.gen-btn {
     color: #fff; }
 
 /**
-* @fileoverview: GitLab app global organizations stylesheet.
+* @fileoverview: GitLab organizations stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: organizations.scss
 * @created: 2023-06-21
-* @updated: 2023-06-23
+* @updated: 2023-08-12
 * @version: 0.0.1
 */
 /**
-* @fileoverview: GitLab app global organizations placeholders stylesheet.
+* @fileoverview: GitLab organizations placeholders stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-21
-* @updated: 2023-06-23
+* @updated: 2023-08-12
 * @version: 0.0.1
 */
 div.right-customers, div.left-customers, section.customers, section.customers > div {
   display: inline-flex;
   flex-direction: row; }
+
+/**
+* @fileoverview: GitLab organizations animations stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: organizations.scss
+* @created: 2023-08-12
+* @updated: 2023-08-12
+* @version: 0.0.1
+*/
+span.guest-logo-as {
+  transform: scale(0); }
+
+span.guest-logo-af {
+  transform: scale(1); }
 
 /**
 * @fileoverview: GitLab app global organizations variables stylesheet.
@@ -1357,9 +1373,9 @@ div.sub-infos {
 * @fileoverview: GitLab navbar stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-05
+* @updated: 2023-08-11
 * @file: navbar.scss
-* @version: 0.0.5
+* @version: 0.0.6
 */
 /**
 * @fileoverview: GitLab navbar placeholders stylesheet.
@@ -1406,30 +1422,115 @@ div.nav-left img:first-child, div.nav-left img:nth-child(2) ~ img, div.nav-right
   div.nav-left img:hover:first-child, div.nav-left img:nth-child(2) ~ img:hover, div.nav-right img:hover {
     filter: brightness(1%); }
 
-nav.navbar > button:nth-child(2) {
+nav.navbar > button:first-child {
   border-bottom: 1px solid #171321;
   border-top: 2px solid #171321; }
-  nav.navbar > button:hover:nth-child(2) > img {
+  nav.navbar > button:hover:first-child > img {
     filter: brightness(0); }
-  nav.navbar > button:nth-child(2) img {
+  nav.navbar > button:first-child img {
     transition: filter 0.3s cubic-bezier(0.7, 0, 0.3, 1);
     filter: brightness(100%); }
 
 /**
-* @fileoverview: GitLab app global navbar animations stylesheet.
+* @fileoverview: GitLab navbar animations stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: animations.scss
+* @created: 2023-08-11
+* @updated: 2023-08-12
+* @version: 0.0.2
+*/
+/**
+* @fileoverview: GitLab navbar variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
 * @created: 2023-06-16
 * @updated: 2023-08-04
-* @version: 0.0.1
+* @version: 0.0.2
 */
-@keyframes navbarResponiveWidth {
-  from {
-    width: 0%; }
-  to {
-    width: 46%; } }
+img.hd-first-gitlab-as {
+  transform: rotate(-180deg); }
+
+img.hd-first-gitlab-af {
+  transform: rotate(0deg); }
+
+button.hd-menu-free-trial-as,
+button.hd-free-trial-as {
+  transition: none; }
+
+button.hd-menu-free-trial-af,
+button.hd-free-trial-af {
+  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1); }
+
+button.hd-menu-free-trial-as {
+  transform: scaleX(0); }
+
+button.hd-menu-free-trial-af {
+  transform: scaleX(1); }
+
+img.hd-second-gitlab-as {
+  margin-left: 48%;
+  opacity: 0; }
+
+img.hd-second-gitlab-af {
+  margin-left: 0;
+  opacity: 1; }
+
+img.hd-close-menu-as {
+  margin-right: 46%;
+  opacity: 0; }
+
+img.hd-close-menu-af {
+  margin-right: 0;
+  opacity: 1; }
+
+img.hd-menu-options-as {
+  margin-left: 50%;
+  opacity: 0; }
+
+img.hd-menu-options-af {
+  margin-left: 0;
+  opacity: 1; }
+
+header.header-as {
+  transform: translateY(-100%);
+  transition: none; }
+  @media only screen and (max-width: 575px) {
+    header.header-as {
+      transform: translateY(0); } }
+
+header.header-af {
+  transform: translateY(-38%);
+  transition: inherit; }
+  @media only screen and (max-width: 575px) {
+    header.header-af {
+      transform: translateY(0); } }
+
+label.hd-left-options-as,
+button.hd-sign-in-btn-as,
+img.hd-second-search-as,
+img.hd-emburger-menu-as,
+button.hd-free-trial-as,
+img.hd-third-search-as,
+img.hd-first-search-as,
+img.hd-sign-in-as {
+  transform: translateY(10px);
+  opacity: 0; }
+
+label.hd-left-options-af,
+button.hd-sign-in-btn-af,
+img.hd-second-search-af,
+img.hd-emburger-menu-af,
+button.hd-free-trial-af,
+img.hd-third-search-af,
+img.hd-first-search-af,
+img.hd-sign-in-af {
+  transform: translateY(0);
+  opacity: 1; }
+
 /**
 * @fileoverview: GitLab navbar variables stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
@@ -1442,13 +1543,7 @@ nav.navbar > button:nth-child(2) {
 */
 header {
   background-color: #fff;
-  transform: translateY(-63%);
-  z-index: 1;
-  top: -48px; }
-  @media only screen and (max-width: 575px) {
-    header {
-      transform: translateY(-100%);
-      top: 0; } }
+  z-index: 1; }
 
 section.nav-data {
   justify-content: space-between;
@@ -1456,9 +1551,6 @@ section.nav-data {
   @media only screen and (max-width: 1050px) {
     section.nav-data {
       padding: 16px; } }
-
-nav.navbar menu.display-popup-menu {
-  transform: translateX(0); }
 
 menu.nav-menu-popup {
   background-color: #fff;
@@ -1468,19 +1560,10 @@ menu.nav-menu-popup {
   z-index: 2;
   bottom: 0; }
   menu.nav-menu-popup section:first-child {
-    justify-content: space-between;
-    margin-top: 56px; }
-    @media only screen and (max-width: 575px) {
-      menu.nav-menu-popup section:first-child {
-        margin-top: 8px; } }
-    menu.nav-menu-popup section:first-child img:first-child {
-      margin-left: 48%;
-      cursor: pointer;
-      opacity: 0; }
+    justify-content: space-between; }
+    menu.nav-menu-popup section:first-child img:first-child,
     menu.nav-menu-popup section:first-child img:last-child {
-      margin-right: 46%;
-      cursor: pointer;
-      opacity: 0; }
+      cursor: pointer; }
   menu.nav-menu-popup section:nth-child(2) > div {
     border-bottom: 1px solid #ccc;
     justify-content: space-between;
@@ -1488,8 +1571,7 @@ menu.nav-menu-popup {
     padding: 12px 0 12px 0;
     align-items: center;
     font-size: 19px;
-    cursor: pointer;
-    opacity: 0; }
+    cursor: pointer; }
     menu.nav-menu-popup section:nth-child(2) > div:hover {
       background-color: #e3dfed; }
     @media only screen and (max-width: 575px) {
@@ -1502,7 +1584,6 @@ menu.nav-menu-popup {
     margin-top: 15px;
     column-gap: 8px; }
   menu.nav-menu-popup button:last-child {
-    transform: scaleX(0);
     margin-top: 23px;
     width: 100%; }
 
@@ -1522,7 +1603,6 @@ div.nav-left {
         display: inline-block;
         position: absolute; } }
   div.nav-left img:nth-child(2) {
-    transform: rotate(-180deg);
     cursor: pointer; }
     @media only screen and (max-width: 575px) {
       div.nav-left img:nth-child(2) {
@@ -1592,14 +1672,14 @@ div.nav-right {
         width: 32px; } }
 
 /**
-* @fileoverview: GitLab app global banner stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
+* @fileoverview: GitLab banner stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-17
-* @updated: 2023-06-21
+* @updated: 2023-08-11
 * @file: banner.scss
-* @version: 0.0.1
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab banner placeholders stylesheet.
@@ -1608,233 +1688,267 @@ div.nav-right {
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-18
-* @updated: 2023-08-03
-* @version: 0.0.1
+* @updated: 2023-08-10
+* @version: 0.0.3
 */
 /**
-* @fileoverview: GitLab app global banner variables stylesheet.
+* @fileoverview: GitLab banner variables stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-17
-* @updated: 2023-06-21
-* @version: 0.0.1
+* @updated: 2023-08-11
+* @version: 0.0.2
 */
-section.banner, div.left-part div:nth-child(5) {
+div.banner-left div:nth-child(5), section.banner {
   justify-content: center;
   display: inline-flex; }
 
-div.right-part, div.left-part {
+div.banner-right, div.banner-left {
   flex-direction: column;
   display: flex; }
 
-div.left-part div:nth-child(4) > button:first-child {
-  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
-  background-color: #171321;
-  justify-content: center;
-  display: inline-flex;
-  padding: 11px 16px;
-  line-height: 20px;
-  font-weight: 600;
-  min-width: 68px;
-  font-size: 18px;
-  color: #fff; }
-  div.left-part div:nth-child(4) > button:hover:first-child {
-    background-color: #fff;
-    color: #171321; }
-  @media only screen and (max-width: 1080px) and (min-width: 771px) {
-    div.left-part div:nth-child(4) > button:first-child {
-      letter-spacing: 1.1px;
-      font-size: 16px; } }
-  @media only screen and (max-width: 420px) {
-    div.left-part div:nth-child(4) > button:first-child {
+div.banner-left div:nth-child(4) > button:first-child {
+  border: 1px solid #171321;
+  display: inline-block;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  margin-right: 13px; }
+  div.banner-left div:nth-child(4) > button:hover:first-child {
+    background-color: #fff; }
+  @media only screen and (max-width: 770px) {
+    div.banner-left div:nth-child(4) > button:first-child {
       width: 100%; } }
-  div.left-part div:nth-child(4) > button:first-child label {
-    cursor: pointer; }
+
+div.banner-left > span:first-child {
+  color: #171321;
+  margin-top: 78px; }
+  @media only screen and (max-width: 1080px) and (min-width: 771px) {
+    div.banner-left > span:first-child {
+      font-size: 13px;
+      margin-top: 0; } }
+  @media only screen and (max-width: 770px) {
+    div.banner-left > span:first-child {
+      text-align: center;
+      font-size: 15px;
+      margin-top: 0; } }
+  div.banner-left > span:first-child label {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 4px 16px;
+    cursor: pointer;
+    background-image: linear-gradient(-90deg, #f5f1ff, #eee7fd); }
+    div.banner-left > span:first-child label:hover {
+      background-image: linear-gradient(-90deg, #faf9ff, #f3eefe); }
+
+div.banner-left div:nth-child(5) {
+  column-gap: 28px;
+  margin-top: 35%;
+  width: 82%; }
+  @media only screen and (max-width: 1080px) and (min-width: 771px) {
+    div.banner-left div:nth-child(5) {
+      margin-top: 8%;
+      width: 100%; } }
+  @media only screen and (max-width: 770px) {
+    div.banner-left div:nth-child(5) {
+      display: none; } }
+  div.banner-left div:nth-child(5) > span {
+    border-radius: 10px;
+    width: 33.33%;
+    height: 2px;
+    background-color: #e3d8ff; }
+    div.banner-left div:nth-child(5) > span div.progress-thumb {
+      animation: progressBar 4s linear 0s 1 normal backwards; }
+  div.banner-left div:nth-child(5) > span > div {
+    background-color: #171321;
+    border-radius: 10px;
+    height: 2px;
+    width: 0; }
 
 /**
-* @fileoverview: GitLab app global banner animations stylesheet.
+* @fileoverview: GitLab banner animations stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: animations.scss
 * @created: 2023-06-16
-* @updated: 2023-06-20
-* @version: 0.0.1
+* @updated: 2023-08-11
+* @version: 0.0.2
+*/
+/**
+* @fileoverview: GitLab banner variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-06-17
+* @updated: 2023-08-11
+* @version: 0.0.2
 */
 @keyframes progressBar {
   from {
     width: 0; }
   to {
     width: 100%; } }
+section.banner-as {
+  padding: 0;
+  width: 0; }
+
+section.banner-af {
+  padding: 104px 4vw 0 4vw;
+  width: 100%; }
+  @media only screen and (max-width: 770px) {
+    section.banner-af {
+      padding: 104px 16px 0 16px; } }
+
+div.banner-right-as {
+  transform: translateX(50%);
+  opacity: 0; }
+  @media only screen and (max-width: 770px) {
+    div.banner-right-as {
+      transform: translateX(0);
+      opacity: 1; } }
+
+div.banner-right-af {
+  transform: translateX(0);
+  opacity: 1; }
+
+div.banner-left-as {
+  transform: translateX(-50%);
+  opacity: 0; }
+  @media only screen and (max-width: 770px) {
+    div.banner-left-as {
+      transform: translateX(0);
+      opacity: 1; } }
+
+div.banner-left-af {
+  transform: translateX(0);
+  opacity: 1; }
+
+@media only screen and (max-width: 770px) {
+  label.bl-third-as,
+  span.bl-first-as {
+    transform: translateY(-80%);
+    opacity: 0; } }
+
+@media only screen and (max-width: 770px) {
+  label.bl-third-af,
+  span.bl-first-af {
+    transform: translateY(0);
+    opacity: 1; } }
+
+@media only screen and (max-width: 770px) {
+  h1.bl-second-as,
+  div.bl-four-as {
+    transform: translateY(80%);
+    opacity: 0; } }
+
+@media only screen and (max-width: 770px) {
+  h1.bl-second-af,
+  div.bl-four-af {
+    transform: translateY(0);
+    opacity: 1; } }
+
 /**
-* @fileoverview: GitLab app global banner variables stylesheet.
+* @fileoverview: GitLab banner variables stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-17
-* @updated: 2023-06-21
-* @version: 0.0.1
+* @updated: 2023-08-11
+* @version: 0.0.2
 */
-.progress-thumb {
-  animation: progressBar 4s linear 0s 1 normal backwards; }
-
-img.fade-in {
-  opacity: 1 !important; }
-
 section.banner {
   background-image: url("../../../../../assets/images/gradient-desktop.jpg");
   background-repeat: no-repeat;
   background-position: 80%;
-  padding: 104px 4vw 0 4vw;
   background-size: cover;
-  position: relative;
-  margin-top: 85px;
-  width: 100%;
-  z-index: 0; }
+  margin-top: 78px; }
 
-div.right-part {
+div.banner-right {
   transform: translate3d(0, 0, 0);
   align-items: center;
   height: 100%;
   width: 75%; }
   @media only screen and (max-width: 770px) {
-    div.right-part {
+    div.banner-right {
       display: none; } }
-  div.right-part img {
+  div.banner-right img {
     transition: opacity .6s linear;
     object-fit: cover;
     height: 100%;
     width: 100%; }
-  div.right-part > img:first-child {
+  div.banner-right > img:first-child {
     opacity: 0; }
-  div.right-part > img:nth-child(2) {
+  div.banner-right > img:nth-child(2) {
     position: fixed;
     opacity: 0;
     top: 0; }
-  div.right-part > img:last-child {
+  div.banner-right > img:last-child {
     position: fixed;
     opacity: 0;
     top: 0; }
+  div.banner-right img.fade-in {
+    opacity: 1; }
 
-div.left-part {
-  transition: all .2s ease-in-out;
+div.banner-left {
   padding-right: 2vw;
   row-gap: 18px;
   width: 50%; }
   @media only screen and (max-width: 770px) {
-    div.left-part {
+    div.banner-left {
       justify-content: center;
       align-items: center;
       padding-right: 0;
       width: 100%; } }
-  div.left-part > label:first-child {
-    transition: all .2s ease-in-out;
-    color: #171321;
-    padding: 4px 0 4px 16px;
-    border-radius: 20px;
-    margin-top: 78px;
-    font-size: 14px;
-    cursor: pointer;
-    display: block;
-    background-image: linear-gradient(-90deg, #f5f1ff, #eee7fd); }
-    div.left-part > label:first-child:hover {
-      background-image: linear-gradient(-90deg, #faf9ff, #f3eefe); }
-    @media only screen and (max-width: 1080px) and (min-width: 771px) {
-      div.left-part > label:first-child {
-        letter-spacing: 1.1px;
-        font-size: 13px;
-        margin-top: 0; } }
-    @media only screen and (max-width: 770px) {
-      div.left-part > label:first-child {
-        padding-right: 16px;
-        text-align: center;
-        margin-top: 0; } }
-  div.left-part h1:nth-child(2) {
-    transition: all .2s ease-in-out;
+  div.banner-left h1:nth-child(2) {
     color: #171321;
     letter-spacing: -1.4px;
     line-height: 60px;
     font-weight: 600;
     font-size: 50px; }
     @media only screen and (max-width: 1080px) and (min-width: 771px) {
-      div.left-part h1:nth-child(2) {
-        letter-spacing: 1.1px;
+      div.banner-left h1:nth-child(2) {
         line-height: 44px;
         font-size: 35px; } }
     @media only screen and (max-width: 770px) {
-      div.left-part h1:nth-child(2) {
+      div.banner-left h1:nth-child(2) {
         text-align: center; } }
-  div.left-part > label:nth-child(3) {
-    transition: all .2s ease-in-out;
+  div.banner-left > label:nth-child(3) {
     color: #171321;
     font-size: 20px; }
     @media only screen and (max-width: 1080px) and (min-width: 771px) {
-      div.left-part > label:nth-child(3) {
-        letter-spacing: 1.1px;
+      div.banner-left > label:nth-child(3) {
         font-size: 15px; } }
     @media only screen and (max-width: 770px) {
-      div.left-part > label:nth-child(3) {
+      div.banner-left > label:nth-child(3) {
         text-align: center; } }
-  div.left-part div:nth-child(4) {
-    transition: padding-bottom .2s ease-out; }
-    @media only screen and (max-width: 770px) {
-      div.left-part div:nth-child(4) {
-        padding-bottom: 65px; } }
-    @media only screen and (max-width: 420px) {
-      div.left-part div:nth-child(4) {
-        flex-direction: column;
-        display: flex;
-        width: 100%; } }
-  div.left-part div:nth-child(4) > button:first-child {
-    border: 1px solid #171321;
-    display: inline-block;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    margin-right: 13px; }
-  div.left-part div:nth-child(4) > button:last-child {
-    transition: all .2s ease-in-out;
+  @media only screen and (max-width: 770px) {
+    div.banner-left div:nth-child(4) {
+      padding-bottom: 65px; } }
+  @media only screen and (max-width: 420px) {
+    div.banner-left div:nth-child(4) {
+      flex-direction: column;
+      display: flex;
+      width: 100%; } }
+  div.banner-left div:nth-child(4) > button:last-child {
     color: #171321;
     text-underline-offset: 2px;
     font-weight: 600;
     font-size: 18px; }
-    div.left-part div:nth-child(4) > button:last-child:hover {
+    div.banner-left div:nth-child(4) > button:last-child:hover {
       text-decoration: underline; }
-    div.left-part div:nth-child(4) > button:last-child img {
-      transition: transform .2s ease-in-out;
+    div.banner-left div:nth-child(4) > button:last-child img {
       transform: translate(0, -1.5px);
       display: inline-block;
       margin-left: 5px; }
-    div.left-part div:nth-child(4) > button:last-child:hover > img {
+    div.banner-left div:nth-child(4) > button:last-child:hover > img {
       transform: translate(6px, -1.5px); }
     @media only screen and (max-width: 1080px) and (min-width: 771px) {
-      div.left-part div:nth-child(4) > button:last-child {
-        letter-spacing: 1.1px;
+      div.banner-left div:nth-child(4) > button:last-child {
         font-size: 15px; } }
-  div.left-part div:nth-child(5) {
-    transition: all .2s ease-in-out;
-    column-gap: 28px;
-    margin-top: 35%;
-    width: 82%; }
-    @media only screen and (max-width: 1080px) and (min-width: 771px) {
-      div.left-part div:nth-child(5) {
-        margin-top: 8%;
-        width: 100%; } }
-    @media only screen and (max-width: 770px) {
-      div.left-part div:nth-child(5) {
-        display: none; } }
-    div.left-part div:nth-child(5) > span {
-      border-radius: 10px;
-      width: 33.33%;
-      height: 2px;
-      background-color: #e3d8ff; }
-    div.left-part div:nth-child(5) > span > div {
-      background-color: #171321;
-      border-radius: 10px;
-      height: 2px;
-      width: 0; }
 
 /**
 * @fileoverview: GitLab app global badges stylesheet.
@@ -2302,14 +2416,28 @@ div.faq-right {
 @font-face {
   src: url("../assets/fonts/inter-regular.ttf");
   font-family: "InterRegular"; }
+@keyframes fadeout {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 * {
   transition: all .2s ease-in-out; }
+
+main {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  width: 100%; }
 
 body {
   font-family: "InterRegular", sans-serif;
   color: #171321;
+  overflow-x: hidden;
   line-height: 24px;
   user-select: none;
   font-weight: 400;
   overflow-y: auto;
   font-size: 16px; }
+  body aside > menu.display-popup-menu {
+    transform: translateX(0); }

@@ -1,0 +1,22 @@
+/**
+* @fileoverview: GitLab organizations animations stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: organizations.scss
+* @created: 2023-08-12
+* @updated: 2023-08-12
+* @version: 0.0.1
+*/
+
+// Common customers logo animation
+// starting value.
+span.guest-logo-as {
+  transform: scale(0);
+}
+
+// Common customers logo animation
+// finishing value.
+span.guest-logo-af {
+  transform: scale(1);
+}

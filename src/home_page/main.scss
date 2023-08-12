@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-04
+* @updated: 2023-08-11
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -31,19 +31,40 @@
 	font-family: "InterRegular";
 }
 
+// Fadeout animation.
+@keyframes fadeout {
+	from {
+		opacity: 0;
+	} to {
+		opacity: 1;
+	}
+}
+
 // All tags.
 * {
 	transition: all .2s ease-in-out;
+}
+
+// Main.
+main {
+	flex-direction: column;
+	align-items: center;
+	display: flex;
+	width: 100%;
 }
 
 // Root.
 body {
 	font-family: $inter-regular-sans-serif;
 	color: $primary-color;
-	// overflow-x: hidden;
+	overflow-x: hidden;
 	line-height: 24px;
 	user-select: none;
 	font-weight: 400;
 	overflow-y: auto;
 	font-size: 16px;
+	// Shows menu popup.
+	aside > menu.display-popup-menu {
+		transform: translateX(0);
+	}
 }

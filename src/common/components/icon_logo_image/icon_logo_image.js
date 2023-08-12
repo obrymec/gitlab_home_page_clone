@@ -6,8 +6,8 @@
 * @file icon_logo_image.js
 * @type {IconLogoImage}
 * @created 2023-08-03
-* @updated 2023-08-05
-* @version 0.0.1
+* @updated 2023-08-12
+* @version 0.0.2
 */
  
 // Custom dependencies.
@@ -188,12 +188,12 @@ const Images = {
  *  can represent an icon, logo
  *  and image.
  * @param {{
- *  className: String=,
+ *  className?: String=,
  *  fileName: String,
- *  idName: String=,
- *  title: String=,
- *  name: String=,
- *  alt: String=,
+ *  idName?: String=,
+ *  title?: String=,
+ *  name?: String=,
+ *  alt?: String=,
  *  root: String
  * }} origin The original's path
  *  to load an icon, logo or
@@ -203,15 +203,15 @@ const Images = {
  *    folder's path.
  *  - String fileName: The icon,
  *    logo or image to be loaded.
- *  - String= alt: The image, logo,
+ *  - String alt: The image, logo,
  *    or icon alt text.
- *  - String= className: The logo,
+ *  - String className: The logo,
  *    image or icon class name.
- *  - String= idName: The logo,
+ *  - String idName: The logo,
  *    image or icon id name.
- *  - String= title: The image,
+ *  - String title: The image,
  *    logo or icon title text.
- *  - String= name: The image
+ *  - String name: The image
  *    name.
  * @function buildView_
  * @private {Function}
@@ -219,38 +219,45 @@ const Images = {
  */
 function buildView_ ({
   className = '',
+  fileName = '',
   idName = '',
   title = '',
   name = '',
-  alt = '',
-  fileName,
-  root
+  root = '',
+  alt = ''
 }) {
   // Builds the target view.
-  return (`
-    <img
-      class = "${className}"
-      title = "${title}"
-      id = "${idName}"
-      name = "${name}"
-      alt = "${alt}"
-      src = "${
-        clearStr ({
-          clearSpaces: true,
-          input: `
-            ../../../../../assets/
-            ${root}/${fileName}
-          `
-        })
-      }"
-    />
-  `);
+  return (
+    (
+      typeof fileName === "string" &&
+      fileName.trim ().length > 0 &&
+      typeof root == "string" &&
+      root.trim ().length > 0
+    ) ? `
+      <img
+        class = "${className}"
+        title = "${title}"
+        id = "${idName}"
+        name = "${name}"
+        alt = "${alt}"
+        src = "${
+          clearStr ({
+            clearSpaces: true,
+            input: `
+              ../../../../../assets/
+              ${root}/${fileName}
+            `
+          })
+        }"
+      />
+    ` : ''
+  );
 }
 
 /**
  * @description Builds image view.
  * @param {{
- *  data: Object<String, String>,
+ *  data?: Object<String, String>=,
  *  fileName: String
  * }} configs The data configs to
  *  create the target element. It
@@ -265,8 +272,8 @@ function buildView_ ({
  * @returns {String} String
 */
 function buildImage ({
-  data = {},
-  fileName
+  fileName = '',
+  data = {}
 }) {
   // Builds the target image.
   return buildView_ ({
@@ -279,7 +286,7 @@ function buildImage ({
 /**
  * @description Builds icon view.
  * @param {{
- *  data: Object<String, String>,
+ *  data?: Object<String, String>=,
  *  fileName: String
  * }} configs The data configs to
  *  create the target element. It
@@ -294,8 +301,8 @@ function buildImage ({
  * @returns {String} String
  */
 function buildIcon ({
-  data = {},
-  fileName
+  fileName = '',
+  data = {}
 }) {
   // Builds the target icon.
   return buildView_ ({
@@ -308,7 +315,7 @@ function buildIcon ({
 /**
  * @description Builds logo view.
  * @param {{
- *  data: Object<String, String>,
+ *  data?: Object<String, String>=,
  *  fileName: String
  * }} configs The data configs to
  *  create the target element. It
@@ -323,8 +330,8 @@ function buildIcon ({
  * @returns {String} String
  */
 function buildLogo ({
-  data = {},
-  fileName
+  fileName = '',
+  data = {}
 }) {
   // Builds the target logo.
   return buildView_ ({

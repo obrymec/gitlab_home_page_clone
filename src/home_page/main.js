@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-03
+* @updated 2023-08-11
 * @version 0.0.6
 * @file main.js
 */
@@ -26,9 +26,9 @@ import {FAQ} from "./components/faq/faq.js";
 // Builds navbar section.
 new NavBar ().render ();
 // Builds banner section.
-// new Banner ({parentId: "main"}).render ();
+new Banner ().render ();
 // // Builds customers section.
-// new Customers ({parentId: "main"}).render ();
+new Customers ().render ();
 // // Builds services section.
 // new Services ({parentId: "main"}).render ();
 // // Builds collaborators section.
