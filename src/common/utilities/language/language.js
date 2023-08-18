@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-08-05
+* @updated 2023-08-17
 * @file language.js
 * @type {Language}
 * @version 0.0.1
@@ -29,14 +29,16 @@ import english from "../../i18n/english.js";
  * }} configs The manager's data
  *  configurations. It supports
  *  the following keys:
+ *
  *  - String cookieName: The cookie's
  *    name to save inside browser.
+ *
  *  - int defaultLanguage: The index
  *    of the default language to
  *    used from supported
  *    languages list.
- *  - Array<Object<String, any>>=
- *    languages: The supported
+ *
+ *  - Array languages: The supported
  *    languages list.
  * @type {Language}
  * @public
@@ -132,9 +134,11 @@ function Language ({
    * }} configs The search data
    *  configurations. It supports
    *  the following keys:
+   *
    *  - String key: The key's name.
-   *  - Object<String, any> data:
-   *    The target language's data.
+   *
+   *  - Object data: The target
+   *    language's data.
    * @private {Function}
    * @function has_
    * @returns {boolean} boolean

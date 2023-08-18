@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-11
+* @updated 2023-08-18
 * @version 0.0.6
 * @file main.js
 */
@@ -30,7 +30,7 @@ new Banner ().render ();
 // // Builds customers section.
 new Customers ().render ();
 // // Builds services section.
-// new Services ({parentId: "main"}).render ();
+new Services ().render ();
 // // Builds collaborators section.
 // new Collaborators ({parentId: "main"}).render ();
 // // Builds methodologies section.

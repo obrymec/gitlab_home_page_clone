@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-28
-* @updated 2023-08-12
+* @updated 2023-08-17
 * @type {SwipeEvent}
 * @file swipe.js
 * @version 0.0.3
@@ -52,9 +52,11 @@ function SwipeEvent () {
 	 * }} configs The swipe manager data's
 	 * 	configurations. It supports the
 	 * 	following keys:
+	 *
 	 * 	- Function callback: The method
 	 * 		to be called when a swipe is
 	 * 		detected.
+	 *
 	 * 	- String tagId: The target HTML
 	 * 		tag's id within the DOM.
 	 * @constant {Function}
@@ -206,9 +208,11 @@ function SwipeEvent () {
 	 * }} configs The swipe listener data's
 	 * 	configurations. It supports the
 	 * 	following keys:
+	 *
 	 * 	- Function feedback: The method
 	 * 		to be called when a right swipe
 	 * 		is detected.
+	 *
 	 * 	- String tagId: The target HTML
 	 * 		tag's id within the DOM.
 	 * @constant {Function}
@@ -234,9 +238,11 @@ function SwipeEvent () {
 	 * }} configs The swipe listener data's
 	 * 	configurations. It supports the
 	 * 	following keys:
+	 *
 	 * 	- Function feedback: The method
 	 * 		to be called when a swipe down
 	 * 		is detected.
+	 *
 	 * 	- String tagId: The target HTML
 	 * 		tag's id within the DOM.
 	 * @constant {Function}
@@ -262,9 +268,11 @@ function SwipeEvent () {
 	 * }} configs The swipe listener data's
 	 * 	configurations. It supports the
 	 * 	following keys:
+	 *
 	 * 	- Function feedback: The method
 	 * 		to be called when a left swipe
 	 * 		is detected.
+	 *
 	 * 	- String tagId: The target HTML
 	 * 		tag's id within the DOM.
 	 * @constant {Function}
@@ -290,9 +298,11 @@ function SwipeEvent () {
 	 * }} configs The swipe listener data's
 	 * 	configurations. It supports the
 	 * 	following keys:
+	 *
 	 * 	- Function feedback: The method
 	 * 		to be called when a swipe up
 	 * 		is detected.
+	 *
 	 * 	- String tagId: The target HTML
 	 * 		tag's id within the DOM.
 	 * @constant {Function}
@@ -318,11 +328,14 @@ function SwipeEvent () {
 	 * }} configs The swipe listener data's
 	 * 	configurations. It supports the
 	 * 	following keys:
+	 *
 	 * 	- Function feedback: The method
 	 * 		to be called when a swipe is
 	 * 		detected.
+	 *
 	 * 	- String tagId: The target HTML
 	 * 		tag's id within the DOM.
+	 *
 	 *	- EventType eventType: The swipe
 	 *		event's type to listen.
 	 * @constant {Function}

@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-11
+* @updated: 2023-08-17
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -736,9 +736,9 @@ div.mhds-infos {
 * @fileoverview: GitLab button stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-08-03
-* @updated: 2023-08-04
+* @updated: 2023-08-18
 * @file: button.scss
-* @version: 0.0.1
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab button variables stylesheet.
@@ -747,9 +747,24 @@ div.mhds-infos {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-08-03
-* @updated: 2023-08-03
-* @version: 0.0.1
+* @updated: 2023-08-18
+* @version: 0.0.2
 */
+button.flat-btn {
+  color: #171321;
+  outline: none; }
+  button.flat-btn:hover > img {
+    transform: translate(8px, -1px); }
+  button.flat-btn:hover > span {
+    text-decoration: underline; }
+  button.flat-btn img {
+    transform: translateY(-1px);
+    display: inline-block; }
+  button.flat-btn span {
+    line-height: 24px;
+    font-weight: 600;
+    font-size: 20px; }
+
 button.gen-btn {
   transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
   background-color: #171321;
@@ -764,9 +779,6 @@ button.gen-btn {
     background-color: transparent; }
     button.gen-btn:hover span {
       color: #171321; }
-  @media only screen and (max-width: 1170px) {
-    button.gen-btn {
-      font-size: 16px; } }
   button.gen-btn img {
     transform: translate(0, 1px);
     display: inline-block;
@@ -1040,8 +1052,8 @@ div.resource {
 * @supported: DESKTOP, MOBILE
 * @file: services.scss
 * @created: 2023-06-23
-* @updated: 2023-06-29
-* @version: 0.0.1
+* @updated: 2023-08-18
+* @version: 0.0.3
 */
 /**
 * @fileoverview: GitLab app global services placeholders stylesheet.
@@ -1062,17 +1074,76 @@ div.service, div.service div {
   display: flex; }
 
 /**
+* @fileoverview: GitLab banner animations stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: animations.scss
+* @created: 2023-08-18
+* @updated: 2023-08-18
+* @version: 0.0.2
+*/
+/**
 * @fileoverview: GitLab app global services variables stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-23
-* @updated: 2023-06-24
+* @updated: 2023-08-18
+* @version: 0.0.1
+*/
+div.services-as {
+  height: 386px;
+  padding: 0;
+  width: 0; }
+  @media only screen and (max-width: 1130px) and (min-width: 1025px) {
+    div.services-as {
+      height: 280px; } }
+  @media only screen and (max-width: 1025px) {
+    div.services-as {
+      padding: 20px;
+      height: 250px;
+      opacity: 0; } }
+
+div.services-af {
+  padding: 40px;
+  height: 386px;
+  width: 100%; }
+  @media only screen and (max-width: 1130px) and (min-width: 1025px) {
+    div.services-af {
+      height: 280px;
+      padding: 25px; } }
+  @media only screen and (max-width: 1025px) {
+    div.services-af {
+      padding: 20px;
+      height: auto;
+      opacity: 1; } }
+
+@media only screen and (max-width: 1025px) {
+  div.services-second-as {
+    transform: translateY(-280px); } }
+
+@media only screen and (max-width: 1025px) {
+  div.services-third-as {
+    transform: translateY(-560px); } }
+
+@media only screen and (max-width: 1025px) {
+  div.services-second-af,
+  div.services-third-af {
+    transform: translateY(0); } }
+
+/**
+* @fileoverview: GitLab app global services variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-06-23
+* @updated: 2023-08-18
 * @version: 0.0.1
 */
 section.services {
-  transition: padding .2s ease-out;
   background-repeat: no-repeat;
   padding: 80px 7% 75px 7%;
   justify-content: center;
@@ -1090,46 +1161,45 @@ section.services {
     section.services {
       padding: 30px 5% 25px 5%;
       flex-direction: column; } }
+  @media only screen and (max-width: 1025px) {
+    section.services div.service:nth-child(1) {
+      z-index: 2; } }
+  @media only screen and (max-width: 1025px) {
+    section.services div.service:nth-child(2) {
+      z-index: 1; } }
+  @media only screen and (max-width: 1025px) {
+    section.services div.service:nth-child(3) {
+      z-index: 0; } }
 
 div.service {
   justify-content: space-between;
   background-color: transparent;
-  transition: all .3s ease-out;
   align-items: flex-start;
   border-radius: 4px;
+  position: relative;
   isolation: isolate;
+  overflow: hidden;
   cursor: pointer;
   margin: 0 auto;
-  padding: 40px;
-  height: 386px;
-  width: 100%;
   background-image: linear-gradient(141.57deg, #fff 0.86%, rgba(255, 255, 255, 0) 99.96%); }
   div.service:hover {
     background-color: #fff;
     border-bottom-right-radius: 100px; }
-  @media only screen and (max-width: 1130px) and (min-width: 1025px) {
-    div.service {
-      height: 280px;
-      padding: 20px; } }
   @media only screen and (max-width: 1025px) {
     div.service {
       justify-content: center;
-      row-gap: 30px;
-      height: auto; } }
+      row-gap: 30px; } }
   div.service div {
     row-gap: 16px; }
   div.service div > p {
-    transition: all .2s ease-in-out;
     line-height: 20px;
     font-weight: 400;
     font-size: 16px; }
     @media only screen and (max-width: 1130px) and (min-width: 1025px) {
       div.service div > p {
-        letter-spacing: 1.1px;
         line-height: 18px;
         font-size: 14px; } }
   div.service div > label {
-    transition: all .2s ease-in-out;
     letter-spacing: -.6px;
     line-height: 32px;
     font-weight: 600;
@@ -1140,23 +1210,9 @@ div.service {
         line-height: 22px;
         font-size: 18px; } }
   div.service button {
-    color: #7759c2;
-    outline: none; }
-    div.service button:hover > img {
-      transform: translate(8px, -1px); }
-    div.service button:hover > span {
-      text-decoration: underline; }
-    div.service button img {
-      transition: transform .2s ease-in-out;
-      transform: translateY(-1px);
-      display: inline-block; }
-  div.service button > span {
-    transition: all .2s ease-in-out;
-    line-height: 24px;
-    font-weight: 600;
-    font-size: 20px; }
+    color: #7759c2; }
     @media only screen and (max-width: 1130px) and (min-width: 1025px) {
-      div.service button > span {
+      div.service button {
         line-height: 18px;
         font-size: 15px; } }
 
@@ -1373,9 +1429,9 @@ div.sub-infos {
 * @fileoverview: GitLab navbar stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-11
+* @updated: 2023-08-18
 * @file: navbar.scss
-* @version: 0.0.6
+* @version: 0.0.7
 */
 /**
 * @fileoverview: GitLab navbar placeholders stylesheet.
@@ -1384,8 +1440,8 @@ div.sub-infos {
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-16
-* @updated: 2023-08-04
-* @version: 0.0.2
+* @updated: 2023-08-18
+* @version: 0.0.3
 */
 /**
 * @fileoverview: GitLab navbar variables stylesheet.
@@ -1427,6 +1483,9 @@ nav.navbar > button:first-child {
   border-top: 2px solid #171321; }
   nav.navbar > button:hover:first-child > img {
     filter: brightness(0); }
+  @media only screen and (max-width: 1170px) {
+    nav.navbar > button:first-child {
+      font-size: 16px; } }
   nav.navbar > button:first-child img {
     transition: filter 0.3s cubic-bezier(0.7, 0, 0.3, 1);
     filter: brightness(100%); }
@@ -1543,7 +1602,7 @@ img.hd-sign-in-af {
 */
 header {
   background-color: #fff;
-  z-index: 1; }
+  z-index: 4; }
 
 section.nav-data {
   justify-content: space-between;
@@ -1557,7 +1616,7 @@ menu.nav-menu-popup {
   transform: translateX(100%);
   padding: 8px 16px 0 16px;
   row-gap: 8px;
-  z-index: 2;
+  z-index: 5;
   bottom: 0; }
   menu.nav-menu-popup section:first-child {
     justify-content: space-between; }
@@ -1586,6 +1645,9 @@ menu.nav-menu-popup {
   menu.nav-menu-popup button:last-child {
     margin-top: 23px;
     width: 100%; }
+    @media only screen and (max-width: 1170px) {
+      menu.nav-menu-popup button:last-child {
+        font-size: 16px; } }
 
 div.nav-left {
   column-gap: 25px; }
@@ -1628,6 +1690,9 @@ div.nav-right {
   @media only screen and (max-width: 1050px) {
     div.nav-right img:first-child {
       display: none; } }
+  @media only screen and (max-width: 1170px) {
+    div.nav-right button:nth-child(2) {
+      font-size: 16px; } }
   @media only screen and (max-width: 575px) {
     div.nav-right button:nth-child(2) {
       display: none; } }
@@ -1688,8 +1753,8 @@ div.nav-right {
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-18
-* @updated: 2023-08-10
-* @version: 0.0.3
+* @updated: 2023-08-18
+* @version: 0.0.4
 */
 /**
 * @fileoverview: GitLab banner variables stylesheet.
@@ -1698,7 +1763,7 @@ div.nav-right {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-17
-* @updated: 2023-08-11
+* @updated: 2023-08-18
 * @version: 0.0.2
 */
 div.banner-left div:nth-child(5), section.banner {
@@ -1717,6 +1782,9 @@ div.banner-left div:nth-child(4) > button:first-child {
   margin-right: 13px; }
   div.banner-left div:nth-child(4) > button:hover:first-child {
     background-color: #fff; }
+  @media only screen and (max-width: 1080px) and (min-width: 771px) {
+    div.banner-left div:nth-child(4) > button:first-child {
+      font-size: 16px; } }
   @media only screen and (max-width: 770px) {
     div.banner-left div:nth-child(4) > button:first-child {
       width: 100%; } }
@@ -1783,7 +1851,7 @@ div.banner-left div:nth-child(5) {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-17
-* @updated: 2023-08-11
+* @updated: 2023-08-18
 * @version: 0.0.2
 */
 @keyframes progressBar {
@@ -1857,7 +1925,7 @@ div.banner-left-af {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-17
-* @updated: 2023-08-11
+* @updated: 2023-08-18
 * @version: 0.0.2
 */
 section.banner {
@@ -2416,11 +2484,6 @@ div.faq-right {
 @font-face {
   src: url("../assets/fonts/inter-regular.ttf");
   font-family: "InterRegular"; }
-@keyframes fadeout {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
 * {
   transition: all .2s ease-in-out; }
 

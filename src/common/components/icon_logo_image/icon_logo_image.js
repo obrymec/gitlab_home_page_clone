@@ -6,8 +6,8 @@
 * @file icon_logo_image.js
 * @type {IconLogoImage}
 * @created 2023-08-03
-* @updated 2023-08-12
-* @version 0.0.2
+* @updated 2023-08-18
+* @version 0.0.3
 */
  
 // Custom dependencies.
@@ -191,6 +191,8 @@ const Images = {
  *  className?: String=,
  *  fileName: String,
  *  idName?: String=,
+ *  height?: String=,
+ *  width?: String=,
  *  title?: String=,
  *  name?: String=,
  *  alt?: String=,
@@ -199,20 +201,33 @@ const Images = {
  *  to load an icon, logo or
  *  image. It supports the
  *  keys following:
+ *
  *  - String root: The root
  *    folder's path.
+ *
  *  - String fileName: The icon,
  *    logo or image to be loaded.
+ *
  *  - String alt: The image, logo,
  *    or icon alt text.
+ *
  *  - String className: The logo,
  *    image or icon class name.
+ *
  *  - String idName: The logo,
  *    image or icon id name.
+ *
  *  - String title: The image,
  *    logo or icon title text.
+ *
  *  - String name: The image
  *    name.
+ *
+ *  - String height: The image
+ *    width.
+ *
+ *  - String width: The image
+ *    height.
  * @function buildView_
  * @private {Function}
  * @returns {String} String
@@ -221,7 +236,9 @@ function buildView_ ({
   className = '',
   fileName = '',
   idName = '',
+  height = '',
   title = '',
+  width = '',
   name = '',
   root = '',
   alt = ''
@@ -236,7 +253,9 @@ function buildView_ ({
     ) ? `
       <img
         class = "${className}"
+        height = "${height}"
         title = "${title}"
+        width = "${width}"
         id = "${idName}"
         name = "${name}"
         alt = "${alt}"
@@ -262,11 +281,13 @@ function buildView_ ({
  * }} configs The data configs to
  *  create the target element. It
  *  supports the following keys:
+ *
  *  - String fileName: The target
  *    image file's name in app
  *    assets.
- *  - Object<String, String> data:
- *    The created tag attributes.
+ *
+ *  - Object data: The created tag
+ *    attributes.
  * @function buildIcon
  * @public
  * @returns {String} String
@@ -291,11 +312,13 @@ function buildImage ({
  * }} configs The data configs to
  *  create the target element. It
  *  supports the following keys:
+ *
  *  - String fileName: The target
  *    icon file's name in app
  *    assets.
- *  - Object<String, String> data:
- *    The created tag attributes.
+ *
+ *  - Object data: The created tag
+ *    attributes.
  * @function buildIcon
  * @public
  * @returns {String} String
@@ -320,11 +343,13 @@ function buildIcon ({
  * }} configs The data configs to
  *  create the target element. It
  *  supports the following keys:
+ *
  *  - String fileName: The target
  *    logo file's name in app
  *    assets.
- *  - Object<String, String> data:
- *    The created tag attributes.
+ *
+ *  - Object data: The created
+ *    tag attributes.
  * @function buildIcon
  * @public
  * @returns {String} String

@@ -47,7 +47,39 @@ const english = {
     tr12: "GitLab is the most comprehensive",
     tr13: "AI-powered DevSecOps Platform.",
     tr14: "What is GitLab?",
-    tr15: "Trusted By"
+    tr15: "Trusted By",
+    tr16: "Get Started with GitLab",
+    tr17: "Explore resources",
+    tr18: `
+      New to GitLab and not 
+      sure where to start? 
+      We’ll walk you through 
+      the basics so you know 
+      what to expect along 
+      the way.
+    `,
+    tr19: `
+      The Forrester Wave™: Integrated 
+      Software Delivery Platforms, Q2 
+      2023
+    `,
+    tr20: `
+      GitLab is the only leader 
+      in the report that compares 
+      13 vendors over 26 criteria.
+    `,
+    tr21: "Read the report",
+    tr22: `
+      GitLab's AI-assisted 
+      Code Suggestions
+    `,
+    tr23: `
+      Reduce cognitive load and 
+      boost efficiency with the
+      help of generative AI that
+      suggests code as you type.
+    `,
+    tr24: "Learn more"
   }
 };
 

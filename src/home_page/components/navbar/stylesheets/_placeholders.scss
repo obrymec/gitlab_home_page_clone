@@ -5,8 +5,8 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-16
-* @updated: 2023-08-04
-* @version: 0.0.2
+* @updated: 2023-08-18
+* @version: 0.0.3
 */
 
 // Custom dependencies.
@@ -56,6 +56,10 @@
 	// Hover effect.
 	&:hover > img {
 		filter: brightness(0);
+	}
+	// From 1170 to 0.
+	@media #{$navbar-1170} {
+		font-size: 16px;
 	}
 	// Right arrow.
 	img {

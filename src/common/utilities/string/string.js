@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-08-12
+* @updated 2023-08-17
 * @file string.js
 * @type {String}
 * @version 0.0.3
@@ -52,35 +52,108 @@ function clearStr ({
  * @description Replace a text to
  *  another text and keep its old
  *  position.
- * @param {String} scope The text
- *  where the replacing will do.
- * @param {String} input The to
- *  be inserted inside the scope.
+ * @param {String} scope The tag ref
+ *  text content or inner HTML.
+ * @param {String} input The current
+ *  written text.
  * @param {boolean} invert Whether
- *  an inversion is made before.
+ *  an inversion must be made before.
  * @param {String} mode The written
- *  mode.
+ *  mode (Append or Prepend).
+ * @param {boolean} reverse Whether
+ *  the animation is reversed.
+ * @param {String} text The original
+ *  text to animate.
+ * @param {int} lastIndex The last
+ *  character position inside the
+ *  original text.
  * @function smartReplace_
  * @private {Function}
  * @returns {String} String
  */
 function smartReplace_ (
-  scope, input, invert, mode
+  scope,
+  input,
+  invert,
+  mode,
+  reverse,
+  text,
+  lastIndex
 ) {
   // The last input value
   // according to inversion.
-  const lastInput = (
-    input.length < 2 ? '' :
-    (
-      invert ?
-      input.split ('').slice (
-        1, input.length
-      ).join ('') :
-      input.split ('').slice (
-        0, (input.length - 1)
-      ).join ('')
-    )
-  );
+  let lastInput = '';
+  // Whether inversion is enabled.
+  if (invert) {
+    // Whether reverse mode
+    // is enabled.
+    if (reverse) {
+      // Whether the current
+      // input length is zero.
+      if (input.length > 0) {
+        // The original text one part.
+        const part = (
+          text.split (input)[1]
+        );
+        // Adds the first removed
+        // character from the last
+        // time.
+        lastInput = (
+          `${input}${part[0]}`
+        );
+      // Otherwise.
+      } else {
+        // The first character.
+        lastInput = text[0];
+      }
+    // Whether the current
+    // input length is one.
+    } else if (input.length > 1) {
+      // Removes the last char
+      // of the original input.
+      lastInput = (
+        input.split ('').slice (
+          1, input.length
+        ).join ('')
+      );
+    }
+  // Otherwise.
+  } else {
+    // Whether reverse mode
+    // is enabled.
+    if (reverse) {
+      // Whether the current
+      // input length is zero.
+      if (input.length > 0) {
+        // The original text one part.
+        const part = (
+          text.split (input)[0]
+        );
+        // Adds the first removed
+        // character from the last
+        // time.
+        lastInput = (
+          `${
+            part[(part.length - 1)]
+          }${input}`
+        );
+      // Otherwise.
+      } else {
+        // The last character.
+        lastInput = text[lastIndex];
+      }
+    // Whether the current
+    // input length is one.
+    } else if (input.length > 1) {
+      // Removes the first char
+      // of the original input.
+      lastInput = (
+        input.split ('').slice (
+          0, (input.length - 1)
+        ).join ('')
+      );
+    }
+  }
   // Whether an append is required.
   if (!mode) {
     // Whether the current input
@@ -135,10 +208,11 @@ function smartReplace_ (
  * @param {{
  *  onFinished?: ?Function (String),
  *  onWrite?: ?Function (String),
- *  innerHTML?: boolean=,
- *  prepend?: boolean=,
+ *  useInnerHTML?: boolean=,
+ *  usePrepend?: boolean=,
+ *  isInverted?: boolean=,
+ *  isReversed?: boolean=,
  *  target?: ?Element=,
- *  invert?: boolean=,
  *  interval?: int=,
  *  text: String
  * }} data The text animation
@@ -156,14 +230,14 @@ function smartReplace_ (
  *    of animation between
  *    characters.
  *
- *  - boolean invert: Whether
+ *  - boolean isInverted: Whether
  *    animation must be run
  *    in reverse mode.
  *
  *  - Element target: The tag
  *    content to be animated.
  *
- *  - String prepend: Whether
+ *  - boolean usePrepend: Whether
  *    you want to write text
  *    at the begining of content.
  *    (Only when a `target`
@@ -172,24 +246,29 @@ function smartReplace_ (
  *  - String text: The text
  *    to be written.
  *
- *  - String innerHTML: Whether
+ *  - boolean useInnerHTML: Whether
  *    only tag HTML content will
  *    be affected by the animation.
  *    (Only when a `target`
  *    element is defined).
- * @fires writeText#onFinished
- * @fires writeText#onWrite
- * @function writeText
+ *
+ *  - boolean isReversed: Whether
+ *    we want to animate the text
+ *    in reverse mode.
+ * @fires animateText#onFinished
+ * @fires animateText#onWrite
+ * @function animateText
  * @public
  * @returns {void} void
  */
-function writeText ({
-  innerHTML = false,
+function animateText ({
+  useInnerHTML = false,
+  usePrepend = false,
+  isInverted = false,
+  isReversed = false,
   onFinished = null,
-  prepend = false,
   onWrite = null,
   interval = 140,
-  invert = false,
   target = null,
   text = ''
 }) {
@@ -205,14 +284,14 @@ function writeText ({
     // The written text.
     let written = '';
     // Corrects property.
-    innerHTML = (
-      typeof innerHTML === "boolean"
-      ? innerHTML : false
+    useInnerHTML = (
+      typeof useInnerHTML === "boolean"
+      ? useInnerHTML : false
     );
     // Corrects write mode.
-    prepend = (
-      typeof prepend === "boolean"
-      ? prepend : false
+    usePrepend = (
+      typeof usePrepend === "boolean"
+      ? usePrepend : false
     );
     // Corrects interval.
     interval = (
@@ -220,14 +299,18 @@ function writeText ({
       ? Math.abs (interval) : 140
     );
     // Corrects invert.
-    invert = (
-      typeof invert === "boolean"
-      ? invert : false
+    isInverted = (
+      typeof isInverted === "boolean"
+      ? isInverted : false
+    );
+    // The last position index.
+    const lastIndex = (
+      text.length - 1
     );
     // The current index.
     let i = (
-      invert
-      ? (text.length - 1)
+      isInverted
+      ? lastIndex
       : 0
     );
     // Animating the passed text.
@@ -237,30 +320,76 @@ function writeText ({
         // between the generated
         // range.
         if (
-          invert ? i > -1
+          isInverted ? i > -1
           : i < text.length
         ) {
-          // Adds the current char
-          // to the written text.
-          written = (
-            invert
-            ? `${text[i]}${written}`
-            : `${written}${text[i]}`
-          );
+          // The current written text.
+          let written = '';
+          // Whether inversion is
+          // enabled.
+          if (isInverted) {
+            // Whether reverse mode
+            // is enabled.
+            if (isReversed) {
+              // Whether index is great
+              // than the fist index.
+              if (i > 0) {
+                // Removes the last I chars
+                // from the initial text.
+                written = text.slice (
+                  0, i
+                ).join ('');
+              }
+            // Otherwise.
+            } else {
+              // Adds each text char
+              // on the start of the
+              // final result.
+              written = (
+                `${text[i]}${written}`
+              );
+            }
+          // Otherwise.
+          } else {
+            // Whether reverse mode
+            // is enabled.
+            if (isReversed) {
+              // Whether index is less
+              // than the last index.
+              if (i < lastIndex) {
+                // Removes the first I chars
+                // from the initial text.
+                written = text.slice (
+                  (i + 1), text.length
+                ).join ('');
+              }
+            // Otherwise.
+            } else {
+              // Adds each text char
+              // at the end of the
+              // final result.
+              written = (
+                `${written}${text[i]}`
+              );
+            }
+          }
           // Whether an html tag is
           // defined.
           if (target instanceof Element) {
             // Whether `innerHTML` prop
             // is chosen.
-            if (innerHTML) {
+            if (useInnerHTML) {
               // Updates `innerHTML`
               // property.
               target.innerHTML = (
                 smartReplace_ (
                   target.innerHTML,
                   written,
-                  invert,
-                  prepend
+                  isInverted,
+                  usePrepend,
+                  isReversed,
+                  text.join (''),
+                  lastIndex
                 )
               );
             // Otherwise.
@@ -271,8 +400,11 @@ function writeText ({
                 smartReplace_ (
                   target.textContent,
                   written,
-                  invert,
-                  prepend
+                  isInverted,
+                  usePrepend,
+                  isReversed,
+                  text.join (''),
+                  lastIndex
                 )
               );
             }
@@ -287,7 +419,7 @@ function writeText ({
              *  event.
              * @property {String} written
              *  The current written text.
-             * @event writeText#onWrite
+             * @event animateText#onWrite
              * @readonly
              * @emits
              */
@@ -295,7 +427,7 @@ function writeText ({
           }
           // Updates the current index.
           i = (
-            invert ? (i - 1) : (i + 1)
+            isInverted ? (i - 1) : (i + 1)
           );
         // Otherwise.
         } else {
@@ -312,9 +444,9 @@ function writeText ({
             /**
              * @description Throws `onFinished`
              *  event.
-             * @property {String} written
-             *  The written text.
-             * @event writeText#onFinished
+             * @property {String} written The
+             *  written text.
+             * @event animateText#onFinished
              * @readonly
              * @emits
              */
@@ -332,6 +464,6 @@ function writeText ({
  * @exports *
  */
 export {
-  writeText,
+  animateText,
   clearStr
 };

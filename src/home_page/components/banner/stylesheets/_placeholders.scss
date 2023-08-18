@@ -5,8 +5,8 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-18
-* @updated: 2023-08-10
-* @version: 0.0.3
+* @updated: 2023-08-18
+* @version: 0.0.4
 */
 
 // Custom dependencies.
@@ -34,6 +34,10 @@
 	// Hover effect.
 	&:hover {
 		background-color: $banner-btn-bg-color;
+	}
+	// From 1080 to 770.
+	@media #{$banner-1080} {
+		font-size: 16px;
 	}
 	// From 770 to 0.
 	@media #{$banner-770} {

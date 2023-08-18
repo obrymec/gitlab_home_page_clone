@@ -1,0 +1,78 @@
+/**
+* @fileoverview: GitLab banner animations stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: animations.scss
+* @created: 2023-08-18
+* @updated: 2023-08-18
+* @version: 0.0.2
+*/
+
+// Custom dependencies.
+@import "./_variables.scss";
+
+// Services animation starting
+// values.
+div.services-as {
+  height: 386px;
+  padding: 0;
+  width: 0;
+  // From 1130 to 1025.
+	@media #{$services-1130} {
+		height: 280px;
+	}
+  // From 1025 to 0.
+	@media #{$services-1025} {
+    padding: 20px;
+    height: 250px;
+    opacity: 0;
+  }
+}
+
+// Services animation ending
+// values.
+div.services-af {
+  padding: 40px;
+  height: 386px;
+  width: 100%;
+  // From 1130 to 1025.
+	@media #{$services-1130} {
+		height: 280px;
+    padding: 25px;
+	}
+  // From 1025 to 0.
+	@media #{$services-1025} {
+    padding: 20px;
+    height: auto;
+    opacity: 1;
+  }
+}
+
+// Second service animation
+// starting values.
+div.services-second-as {
+  // From 1025 to 0.
+  @media #{$services-1025} {
+    transform: translateY(-280px);
+  }
+}
+
+// Third service animation
+// starting values.
+div.services-third-as {
+  // From 1025 to 0.
+  @media #{$services-1025} {
+    transform: translateY(-560px);
+  }
+}
+
+// Second and third services
+// animation ending values.
+div.services-second-af,
+div.services-third-af {
+  // From 1025 to 0.
+  @media #{$services-1025} {
+    transform: translateY(0);
+  }
+}

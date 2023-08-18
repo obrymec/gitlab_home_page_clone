@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-11
+* @updated: 2023-08-17
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -29,15 +29,6 @@
 @font-face {
 	src: url("../assets/fonts/inter-regular.ttf");
 	font-family: "InterRegular";
-}
-
-// Fadeout animation.
-@keyframes fadeout {
-	from {
-		opacity: 0;
-	} to {
-		opacity: 1;
-	}
 }
 
 // All tags.

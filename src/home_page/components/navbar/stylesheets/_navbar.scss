@@ -4,9 +4,9 @@
 * @fileoverview: GitLab navbar stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-11
+* @updated: 2023-08-18
 * @file: navbar.scss
-* @version: 0.0.6
+* @version: 0.0.7
 */
 
 // Custom dependencies.
@@ -18,7 +18,7 @@
 header {
 	background-color: $navbar-bg-color;
 	@extend %navbar-top-fixed;
-	z-index: 1;
+	z-index: 4;
 }
 
 // NavBar data section container.
@@ -49,7 +49,7 @@ menu.nav-menu-popup {
 	@extend %navbar-top-fixed;
 	padding: 8px 16px 0 16px;
 	row-gap: 8px;
-	z-index: 2;
+	z-index: 5;
 	bottom: 0;
 	// Header.
 	section:first-child {
@@ -95,6 +95,10 @@ menu.nav-menu-popup {
 		@extend %free-trial-radius;
 		margin-top: 23px;
 		width: 100%;
+		// From 1170 to 0.
+		@media #{$navbar-1170} {
+			font-size: 16px;
+		}
 	}
 }
 
@@ -175,6 +179,10 @@ div.nav-right {
 	// Free trial button.
 	button:nth-child(2) {
 		@extend %free-trial-radius;
+		// From 1170 to 575.
+		@media #{$navbar-1170} {
+			font-size: 16px;
+		}
 		// From 575 to 0.
 		@media #{$navbar-575} {
 			display: none;

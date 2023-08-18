@@ -4,13 +4,38 @@
 * @fileoverview: GitLab button stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-08-03
-* @updated: 2023-08-04
+* @updated: 2023-08-18
 * @file: button.scss
-* @version: 0.0.1
+* @version: 0.0.2
 */
 
 // Custom dependencies.
 @import "./_variables.scss";
+
+// Flat Button.
+button.flat-btn {
+	color: $button-bg-color;
+	outline: none;
+	// Move right arrow.
+	&:hover > img {
+		transform: translate(8px, -1px);
+	}
+	// Underline the text.
+	&:hover > span {
+		text-decoration: underline;
+	}
+	// Right arrow.
+	img {
+		transform: translateY(-1px);
+		display: inline-block;
+	}
+	// Text.
+	span {
+		line-height: 24px;
+		font-weight: 600;
+		font-size: 20px;
+	}
+}
 
 // Hybrid button.
 button.gen-btn {
@@ -30,10 +55,6 @@ button.gen-btn {
 		span {
 			color: $button-bg-color;
 		}
-	}
-	// From 1170 to 0.
-	@media #{$button-1170} {
-		font-size: 16px;
 	}
 	// Right icon.
 	img {

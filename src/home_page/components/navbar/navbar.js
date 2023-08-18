@@ -4,18 +4,17 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-11
+* @updated 2023-08-18
 * @file navbar.js
 * @type {NavBar}
 * @version 0.0.8
 */
 
 // Custom dependencies.
+import {clearJSStyle} from "../../../common/utilities/browser/browser.js";
 import {buildButton} from "../../../common/components/button/button.js";
+import ScreenManager from "../../../common/utilities/screen/screen.js";
 import lang from "../../../common/utilities/language/language.js";
-import {
-	clearJSStyle
-} from "../../../common/utilities/browser/browser.js";
 import {
 	buildLogo,
 	buildIcon,
@@ -69,12 +68,12 @@ function NavBar () {
 	 * 	gitlab icon.
 	 * @param {!Object} timeline The last
 	 * 	entry point of an animation.
-	 * @function animateGitLabIcon_
+	 * @function gitLabIconAnimation_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {Object} Object
 	 */
-	const animateGitLabIcon_ = timeline => (
+	const gitLabIconAnimation_ = timeline => (
 		timeline.add ({
 			targets: navLeft_.children[1],
 			rotate: ["-180deg", "0deg"],
@@ -128,13 +127,13 @@ function NavBar () {
 	 */
 	const mediumAnimation_ = () => {
 		// Animates the header.
-		let timeline = animateHeader_ (-38);
+		let timeline = headerAnimation_ (-38);
 		// Animates the gitlab icon.
-		timeline = animateGitLabIcon_ (
+		timeline = gitLabIconAnimation_ (
 			timeline
 		);
 		// Animates right options.
-		timeline = animateOptions_ ({
+		timeline = optionsAnimation_ ({
 			container: navRight_,
 			tag: "medium",
 			timeline
@@ -152,26 +151,26 @@ function NavBar () {
 	 * @private {Function}
 	 * @returns {void} void
 	 */
-	const animateNavBar_ = () => {
-		// Whether the screen is small.
-		if (window.innerWidth <= 575) {
-			// Runs animation for small
-			// screens.
-			smallAnimation_ ();
-		// Whether the screen is medium.
-		} else if (
-			window.innerWidth <= 1050
-		) {
-			// Runs animation for medium
-			// screens.
-			mediumAnimation_ ();
-		// Whether the screen is large.
-		} else {
-			// Runs animation for large
-			// screens.
-			largeAnimation_ ();
-		}
-	};
+	const animateNavBar_ = () => (
+		new ScreenManager ({
+			onMedium: mediumAnimation_,
+			onSmall: smallAnimation_,
+			onLarge: largeAnimation_,
+			disableDetection: true,
+			mediumScreen: {
+				max: 1050,
+				min: 576
+			},
+			smallScreen: {
+				max: 575,
+				min: 0
+			},
+			largeScreen: {
+				max: 10000,
+				min: 1051
+			}
+		})
+	);
 
 	/**
 	 * @description Animates the navbar
@@ -183,19 +182,19 @@ function NavBar () {
 	 */
 	const largeAnimation_ = () => {
 		// Animates the header.
-		let timeline = animateHeader_ (-38);
+		let timeline = headerAnimation_ (-38);
 		// Animates the gitlab icon.
-		timeline = animateGitLabIcon_ (
+		timeline = gitLabIconAnimation_ (
 			timeline
 		);
 		// Animates left options.
-		timeline = animateOptions_ ({
+		timeline = optionsAnimation_ ({
 			container: navLeft_,
 			tag: "large",
 			timeline
 		});
 		// Animates right options.
-		timeline = animateOptions_ ({
+		timeline = optionsAnimation_ ({
 			container: navRight_,
 			tag: "large",
 			timeline
@@ -215,9 +214,9 @@ function NavBar () {
 	 */
 	const smallAnimation_ = () => {
 		// Animates the header.
-		let timeline = animateHeader_ (0);
+		let timeline = headerAnimation_ (0);
 		// Animates the gitlab icon.
-		timeline = animateGitLabIcon_ (
+		timeline = gitLabIconAnimation_ (
 			timeline
 		);
 		// Animates the third search.
@@ -252,19 +251,22 @@ function NavBar () {
 	 * }} data The search data
 	 * 	configs. It supports the
 	 * 	keys following:
+	 *
 	 * 	- Element container: The
 	 * 		parent of options.
+	 *
 	 * 	- String tag: The tag to
 	 * 		target within parent.
+	 *
 	 * 	- Object timeline: The
 	 * 		last entry point of
 	 * 		an animation.
-	 * @function animateOptions_
+	 * @function optionsAnimation_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {Object} Object
 	*/
-	const animateOptions_ = ({
+	const optionsAnimation_ = ({
 		container,
 		timeline,
 		tag
@@ -459,12 +461,12 @@ function NavBar () {
 	 * @description Animates the navbar
 	 * 	glabal header.
 	 * @param {int} to The ending value.
-	 * @function animateHeader_
+	 * @function headerAnimation_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {Object} Object
 	 */
-	const animateHeader_ = to => {
+	const headerAnimation_ = to => {
 		// The animation timeline.
 		const timeline = anime.timeline ({
 			easing: "linear",

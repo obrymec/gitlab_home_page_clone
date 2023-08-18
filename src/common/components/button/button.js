@@ -4,15 +4,67 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-03
-* @updated 2023-08-12
+* @updated 2023-08-18
 * @file button.js
 * @version 0.0.1
 * @type {Button}
 */
 
 // Custom dependencies.
-import {buildIcon} from "../icon_logo_image/icon_logo_image.js";
+import {Icons, buildIcon} from "../icon_logo_image/icon_logo_image.js";
 import {clearStr} from "../../utilities/string/string.js";
+
+/**
+ * @description Builds a flat button.
+ * @param {{
+ *  className?: String=,
+ *  idName?: String=,
+ *  title?: String=,
+ *  name?: String=,
+ *  text: String
+ * }} data The button data configs.
+ *  It supports the following keys:
+ *
+ *  - String text: The text to be
+ *    displayed on the button.
+ *
+ *  - String className: The button
+ *    class name.
+ *
+ *  - String idName: The button id
+ *    name.
+ *
+ *  - String title: The button's
+ *    title text.
+ *
+ *  - String name: The button's
+ *    name.
+ * @function buildFlatButton
+ * @public
+ * @returns {String} String
+ */
+function buildFlatButton ({
+  className = '',
+  idName = '',
+  title = '',
+  name = '',
+  text = ''
+}) {
+  // Builds the target flat button.
+  return (`
+    <button
+      class = "flat-btn ${className}"
+      title = "${title}"
+      name = "${name}"
+      id = "${idName}"
+    >
+      <span>${text}</span>
+      ${buildIcon ({
+        fileName: Icons.RIGHT_ARROW
+      })}
+    </button>
+  `);
+}
 
 /**
  * @description Builds a native button.
@@ -26,21 +78,28 @@ import {clearStr} from "../../utilities/string/string.js";
  *  text: String
  * }} data The button data configs.
  *  It supports the following keys:
+ *
  *  - String text: The text to be
  *    displayed on the button.
+ *
  *  - boolean withIcon: Whether
  *    you want to add an icon to
  *    the right.
+ *
  *  - String iconType: The icon
  *    type to be displayed (If
  *    and only if `withIcon` is
  *    set to `true`).
+ *
  *  - String className: The button
  *    class name.
+ *
  *  - String idName: The button
  *    id name.
+ *
  *  - String title: The button's
  *    title text.
+ *
  *  - String name: The button's
  *    name.
  * @function buildButton
@@ -93,4 +152,7 @@ function buildButton ({
  *  public features.
  * @exports *
  */
-export {buildButton};
+export {
+  buildFlatButton,
+  buildButton
+};

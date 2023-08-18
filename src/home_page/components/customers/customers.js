@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-21
-* @updated 2023-08-12
+* @updated 2023-08-18
 * @file customers.js
 * @type {Customers}
 * @version 0.0.2
@@ -12,7 +12,7 @@
 
 // Custom dependencies.
 import {clearJSStyle} from "../../../common/utilities/browser/browser.js";
-import {writeText} from "../../../common/utilities/string/string.js";
+import {animateText} from "../../../common/utilities/string/string.js";
 import lang from "../../../common/utilities/language/language.js";
 import {
 	buildLogo,
@@ -77,10 +77,11 @@ function Customers () {
 			// Animates customers
 			// with normal mode.
 			animateCustomers_ ().play ();
-			// Animates the text.
-			writeText ({
+			// Animates the text
+			// in reverse mode.
+			animateText ({
 				text: lang.getText ("tr15"),
-				interval: 800,
+				interval: 100,
 				target: (
 					document.querySelector (
 						"section.customers"
@@ -92,6 +93,19 @@ function Customers () {
 			// Animates customers
 			// with reverse mode.
 			animateCustomers_ ().reverse ();
+			// Animates the text
+			// in reverse mode.
+			animateText ({
+				text: lang.getText ("tr15"),
+				isReversed: true,
+				isInverted: true,
+				interval: 100,
+				target: (
+					document.querySelector (
+						"section.customers"
+					).children[0]
+				)
+			});
 		}
 	};
 
@@ -121,7 +135,7 @@ function Customers () {
 				easing: "linear",
 				autoplay: false,
 				duration: 120,
-				delay: 26,
+				delay: 40,
 				complete: function () {
 					// Clears javascript
 					// animation data.

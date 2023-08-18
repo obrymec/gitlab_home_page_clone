@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-17
-* @updated 2023-08-11
+* @updated 2023-08-18
 * @file banner.js
 * @type {Banner}
 * @version 0.0.2
@@ -13,6 +13,7 @@
 // Custom dependencies.
 import {clearJSStyle} from "../../../common/utilities/browser/browser.js";
 import {buildButton} from "../../../common/components/button/button.js";
+import ScreenManager from "../../../common/utilities/screen/screen.js";
 import lang from "../../../common/utilities/language/language.js";
 import {
 	buildImage,
@@ -75,43 +76,6 @@ function Banner () {
 
 	/**
 	 * @description Animates the banner
-	 * 	regardless the detected screen
-	 * 	format (Desktop & Mobile).
-	 * @function responsiveAnimation_
-	 * @constant {Function}
-	 * @private {Function}
-	 * @returns {Object} Object
-	*/
-	const responsiveAnimation_ = () => {
-		// The banner right tag reference.
-		bannerRight_ = (
-			document.querySelector (
-				"div.banner-right"
-			)
-		);
-		// The banner left tag reference.
-		bannerLeft_ = (
-			document.querySelector (
-				"div.banner-left"
-			)
-		);
-		// Whether the screen
-		// is large (Desktop).
-		if (window.innerWidth > 770) {
-			// Animates the banner
-			// for large screens.
-			return largeAnimation_ ();
-		// Whether the screen
-		// is small (Mobile).
-		} else {
-			// Animates the banner
-			// for small screens.
-			return smallAnimation_ ();
-		}
-	};
-
-	/**
-	 * @description Animates the banner
 	 * 	for small screens.
 	 * @function smallAnimation_
 	 * @constant {Function}
@@ -150,6 +114,71 @@ function Banner () {
 	};
 
 	/**
+	 * @description Animates the banner
+	 * 	regardless the detected screen
+	 * 	format (Desktop & Mobile).
+	 * @function animateBanner_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {Object} Object
+	 */
+	const animateBanner_ = () => {
+		// The banner right tag reference.
+		bannerRight_ = (
+			document.querySelector (
+				"div.banner-right"
+			)
+		);
+		// The banner left tag reference.
+		bannerLeft_ = (
+			document.querySelector (
+				"div.banner-left"
+			)
+		);
+		// The animation timeline.
+		let timeline = null;
+		// Listens screen format.
+		new ScreenManager ({
+			disableDetection: true,
+			mediumScreen: {
+				max: 770,
+				min: 421
+			},
+			smallScreen: {
+				max: 420,
+				min: 0
+			},
+			largeScreen: {
+				max: 10000,
+				min: 771
+			},
+			onMedium: () => {
+				// Animates the banner
+				// for medium screens.
+				timeline = (
+					smallAnimation_ ()
+				);
+			},
+			onSmall: () => {
+				// Animates the banner
+				// for small screens.
+				timeline = (
+					smallAnimation_ ()
+				);
+			},
+			onLarge: () => {
+				// Animates the banner
+				// for large screens.
+				timeline = (
+					largeAnimation_ ()
+				);
+			}
+		});
+		// Returns the timeline.
+		return timeline;
+	};
+
+	/**
 	 * @description Animates the big
 	 * 	container with a gradient.
 	 * @function bgAnimation_
@@ -167,7 +196,7 @@ function Banner () {
 				duration: 120,
 				delay: 140,
 				complete: function () {
-					// Waits for 200 milisecond
+					// Waits for 250 milisecond
 					// before add paddings.
 					window.setTimeout (() => (
 						clearJSStyle ({
@@ -463,7 +492,7 @@ function Banner () {
 			"main"
 		).appendChild (section);
 		// Animates the banner.
-		responsiveAnimation_ ().play ();
+		animateBanner_ ().play ();
 		// Launches caroussel.
 		caroussel_ ();
 	}
