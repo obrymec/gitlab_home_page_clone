@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-08-17
+* @updated 2023-08-19
 * @file language.js
 * @type {Language}
 * @version 0.0.1
@@ -46,15 +46,9 @@ import english from "../../i18n/english.js";
  * @returns {Language} Language
  */
 function Language ({
-  defaultLanguage = (
-    defaultLanguage || -1
-  ),
-  cookieName = (
-    cookieName || "none"
-  ),
-  languages = (
-    languages || []
-  )
+  defaultLanguage = -1,
+  cookieName = "none",
+  languages = []
 }) {
   // Attributes.
   /**
@@ -418,7 +412,8 @@ function Language ({
 
 /**
  * @description Exports an object
- *  instance this class by default.
+ *  instance of this class by
+ *  default.
  * @exports Language
  */
 export default new Language ({
