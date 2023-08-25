@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-24
+* @updated 2023-08-25
 * @version 0.0.6
 * @file main.js
 */
@@ -34,9 +34,9 @@ import {FAQ} from "./components/faq/faq.js";
 // Builds collaborators section.
 // new Collaborators ().render ();
 // // Builds methodologies section.
-new Methodologies ().render ();
+// new Methodologies ().render ();
 // // Builds badges section.
-// new Badges ({parentId: "main"}).render ();
+new Badges ({parentId: "main"}).render ();
 // // Builds pricing section.
 // new Pricing ({parentId: "main"}).render ();
 // // Builds resources section.

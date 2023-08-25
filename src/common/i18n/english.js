@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-08-24
+* @updated 2023-08-25
 * @file english.js
 * @type {English}
 * @version 0.0.1
@@ -216,6 +216,18 @@ const english = {
       Give everyone one platform to 
       collaborate and see everything 
       from planning to production.
+    `,
+    tr69: `
+      GitLab is The DevSecOps
+      Platform
+    `,
+    tr70: "Leaders in DevSecOps",
+    tr71: "Industry Analyst Research",
+    tr72: "Our users have spoken.",
+    tr73: `
+      GitLab ranks as a G2 
+      Leader across DevSecOps 
+      categories
     `
   }
 };

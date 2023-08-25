@@ -5,8 +5,8 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-13
-* @updated: 2023-07-14
-* @version: 0.0.1
+* @updated: 2023-08-25
+* @version: 0.0.2
 */
 
 // Dependencies.
@@ -14,7 +14,6 @@
 
 // Buttons design.
 %badges-btn-design {
-  transition: width .2s ease;
   color: $badges-bg-color;
   align-items: center;
   border-radius: 4px;
@@ -32,15 +31,9 @@
 
 // Learn more button design.
 %badges-lm-btn {
-  transition: all .3s cubic-bezier(.7, 0, .3, 1);
   background-color: $badges-intial-text-color;
   border: 1px solid $badges-intial-text-color;
-  display: inline-flex;
-  align-items: center;
   border-radius: 4px;
-  padding: 11px 16px;
-  font-weight: 600;
-  font-size: 18px;
   // Hover effect.
   &:hover {
     background-color: $badges-bg-color;
@@ -56,15 +49,20 @@
   // From 770 to 0.
   @media #{$badges-770} {
     justify-content: center;
+    padding: 11px 16px;
     width: 100%;
+    // Right arrow.
+    img {
+      transform: translateY(2px) !important;
+    }
   }
   // Button text.
   span {
-    transition: color .3s cubic-bezier(.7, 0, .3, 1);
+    color: $badges-bg-color;
   }
   // Right arrow.
   img {
-    transition: filter .3s cubic-bezier(.7, 0, .3, 1);
+    transform: translateY(2px);
     filter: brightness(1%);
     display: inline-block;
     margin-left: 8px;

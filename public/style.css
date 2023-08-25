@@ -2000,14 +2000,14 @@ div.banner-left {
         font-size: 15px; } }
 
 /**
-* @fileoverview: GitLab app global badges stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
+* @fileoverview: GitLab badges stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-13
-* @updated: 2023-07-14
+* @updated: 2023-08-25
 * @file: badges.scss
-* @version: 0.0.1
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab badges placeholders stylesheet.
@@ -2016,8 +2016,8 @@ div.banner-left {
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-13
-* @updated: 2023-07-14
-* @version: 0.0.1
+* @updated: 2023-08-25
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab badges variables stylesheet.
@@ -2030,7 +2030,6 @@ div.banner-left {
 * @version: 0.0.1
 */
 div.bds-options button:first-child, div.bds-options button:last-child {
-  transition: width .2s ease;
   color: #171321;
   align-items: center;
   border-radius: 4px;
@@ -2045,15 +2044,9 @@ div.bds-options button:first-child, div.bds-options button:last-child {
       width: 100%; } }
 
 div.bds-foot > button:last-child, div.bds-left button:last-child {
-  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
   background-color: #fff;
   border: 1px solid #fff;
-  display: inline-flex;
-  align-items: center;
-  border-radius: 4px;
-  padding: 11px 16px;
-  font-weight: 600;
-  font-size: 18px; }
+  border-radius: 4px; }
   div.bds-foot > button:hover:last-child, div.bds-left button:hover:last-child {
     background-color: #171321; }
     div.bds-foot > button:hover:last-child span, div.bds-left button:hover:last-child span {
@@ -2063,11 +2056,14 @@ div.bds-foot > button:last-child, div.bds-left button:last-child {
   @media only screen and (max-width: 770px) {
     div.bds-foot > button:last-child, div.bds-left button:last-child {
       justify-content: center;
-      width: 100%; } }
+      padding: 11px 16px;
+      width: 100%; }
+      div.bds-foot > button:last-child img, div.bds-left button:last-child img {
+        transform: translateY(2px) !important; } }
   div.bds-foot > button:last-child span, div.bds-left button:last-child span {
-    transition: color 0.3s cubic-bezier(0.7, 0, 0.3, 1); }
+    color: #171321; }
   div.bds-foot > button:last-child img, div.bds-left button:last-child img {
-    transition: filter 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+    transform: translateY(2px);
     filter: brightness(1%);
     display: inline-block;
     margin-left: 8px; }
@@ -2088,7 +2084,6 @@ section.badges {
   padding: 96px 5%; }
 
 div.bds-head h2:first-child {
-  transition: margin-bottom .2s ease-out;
   color: #fff;
   letter-spacing: -1.4px;
   margin-bottom: 64px;
@@ -2100,7 +2095,6 @@ div.bds-head h2:first-child {
       margin-bottom: 24px; } }
 
 div.bds-options {
-  transition: all .2s ease-in-out;
   margin-bottom: 64px;
   display: flex;
   gap: 16px; }
@@ -2112,8 +2106,7 @@ div.bds-options {
   div.bds-options button:first-child {
     background-color: #e3d6ff; }
   div.bds-options button:last-child {
-    background-color: #f6f3fe;
-    transition: background-color .2s ease; }
+    background-color: #f6f3fe; }
     div.bds-options button:last-child:hover {
       background-color: #e3d6ff; }
 
@@ -2123,7 +2116,6 @@ div.bds-foot {
     div.bds-foot {
       flex-direction: column; } }
   div.bds-foot div.bds-right {
-    transition: margin .2s ease-in-out;
     justify-content: flex-start;
     flex-wrap: wrap;
     display: flex;

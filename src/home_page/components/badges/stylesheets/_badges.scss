@@ -1,12 +1,12 @@
 /**
-* @fileoverview: GitLab app global badges stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
+* @fileoverview: GitLab badges stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-13
-* @updated: 2023-07-14
+* @updated: 2023-08-25
 * @file: badges.scss
-* @version: 0.0.1
+* @version: 0.0.2
 */
 
 // Custom dependencies.
@@ -24,7 +24,6 @@ section.badges {
 div.bds-head {
   // Huge title.
   h2:first-child {
-    transition: margin-bottom .2s ease-out;
     color: $badges-intial-text-color;
     letter-spacing: -1.4px;
     margin-bottom: 64px;
@@ -40,7 +39,6 @@ div.bds-head {
 
 // Buttons container.
 div.bds-options {
-  transition: all .2s ease-in-out;
   margin-bottom: 64px;
   display: flex;
   gap: 16px;
@@ -58,7 +56,6 @@ div.bds-options {
   // Last button.
   button:last-child {
     background-color: $badges-btn-bg-color-2;
-    transition: background-color .2s ease;
     @extend %badges-btn-design;
     // Hover effect.
     &:hover {
@@ -76,7 +73,6 @@ div.bds-foot {
   }
   // Right content.
   div.bds-right {
-    transition: margin .2s ease-in-out;
     justify-content: flex-start;
     flex-wrap: wrap;
     display: flex;
