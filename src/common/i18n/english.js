@@ -228,7 +228,78 @@ const english = {
       GitLab ranks as a G2 
       Leader across DevSecOps 
       categories
-    `
+    `,
+    tr74: "Per user/month",
+    tr75: "Pricing",
+    tr76: "Free",
+    tr77: "Premium",
+    tr78: "Ultimate",
+    tr79: "Free features",
+    tr80: "Get Started",
+    tr81: `
+      Essential features 
+      for individual users
+    `,
+    tr82: "No credit card required",
+    tr83: "5GB storage",
+    tr84: "10GB transfer per month",
+    tr85: "400 compute minutes per month",
+    tr86: "5 users per top-level group",
+    tr87: "Everything from Free, plus",
+    tr88: "Buy GitLab Premium",
+    tr89: "Billed annually at $348 USD",
+    tr90: "Premium",
+    tr91: `
+      Enhance team productivity 
+      and coordination
+    `,
+    tr92: `
+      Code Ownership and 
+      Protected Branches
+    `,
+    tr93: `
+      Merge Requests with 
+      Approval Rules
+    `,
+    tr94: "Enterprise Agile Planning",
+    tr95: "Advanced CI/CD",
+    tr96: `
+      Enterprise User and 
+      Incident Management
+    `,
+    tr97: "Support",
+    tr98: "50GB storage",
+    tr99: "100GB transfer per month",
+    tr100: `
+      10,000 compute minutes 
+      per month
+    `,
+    tr101: `
+      Everything from Premium, plus
+    `,
+    tr102: "Buy GitLab Ultimate",
+    tr103: "Billed annually at $1188 USD",
+    tr104: "Ultimate",
+    tr105: `
+      Organization-wide security, 
+      compliance, and planning
+    `,
+    tr106: "Suggested Reviewers",
+    tr107: `
+      Dynamic Application 
+      Security Testing
+    `,
+    tr108: "Security Dashboards",
+    tr109: "Vulnerability Management",
+    tr110: "Dependency Scanning",
+    tr111: "Container Scanning",
+    tr112: "Static Application Security Testing",
+    tr113: "Multi-Level Epics",
+    tr114: "Value stream management",
+    tr115: "250GB storage",
+    tr116: "500GB transfer per month",
+    tr117: "50,000 compute minutes per month",
+    tr118: "Free guest users"
   }
 };
 

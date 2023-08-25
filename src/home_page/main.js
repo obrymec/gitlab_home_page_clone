@@ -34,13 +34,13 @@ import {FAQ} from "./components/faq/faq.js";
 // Builds collaborators section.
 // new Collaborators ().render ();
 // // Builds methodologies section.
-// new Methodologies ().render ();
+//new Methodologies ().render ();
 // // Builds badges section.
-new Badges ({parentId: "main"}).render ();
+// new Badges ().render ();
 // // Builds pricing section.
-// new Pricing ({parentId: "main"}).render ();
+// new Pricing ().render ();
 // // Builds resources section.
-// new Resources ({parentId: "main"}).render ();
+new Resources ({parentId: "main"}).render ();
 // // Builds faq section.
 // new FAQ ({parentId: "main"}).render ();
 // // Buidls footer section.

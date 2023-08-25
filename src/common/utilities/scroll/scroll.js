@@ -5,7 +5,7 @@
 * @supported DESKTOP, MOBILE
 * @type {ScrollManager}
 * @created 2023-08-17
-* @updated 2023-08-17
+* @updated 2023-08-25
 * @file scroll.js
 * @version 0.0.1
 */
@@ -194,12 +194,6 @@ function ScrollManager ({
     }
   };
 
-  // Removes the old listener
-  // method that was listening
-  // this event.
-  window.removeEventListener (
-    "scroll", checkScroll_
-  );
   // Listens document scrollbar.
   listenScrollBar_ ();
   // Checks the current

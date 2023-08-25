@@ -4,9 +4,9 @@
 * @fileoverview: GitLab pricing stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-27
-* @updated: 2023-08-03
+* @updated: 2023-08-25
 * @file: pricing.scss
-* @version: 0.0.1
+* @version: 0.0.2
 */
 
 // Custom dependencies.
@@ -31,7 +31,7 @@ section.pricing {
   padding: 16px 5%;
   // From 1080 to 0.
   @media #{$pricing-1080} {
-    padding: 16px 17px;
+    padding: 16px;
   }
   // Big title.
   h2.price-title {
@@ -135,8 +135,8 @@ div.price-body {
   }
   // The third subscription.
   div:last-child > div.sub-infos {
-    background: url("../../../../../assets/images/ultimate.png");
     border: 1px solid $pricing-sub-bg-color-2;
+    background: url($pricing-ultimate-bg);
     border-radius: 4px 4px 100px 4px;
     background-repeat: no-repeat;
     background-position: 50%;

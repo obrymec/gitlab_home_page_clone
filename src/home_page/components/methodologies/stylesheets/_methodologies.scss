@@ -19,7 +19,7 @@ section.methodologies {
   margin-bottom: 40px;
   // From 1300 to 0.
   @media #{$mhds-1300} {
-    padding: 76px 4.2%;
+    padding: 76px 16px;
   }
   // Big title.
   & > h2:first-child {

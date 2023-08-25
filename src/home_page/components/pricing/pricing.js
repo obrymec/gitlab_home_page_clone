@@ -1,26 +1,32 @@
 /**
-* @fileoverview Pricing UI component for the landing page.
 * @author Obrymec - obrymecsprinces@gmail.com
 * @project GitLab - https://www.google.com
+* @fileoverview Pricing UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-27
-* @updated 2023-08-03
+* @updated 2023-08-25
 * @file pricing.js
 * @type {Pricing}
-* @version 0.0.1
+* @version 0.0.2
 */
 
+// Custom dependencies.
+import {buildButton} from "../../../common/components/button/button.js";
+import ScreenManager from "../../../common/utilities/screen/screen.js";
+import {clearStr} from "../../../common/utilities/string/string.js";
+import lang from "../../../common/utilities/language/language.js";
+import {
+	buildIcon,
+	Icons
+} from "../../../common/components/icon_logo_image/icon_logo_image.js";
+
 /**
- * @public @class @classdesc Builds pricing
- *  section.
- * @param {Object<String, any>} data Contains
- *  a javascript object that supports the
- *  following key(s):
- *  - !String parentId: The parent id of
- * 		 the pricing section.
+ * @classdesc Builds pricing section.
+ * @public
+ * @class
  * @returns {Pricing} Pricing
  */
-function Pricing (data) {
+function Pricing () {
   /**
  	 * @description The old active
    *  subscription index.
@@ -29,17 +35,6 @@ function Pricing (data) {
 	 * @field
 	 */
 	let oldIndex = 0;
-	/**
- 	 * @description The parent id.
-	 * @constant {?String}
- 	 * @private {?String}
-	 * @field
-	 */
-	const parentId_ = (
-		typeof data?.parentId === "string"
-		? data.parentId.replace (/ /g, '')
-		: null
-	);
 
   /**
   * @description Coordinates the
@@ -51,8 +46,10 @@ function Pricing (data) {
   *  manage subscriptions
   *  mutations. It supports the
   *  following keys:
+  *
   *  - Element trigger: The current
   *    click trigger reference.
+  *
   *  - int index: The trigger's
   *    position index.
   * @function coordinateSub_
@@ -61,7 +58,8 @@ function Pricing (data) {
   * @returns {void} void
   */
   const coordinateSub_ = ({
-    trigger, index
+    trigger,
+    index
   }) => {
     // Whether the old index.
     // isn't equal to the
@@ -101,8 +99,10 @@ function Pricing (data) {
    *  to the target subscription.
    *  This map supports the
    *  following keys:
+   *
    *  - Element trigger: The current
    *    click trigger reference.
+   *
    *  - int index: The trigger's
    *    position index.
    * @function nextSubscription_
@@ -111,7 +111,8 @@ function Pricing (data) {
    * @returns {void} void
    */
   const nextSubscription_ = ({
-    index, trigger
+    trigger,
+    index
   }) => {
     // The difference between
     // the current index and
@@ -127,8 +128,8 @@ function Pricing (data) {
         .children[1]
     );
     // Whether active index
-    // is great than the old
-    // index.
+    // is great than the
+    // old index.
     if (index > oldIndex) {
       // Moves the scroll
       // bar of container
@@ -172,28 +173,6 @@ function Pricing (data) {
         "div.price-head"
       )
     );
-    // Listens window resizing.
-    window.addEventListener (
-      "resize", () => {
-        // Whether window's size
-        // is less than 771.
-        if (window.innerWidth < 771) {
-          // Resets the scroll
-          // bar postion.
-          document.querySelector (
-            "div.price-body"
-          ).scrollLeft = 0;
-          // Go to the first
-          // subscription.
-          coordinateSub_ ({
-            index: 0,
-            trigger: (
-              head.children[0]
-            )
-          });
-        }
-      }
-    );
     // Listens the first trigger.
     head.children[0].addEventListener (
       "click", function () {
@@ -224,6 +203,41 @@ function Pricing (data) {
         });
       }
     );
+    // Resets scroll and go to
+    // the first subscription.
+    const reset = () => {
+      // Resets the scroll
+      // bar postion.
+      document.querySelector (
+        "div.price-body"
+      ).scrollLeft = 0;
+      // Go to the first
+      // subscription.
+      coordinateSub_ ({
+        index: 0,
+        trigger: (
+          head.children[0]
+        )
+      });
+    };
+    // Listens window resizing.
+    new ScreenManager ({
+			onMedium: reset,
+			onSmall: reset,
+			onLarge: reset,
+			mediumScreen: {
+				max: 770,
+				min: 0
+			},
+			smallScreen: {
+				max: 1080,
+				min: 771
+			},
+			largeScreen: {
+				max: 10000,
+				min: 1081
+			}
+		});
   };
 
   /**
@@ -237,24 +251,32 @@ function Pricing (data) {
    *  title: String,
    *  desc: String,
    *  price: int
-   * }} data The subscription
-   *  data. This object supports the
+   * }} data The subscription data.
+   *  This object supports the
    *  following keys:
+   *
    *  - String title: The subscription
    *    global title.
-   *  - Array<String> features: The
-   *    subscription's features.
-   *  - String buttonText: The
-   *    starting button text.
+   *
+   *  - Array features: The subscription's
+   *    features.
+   *
+   *  - String buttonText: The starting
+   *    button text.
+   *
    *  - String featuresTitle: The
-   *    provided features's title
+   *    provided features's title.
+   *
    *  - String desc: The subscription
    *    description text.
+   *
    *  - String priceInfo: The price
    *    info of the subscription.
+   *
    *  - String currency: The accepted
    *    currency's name for the
    *    subscription.
+   *
    *  - int price: The subscription's
    *    price according to the given
    *    currency.
@@ -263,32 +285,33 @@ function Pricing (data) {
    * @private {Function}
    * @returns {String} String.
    */
-  const buildSubscription_ = data => {
+  const buildSubscription_ = ({
+    featuresTitle,
+    buttonText,
+    priceInfo,
+    features,
+    currency,
+    title,
+    price,
+    desc
+  }) => {
     // The provided features.
-    let features = '';
+    let fonctionalities = '';
     // Generating features.
-    data?.features.forEach (feature => {
+    features.forEach (feature => {
       // Generates a `li` tag
       // for the current feature.
-      features += `
+      fonctionalities += `
         <span>
           <span>
-            <img
-              src = "${`
-                ../../../../../assets/
-                icons/checked.svg
-              `.replaceAll ('\n', '')
-               .replaceAll (' ', '')
-              }"
-              alt = ''
-            />
+            ${buildIcon ({
+              fileName: Icons.CHECKED
+            })}
           </span>
           <span>
-            ${
-              feature
-                ?.replaceAll ('\n', '')
-                ?.trim ()
-            }
+            ${clearStr ({
+              input: feature
+            })}
           </span>
         </span>
       `;
@@ -297,45 +320,37 @@ function Pricing (data) {
     return `
       <div class = "subscription">
         <div class = "sub-infos">
-          <h3>${data?.title}</h3>
+          <h3>${title}</h3>
           <p>
-            ${
-              data?.desc
-                ?.replaceAll ('\n', '')
-                ?.trim ()
-            }
+            ${clearStr ({
+              input: desc
+            })}
           </p>
           <span class = "sub-price">
-            <label>
-              ${data?.currency}
-            </label>
-            <label>
-              ${data?.price}
-            </label>
+            <label>${currency}</label>
+            <label>${price}</label>
             <span>
-              <p>Per user/month</p>
               <p>
-                ${
-                  data?.priceInfo
-                    ?.replaceAll ('\n', '')
-                    ?.trim ()
-                }
+                ${lang.getText ("tr74")}
+              </p>
+              <p>
+                ${clearStr ({
+                  input: priceInfo
+                })}
               </p>
             </span>
           </span>
-          <button>
-            ${data?.buttonText}
-					</button>
+          ${buildButton ({
+            text: buttonText
+          })}
         </div>
         <div class = "sub-features">
           <h4>
-            ${
-              data?.featuresTitle
-                ?.replaceAll ('\n', '')
-                ?.trim ()
-            } :
+            ${clearStr ({
+              input: featuresTitle
+            })} :
           </h4>
-          <div>${features}</div>
+          <div>${fonctionalities}</div>
         </div>
       </div>
     `;
@@ -349,191 +364,115 @@ function Pricing (data) {
 	 * @returns {void} void
 	 */
 	this.render = () => {
-		// Whether parent id is not
-		// null.
-		if (parentId_ != null) {
-			// Creates a section tag.
-			const section = (
-        document.createElement (
-				  "section"
-			  )
-      );
-			// Adds a class's name to
-      // the created section.
-			section.classList.add (
-        "pricing"
-      );
-			// Adds a html structure
-      // to the created section.
-			section.innerHTML = `
-        <h2 class = "price-title">
-          Pricing
-        </h2>
-        <div class = "price-content">
-          <div class = "price-head">
-            <button
-              class = "price-active-sub"
-            >Free</button>
-            <button>Premium</button>
-            <button>Ultimate</button>
-          </div>
-          <div class = "price-body">
-            ${buildSubscription_ ({
-              currency: '$',
-              title: "Free",
-              price: 0,
-              featuresTitle: `
-                Free features
-              `,
-              buttonText: `
-                Get Started
-              `,
-              desc: `
-                Essential features 
-                for individual users
-              `,
-              priceInfo: `
-                No credit card 
-                required
-              `,
-              features: [
-                "5GB storage",
-                `
-                  10GB transfer 
-                  per month
-                `,
-                `
-                  400 compute minutes 
-                  per month
-                `,
-                `
-                  5 users per top
-                  -level group
-                `
-              ]
-            })}
-            ${buildSubscription_ ({
-              title: "Premium",
-              currency: '$',
-              price: 29,
-              buttonText: `
-                Buy GitLab Premium
-              `,
-              desc: `
-                Enhance team productivity 
-                and coordination
-              `,
-              featuresTitle: `
-                Everything from 
-                Free, plus
-              `,
-              priceInfo: `
-                Billed annually 
-                at $348 USD
-              `,
-              features: [
-                `
-                  Code Ownership and 
-                  Protected Branches
-                `,
-                `
-                  Merge Requests with 
-                  Approval Rules
-                `,
-                `
-                  Enterprise Agile 
-                  Planning
-                `,
-                `Advanced CI/CD`,
-                `
-                  Enterprise User and 
-                  Incident Management
-                `,
-                `Support`,
-                `50GB storage`,
-                `
-                  100GB transfer per 
-                  month
-                `,
-                `
-                  10,000 compute 
-                  minutes per month
-                `
-              ]
-            })}
-            ${buildSubscription_ ({
-              title: "Ultimate",
-              currency: '$',
-              price: 99,
-              buttonText: `
-                Buy GitLab Ultimate
-              `,
-              desc: `
-                Organization-wide 
-                security, compliance, 
-                and planning
-              `,
-              featuresTitle: `
-                Everything from 
-                Premium, plus
-              `,
-              priceInfo: `
-                Billed annually 
-                at $1188 USD
-              `,
-              features: [
-                `Suggested Reviewers`,
-                `
-                  Dynamic Application 
-                  Security Testing
-                `,
-                `Security Dashboards`,
-                `
-                  Vulnerability 
-                  Management
-                `,
-                `Dependency Scanning`,
-                `Container Scanning`,
-                `
-                  Static Application 
-                  Security Testing
-                `,
-                `Multi-Level Epics`,
-                `
-                  Value stream 
-                  management
-                `,
-                `250GB storage`,
-                `
-                  500GB transfer 
-                  per month
-                `,
-                `
-                  50,000 compute 
-                  minutes per month
-                `,
-                `Free guest users`
-              ]
-            })}
-          </div>
+    // Creates a section tag.
+    const section = (
+      document.createElement (
+        "section"
+      )
+    );
+    // Adds a class's name to
+    // the created section.
+    section.classList.add (
+      "pricing"
+    );
+    // Adds a html structure
+    // to the created section.
+    section.innerHTML = `
+      <h2 class = "price-title">
+        ${lang.getText ("tr75")}
+      </h2>
+      <div class = "price-content">
+        <div class = "price-head">
+          <button
+            class = "price-active-sub"
+          >
+            ${lang.getText ("tr76")}
+          </button>
+          <button>
+            ${lang.getText ("tr77")}
+          </button>
+          <button>
+            ${lang.getText ("tr78")}
+          </button>
         </div>
-      `;
-      // Adds the below section
-			// to the selected tag as
-			// a child.
-			document.querySelector (
-				parentId_
-			).appendChild (section);
-      // Listens subscription
-      // triggers click.
-      listenClick_ ();
-    }
+        <div class = "price-body">
+          ${buildSubscription_ ({
+            featuresTitle: lang.getText ("tr79"),
+            buttonText: lang.getText ("tr80"),
+            priceInfo: lang.getText ("tr82"),
+            title: lang.getText ("tr76"),
+            desc: lang.getText ("tr81"),
+            currency: '$',
+            price: 0,
+            features: [
+              lang.getText ("tr83"),
+              lang.getText ("tr84"),
+              lang.getText ("tr85"),
+              lang.getText ("tr86")
+            ]
+          })}
+          ${buildSubscription_ ({
+            featuresTitle: lang.getText ("tr87"),
+            buttonText: lang.getText ("tr88"),
+            priceInfo: lang.getText ("tr89"),
+            title: lang.getText ("tr90"),
+            desc: lang.getText ("tr91"),
+            currency: '$',
+            price: 29,
+            features: [
+              lang.getText ("tr92"),
+              lang.getText ("tr93"),
+              lang.getText ("tr94"),
+              lang.getText ("tr95"),
+              lang.getText ("tr96"),
+              lang.getText ("tr97"),
+              lang.getText ("tr98"),
+              lang.getText ("tr99"),
+              lang.getText ("tr100")
+            ]
+          })}
+          ${buildSubscription_ ({
+            featuresTitle: lang.getText ("tr101"),
+            buttonText: lang.getText ("tr102"),
+            priceInfo: lang.getText ("tr103"),
+            title: lang.getText ("tr104"),
+            desc: lang.getText ("tr105"),
+            currency: '$',
+            price: 99,
+            features: [
+              lang.getText ("tr106"),
+              lang.getText ("tr107"),
+              lang.getText ("tr108"),
+              lang.getText ("tr109"),
+              lang.getText ("tr110"),
+              lang.getText ("tr111"),
+              lang.getText ("tr112"),
+              lang.getText ("tr113"),
+              lang.getText ("tr114"),
+              lang.getText ("tr115"),
+              lang.getText ("tr116"),
+              lang.getText ("tr117"),
+              lang.getText ("tr118")
+            ]
+          })}
+        </div>
+      </div>
+    `;
+    // Adds the below section
+    // to the selected tag as
+    // a child.
+    document.querySelector (
+      "main"
+    ).appendChild (section);
+    // Listens subscription
+    // triggers click.
+    listenClick_ ();
   }
 }
 
 /**
- * @description Exports all public
- *  features.
+ * @description Exports all
+ *  public features.
  * @exports *
  */
 export {Pricing};

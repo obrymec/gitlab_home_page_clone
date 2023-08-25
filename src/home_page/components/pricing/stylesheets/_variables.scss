@@ -5,13 +5,16 @@
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-07-27
-* @updated: 2023-07-28
-* @version: 0.0.1
+* @updated: 2023-08-24
+* @version: 0.0.2
 */
 
 // Responsive breakpoints.
 $pricing-1080: "only screen and (min-width: 770px) and (max-width: 1080px)" !default;
 $pricing-770: "only screen and (max-width: 770px)" !default;
+
+// Resources.
+$pricing-ultimate-bg: "../../../../../assets/images/ultimate.png" !default;
 
 // Colors theme.
 $pricing-btn-bg-color: $primary-color !default;

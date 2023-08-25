@@ -5,31 +5,20 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-27
-* @updated: 2023-07-28
-* @version: 0.0.1
+* @updated: 2023-08-25
+* @version: 0.0.2
 */
 
-// Dependencies.
+// Custom dependencies.
 @import "./_variables.scss";
 
 // Subscription button.
 %pricing-sub-btn {
-	transition: all .3s cubic-bezier(.7, 0, .3, 1);
-	background-color: $pricing-btn-bg-color;
   border: 1px solid $pricing-btn-bg-color;
-	color: $pricing-sub-btn-txt-color;
-	justify-content: center;
-  align-items: center;
   border-radius: 4px;
-	padding: 11px 16px;
-	line-height: 20px;
-	font-weight: 600;
-	min-width: 68px;
-	font-size: 18px;
 	// Hover effect.
 	&:hover {
 		background-color: $pricing-sub-btn-txt-color;
-    color: $pricing-btn-bg-color;
 	}
 	// From 1080 to 0.
   @media #{$pricing-1080} {

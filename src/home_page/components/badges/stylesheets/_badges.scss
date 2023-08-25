@@ -18,6 +18,10 @@ section.badges {
   background-color: $badges-bg-color;
   margin-bottom: 96px;
   padding: 96px 5%;
+  // From 770 to 0.
+  @media #{$badges-770} {
+    padding: 96px 16px;
+  }
 }
 
 // Header.

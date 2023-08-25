@@ -545,7 +545,7 @@ section.methodologies {
   margin-bottom: 40px; }
   @media only screen and (max-width: 1300px) {
     section.methodologies {
-      padding: 76px 4.2%; } }
+      padding: 76px 16px; } }
   section.methodologies > h2:first-child {
     letter-spacing: -1.4px;
     margin-bottom: 96px;
@@ -1203,9 +1203,9 @@ div.service {
 * @fileoverview: GitLab pricing stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-27
-* @updated: 2023-08-03
+* @updated: 2023-08-25
 * @file: pricing.scss
-* @version: 0.0.1
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab pricing placeholders stylesheet.
@@ -1214,8 +1214,8 @@ div.service {
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-27
-* @updated: 2023-07-28
-* @version: 0.0.1
+* @updated: 2023-08-25
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab pricing variables stylesheet.
@@ -1224,25 +1224,14 @@ div.service {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-07-27
-* @updated: 2023-07-28
-* @version: 0.0.1
+* @updated: 2023-08-24
+* @version: 0.0.2
 */
 div.sub-infos button {
-  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
-  background-color: #171321;
   border: 1px solid #171321;
-  color: #fff;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  padding: 11px 16px;
-  line-height: 20px;
-  font-weight: 600;
-  min-width: 68px;
-  font-size: 18px; }
+  border-radius: 4px; }
   div.sub-infos button:hover {
-    background-color: #fff;
-    color: #171321; }
+    background-color: #fff; }
   @media only screen and (min-width: 770px) and (max-width: 1080px) {
     div.sub-infos button {
       font-size: 15px; } }
@@ -1254,8 +1243,8 @@ div.sub-infos button {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-07-27
-* @updated: 2023-07-28
-* @version: 0.0.1
+* @updated: 2023-08-24
+* @version: 0.0.2
 */
 div.subscription {
   flex-direction: column;
@@ -1271,7 +1260,7 @@ section.pricing {
   padding: 16px 5%; }
   @media only screen and (min-width: 770px) and (max-width: 1080px) {
     section.pricing {
-      padding: 16px 17px; } }
+      padding: 16px; } }
   section.pricing h2.price-title {
     letter-spacing: -2.1px;
     margin-bottom: 24px;
@@ -1343,8 +1332,8 @@ div.price-body {
   div.price-body div:nth-child(2) > div.sub-infos {
     background-color: #eee7fd; }
   div.price-body div:last-child > div.sub-infos {
-    background: url("../../../../../assets/images/ultimate.png");
     border: 1px solid #eee7fd;
+    background: url("../../../../../assets/images/ultimate.png");
     border-radius: 4px 4px 100px 4px;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -2082,6 +2071,9 @@ section.badges {
   background-color: #171321;
   margin-bottom: 96px;
   padding: 96px 5%; }
+  @media only screen and (max-width: 770px) {
+    section.badges {
+      padding: 96px 16px; } }
 
 div.bds-head h2:first-child {
   color: #fff;

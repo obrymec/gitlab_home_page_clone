@@ -6,7 +6,7 @@
 * @supported DESKTOP, MOBILE
 * @type {ScreenManager}
 * @created 2023-08-17
-* @updated 2023-08-18
+* @updated 2023-08-25
 * @file screen.js
 * @version 0.0.1
 */
@@ -261,12 +261,6 @@ function ScreenManager ({
   // Checks the current screen
   // format.
   checkWidth_ ();
-  // Removes the old listener
-  // method that was listening
-  // this event.
-  window.removeEventListener (
-    "resize", checkWidth_
-  );
   // Whether we want to listen
   // document size variation.
   if (!disableDetection) {
