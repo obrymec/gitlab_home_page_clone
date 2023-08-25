@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-17
+* @updated: 2023-08-24
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -34,14 +34,6 @@
 // All tags.
 * {
 	transition: all .2s ease-in-out;
-}
-
-// Main.
-main {
-	flex-direction: column;
-	align-items: center;
-	display: flex;
-	width: 100%;
 }
 
 // Root.

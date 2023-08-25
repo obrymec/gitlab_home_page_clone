@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-17
+* @updated: 2023-08-24
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -247,26 +247,27 @@ template {
 * @version: 0.0.1
 */
 /**
-* @fileoverview: GitLab app global collaborators stylesheet.
+* @fileoverview: GitLab collaborators stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: collaborators.scss
 * @created: 2023-06-24
-* @updated: 2023-07-06
+* @updated: 2023-08-24
 * @version: 0.0.1
 */
 /**
-* @fileoverview: GitLab app global collaborators placeholders stylesheet.
+* @fileoverview: GitLab collaborators placeholders stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-24
-* @updated: 2023-06-30
+* @updated: 2023-08-24
 * @version: 0.0.1
 */
-section.collaborators, div.controls, div.statistics, div.statistics div:first-child, div.statistics div:last-child, div.infos {
+section.collaborators, div.controls, div.statistics, div.statistics div:first-child,
+div.statistics div:last-child, div.infos {
   flex-direction: column;
   display: flex; }
 
@@ -275,17 +276,16 @@ div.customer, div.about, div.identity {
   display: flex; }
 
 /**
-* @fileoverview: GitLab app global collaborators variables stylesheet.
+* @fileoverview: GitLab collaborators variables stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-24
-* @updated: 2023-06-30
+* @updated: 2023-08-24
 * @version: 0.0.1
 */
 div.customer {
-  transition: gap .2s ease-in-out;
   gap: 24px; }
   @media only screen and (max-width: 1030px) {
     div.customer {
@@ -299,8 +299,10 @@ section.collaborators {
   color: #171321;
   transform: translate3d(0, 0, 0);
   padding: 96px 5.6%; }
+  @media only screen and (max-width: 1030px) {
+    section.collaborators {
+      padding: 96px 16px; } }
   section.collaborators div.header-title {
-    transition: font-size .2s ease-in-out;
     color: #171321;
     letter-spacing: -1px;
     margin-bottom: 48px;
@@ -312,11 +314,11 @@ section.collaborators {
       section.collaborators div.header-title {
         font-size: 30px; } }
   section.collaborators div.body {
-    transition: all .3s ease-in-out;
     margin-bottom: 50px;
     margin-left: 16px; }
     @media only screen and (max-width: 1030px) {
       section.collaborators div.body {
+        margin-bottom: 24px;
         margin-left: 0; } }
     section.collaborators div.body div.customer {
       display: none; }
@@ -326,7 +328,6 @@ section.collaborators {
     opacity: 0; }
 
 div.about {
-  transition: gap .2s ease-in-out;
   margin-top: 26px;
   font-size: 14px;
   gap: 24px; }
@@ -334,11 +335,9 @@ div.about {
     div.about {
       flex-direction: column;
       gap: 15px; } }
-  div.about div:first-child {
-    transition: width .2s ease-out; }
-    @media only screen and (max-width: 1030px) {
-      div.about div:first-child {
-        width: 50%; } }
+  @media only screen and (max-width: 1030px) {
+    div.about div:first-child {
+      width: 50%; } }
   div.about div:last-child {
     line-height: 20px;
     width: 100%; }
@@ -346,7 +345,6 @@ div.about {
     font-weight: 600; }
 
 div.controls {
-  transition: all .2s ease-in-out;
   align-items: center;
   position: fixed;
   left: 1.8%;
@@ -356,21 +354,20 @@ div.controls {
     div.controls {
       flex-direction: row;
       position: relative;
-      left: 26px;
-      top: 34px;
+      left: 0;
+      top: 0;
       gap: 0; } }
-  div.controls svg:nth-child(1) {
-    transition: all .2s ease-out;
-    transform: rotate(90deg);
+  div.controls img:nth-child(1) {
+    transform: rotate(-90deg);
+    filter: brightness(0);
     display: inline-block;
     cursor: pointer; }
     @media only screen and (max-width: 1030px) {
-      div.controls svg:nth-child(1) {
-        transform: rotate(0deg);
+      div.controls img:nth-child(1) {
+        transform: rotate(-180deg);
         margin-right: 7px; } }
   div.controls div {
     background-color: #d1d0d3;
-    transition: all .3s ease-in-out;
     border-radius: 24px;
     cursor: pointer;
     margin: 0 8px;
@@ -379,13 +376,13 @@ div.controls {
   div.controls div.cobs-selected-node {
     box-shadow: 0 0 0 3px #171321;
     background-color: transparent; }
-  div.controls svg:nth-child(7) {
-    transition: all .2s ease-out;
+  div.controls img:nth-child(7) {
     transform: rotate(90deg);
     display: inline-block;
+    filter: brightness(0);
     cursor: pointer; }
     @media only screen and (max-width: 1030px) {
-      div.controls svg:nth-child(7) {
+      div.controls img:nth-child(7) {
         transform: rotate(0deg);
         margin-left: 7px; } }
 
@@ -399,7 +396,6 @@ div.identity {
     div.identity {
       flex-direction: column; } }
   div.identity div.profile {
-    transition: all .2s ease-out;
     position: relative;
     min-width: 230px; }
     @media only screen and (max-width: 1030px) {
@@ -409,7 +405,6 @@ div.identity {
   div.identity div.profile > img {
     box-shadow: 0 16px 50px -24px #d1d0d3;
     border-bottom-right-radius: 66px;
-    transition: all .2s ease-in-out;
     position: absolute;
     width: 220px;
     left: -16px;
@@ -424,7 +419,6 @@ div.identity {
   div.identity div.profile::after {
     border-right: 1px solid #a989f5;
     border-top: 1px solid #a989f5;
-    transition: all .2s ease-in-out;
     border-radius: 0 4px;
     position: absolute;
     display: block;
@@ -439,7 +433,6 @@ div.identity {
         top: 15px; } }
 
 div.statistics {
-  transition: width .2s ease-out;
   width: 36%;
   gap: 20px; }
   @media only screen and (max-width: 1030px) {
@@ -447,38 +440,40 @@ div.statistics {
       width: auto; } }
   div.statistics div:last-child {
     border-bottom-right-radius: 60px; }
-  div.statistics div:first-child, div.statistics div:last-child {
+  div.statistics div:first-child,
+  div.statistics div:last-child {
     border: 1px solid #e8e7eb;
     background-color: #fff;
-    transition: padding .2s ease-out;
     justify-content: center;
     padding: 18px 32px;
     height: 100%; }
     @media only screen and (max-width: 1030px) {
-      div.statistics div:first-child, div.statistics div:last-child {
+      div.statistics div:first-child,
+      div.statistics div:last-child {
         padding: 26px 16px; } }
-    div.statistics div:first-child label, div.statistics div:last-child label {
-      transition: font-size .2s ease-in-out;
+    div.statistics div:first-child label,
+    div.statistics div:last-child label {
       color: #7759c2;
       letter-spacing: -1.4px;
       line-height: 60px;
       font-weight: 600;
       font-size: 50px; }
-    div.statistics div:first-child p, div.statistics div:last-child p {
-      transition: font-size .2s ease-in-out;
+    div.statistics div:first-child p,
+    div.statistics div:last-child p {
       letter-spacing: -.8px;
       line-height: 32px;
       font-weight: 400;
       font-size: 24px; }
   @media only screen and (max-width: 1170px) and (min-width: 1031px) {
-    div.statistics div:first-child > label, div.statistics div:last-child > label {
+    div.statistics div:first-child > label,
+    div.statistics div:last-child > label {
       font-size: 40px; } }
   @media only screen and (max-width: 1170px) and (min-width: 1031px) {
-    div.statistics div:first-child > p, div.statistics div:last-child > p {
+    div.statistics div:first-child > p,
+    div.statistics div:last-child > p {
       font-size: 20px; } }
 
 div.infos {
-  transition: padding .2s ease-out;
   padding: 48px 32px 48px 0;
   row-gap: 13px; }
   @media only screen and (max-width: 1030px) {
@@ -489,7 +484,6 @@ div.infos {
   div.infos:hover > button.read-more > label {
     text-decoration: underline; }
   div.infos blockquote.description {
-    transition: font-size .2s ease-in-out;
     font-style: italic;
     line-height: 38px;
     font-size: 22.5px;
@@ -505,33 +499,31 @@ div.infos {
     align-items: center;
     outline: none; }
     div.infos button.read-more img {
-      transition: transform .2s ease-in-out;
       transform: translateY(1px);
       display: inline-block;
       margin-left: 3px; }
-  div.infos button.read-more > label {
-    transition: all .2s ease-in-out;
+  div.infos button.read-more > span {
     line-height: 38px;
     font-size: 23px; }
 
 /**
-* @fileoverview: GitLab app global methodologies stylesheet.
+* @fileoverview: GitLab methodologies stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: methodologies.scss
 * @created: 2023-07-06
-* @updated: 2023-07-14
+* @updated: 2023-08-25
 * @version: 0.0.1
 */
 /**
-* @fileoverview: GitLab app global methodologies placeholders stylesheet.
+* @fileoverview: GitLab methodologies placeholders stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-06
-* @updated: 2023-07-06
+* @updated: 2023-08-25
 * @version: 0.0.1
 */
 button.learn-more, div.mhds-infos, div.mhds-infos div:nth-child(2) {
@@ -539,17 +531,16 @@ button.learn-more, div.mhds-infos, div.mhds-infos div:nth-child(2) {
   display: flex; }
 
 /**
-* @fileoverview: GitLab app global methodologies variables stylesheet.
+* @fileoverview: GitLab methodologies variables stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-07-06
-* @updated: 2023-07-07
+* @updated: 2023-08-25
 * @version: 0.0.1
 */
 section.methodologies {
-  transition: padding .2s ease-in-out;
   padding: 96px 12.8%;
   margin-bottom: 40px; }
   @media only screen and (max-width: 1300px) {
@@ -563,7 +554,6 @@ section.methodologies {
     font-size: 50px; }
 
 div.methodology {
-  transition: all .2s ease-in-out;
   pointer-events: none;
   padding: 0 0 0 80px;
   opacity: .6; }
@@ -589,29 +579,23 @@ div.mhds-scroll {
       display: none; } }
   div.mhds-scroll div {
     background-color: #171321;
-    transition: all .3s linear;
     position: absolute;
     width: 2px; }
 
 button.learn-more {
-  transition: margin-top .2s ease-out;
   padding: 11px 0 11px 0;
   align-items: center;
   font-weight: 600; }
   button.learn-more:hover > img {
     transform: translateX(6.5px); }
-  button.learn-more:hover {
-    text-decoration: underline; }
   @media only screen and (max-width: 760px) {
     button.learn-more {
       margin-top: 32px; } }
   button.learn-more img {
-    transition: transform .2s ease-in-out;
     filter: brightness(0);
     margin-left: 4px; }
 
 div.mhds-body {
-  transition: all .2s linear;
   flex-direction: column;
   display: flex;
   gap: 94px; }
@@ -635,7 +619,6 @@ div.mhds-body {
         height: 2px; } }
 
 div.mhds-content {
-  transition: padding-bottom .2s ease-out;
   transform: translate3d(0, 0, 0);
   padding-bottom: 96px; }
   @media only screen and (max-width: 760px) {
@@ -645,9 +628,9 @@ div.mhds-content {
   div.mhds-content div.mhds-left-arrow {
     border: 1px ridge #171321;
     background-color: rgba(240, 240, 240, 0.5);
-    transition: all 150ms linear;
     transform: translateY(-50%);
     backdrop-filter: blur(10px);
+    transition-duration: 150ms;
     border-radius: 50px;
     position: fixed;
     display: none;
@@ -682,7 +665,6 @@ div.mhds-content {
     left: 6px; }
 
 div.mhds-infos {
-  transition: all .2s ease-out;
   position: relative;
   z-index: 0; }
   @media only screen and (max-width: 760px) {
@@ -692,11 +674,9 @@ div.mhds-infos {
   div.mhds-infos div:first-child {
     width: 100%; }
   div.mhds-infos div:first-child > span {
-    transition: all .3s linear;
     margin-bottom: 24px;
     display: block; }
   div.mhds-infos div:first-child > h3 {
-    transition: .2s padding-right ease-out;
     letter-spacing: -1px;
     margin-bottom: 16px;
     line-height: 48px;
@@ -706,7 +686,6 @@ div.mhds-infos {
       div.mhds-infos div:first-child > h3 {
         padding-right: 0; } }
   div.mhds-infos div:first-child > p {
-    transition: .2s padding-right ease-out;
     padding-right: 32px;
     line-height: 24px;
     font-weight: 400;
@@ -715,7 +694,6 @@ div.mhds-infos {
       div.mhds-infos div:first-child > p {
         padding-right: 0; } }
   div.mhds-infos div:nth-child(2) {
-    transition: all .4s ease-in-out;
     transform: translateX(80px);
     align-items: center;
     padding-top: 30px;
@@ -736,7 +714,7 @@ div.mhds-infos {
 * @fileoverview: GitLab button stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-08-03
-* @updated: 2023-08-18
+* @updated: 2023-08-25
 * @file: button.scss
 * @version: 0.0.2
 */
@@ -756,7 +734,8 @@ button.flat-btn {
   button.flat-btn:hover > img {
     transform: translate(8px, -1px); }
   button.flat-btn:hover > span {
-    text-decoration: underline; }
+    text-decoration: underline;
+    text-underline-offset: 4px; }
   button.flat-btn img {
     transform: translateY(-1px);
     display: inline-block; }
@@ -788,23 +767,23 @@ button.gen-btn {
     color: #fff; }
 
 /**
-* @fileoverview: GitLab organizations stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
+* @fileoverview: GitLab customers stylesheet.
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
-* @file: organizations.scss
+* @file: customers.scss
 * @created: 2023-06-21
-* @updated: 2023-08-12
+* @updated: 2023-08-24
 * @version: 0.0.1
 */
 /**
-* @fileoverview: GitLab organizations placeholders stylesheet.
+* @fileoverview: GitLab customers placeholders stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-21
-* @updated: 2023-08-12
+* @updated: 2023-08-24
 * @version: 0.0.1
 */
 div.right-customers, div.left-customers, section.customers, section.customers > div {
@@ -812,13 +791,13 @@ div.right-customers, div.left-customers, section.customers, section.customers > 
   flex-direction: row; }
 
 /**
-* @fileoverview: GitLab organizations animations stylesheet.
+* @fileoverview: GitLab customers animations stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
-* @file: organizations.scss
+* @file: animations.scss
 * @created: 2023-08-12
-* @updated: 2023-08-12
+* @updated: 2023-08-24
 * @version: 0.0.1
 */
 span.guest-logo-as {
@@ -828,13 +807,13 @@ span.guest-logo-af {
   transform: scale(1); }
 
 /**
-* @fileoverview: GitLab app global organizations variables stylesheet.
+* @fileoverview: GitLab customers variables stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-21
-* @updated: 2023-06-24
+* @updated: 2023-08-24
 * @version: 0.0.1
 */
 div.right-customers {
@@ -846,7 +825,6 @@ div.left-customers {
   column-gap: 5%; }
 
 section.customers {
-  transition: padding .2s ease-in-out;
   justify-content: center;
   padding: 5% 6% 4% 5%;
   align-items: center;
@@ -857,7 +835,7 @@ section.customers {
       flex-direction: column; } }
   @media only screen and (max-width: 500px) {
     section.customers {
-      padding: 10% 4% 12% 4%; } }
+      padding: 10% 16px 12% 16px; } }
   section.customers > label {
     color: #171321;
     display: inline-block;
@@ -868,7 +846,6 @@ section.customers {
     height: 100%;
     width: 100%; }
   section.customers > div {
-    transition: gap .2s ease-in-out;
     gap: 3%; }
     @media only screen and (max-width: 766px) {
       section.customers > div {
@@ -1046,23 +1023,23 @@ div.resource {
     width: 100%; }
 
 /**
-* @fileoverview: GitLab app global services stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
+* @fileoverview: GitLab services stylesheet.
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: services.scss
 * @created: 2023-06-23
-* @updated: 2023-08-18
+* @updated: 2023-08-25
 * @version: 0.0.3
 */
 /**
-* @fileoverview: GitLab app global services placeholders stylesheet.
+* @fileoverview: GitLab services placeholders stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-24
-* @updated: 2023-06-24
+* @updated: 2023-08-19
 * @version: 0.0.1
 */
 section.services {
@@ -1074,23 +1051,23 @@ div.service, div.service div {
   display: flex; }
 
 /**
-* @fileoverview: GitLab banner animations stylesheet.
+* @fileoverview: GitLab services animations stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: animations.scss
 * @created: 2023-08-18
-* @updated: 2023-08-18
+* @updated: 2023-08-19
 * @version: 0.0.2
 */
 /**
-* @fileoverview: GitLab app global services variables stylesheet.
+* @fileoverview: GitLab services variables stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-23
-* @updated: 2023-08-18
+* @updated: 2023-08-19
 * @version: 0.0.1
 */
 div.services-as {
@@ -1134,13 +1111,13 @@ div.services-af {
     transform: translateY(0); } }
 
 /**
-* @fileoverview: GitLab app global services variables stylesheet.
+* @fileoverview: GitLab services variables stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-23
-* @updated: 2023-08-18
+* @updated: 2023-08-19
 * @version: 0.0.1
 */
 section.services {
@@ -1211,6 +1188,10 @@ div.service {
         font-size: 18px; } }
   div.service button {
     color: #7759c2; }
+    div.service button:hover > img {
+      transform: translate(8px, -2.4px); }
+    div.service button img {
+      transform: translateY(-2.4px); }
     @media only screen and (max-width: 1130px) and (min-width: 1025px) {
       div.service button {
         line-height: 18px;
@@ -2486,12 +2467,6 @@ div.faq-right {
   font-family: "InterRegular"; }
 * {
   transition: all .2s ease-in-out; }
-
-main {
-  flex-direction: column;
-  align-items: center;
-  display: flex;
-  width: 100%; }
 
 body {
   font-family: "InterRegular", sans-serif;

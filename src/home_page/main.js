@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-18
+* @updated 2023-08-24
 * @version 0.0.6
 * @file main.js
 */
@@ -24,17 +24,17 @@ import {Footer} from "./components/footer/footer.js";
 import {FAQ} from "./components/faq/faq.js";
 
 // Builds navbar section.
-new NavBar ().render ();
+// new NavBar ().render ();
 // Builds banner section.
-new Banner ().render ();
+// new Banner ().render ();
 // // Builds customers section.
-new Customers ().render ();
+// new Customers ().render ();
 // // Builds services section.
-new Services ().render ();
-// // Builds collaborators section.
-// new Collaborators ({parentId: "main"}).render ();
+// new Services ().render ();
+// Builds collaborators section.
+// new Collaborators ().render ();
 // // Builds methodologies section.
-// new Methodologies ({parentId: "main"}).render ();
+new Methodologies ().render ();
 // // Builds badges section.
 // new Badges ({parentId: "main"}).render ();
 // // Builds pricing section.

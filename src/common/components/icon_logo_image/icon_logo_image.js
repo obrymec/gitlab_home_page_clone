@@ -6,7 +6,7 @@
 * @file icon_logo_image.js
 * @type {IconLogoImage}
 * @created 2023-08-03
-* @updated 2023-08-18
+* @updated 2023-08-24
 * @version 0.0.3
 */
  
@@ -39,7 +39,7 @@ import {clearStr} from "../../utilities/string/string.js";
  */
 const Logos = {
   GITLAB_LOGO_TEXT: "gitlab-logo-text.svg",
-  LOCKHEED_MARTIN: "lockheed-marting.png",
+  LOCKHEED_MARTIN: "lockheed-martin.png",
   IRON_MOUNTAIN: "iron-mountain.svg",
   HAVEN_TECH: "haven-tech.png",
   SINGLERON: "singleron.svg",

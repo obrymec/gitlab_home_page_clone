@@ -1,10 +1,10 @@
 /**
-* @fileoverview Banner UI component for the landing page.
 * @author Obrymec - obrymecsprinces@gmail.com
 * @project GitLab - https://www.google.com
+* @fileoverview Banner UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-17
-* @updated 2023-08-18
+* @updated 2023-08-24
 * @file banner.js
 * @type {Banner}
 * @version 0.0.2

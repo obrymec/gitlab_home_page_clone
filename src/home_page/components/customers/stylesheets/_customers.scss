@@ -1,11 +1,11 @@
 /**
-* @fileoverview: GitLab organizations stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
+* @fileoverview: GitLab customers stylesheet.
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
-* @file: organizations.scss
+* @file: customers.scss
 * @created: 2023-06-21
-* @updated: 2023-08-12
+* @updated: 2023-08-24
 * @version: 0.0.1
 */
 
@@ -30,7 +30,6 @@ div.left-customers {
 
 // Customers logos.
 section.customers {
-	transition: padding .2s ease-in-out;
 	@extend %customers-inline-flexbox;
 	justify-content: center;
 	padding: 5% 6% 4% 5%;
@@ -43,7 +42,7 @@ section.customers {
 	}
 	// From 500 to 0.
 	@media #{$customers-500} {
-		padding: 10% 4% 12% 4%;
+		padding: 10% 16px 12% 16px;
 	}
 	// Trusted text.
 	& > label {
@@ -61,7 +60,6 @@ section.customers {
 	// Customers container.
 	& > div {
 		@extend %customers-inline-flexbox;
-		transition: gap .2s ease-in-out;
 		gap: 3%;
 		// From 766 to 0.
 		@media #{$customers-766} {

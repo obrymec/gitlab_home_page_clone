@@ -1,22 +1,21 @@
 /**
-* @fileoverview: GitLab app global collaborators stylesheet.
+* @fileoverview: GitLab collaborators stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: collaborators.scss
 * @created: 2023-06-24
-* @updated: 2023-07-06
+* @updated: 2023-08-24
 * @version: 0.0.1
 */
 
-// Dependencies.
+// Custom dependencies.
 @import "./_placeholders.scss";
 @import "./_variables.scss";
 
 // Customer section.
 div.customer {
 	@extend %collaborators-row-flexbox;
-	transition: gap .2s ease-in-out;
 	gap: 24px;
 	// From 1030 to 0.
 	@media #{$collaborators-1030} {
@@ -36,9 +35,12 @@ section.collaborators {
 	color: $collaborators-text-color;
 	transform: translate3d(0, 0, 0);
 	padding: 96px 5.6%;
+	// From 1030 to 0.
+	@media #{$collaborators-1030} {
+		padding: 96px 16px;
+	}
 	// Header title
 	div.header-title {
-		transition: font-size .2s ease-in-out;
 		color: $collaborators-text-color;
     letter-spacing: -1px;
 		margin-bottom: 48px;
@@ -53,11 +55,11 @@ section.collaborators {
 	}
 	// Body.
 	div.body {
-		transition: all .3s ease-in-out;
 		margin-bottom: 50px;
 		margin-left: 16px;
 		// From 1030 to 0.
 		@media #{$collaborators-1030} {
+			margin-bottom: 24px;
 			margin-left: 0;
 		}
 		// Customers.
@@ -78,7 +80,6 @@ section.collaborators {
 // Industry.
 div.about {
 	@extend %collaborators-row-flexbox;
-	transition: gap .2s ease-in-out;
 	margin-top: 26px;
 	font-size: 14px;
 	gap: 24px;
@@ -89,7 +90,6 @@ div.about {
 	}
 	// Logo.
 	div:first-child {
-		transition: width .2s ease-out;
 		// From 1030 to 0.
 		@media #{$collaborators-1030} {
 			width: 50%;
@@ -109,7 +109,6 @@ div.about {
 // Controls section.
 div.controls {
 	@extend %collaborators-column-flexbox;
-	transition: all .2s ease-in-out;
 	align-items: center;
 	position: fixed;
 	left: 1.8%;
@@ -119,26 +118,25 @@ div.controls {
 	@media #{$collaborators-1030} {
 		flex-direction: row;
 		position: relative;
-		left: 26px;
-		top: 34px;
+		left: 0;
+		top: 0;
 		gap: 0;
 	}
 	// Top arrow.
-	svg:nth-child(1) {
-		transition: all .2s ease-out;
-		transform: rotate(90deg);
+	img:nth-child(1) {
+		transform: rotate(-90deg);
+		filter: brightness(0);
 		display: inline-block;
 		cursor: pointer;
 		// From 1030 to 0.
 		@media #{$collaborators-1030} {
-			transform: rotate(0deg);
+			transform: rotate(-180deg);
 			margin-right: 7px;
 		}
 	}
 	// Customers.
 	div {
 		background-color: $collaborators-controls-item-bg-color;
-		transition: all .3s ease-in-out;
     border-radius: 24px;
     cursor: pointer;
     margin: 0 8px;
@@ -151,10 +149,10 @@ div.controls {
 		background-color: transparent;
 	}
 	// Bottom arrow.
-	svg:nth-child(7) {
-		transition: all .2s ease-out;
+	img:nth-child(7) {
 		transform: rotate(90deg);
 		display: inline-block;
+		filter: brightness(0);
 		cursor: pointer;
 		// From 1030 to 0.
 		@media #{$collaborators-1030} {
@@ -178,7 +176,6 @@ div.identity {
 	}
 	// Profile container.
 	div.profile {
-		transition: all .2s ease-out;
 		position: relative;
 		min-width: 230px;
 		// From 1030 to 0.
@@ -191,7 +188,6 @@ div.identity {
 	div.profile > img {
 		box-shadow: 0 16px 50px -24px $collaborators-controls-item-bg-color;
 		border-bottom-right-radius: 66px;
-		transition: all .2s ease-in-out;
 		position: absolute;
 		width: 220px;
 		left: -16px;
@@ -209,7 +205,6 @@ div.identity {
 	div.profile::after {
 		border-right: 1px solid $collaborators-img-color-effect;
 		border-top: 1px solid $collaborators-img-color-effect;
-		transition: all .2s ease-in-out;
 		border-radius: 0 4px;
 		position: absolute;
 		display: block;
@@ -229,7 +224,6 @@ div.identity {
 // Statistics section.
 div.statistics {
 	@extend %collaborators-column-flexbox;
-	transition: width .2s ease-out;
 	width: 36%;
 	gap: 20px;
 	// From 1030 to 0.
@@ -241,11 +235,11 @@ div.statistics {
 		border-bottom-right-radius: 60px;
 	}
 	// Credits and percentage.
-	div:first-child, div:last-child {
+	div:first-child,
+	div:last-child {
 		border: 1px solid $collaborators-card-border-color;
 		background-color: $collaborators-card-bg-color;
     @extend %collaborators-column-flexbox;
-		transition: padding .2s ease-out;
     justify-content: center;
     padding: 18px 32px;
 		height: 100%;
@@ -255,7 +249,6 @@ div.statistics {
 		}
 		// Label.
 		label {
-			transition: font-size .2s ease-in-out;
 			color: $collaborators-btn-text-color;
 			letter-spacing: -1.4px;
 			line-height: 60px;
@@ -264,7 +257,6 @@ div.statistics {
 		}
 		// Comment.
 		p {
-			transition: font-size .2s ease-in-out;
 			letter-spacing: -.8px;
 			line-height: 32px;
 			font-weight: 400;
@@ -272,14 +264,16 @@ div.statistics {
 		}
 	}
 	// Labels.
-	div:first-child > label, div:last-child > label {
+	div:first-child > label,
+	div:last-child > label {
 		// From 1170 to 0.
 		@media #{$collaborators-1170} {
 			font-size: 40px;
 		}
 	}
 	// Comments.
-	div:first-child > p, div:last-child > p {
+	div:first-child > p,
+	div:last-child > p {
 		// From 1170 to 0.
 		@media #{$collaborators-1170} {
 			font-size: 20px;
@@ -290,7 +284,6 @@ div.statistics {
 // Infos container.
 div.infos {
 	@extend %collaborators-column-flexbox;
-	transition: padding .2s ease-out;
 	padding: 48px 32px 48px 0;
 	row-gap: 13px;
 	// From 1030 to 0.
@@ -307,7 +300,6 @@ div.infos {
 	}
 	// Description.
 	blockquote.description {
-		transition: font-size .2s ease-in-out;
     font-style: italic;
     line-height: 38px;
 		font-size: 22.5px;
@@ -327,15 +319,13 @@ div.infos {
 		outline: none;
 		// Right arrow.
 		img {
-			transition: transform .2s ease-in-out;
 			transform: translateY(1px);
 			display: inline-block;
 			margin-left: 3px;
 		}
 	}
 	// Text.
-	button.read-more > label {
-		transition: all .2s ease-in-out;
+	button.read-more > span {
 		line-height: 38px;
 		font-size: 23px;
 	}

@@ -1,11 +1,11 @@
 /**
-* @fileoverview: GitLab app global methodologies stylesheet.
+* @fileoverview: GitLab methodologies stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @file: methodologies.scss
 * @created: 2023-07-06
-* @updated: 2023-07-14
+* @updated: 2023-08-25
 * @version: 0.0.1
 */
 
@@ -15,7 +15,6 @@
 
 // Work mehodologies section.
 section.methodologies {
-  transition: padding .2s ease-in-out;
   padding: 96px 12.8%;
   margin-bottom: 40px;
   // From 1300 to 0.
@@ -34,7 +33,6 @@ section.methodologies {
 
 // Methodology section.
 div.methodology {
-  transition: all .2s ease-in-out;
   pointer-events: none;
   padding: 0 0 0 80px;
   opacity: .6;
@@ -66,7 +64,6 @@ div.mhds-scroll {
   // Scroll thumb.
   div {
     background-color: $mhds-scoll-thumb-bg-color;
-    transition: all .3s linear;
     position: absolute;
     width: 2px;
   }
@@ -74,7 +71,6 @@ div.mhds-scroll {
 
 // Learn more button.
 button.learn-more {
-  transition: margin-top .2s ease-out;
   @extend %mhds-inline-flexbox;
   padding: 11px 0 11px 0;
   align-items: center;
@@ -83,17 +79,12 @@ button.learn-more {
   &:hover > img {
     transform: translateX(6.5px);
   }
-  // Hover effect.
-  &:hover {
-    text-decoration: underline;
-  }
   // From 760 to 0.
   @media #{$mhds-760} {
     margin-top: 32px;
   }
   // Right arrow.
   img {
-    transition: transform .2s ease-in-out;
     filter: brightness(0);
     margin-left: 4px;
   }
@@ -101,7 +92,6 @@ button.learn-more {
 
 // Methodologies body content.
 div.mhds-body {
-  transition: all .2s linear;
   flex-direction: column;
   display: flex;
   gap: 94px;
@@ -132,7 +122,6 @@ div.mhds-body {
 
 // Content.
 div.mhds-content {
-  transition: padding-bottom .2s ease-out;
   transform: translate3d(0, 0, 0);
   padding-bottom: 96px;
   // From 760 to 0.
@@ -144,9 +133,9 @@ div.mhds-content {
   div.mhds-left-arrow {
     border: 1px ridge $mhds-scoll-thumb-bg-color;
     background-color: $mhds-arrows-bg-color;
-    transition: all 150ms linear;
     transform: translateY(-50%);
     backdrop-filter: blur(10px);
+    transition-duration: 150ms;
     border-radius: 50px;
     position: fixed;
     display: none;
@@ -198,7 +187,6 @@ div.mhds-content {
 
 // Informations.
 div.mhds-infos {
-  transition: all .2s ease-out;
   @extend %mhds-inline-flexbox;
   position: relative;
   z-index: 0;
@@ -212,13 +200,11 @@ div.mhds-infos {
   }
   // Icon.
   div:first-child > span {
-    transition: all .3s linear;
     margin-bottom: 24px;
     display: block;
   }
   // Title.
   div:first-child > h3 {
-    transition: .2s padding-right ease-out;
     letter-spacing: -1px;
     margin-bottom: 16px;
     line-height: 48px;
@@ -231,7 +217,6 @@ div.mhds-infos {
   }
   // Description.
   div:first-child > p {
-    transition: .2s padding-right ease-out;
     padding-right: 32px;
     line-height: 24px;
     font-weight: 400;
@@ -243,7 +228,6 @@ div.mhds-infos {
   }
   // Image.
   div:nth-child(2) {
-    transition: all .4s ease-in-out;
     @extend %mhds-inline-flexbox;
     transform: translateX(80px);
     align-items: center;

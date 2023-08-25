@@ -1,10 +1,10 @@
 /**
-* @fileoverview NavBar UI component for the landing page.
 * @author Obrymec - obrymecsprinces@gmail.com
 * @project GitLab - https://www.google.com
+* @fileoverview NavBar UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-18
+* @updated 2023-08-24
 * @file navbar.js
 * @type {NavBar}
 * @version 0.0.8
