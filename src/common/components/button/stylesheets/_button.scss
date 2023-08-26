@@ -15,12 +15,15 @@
 // Flat Button.
 button.flat-btn {
 	color: $button-bg-color;
+	display: inline-flex;
+	align-items: center;
+	column-gap: 5px;
 	outline: none;
 	// Hover effect.
 	&:hover {
 		// Move right arrow.
 		img {
-			transform: translate(8px, -1px);
+			transform: translateX(8px);
 		}
 		// Underline the text.
 		span {
@@ -30,7 +33,6 @@ button.flat-btn {
 	}
 	// Right arrow.
 	img {
-		transform: translate(0, -1px);
 		display: inline-block;
 	}
 	// Text.

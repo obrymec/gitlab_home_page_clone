@@ -5,13 +5,25 @@
 * @supported: DESKTOP, MOBILE
 * @file: methodologies.scss
 * @created: 2023-07-06
-* @updated: 2023-08-25
-* @version: 0.0.1
+* @updated: 2023-08-26
+* @version: 0.0.2
 */
 
 // Custom dependencies.
 @import "./_placeholders.scss";
 @import "./_variables.scss";
+
+// Learn more button.
+button.learn-more {
+  // From 760 to 0.
+  @media #{$mhds-760} {
+    margin-top: 32px;
+  }
+  // Right arrow.
+  img {
+    filter: brightness(0);
+  }
+}
 
 // Work mehodologies section.
 section.methodologies {
@@ -66,27 +78,6 @@ div.mhds-scroll {
     background-color: $mhds-scoll-thumb-bg-color;
     position: absolute;
     width: 2px;
-  }
-}
-
-// Learn more button.
-button.learn-more {
-  @extend %mhds-inline-flexbox;
-  padding: 11px 0 11px 0;
-  align-items: center;
-  font-weight: 600;
-  // Move right arrow.
-  &:hover > img {
-    transform: translateX(6.5px);
-  }
-  // From 760 to 0.
-  @media #{$mhds-760} {
-    margin-top: 32px;
-  }
-  // Right arrow.
-  img {
-    filter: brightness(0);
-    margin-left: 4px;
   }
 }
 

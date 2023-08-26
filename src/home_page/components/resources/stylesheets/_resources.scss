@@ -46,16 +46,8 @@ div.res-head {
   }
   // View more button.
   button:last-child {
+    @extend %view-or-read;
     font-size: 18px;
-    // Hover effect.
-    &:hover > img {
-      transform: translate(8px, -1.5px);
-    }
-    // Right arrow.
-    img {
-      transform: translate(0, -1.5px);
-      filter: brightness(25%);
-    }
   }
 }
 
@@ -148,15 +140,7 @@ div.resource {
     width: 100%;
     // Button.
     button {
-      // Hover effect.
-      &:hover > img {
-        transform: translate(8px, -2.4px);
-      }
-      // Right arrow.
-      img {
-        transform: translate(0, -2.4px);
-        filter: brightness(25%);
-      }
+      @extend %view-or-read;
     }
   }
 }

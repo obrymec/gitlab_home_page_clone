@@ -5,8 +5,8 @@
 * @supported: DESKTOP, MOBILE
 * @file: collaborators.scss
 * @created: 2023-06-24
-* @updated: 2023-08-24
-* @version: 0.0.1
+* @updated: 2023-08-26
+* @version: 0.0.2
 */
 
 // Custom dependencies.
@@ -292,7 +292,7 @@ div.infos {
 	}
 	// Move right arrow.
 	&:hover > button.read-more > img {
-		transform: translate(8px, 1px);
+		transform: translate(6px, 1px);
 	}
 	// Underline the text.
 	&:hover > button.read-more > label {
@@ -314,19 +314,14 @@ div.infos {
 	// Button for read more.
 	button.read-more {
 		color: $collaborators-btn-text-color;
-		display: inline-flex;
-		align-items: center;
-		outline: none;
 		// Right arrow.
 		img {
-			transform: translateY(1px);
-			display: inline-block;
-			margin-left: 3px;
+			transform: translate(0, 1px);
 		}
-	}
-	// Text.
-	button.read-more > span {
-		line-height: 38px;
-		font-size: 23px;
+		// Text.
+		span {		
+			line-height: 38px;
+			font-size: 23px;
+		}
 	}
 }

@@ -1,12 +1,12 @@
 /**
-* @fileoverview: GitLab app global faq stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
+* @fileoverview: GitLab faq stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-20
-* @updated: 2023-07-21
+* @updated: 2023-08-26
 * @file: faq.scss
-* @version: 0.0.1
+* @version: 0.0.2
 */
 
 // Custom dependencies.
@@ -26,7 +26,6 @@ div.v-line {
 
 // FAQ section.
 section.faq {
-  transition: padding .2s ease;
   padding: 96px 5%;
   display: flex;
   background: (
@@ -49,7 +48,7 @@ section.faq {
   }
   // From 640 to 0.
   @media #{$faq-640} {
-    padding: 96px 24px;
+    padding: 96px 16px;
   }
 }
 
@@ -114,7 +113,15 @@ div.faq-right {
   }
   // Talk to an expert button.
   button {
-    @extend %faq-expert-btn-hover;
-    @extend %faq-talk-expert-btn;
+    font-size: 18px;
+    // Hover effect.
+    &:hover > img {
+      transform: translate(8px, 8px);
+    }
+    // Right arrow.
+    img {
+      transform: translate(0, 8px);
+      filter: brightness(25%);
+    }
   }
 }

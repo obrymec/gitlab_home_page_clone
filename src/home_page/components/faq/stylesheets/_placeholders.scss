@@ -5,69 +5,20 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-20
-* @updated: 2023-07-20
-* @version: 0.0.1
+* @updated: 2023-08-26
+* @version: 0.0.2
 */
 
-// Dependencies.
+// Custom dependencies.
 @import "./_variables.scss";
-
-// View or read more button hover effect.
-%faq-expert-btn-hover {
-  // Hover effect.
-  &:hover {
-    text-decoration: underline;
-    // Right arrow.
-    img {
-      transform: translate(8px, 8px);
-    }
-  }
-}
-
-// View or read more button.
-%faq-talk-expert-btn {
-  transition: all .2s ease-in-out;
-  color: $faq-btn-bg-color;
-  display: inline-flex;
-  align-items: center;
-  font-weight: 600;
-  font-size: 18px;
-  border: none;
-  // Right arrow.
-  img {
-    transition: transform .2s linear;
-    transform: translateY(8px);
-    filter: brightness(25%);
-    display: inline-block;
-    margin-left: 4px;
-  }
-}
 
 // Free trial button.
 %faq-free-trial-btn {
-	transition: all .3s cubic-bezier(.7, 0, .3, 1);
 	background-color: $faq-btn-bg-color;
   border: 1px solid $faq-btn-bg-color;
-	color: $faq-btn-text-color;
-	justify-content: center;
-	display: inline-flex;
   border-radius: 4px;
-	padding: 11px 16px;
-	line-height: 20px;
-	font-weight: 600;
-	min-width: 68px;
-	font-size: 18px;
 	// Hover effect.
 	&:hover {
 		background-color: $faq-btn-text-color;
-		// Text.
-		span {
-			color: $faq-btn-bg-color;
-		}
-	}
-	// Text.
-	span {
-		transition: color .3s cubic-bezier(.7, 0, .3, 1);
-		color: $faq-btn-text-color;
 	}
 }

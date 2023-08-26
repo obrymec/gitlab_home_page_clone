@@ -1,13 +1,13 @@
 /**
-* @fileoverview Defines langage textuals data.
+* @fileoverview Defines language textuals data.
 * @author Obrymec - obrymecsprinces@gmail.com
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-08-25
+* @updated 2023-08-26
 * @file english.js
 * @type {English}
-* @version 0.0.1
+* @version 0.0.2
 */
 
 /**
@@ -122,7 +122,7 @@ const english = {
       continuing to make in the 
       platform.
     `,
-    tr40: "Evan O’Connor",
+    tr40: "Evan O'Connor",
     tr41: `
       of monthly users ran secure 
       scanner jobs
@@ -134,7 +134,7 @@ const english = {
       detection jobs
     `,
     tr45: `
-      GitLab’s commitment to an open 
+      GitLab's commitment to an open 
       source community meant that we 
       could engage directly with 
       engineers to work through 
@@ -322,7 +322,17 @@ const english = {
       GitLab 16.1 released 
       with all new navigation
     `,
-    tr132: "Release"
+    tr132: "Release",
+    tr133: "Take GitLab for a spin",
+    tr134: `
+      See what your team could do 
+      with The DevSecOps Platform.
+    `,
+    tr135: `
+      Have a question? We're 
+      here to help.
+    `,
+    tr136: "Talk to an expert"
   }
 };
 

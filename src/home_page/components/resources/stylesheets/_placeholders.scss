@@ -12,6 +12,19 @@
 // Custom dependencies.
 @import "./_variables.scss";
 
+// View all and read more buttons.
+%view-or-read {
+  // Hover effect.
+  &:hover > img {
+    transform: translate(8px, 0.5px);
+  }
+  // Right arrow.
+  img {
+    transform: translate(0, 0.5px);
+    filter: brightness(25%);
+  }
+}
+
 // Left and right arrows.
 %res-arrows {
   border: 1px ridge $mhds-scoll-thumb-bg-color;

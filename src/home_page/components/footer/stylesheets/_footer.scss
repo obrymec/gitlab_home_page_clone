@@ -4,9 +4,9 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-21
-* @updated: 2023-07-21
+* @updated: 2023-08-26
 * @file: footer.scss
-* @version: 0.0.1
+* @version: 0.0.2
 */
 
 // Custom dependencies.
@@ -15,7 +15,6 @@
 
 // Joined references.
 div.foot-joined {
-  transition: padding-right .2s ease-out;
   // From 768 to 0.
   @media #{$footer-768} {
     justify-content: space-between;
@@ -26,7 +25,6 @@ div.foot-joined {
 
 // The second joined refs.
 div.foot-joined:last-child {
-  transition: all .2s ease-out;
   display: inline-flex;
   column-gap: 64px;
   // From 1216 to 768.
@@ -47,7 +45,6 @@ div.foot-joined:first-child {
   }
   // Pricing section.
   & > div:last-child {
-    transition: margin-top .2s ease-out;
     margin-top: 24px;
     // From 768 to 0.
     @media #{$footer-768} {
@@ -75,7 +72,6 @@ div.foot-bottom {
 
 // Footer section.
 footer.footer {
-  transition: padding .2s ease-out;
   background-color: $primary-color;
   padding: 40px 5%;
   // From 1216 to 640.
@@ -94,7 +90,6 @@ footer.footer {
 
 // Footer top.
 div.foot-top {
-  transition: row-gap .2s ease;
   column-gap: 42px;
   display: flex;
   // From 1216 to 0.
@@ -131,7 +126,6 @@ div.foot-menu {
   }
   // Options container.
   ul[name="true"] {
-    transition: all .2s ease-in-out;
     // Only target lists.
     @media #{$footer-768} {
       column-gap: calc(100% - 290px);
@@ -154,7 +148,6 @@ div.foot-menu {
 // Network section.
 div.foot-network {
   border-bottom: 1px solid $footer-text-color;
-  transition: row-gap .2s ease-in-out;
   justify-content: space-between;
   align-items: baseline;
   padding-bottom: 24px;
@@ -182,7 +175,6 @@ div.foot-network {
     column-gap: 15px;
     // Social networks.
     img {
-      transition: filter .2s ease-out;
       filter: brightness(300%);
       cursor: pointer;
     }

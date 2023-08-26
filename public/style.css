@@ -253,8 +253,8 @@ template {
 * @supported: DESKTOP, MOBILE
 * @file: collaborators.scss
 * @created: 2023-06-24
-* @updated: 2023-08-24
-* @version: 0.0.1
+* @updated: 2023-08-26
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab collaborators placeholders stylesheet.
@@ -480,7 +480,7 @@ div.infos {
     div.infos {
       padding: 16px 16px 48px 16px; } }
   div.infos:hover > button.read-more > img {
-    transform: translate(8px, 1px); }
+    transform: translate(6px, 1px); }
   div.infos:hover > button.read-more > label {
     text-decoration: underline; }
   div.infos blockquote.description {
@@ -494,17 +494,12 @@ div.infos {
         line-height: 32px;
         font-size: 20px; } }
   div.infos button.read-more {
-    color: #7759c2;
-    display: inline-flex;
-    align-items: center;
-    outline: none; }
+    color: #7759c2; }
     div.infos button.read-more img {
-      transform: translateY(1px);
-      display: inline-block;
-      margin-left: 3px; }
-  div.infos button.read-more > span {
-    line-height: 38px;
-    font-size: 23px; }
+      transform: translate(0, 1px); }
+    div.infos button.read-more span {
+      line-height: 38px;
+      font-size: 23px; }
 
 /**
 * @fileoverview: GitLab methodologies stylesheet.
@@ -513,8 +508,8 @@ div.infos {
 * @supported: DESKTOP, MOBILE
 * @file: methodologies.scss
 * @created: 2023-07-06
-* @updated: 2023-08-25
-* @version: 0.0.1
+* @updated: 2023-08-26
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab methodologies placeholders stylesheet.
@@ -526,7 +521,7 @@ div.infos {
 * @updated: 2023-08-25
 * @version: 0.0.1
 */
-button.learn-more, div.mhds-infos, div.mhds-infos div:nth-child(2) {
+div.mhds-infos, div.mhds-infos div:nth-child(2) {
   flex-direction: row;
   display: flex; }
 
@@ -540,6 +535,12 @@ button.learn-more, div.mhds-infos, div.mhds-infos div:nth-child(2) {
 * @updated: 2023-08-25
 * @version: 0.0.1
 */
+@media only screen and (max-width: 760px) {
+  button.learn-more {
+    margin-top: 32px; } }
+button.learn-more img {
+  filter: brightness(0); }
+
 section.methodologies {
   padding: 96px 12.8%;
   margin-bottom: 40px; }
@@ -581,19 +582,6 @@ div.mhds-scroll {
     background-color: #171321;
     position: absolute;
     width: 2px; }
-
-button.learn-more {
-  padding: 11px 0 11px 0;
-  align-items: center;
-  font-weight: 600; }
-  button.learn-more:hover > img {
-    transform: translateX(6.5px); }
-  @media only screen and (max-width: 760px) {
-    button.learn-more {
-      margin-top: 32px; } }
-  button.learn-more img {
-    filter: brightness(0);
-    margin-left: 4px; }
 
 div.mhds-body {
   flex-direction: column;
@@ -730,14 +718,16 @@ div.mhds-infos {
 */
 button.flat-btn {
   color: #171321;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 5px;
   outline: none; }
   button.flat-btn:hover img {
-    transform: translate(8px, -1px); }
+    transform: translateX(8px); }
   button.flat-btn:hover span {
     text-decoration: underline;
     text-underline-offset: 4px; }
   button.flat-btn img {
-    transform: translate(0, -1px);
     display: inline-block; }
   button.flat-btn span {
     line-height: 24px;
@@ -883,6 +873,12 @@ section.customers {
 * @updated: 2023-07-14
 * @version: 0.0.1
 */
+div.res-head button:hover:last-child > img, div.resource div:nth-child(4) button:hover > img {
+  transform: translate(8px, 0.5px); }
+div.res-head button:last-child img, div.resource div:nth-child(4) button img {
+  transform: translate(0, 0.5px);
+  filter: brightness(25%); }
+
 div.res-content div.res-right-arrow, div.res-content div.res-left-arrow {
   border: 1px ridge #171321;
   background-color: rgba(240, 240, 240, 0.5);
@@ -943,11 +939,6 @@ div.res-head {
         font-size: 40px; } }
   div.res-head button:last-child {
     font-size: 18px; }
-    div.res-head button:last-child:hover > img {
-      transform: translate(8px, -1.5px); }
-    div.res-head button:last-child img {
-      transform: translate(0, -1.5px);
-      filter: brightness(25%); }
 
 div.res-content {
   transform: translate3d(0, 0, 0); }
@@ -1004,11 +995,6 @@ div.resource {
   div.resource div:nth-child(4) {
     display: inline-flex;
     width: 100%; }
-    div.resource div:nth-child(4) button:hover > img {
-      transform: translate(8px, -2.4px); }
-    div.resource div:nth-child(4) button img {
-      transform: translate(0, -2.4px);
-      filter: brightness(25%); }
 
 /**
 * @author: Obrymec - obrymecsprinces@gmail.com
@@ -1017,7 +1003,7 @@ div.resource {
 * @supported: DESKTOP, MOBILE
 * @file: services.scss
 * @created: 2023-06-23
-* @updated: 2023-08-25
+* @updated: 2023-08-26
 * @version: 0.0.3
 */
 /**
@@ -1177,9 +1163,9 @@ div.service {
   div.service button {
     color: #7759c2; }
     div.service button:hover > img {
-      transform: translate(8px, -2.4px); }
+      transform: translate(8px, 0.6px); }
     div.service button img {
-      transform: translateY(-2.4px); }
+      transform: translate(0, 0.6px); }
     @media only screen and (max-width: 1130px) and (min-width: 1025px) {
       div.service button {
         line-height: 18px;
@@ -2139,9 +2125,9 @@ div.bds-left {
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-21
-* @updated: 2023-07-21
+* @updated: 2023-08-26
 * @file: footer.scss
-* @version: 0.0.1
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab footer placeholders stylesheet.
@@ -2150,7 +2136,7 @@ div.bds-left {
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-21
-* @updated: 2023-07-21
+* @updated: 2023-08-26
 * @version: 0.0.1
 */
 /**
@@ -2173,16 +2159,13 @@ div.bds-left {
 * @updated: 2023-07-21
 * @version: 0.0.1
 */
-div.foot-joined {
-  transition: padding-right .2s ease-out; }
-  @media only screen and (max-width: 768px) {
-    div.foot-joined {
-      justify-content: space-between;
-      display: inline-flex;
-      padding-right: 20px; } }
+@media only screen and (max-width: 768px) {
+  div.foot-joined {
+    justify-content: space-between;
+    display: inline-flex;
+    padding-right: 20px; } }
 
 div.foot-joined:last-child {
-  transition: all .2s ease-out;
   display: inline-flex;
   column-gap: 64px; }
   @media only screen and (max-width: 1216px) {
@@ -2196,7 +2179,6 @@ div.foot-joined:last-child {
   div.foot-joined:first-child {
     padding-right: 48px; } }
 div.foot-joined:first-child > div:last-child {
-  transition: margin-top .2s ease-out;
   margin-top: 24px; }
   @media only screen and (max-width: 768px) {
     div.foot-joined:first-child > div:last-child {
@@ -2214,7 +2196,6 @@ div.foot-bottom {
       cursor: pointer; }
 
 footer.footer {
-  transition: padding .2s ease-out;
   background-color: #171321;
   padding: 40px 5%; }
   @media only screen and (max-width: 1216px) {
@@ -2227,7 +2208,6 @@ footer.footer {
     color: #fff; }
 
 div.foot-top {
-  transition: row-gap .2s ease;
   column-gap: 42px;
   display: flex; }
   @media only screen and (max-width: 1216px) {
@@ -2251,12 +2231,10 @@ div.foot-menu h3 {
   line-height: 24px;
   font-weight: 600;
   font-size: 20px; }
-div.foot-menu ul[name="true"] {
-  transition: all .2s ease-in-out; }
-  @media only screen and (max-width: 768px) {
-    div.foot-menu ul[name="true"] {
-      column-gap: calc(100% - 290px);
-      columns: 100px 2; } }
+@media only screen and (max-width: 768px) {
+  div.foot-menu ul[name="true"] {
+    column-gap: calc(100% - 290px);
+    columns: 100px 2; } }
 div.foot-menu ul > li {
   margin-bottom: 8px;
   line-height: 24px;
@@ -2267,7 +2245,6 @@ div.foot-menu ul > li {
 
 div.foot-network {
   border-bottom: 1px solid #fff;
-  transition: row-gap .2s ease-in-out;
   justify-content: space-between;
   align-items: baseline;
   padding-bottom: 24px;
@@ -2288,21 +2265,20 @@ div.foot-network {
     display: inline-flex;
     column-gap: 15px; }
     div.foot-network div.foot-contacts img {
-      transition: filter .2s ease-out;
       filter: brightness(300%);
       cursor: pointer; }
     div.foot-network div.foot-contacts img:hover {
       filter: brightness(150%); }
 
 /**
-* @fileoverview: GitLab app global faq stylesheet.
 * @author: Obrymec - obrymecsprinces@gmail.com
 * @project: GitLab - https://www.google.com
+* @fileoverview: GitLab faq stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-20
-* @updated: 2023-07-21
+* @updated: 2023-08-26
 * @file: faq.scss
-* @version: 0.0.1
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab faq placeholders stylesheet.
@@ -2311,8 +2287,8 @@ div.foot-network {
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-20
-* @updated: 2023-07-20
-* @version: 0.0.1
+* @updated: 2023-08-26
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab faq variables stylesheet.
@@ -2324,46 +2300,12 @@ div.foot-network {
 * @updated: 2023-07-21
 * @version: 0.0.1
 */
-div.faq-right button:hover {
-  text-decoration: underline; }
-  div.faq-right button:hover img {
-    transform: translate(8px, 8px); }
-
-div.faq-right button {
-  transition: all .2s ease-in-out;
-  color: #171321;
-  display: inline-flex;
-  align-items: center;
-  font-weight: 600;
-  font-size: 18px;
-  border: none; }
-  div.faq-right button img {
-    transition: transform .2s linear;
-    transform: translateY(8px);
-    filter: brightness(25%);
-    display: inline-block;
-    margin-left: 4px; }
-
 div.faq-left button {
-  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
   background-color: #171321;
   border: 1px solid #171321;
-  color: #fff;
-  justify-content: center;
-  display: inline-flex;
-  border-radius: 4px;
-  padding: 11px 16px;
-  line-height: 20px;
-  font-weight: 600;
-  min-width: 68px;
-  font-size: 18px; }
+  border-radius: 4px; }
   div.faq-left button:hover {
     background-color: #fff; }
-    div.faq-left button:hover span {
-      color: #171321; }
-  div.faq-left button span {
-    transition: color 0.3s cubic-bezier(0.7, 0, 0.3, 1);
-    color: #fff; }
 
 /**
 * @fileoverview: GitLab faq variables stylesheet.
@@ -2384,7 +2326,6 @@ div.v-line {
       display: none; } }
 
 section.faq {
-  transition: padding .2s ease;
   padding: 96px 5%;
   display: flex;
   background: radial-gradient(50.08% 44.51% at 100% 100%, rgba(169, 137, 245, 0.2) 0, rgba(119, 89, 194, 0) 100%), radial-gradient(60.76% 48.01% at 0 100%, rgba(226, 67, 41, 0.2) 0, rgba(226, 67, 41, 0) 100%), #fff; }
@@ -2394,7 +2335,7 @@ section.faq {
       row-gap: 64px; } }
   @media only screen and (max-width: 640px) {
     section.faq {
-      padding: 96px 24px; } }
+      padding: 96px 16px; } }
 
 div.faq-left h2 {
   letter-spacing: -1.4px;
@@ -2433,6 +2374,13 @@ div.faq-right {
     line-height: 40px;
     font-weight: 400;
     font-size: 32px; }
+  div.faq-right button {
+    font-size: 18px; }
+    div.faq-right button:hover > img {
+      transform: translate(8px, 8px); }
+    div.faq-right button img {
+      transform: translate(0, 8px);
+      filter: brightness(25%); }
 
 @font-face {
   src: url("../assets/fonts/inter-regular.ttf");

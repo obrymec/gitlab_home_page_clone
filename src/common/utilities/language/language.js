@@ -5,15 +5,16 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-08-19
+* @updated 2023-08-26
 * @file language.js
 * @type {Language}
-* @version 0.0.1
+* @version 0.0.2
 */
 
 // Custom dependencies.
 import {getCookie, setCookie} from "../browser/browser.js";
 import english from "../../i18n/english.js";
+import french from "../../i18n/french.js";
 
 /**
  * @classdesc Languages manager.
@@ -417,7 +418,7 @@ function Language ({
  * @exports Language
  */
 export default new Language ({
+  languages: [english, french],
   cookieName: "gitlabCloneAL",
-  languages: [english],
   defaultLanguage: 0
 });
