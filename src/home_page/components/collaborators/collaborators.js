@@ -6,7 +6,7 @@
 * @file collaborators.js
 * @type {Collaborators}
 * @created 2023-06-24
-* @updated 2023-08-24
+* @updated 2023-08-25
 * @version 0.0.2
 */
 
@@ -246,31 +246,106 @@ function Collaborators () {
 	/**
 	 * @description Builds a collaborator html
 	 * 	structure with a few parameters.
-	 * @param {Object<String, String>} data
-	 * 	Contains the collaborator data.
+	 * @param {{
+	 * 	customClassName: String,
+	 * 	showStatistics: boolean,
+	 * 	percentComment: String,
+	 * 	creditComment: String,
+	 * 	description: String,
+	 * 	profilePath: String,
+	 * 	buttonText: String,
+	 * 	logoPath: String,
+	 * 	percent: String,
+	 * 	radius: boolean,
+	 * 	credit: String,
+	 * 	height: String,
+	 * 	width: String,
+	 * 	name: String,
+	 * 	role: String
+	 * }} data The collaborator data. This
+	 * 	map supports the following keys:
+	 *
+	 * 	- String customClassName: The
+	 * 		specific associated class.
+	 *
+	 * 	- boolean radius: Whether wr want
+	 * 		to put a radius to borders.
+	 *
+	 * 	- String profilePath: The customer
+	 * 		identity.
+	 *
+	 * 	- String description: The customer
+	 * 		citation vision.
+	 *
+	 * 	- String buttonText: The button's
+	 * 		text.
+	 *
+	 * 	- String logoPath: The customer
+	 * 		enterprise logo's path.
+	 *
+	 * 	- String height: The logo's height.
+	 *
+	 *	- String width: The logo's width.
+	 *
+	 * 	- String name: The customer's name.
+	 *
+	 * 	- String role: The job role accuped
+	 * 		by the customer.
+	 *
+	 * 	- boolean showStatistics: Whether we
+	 * 		wish to display a customer states.
+	 *
+	 * 	- String credit: The associated
+	 * 		credit of customer.
+	 *
+	 * 	- String creditComment: The comment
+	 * 		given by customer about his credit.
+	 *
+	 * 	- String percent: The work rendering
+	 * 		on maintenance.
+	 *
+	 * 	- String percentComment: The comment
+	 * 		provided by customer about his
+	 * 		work rendering.
 	 * @function buildColaborator_
-	 * @constant {String}
-	 * @private
+	 * @constant {Function}
+	 * @private {Function}
 	 * @returns {String} String
 	 */
-	const buildColaborator_ = data => `
+	const buildColaborator_ = ({
+		customClassName,
+		showStatistics,
+		percentComment,
+		creditComment,
+		description,
+		profilePath,
+		buttonText,
+		logoPath,
+		percent,
+		radius,
+		height,
+		credit,
+		width,
+		role,
+		name
+	}) => `
 		<div
 			class = "customer${(
-				data.customClassName ?
-				` ${data.customClassName}`
+				customClassName ?
+				` ${customClassName}`
 				: ''
 			)}"
 		>
 			<div
 				class = "identity${(
-					data.radius ?
+					radius ?
 					" collaborators-border-radius"
 					: ''
 				)}"
 			>
 				<div class = "profile">
 					${buildImage ({
-						fileName: data.profilePath,
+						fileName: profilePath,
 					})}
 				</div>
 				<div class = "infos">
@@ -279,30 +354,30 @@ function Collaborators () {
 					>
 						"${
 							clearStr ({
-								input: data.description
+								input: description
 							})
 						}"
 					</blockquote>
 					${buildFlatButton ({
-						text: data.buttonText,
+						text: buttonText,
 						className: "read-more"
 					})}
 					<div class = "about">
 						<div>
 							${buildLogo ({
-								fileName: data.logoPath,
+								fileName: logoPath,
 								data: {
-									height: data.height,
-									width: data.width
+									height: height,
+									width: width
 								}
 							})}
 						</div>
 						<div>
-							<label>${data.name}</label>
+							<label>${name}</label>
 							<p>
 								${
 									clearStr ({
-										input: data.role
+										input: role
 									})
 								}
 							</p>
@@ -311,27 +386,27 @@ function Collaborators () {
 				</div>
 			</div>
 			${(
-				data.showStatistics ?
+				showStatistics ?
 				`<div class = "statistics">
 					<div>
-						<label>${data.credit}</label>
+						<label>${credit}</label>
 						<p>
 							${
 								clearStr ({
 									input: (
-										data.creditComment
+										creditComment
 									)
 								})
 							}
 						</p>
 					</div>
 					<div>
-						<label>${data.percent}</label>
+						<label>${percent}</label>
 						<p>
 							${
 								clearStr ({
 									input: (
-										data.percentComment
+										percentComment
 									)
 								})
 							}
@@ -482,7 +557,8 @@ function Collaborators () {
 		document.querySelector (
 			"main"
 		).appendChild (section);
-		// Listens arrows interactions.
+		// Listens arrows
+		// interactions.
 		swap_ ();
 	}
 }

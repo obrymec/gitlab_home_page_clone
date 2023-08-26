@@ -714,7 +714,7 @@ div.mhds-infos {
 * @fileoverview: GitLab button stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-08-03
-* @updated: 2023-08-25
+* @updated: 2023-08-26
 * @file: button.scss
 * @version: 0.0.2
 */
@@ -731,13 +731,13 @@ div.mhds-infos {
 button.flat-btn {
   color: #171321;
   outline: none; }
-  button.flat-btn:hover > img {
+  button.flat-btn:hover img {
     transform: translate(8px, -1px); }
-  button.flat-btn:hover > span {
+  button.flat-btn:hover span {
     text-decoration: underline;
     text-underline-offset: 4px; }
   button.flat-btn img {
-    transform: translateY(-1px);
+    transform: translate(0, -1px);
     display: inline-block; }
   button.flat-btn span {
     line-height: 24px;
@@ -860,8 +860,8 @@ section.customers {
 * @supported: DESKTOP, MOBILE
 * @file: resources.scss
 * @created: 2023-07-14
-* @updated: 2023-07-14
-* @version: 0.0.1
+* @updated: 2023-08-26
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab resources placeholders stylesheet.
@@ -870,8 +870,8 @@ section.customers {
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-14
-* @updated: 2023-07-14
-* @version: 0.0.1
+* @updated: 2023-08-26
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab resources variables stylesheet.
@@ -883,31 +883,12 @@ section.customers {
 * @updated: 2023-07-14
 * @version: 0.0.1
 */
-div.res-head button:hover:last-child {
-  text-decoration: underline; }
-  div.res-head button:hover:last-child img {
-    transform: translate(8px, 1px); }
-
-div.res-head button:last-child, div.resource div:nth-child(4) button {
-  transition: all .2s ease-in-out;
-  color: #171321;
-  display: inline-flex;
-  align-items: center;
-  font-weight: 600;
-  border: none; }
-  div.res-head button:last-child img, div.resource div:nth-child(4) button img {
-    transition: transform .2s linear;
-    transform: translateY(1px);
-    filter: brightness(25%);
-    display: inline-block;
-    margin-left: 4px; }
-
 div.res-content div.res-right-arrow, div.res-content div.res-left-arrow {
   border: 1px ridge #171321;
   background-color: rgba(240, 240, 240, 0.5);
-  transition: all 150ms linear;
   transform: translateY(-50%);
   backdrop-filter: blur(10px);
+  transition-duration: 150ms;
   border-radius: 50px;
   position: fixed;
   display: none;
@@ -937,11 +918,10 @@ div.res-content div.res-right-arrow, div.res-content div.res-left-arrow {
 * @version: 0.0.1
 */
 section.resources {
-  transition: padding .2s ease;
   padding: 0 5%; }
   @media only screen and (max-width: 640px) {
     section.resources {
-      padding: 2.5%; } }
+      padding: 2.5%, 16px; } }
 
 div.res-head {
   border-bottom: 2px solid #a2a1a6;
@@ -954,7 +934,6 @@ div.res-head {
   row-gap: 8px;
   width: 100%; }
   div.res-head h2:first-child {
-    transition: font-size .2s ease-out;
     letter-spacing: -1.4px;
     line-height: 60px;
     font-weight: 600;
@@ -964,15 +943,16 @@ div.res-head {
         font-size: 40px; } }
   div.res-head button:last-child {
     font-size: 18px; }
+    div.res-head button:last-child:hover > img {
+      transform: translate(8px, -1.5px); }
+    div.res-head button:last-child img {
+      transform: translate(0, -1.5px);
+      filter: brightness(25%); }
 
 div.res-content {
   transform: translate3d(0, 0, 0); }
   div.res-content div.res-show-arrows {
     opacity: 1; }
-  div.res-content div.res-move-right {
-    right: 6px; }
-  div.res-content div.res-move-left {
-    left: 6px; }
   div.res-content div.res-right-arrow {
     right: 15px; }
   div.res-content div.res-body {
@@ -989,9 +969,12 @@ div.res-content {
     left: 15px; }
     div.res-content div.res-left-arrow img {
       transform: rotate(-180deg); }
+  div.res-content div.res-move-right {
+    right: 6px; }
+  div.res-content div.res-move-left {
+    left: 6px; }
 
 div.resource {
-  transition: all .3s ease-in-out;
   flex-direction: column;
   margin-bottom: 48px;
   flex: 0 0 32.3333%;
@@ -1021,6 +1004,11 @@ div.resource {
   div.resource div:nth-child(4) {
     display: inline-flex;
     width: 100%; }
+    div.resource div:nth-child(4) button:hover > img {
+      transform: translate(8px, -2.4px); }
+    div.resource div:nth-child(4) button img {
+      transform: translate(0, -2.4px);
+      filter: brightness(25%); }
 
 /**
 * @author: Obrymec - obrymecsprinces@gmail.com
@@ -1067,7 +1055,7 @@ div.service, div.service div {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-23
-* @updated: 2023-08-19
+* @updated: 2023-08-26
 * @version: 0.0.1
 */
 div.services-as {
@@ -1117,7 +1105,7 @@ div.services-af {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-06-23
-* @updated: 2023-08-19
+* @updated: 2023-08-26
 * @version: 0.0.1
 */
 section.services {

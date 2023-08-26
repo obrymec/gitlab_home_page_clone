@@ -40,7 +40,7 @@ import {FAQ} from "./components/faq/faq.js";
 // // Builds pricing section.
 // new Pricing ().render ();
 // // Builds resources section.
-new Resources ({parentId: "main"}).render ();
+new Resources ().render ();
 // // Builds faq section.
 // new FAQ ({parentId: "main"}).render ();
 // // Buidls footer section.

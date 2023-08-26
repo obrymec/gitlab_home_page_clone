@@ -6,7 +6,7 @@
 * @file methodologies.js
 * @type {Methodologies}
 * @created 2023-07-06
-* @updated 2023-08-25
+* @updated 2023-08-26
 * @version 0.0.2
 */
 
@@ -96,39 +96,66 @@ function Methodologies () {
 	/**
 	 * @description Builds a methodology html
 	 * 	structure with a few parameters.
-	 * @param {Object<String, String>} data
-	 * 	Contains the methodology data.
+	 * @param {{
+	 * 	description: String,
+	 * 	image: String,
+	 * 	title: String,
+	 * 	icon: String,
+	 * 	id: String
+	 * }} data The methodology data. This
+	 * 	map supports the following keys:
+	 *
+	 * 	- String id: The methodology tag's
+	 * 		id.
+	 *
+	 * 	- String icon: The methodology
+	 * 		tag's icon name.
+	 *
+	 * 	- String title: The methodology
+	 * 		title text.
+	 *
+	 * 	- String description: The
+	 * 		description of methodology.
+	 *
+	 * 	- String image: The methodology
+	 * 		representation image's name.
 	 * @function buildMethodology_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {String} String
 	 */
-	const buildMethodology_ = data => `
+	const buildMethodology_ = ({
+		description,
+		image,
+		title,
+		icon,
+		id
+	}) => `
 		<div
-			id = "mhd-${data.id}"
+			id = "mhd-${id}"
 			class = "methodology"
 		>
 			<div class = "mhds-infos">
 				<div>
 					<span>
 						${buildIcon ({
-							fileName: data.icon
+							fileName: icon
 						})}
 					</span>
 					<h3>
 						${clearStr ({
-							input: data.title
+							input: title
 						})}
 					</h3>
 					<p>
 						${clearStr ({
-							input: data.description
+							input: description
 						})}
 					</p>
 				</div>
 				<div>
 					${buildImage ({
-						fileName: data.image
+						fileName: image
 					})}
 				</div>
 			</div>
@@ -635,6 +662,16 @@ function Methodologies () {
 				10000
 			)
 		);
+		// Listens user click event
+		// on every methodologies.
+		[0, 1, 2, 3, 4].forEach (
+			index => (
+				getMethodology_ (index)
+					.addEventListener (
+						"click", dissolvable
+					)
+			)
+		);
 		// Listens human fingers motion
 		// on mobile for the left swipe.
 		swipe.swipeLeft ({
@@ -655,14 +692,6 @@ function Methodologies () {
 				swipeLeft (true);
 			}
 		});
-		// Listens user click event
-		// on every methodologies.
-		[0, 1, 2, 3, 4].forEach (index => (
-			getMethodology_ (index)
-				.addEventListener (
-					"click", dissolvable
-				)
-		));
 		// Listens window resizing.
 		window.addEventListener (
 			"resize",

@@ -5,50 +5,20 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-14
-* @updated: 2023-07-14
-* @version: 0.0.1
+* @updated: 2023-08-26
+* @version: 0.0.2
 */
 
-// Dependencies.
+// Custom dependencies.
 @import "./_variables.scss";
-
-// View or read more button hover effect.
-%resources-btn-hover {
-  // Hover effect.
-  &:hover {
-    text-decoration: underline;
-    // Right arrow.
-    img {
-      transform: translate(8px, 1px);
-    }
-  }
-}
-
-// View or read more button.
-%resources-btn {
-  transition: all .2s ease-in-out;
-  color: $resources-base-color;
-  display: inline-flex;
-  align-items: center;
-  font-weight: 600;
-  border: none;
-  // Right arrow.
-  img {
-    transition: transform .2s linear;
-    transform: translateY(1px);
-    filter: brightness(25%);
-    display: inline-block;
-    margin-left: 4px;
-  }
-}
 
 // Left and right arrows.
 %res-arrows {
   border: 1px ridge $mhds-scoll-thumb-bg-color;
   background-color: $mhds-arrows-bg-color;
-  transition: all 150ms linear;
   transform: translateY(-50%);
   backdrop-filter: blur(10px);
+  transition-duration: 150ms;
   border-radius: 50px;
   position: fixed;
   display: none;

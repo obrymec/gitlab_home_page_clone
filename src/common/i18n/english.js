@@ -299,7 +299,30 @@ const english = {
     tr115: "250GB storage",
     tr116: "500GB transfer per month",
     tr117: "50,000 compute minutes per month",
-    tr118: "Free guest users"
+    tr118: "Free guest users",
+    tr119: "Resources",
+    tr120: "View all resources",
+    tr121: "Ebook",
+    tr122: "Beginner's Guide to DevOps",
+    tr123: "What is CI/CD?",
+    tr124: "Topics",
+    tr125: `
+      2023 Global DevSecOps 
+      Report Series
+    `,
+    tr126: "Report",
+    tr127: "AI/ML in DevSecOps Series",
+    tr128: "Blog post",
+    tr129: `
+      Discover the benefits 
+      of GitLab on AWS
+    `,
+    tr130: "Partners",
+    tr131: `
+      GitLab 16.1 released 
+      with all new navigation
+    `,
+    tr132: "Release"
   }
 };
 

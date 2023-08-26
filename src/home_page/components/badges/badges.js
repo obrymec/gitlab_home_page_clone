@@ -32,8 +32,8 @@ function Badges () {
 	 * @param {{
 	 * 	text: String,
 	 * 	icon: String
-	 * }} data
-	 * 	Supports the following keys:
+	 * }} data Supports the following
+	 * 	keys:
 	 *
 	 * 	- String text: The text content.
 	 *
@@ -44,18 +44,17 @@ function Badges () {
 	 * @returns {String} String
 	 */
 	const buildButton_ = ({
-		text, icon
+		text,
+		icon
 	}) => `
 		<button>
 			${buildIcon ({
 				fileName: icon
 			})}
 			<span>
-				${
-					clearStr ({
-						input: text
-					})
-				}
+				${clearStr ({
+					input: text
+				})}
 			</span>
 		</button>
 	`;

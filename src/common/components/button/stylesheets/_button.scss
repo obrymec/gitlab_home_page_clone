@@ -4,7 +4,7 @@
 * @fileoverview: GitLab button stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-08-03
-* @updated: 2023-08-25
+* @updated: 2023-08-26
 * @file: button.scss
 * @version: 0.0.2
 */
@@ -16,18 +16,21 @@
 button.flat-btn {
 	color: $button-bg-color;
 	outline: none;
-	// Move right arrow.
-	&:hover > img {
-		transform: translate(8px, -1px);
-	}
-	// Underline the text.
-	&:hover > span {
-		text-decoration: underline;
-		text-underline-offset: 4px;
+	// Hover effect.
+	&:hover {
+		// Move right arrow.
+		img {
+			transform: translate(8px, -1px);
+		}
+		// Underline the text.
+		span {
+			text-decoration: underline;
+			text-underline-offset: 4px;
+		}
 	}
 	// Right arrow.
 	img {
-		transform: translateY(-1px);
+		transform: translate(0, -1px);
 		display: inline-block;
 	}
 	// Text.

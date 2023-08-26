@@ -4,7 +4,7 @@
 * @fileoverview NavBar UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-24
+* @updated 2023-08-25
 * @file navbar.js
 * @type {NavBar}
 * @version 0.0.8
@@ -250,7 +250,7 @@ function NavBar () {
 	 * 	tag: String
 	 * }} data The search data
 	 * 	configs. It supports the
-	 * 	keys following:
+	 * 	following keys:
 	 *
 	 * 	- Element container: The
 	 * 		parent of options.

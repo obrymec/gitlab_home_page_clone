@@ -5,8 +5,8 @@
 * @supported: DESKTOP, MOBILE
 * @file: resources.scss
 * @created: 2023-07-14
-* @updated: 2023-07-14
-* @version: 0.0.1
+* @updated: 2023-08-26
+* @version: 0.0.2
 */
 
 // Custom dependencies.
@@ -15,11 +15,10 @@
 
 // Resources section.
 section.resources {
-  transition: padding .2s ease;
   padding: 0 5%;
   // From 640 to 0.
   @media #{$resources-640} {
-    padding: 2.5%;
+    padding: 2.5%, 16px;
   }
 }
 
@@ -36,7 +35,6 @@ div.res-head {
   width: 100%;
   // Huge title.
   h2:first-child {
-    transition: font-size .2s ease-out;
     letter-spacing: -1.4px;
     line-height: 60px;
     font-weight: 600;
@@ -48,9 +46,16 @@ div.res-head {
   }
   // View more button.
   button:last-child {
-    @extend %resources-btn-hover;
-    @extend %resources-btn;
     font-size: 18px;
+    // Hover effect.
+    &:hover > img {
+      transform: translate(8px, -1.5px);
+    }
+    // Right arrow.
+    img {
+      transform: translate(0, -1.5px);
+      filter: brightness(25%);
+    }
   }
 }
 
@@ -60,14 +65,6 @@ div.res-content {
   // Show arrow containers.
   div.res-show-arrows {
     opacity: 1;
-  }
-  // Move right arrow.
-  div.res-move-right {
-    right: 6px;
-  }
-  // Move left arrow.
-  div.res-move-left {
-    left: 6px;
   }
   // Right arrow container.
   div.res-right-arrow {
@@ -96,11 +93,18 @@ div.res-content {
       transform: rotate(-180deg);
     }
   }
+  // Move right arrow.
+  div.res-move-right {
+    right: 6px;
+  }
+  // Move left arrow.
+  div.res-move-left {
+    left: 6px;
+  }
 }
 
 // Resource block.
 div.resource {
-  transition: all .3s ease-in-out;
   flex-direction: column;
   margin-bottom: 48px;
   flex: 0 0 32.3333%;
@@ -144,7 +148,15 @@ div.resource {
     width: 100%;
     // Button.
     button {
-      @extend %resources-btn;
+      // Hover effect.
+      &:hover > img {
+        transform: translate(8px, -2.4px);
+      }
+      // Right arrow.
+      img {
+        transform: translate(0, -2.4px);
+        filter: brightness(25%);
+      }
     }
   }
 }

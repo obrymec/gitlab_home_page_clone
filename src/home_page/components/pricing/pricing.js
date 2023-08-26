@@ -36,7 +36,7 @@ function Pricing () {
 	 */
 	let oldIndex = 0;
 
-  /**
+ /**
   * @description Coordinates the
   *  moving between subscriptions.
   * @param {{

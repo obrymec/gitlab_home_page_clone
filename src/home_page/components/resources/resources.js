@@ -1,156 +1,110 @@
 /**
-* @fileoverview Resources UI component for the landing page.
 * @author Obrymec - obrymecsprinces@gmail.com
 * @project GitLab - https://www.google.com
+* @fileoverview Resources UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-14
-* @updated 2023-07-29
+* @updated 2023-08-26
 * @file resources.js
 * @type {Resources}
-* @version 0.0.1
+* @version 0.0.2
 */
 
 // Custom dependencies.
+import {buildFlatButton} from "../../../common/components/button/button.js";
+import {clearStr} from "../../../common/utilities/string/string.js";
+import lang from "../../../common/utilities/language/language.js";
 import swipe from "../../../common/utilities/swipe/swipe.js";
+import {
+	buildImage,
+	buildIcon,
+	Images,
+	Icons
+} from "../../../common/components/icon_logo_image/icon_logo_image.js";
 
 /**
- * @public @class @classdesc Builds resources
- * 	section.
- * @param {Object<String, any>} data Contains
- *  a javascript object that supports the
- *  following key(s):
- *  - !String parentId: The parent id of
- * 		 resources tag section.
+ * @classdesc Builds resources section.
+ * @public
+ * @class
  * @returns {Resources} Resources
  */
-function Resources (data) {
-	/**
- 	 * @description The right arrow
-	 * 	icon's path.
-	 * @constant {String}
- 	 * @private {String}
-	 * @field
-	 */
-	const rightArrowPath_ = `
-		../../../../../assets/icons
-		/right-arrow.svg
-	`;
-	/**
- 	 * @description The parent id.
-	 * @constant {?String}
- 	 * @private {?String}
-	 * @field
-	 */
-	const parentId_ = (
-		typeof data?.parentId === "string"
-		? data.parentId.replace (/ /g, '')
-		: null
-	);
-
+function Resources () {
 	/**
 	 * @description Returns a reference
-	 *  of a resource tag element
-	 * 	from his position index
-	 * 	within the HTML tree.
-	 * @param {Number} pos The resource
+	 *  of a resource tag element from
+	 * 	his position index within the
+	 * 	HTML tree.
+	 * @param {Number} index The resource
 	 * 	position's index to be retrieved.
 	 * @function getResource_
 	 * @constant {Function}
-	 * @private
+	 * @private {Function}
 	 * @returns {Element} Element
-	*/
-	const getResource_ = pos => (
-		document.querySelector (`
-			div.res-body > div.resource:
-			nth-child(${pos})
-		`.replaceAll (' ', '')
-		 .replaceAll ('\n', '')
-		 .replaceAll ('\t', '')
-		)
+	 */
+	const getResource_ = index => (
+		document.querySelector (
+			"div.res-body"
+		).children[index]
 	);
-
-	/**
-	 * @description Builds a button for
-	 * 	view or read more tags.
-	 * @param {String} text The button's
-	 * 	text label to displayed.
-	 * @function buildButton_
-	 * @constant {Function}
-	 * @private
-	 * @returns {void} void
-	*/
-	const buildButton_ = text => `
-		<button>
-			<span>
-				${
-					text
-						?.replaceAll ('\n', '')
-						?.replaceAll ('\t', '')
-						?.trim ()
-				}
-			</span>
-			<img
-				src = "${rightArrowPath_}"
-				alt = ''
-			/>
-		</button>
-	`;
 
 	/**
 	 * @description Builds a resource
 	 * 	html structure.
-	 * @param {Object<String, String>} data
-	 * 	The resource's data. This map
-	 * 	supports the following keys:
+	 * @param {{
+	 * 	description: String,
+	 * 	imagePath: String,
+	 * 	iconPath: String,
+	 * 	title: String
+	 * }} data The resource's data.
+	 * 	This map supports the following
+	 * 	keys:
+	 *
 	 * 	- String iconPath: The header
 	 * 		icon's path.
+	 *
 	 * 	- String title: The header's
 	 * 		title.
+	 *
 	 * 	- String imagePath: The body
 	 * 		image's path.
+	 *
 	 * 	- String description: The
 	 * 		resource's description.
 	 * @function buildResource_
 	 * @private {Function}
 	 * @returns {String} String
 	 */
-	const buildResource_ = data => `
+	const buildResource_ = ({
+		description,
+		imagePath,
+		iconPath,
+		title
+	}) => `
 		<div class = "resource">
 			<div>
-				<img
-					src = "${
-						data?.iconPath
-							?.replaceAll (' ', '')
-							?.replaceAll ('\n', '')
-							?.replaceAll ('\t', '')
-					}"
-					alt = ''
-				/>
+				${buildIcon ({
+					fileName: iconPath
+				})}
 				<span>
-					${data?.title?.trim ()}
+					${clearStr ({
+						input: title
+					})}
 				</span>
 			</div>
 			<div>
-				<img
-					src = "${
-						data?.imagePath
-							?.replaceAll (' ', '')
-							?.replaceAll ('\n', '')
-							?.replaceAll ('\t', '')
-					}"
-					alt = ''
-				/>
+				${buildImage ({
+					fileName: imagePath
+				})}
 			</div>
 			<p>
-				${
-					data?.description
-						?.replaceAll ('\n', '')
-						?.replaceAll ('\t', '')
-						?.trim ()
-				}
+				${clearStr ({
+					input: description
+				})}
 			</p>
 			<div>
-				${buildButton_ ("Read more")}
+				${buildFlatButton ({
+					text: lang.getText ("tr26")
+				})}
 			</div>
 		</div>
 	`;
@@ -161,9 +115,9 @@ function Resources (data) {
 	 * 	scroll bar.
 	 * @function horizontalCarousel_
 	 * @constant {Function}
-	 * @private
+	 * @private {Function}
 	 * @returns {void} void
-	*/
+	 */
 	const horizontalCarousel_ = () => {
 		// The delay to dissolve
 		// arrows.
@@ -250,26 +204,26 @@ function Resources (data) {
 			}
 			// Adds `res-show-arrows`
 			// class to the right arrow.
-			rightButton?.classList
-				?.add ("res-show-arrows");
+			rightButton.classList
+				.add ("res-show-arrows");
 			// Adds `res-show-arrows`
 			// class to the left arrow.
-			leftButton?.classList
-				?.add ("res-show-arrows");
+			leftButton.classList
+				.add ("res-show-arrows");
 			// Launches a new dissolve
 			// delay for (01) second.
 			dissolveDelay = (
 				window.setTimeout (() => {
 					// Removes `res-show-arrows`
 					// class from the right arrow.
-					rightButton?.classList
-						?.remove (
+					rightButton.classList
+						.remove (
 							"res-show-arrows"
 						);
 					// Removes `res-show-arrows`
 					// class from the left arrow.
-					leftButton?.classList
-						?.remove (
+					leftButton.classList
+						.remove (
 							"res-show-arrows"
 						);
 				}, 1000)
@@ -294,23 +248,23 @@ function Resources (data) {
 				if (!rightBusy) {
 					// Moves the scroll thumb.
 					container.scrollLeft = (
-						container?.scrollLeft
-						+ resource?.offsetWidth
+						container.scrollLeft
+						+ resource.offsetWidth
 					);
 					// The real scroll position.
 					const scrollPos = (
-						container?.scrollLeft
-						+ resource?.offsetWidth
+						container.scrollLeft
+						+ resource.offsetWidth
 					);
 					// The total resource
 					// width size with a few
 					// margins: `100px`.
 					const totalWidth = (
 						(
-							resource?.offsetWidth
+							resource.offsetWidth
 							* (
-									container?.children
-										?.length - 1
+									container.children
+										.length - 1
 								)
 						) - 100
 					);
@@ -344,16 +298,17 @@ function Resources (data) {
 				}
 				// Disabled controls.
 				disabled = true;
+				console.log ("fff")
 				// Adds `res-move-right`
 				// class to button.
-				rightButton?.classList
-					?.add (
+				rightButton.classList
+					.add (
 						"res-move-right"
 					)
 				// Waits for 150 miliseconds.
 				window.setTimeout (() => (
-					rightButton?.classList
-						?.remove (
+					rightButton.classList
+						.remove (
 							"res-move-right"
 						)
 				), 150);
@@ -382,13 +337,13 @@ function Resources (data) {
 				if (!leftBusy) {
 					// Moves the scroll thumb.
 					container.scrollLeft = (
-						container?.scrollLeft
-						- resource?.offsetWidth
+						container.scrollLeft
+						- resource.offsetWidth
 					);
 					// The real scroll position.
 					const scrollPos = (
-						container?.scrollLeft
-						- resource?.offsetWidth
+						container.scrollLeft
+						- resource.offsetWidth
 					);
 					// Whether the scroll thumb
 					// comes to start of the
@@ -415,23 +370,23 @@ function Resources (data) {
 					leftBusy = false;
 					// Resets the scroll thumb.
 					container.scrollLeft = (
-						resource?.offsetWidth
-							* container?.children
-								?.length
+						resource.offsetWidth
+							* container.children
+								.length
 					);
 				}
 				// Disabled controls.
 				disabled = true;
 				// Adds `res-move-left`
 				// class to button.
-				leftButton?.classList
-					?.add (
+				leftButton.classList
+					.add (
 						"res-move-left"
 					)
 				// Waits for 150 miliseconds.
 				window.setTimeout (() => (
-					leftButton?.classList
-						?.remove (
+					leftButton.classList
+						.remove (
 							"res-move-left"
 						)
 				), 150);
@@ -443,13 +398,13 @@ function Resources (data) {
 		};
 		// Listens right arrow
 		// `click` event.
-		rightButton?.addEventListener (
+		rightButton.addEventListener (
 			"click",
 			() => swipeRight (true)
 		);
 		// Listens left arrow
 		// `click` event.
-		leftButton?.addEventListener (
+		leftButton.addEventListener (
 			"click",
 			() => swipeLeft (true)
 		);
@@ -459,6 +414,16 @@ function Resources (data) {
 			window.setInterval (
 				() => swipeRight (false),
 				10000
+			)
+		);
+		// Listens user click event
+		// on every methodologies.
+		[0, 1, 2, 3, 4].forEach (
+			index => (
+				getResource_ (index)
+					.addEventListener (
+						"click", dissolvable
+					)
 			)
 		);
 		// Listens human fingers motion
@@ -529,149 +494,95 @@ function Resources (data) {
 	 * @returns {void} void
 	 */
 	this.render = () => {
-		// Whether parent id is not
-		// null.
-		if (parentId_ != null) {
-			// Creates a section tag.
-			const section = (
-        document.createElement (
-				  "section"
-			  )
-      );
-			// Adds a class's name to
-      // the created section.
-			section.classList.add (
-        "resources"
-      );
-			// Adds a html structure
-      // to the created section.
-			section.innerHTML = `
-        <div class = "res-head">
-					<h2>Resources</h2>
-					${buildButton_ (
-						"View all resources"
-					)}
+		// Creates a section tag.
+		const section = (
+			document.createElement (
+				"section"
+			)
+		);
+		// Adds a class's name to
+		// the created section.
+		section.classList.add (
+			"resources"
+		);
+		// Adds a html structure
+		// to the created section.
+		section.innerHTML = `
+			<div class = "res-head">
+				<h2>
+					${lang.getText ("tr119")}
+				</h2>
+				${buildFlatButton ({
+					text: lang.getText ("tr120")	
+				})}
+			</div>
+			<div class = "res-content">
+				<div class = "res-left-arrow">
+					${buildIcon ({
+						fileName: Icons.RIGHT_ARROW
+					})}
 				</div>
-				<div class = "res-content">
-					<div class = "res-left-arrow">
-						<img
-							src = "${rightArrowPath_}"
-							alt = ''
-						/>
-					</div>
-					<div class = "res-right-arrow">
-						<img
-							src = "${rightArrowPath_}"
-							alt = ''
-						/>
-					</div>
-					<div class = "res-body">
-						${buildResource_ ({
-							title: "Ebook",
-							imagePath: `
-								../../../../../assets
-								/images/resource-1.png
-							`,
-							iconPath: `
-								../../../../../assets
-								/icons/resource-1.svg
-							`,
-							description: `
-								Beginner's Guide to 
-								DevOps
-							`
-						})}
-						${buildResource_ ({
-							description: "What is CI/CD?",
-							title: "Topics",
-							imagePath: `
-								../../../../../assets
-								/images/resource-2.png
-							`,
-							iconPath: `
-								../../../../../assets
-								/icons/resource-2.svg
-							`,
-						})}
-						${buildResource_ ({
-							title: "Report",
-							imagePath: `
-								../../../../../assets
-								/images/resource-3.png
-							`,
-							iconPath: `
-								../../../../../assets
-								/icons/resource-3.svg
-							`,
-							description: `
-								2023 Global DevSecOps 
-								Report Series
-							`
-						})}
-						${buildResource_ ({
-							title: "Blog post",
-							imagePath: `
-								../../../../../assets
-								/images/resource-4.png
-							`,
-							iconPath: `
-								../../../../../assets
-								/icons/resource-4.svg
-							`,
-							description: `
-								AI/ML in DevSecOps 
-								Series
-							`
-						})}
-						${buildResource_ ({
-							title: "Partners",
-							imagePath: `
-								../../../../../assets
-								/images/resource-5.png
-							`,
-							iconPath: `
-								../../../../../assets
-								/icons/resource-5.svg
-							`,
-							description: `
-								Discover the benefits 
-								of GitLab on AWS
-							`
-						})}
-						${buildResource_ ({
-							title: "Release",
-							imagePath: `
-								../../../../../assets
-								/images/resource-6.png
-							`,
-							iconPath: `
-								../../../../../assets
-								/icons/resource-6.svg
-							`,
-							description: `
-								GitLab 16.1 released 
-								with all new navigation
-							`
-						})}
-					</div>
+				<div class = "res-right-arrow">
+					${buildIcon ({
+						fileName: Icons.RIGHT_ARROW
+					})}
 				</div>
-      `;
-      // Adds the below section
-			// to the selected tag as
-			// a child.
-			document.querySelector (
-				parentId_
-			).appendChild (section);
-			// Listens controls to apply
-			// horizontal carousel effect.
-			horizontalCarousel_ ();
-    }
+				<div class = "res-body">
+					${buildResource_ ({
+						description: lang.getText ("tr122"),
+						title: lang.getText ("tr121"),
+						imagePath: Images.RESOURCE_1,
+						iconPath: Icons.RESOURCE_1
+					})}
+					${buildResource_ ({
+						description: lang.getText ("tr123"),
+						title: lang.getText ("tr124"),
+						imagePath: Images.RESOURCE_2,
+						iconPath: Icons.RESOURCE_2
+					})}
+					${buildResource_ ({
+						description: lang.getText ("tr125"),
+						title: lang.getText ("tr126"),
+						imagePath: Images.RESOURCE_3,
+						iconPath: Icons.RESOURCE_3
+					})}
+					${buildResource_ ({
+						description: lang.getText ("tr127"),
+						title: lang.getText ("tr128"),
+						imagePath: Images.RESOURCE_4,
+						iconPath: Icons.RESOURCE_4
+					})}
+					${buildResource_ ({
+						description: lang.getText ("tr129"),
+						title: lang.getText ("tr130"),
+						imagePath: Images.RESOURCE_5,
+						iconPath: Icons.RESOURCE_5
+					})}
+					${buildResource_ ({
+						description: lang.getText ("tr131"),
+						title: lang.getText ("tr132"),
+						imagePath: Images.RESOURCE_6,
+						iconPath: Icons.RESOURCE_6
+					})}
+				</div>
+			</div>
+		`;
+		// Adds the below section
+		// to the selected tag as
+		// a child.
+		document.querySelector (
+			"main"
+		).appendChild (section);
+		// Listens controls to
+		// apply horizontal
+		// carousel effect.
+		horizontalCarousel_ ();
   }
 }
 
 /**
- * @description Exports all public
- *  features.
+ * @description Exports all
+ * 	public features.
  * @exports *
  */
 export {Resources};
