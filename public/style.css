@@ -2125,7 +2125,7 @@ div.bds-left {
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-21
-* @updated: 2023-08-26
+* @updated: 2023-08-30
 * @file: footer.scss
 * @version: 0.0.2
 */
@@ -2261,6 +2261,8 @@ div.foot-network {
     color: #fff;
     cursor: pointer;
     border: none; }
+    div.foot-network select option {
+      color: #171321; }
   div.foot-network div.foot-contacts {
     display: inline-flex;
     column-gap: 15px; }

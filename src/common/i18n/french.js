@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-26
-* @updated 2023-08-26
+* @updated 2023-08-30
 * @file french.js
 * @version 0.0.2
 * @type {French}
@@ -375,7 +375,75 @@ const french = {
       Avoir une question? Étaient
       Ici pour aider.
     `,
-    tr136: "Parler à un expert"
+    tr136: "Parler à un expert",
+    tr136: "Parler à un expert",
+    tr137: "Plateforme DevSecOps",
+    tr138: "Voir les plans",
+    tr139: "Pourquoi premium ?",
+    tr140: "Pourquoi Ultimate ?",
+    tr141: "Transformation numérique",
+    tr142: "Sécurité et conformité",
+    tr143: `
+      Livraison automatisée de 
+      logiciels
+    `,
+    tr144: "Développement agile",
+    tr145: "Transformation cloud",
+    tr146: "SCM",
+    tr147: "CI/CD",
+    tr148: "Gestion des flux de valeur",
+    tr149: "GitOps",
+    tr150: "Entreprise",
+    tr151: "Petite entreprise",
+    tr152: "Secteur public",
+    tr153: "Éducation",
+    tr154: "Services financiers",
+    tr155: "Installer",
+    tr156: `
+      Listes de contrôle de 
+      configuration rapide
+    `,
+    tr157: "Apprendre",
+    tr158: "Documents",
+    tr159: "Blogs",
+    tr160: "Témoignages de clients",
+    tr161: "À distance",
+    tr162: "ÉquipeOps",
+    tr163: "Communauté",
+    tr164: "Forum",
+    tr165: "Événements",
+    tr166: "Partenaires",
+    tr167: "À propos",
+    tr168: "Emplois",
+    tr169: "Leadership",
+    tr170: "Équipe",
+    tr171: "Manuel",
+    tr172: "Relations investisseurs",
+    tr173: "Centre de confiance",
+    tr174: "Newsletter",
+    tr175: "Appuyez",
+    tr176: "Contacter un expert",
+    tr177: "Obtenir de l'aide",
+    tr178: "Portail client",
+    tr179: "Statut",
+    tr180: "Conditions d'utilisation",
+    tr181: `
+      Déclaration de confidentialité
+    `,
+    tr182: `
+      Préférences en matière de cookies
+    `,
+    tr183: "Langue",
+    tr184: `
+      Git est une marque commerciale 
+      de Software Freedom Conservancy 
+      et notre l'utilisation de 
+      'GitLab' est sous Licence
+    `,
+    tr185: "Vue",
+    tr186: "source de la page",
+    tr187: "Modifier cette page",
+    tr188: "veuillez contribuer"
   }
 }
 

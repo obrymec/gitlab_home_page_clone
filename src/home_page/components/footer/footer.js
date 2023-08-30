@@ -4,23 +4,20 @@
 * @fileoverview GitLab footer section.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-21
-* @updated 2023-08-26
+* @updated 2023-08-30
 * @file footer.js
 * @version 0.0.3
 * @type {Footer}
 */
 
 // Custom dependencies.
-import {clearJSStyle} from "../../../common/utilities/browser/browser.js";
-import {buildButton} from "../../../common/components/button/button.js";
-import ScreenManager from "../../../common/utilities/screen/screen.js";
 import {clearStr} from "../../../common/utilities/string/string.js";
 import lang from "../../../common/utilities/language/language.js";
 import {
-	buildImage,
 	buildIcon,
-	Images,
-	Icons
+	buildLogo,
+	Icons,
+	Logos
 } from "../../../common/components/icon_logo_image/icon_logo_image.js";
 
 /**
@@ -109,13 +106,11 @@ function Footer () {
 		footer.innerHTML = `
 			<div class = "foot-top">
 				<div class = "foot-gitlab">
-					<img
-						src = "${`
-							../../../../../assets/
-							logos/gitlab-logo-text.svg
-						`}"
-						alt = ''
-					/>
+					${buildLogo ({
+						fileName: (
+							Logos.GITLAB_LOGO_TEXT
+						)
+					})}
 					<span>®</span>
 				</div>
 				<div class = "foot-refs">
@@ -123,89 +118,89 @@ function Footer () {
 						class = "foot-joined"
 					>
 						${buildMenu_ ({
-							title: "Platform",
+							title: lang.getText ("tr2"),
 							stretch: false,
 							options: [
-								"DevSecOps platform"
+								lang.getText ("tr137")
 							]
 						})}
 						${buildMenu_ ({
-							title: "Pricing",
+							title: lang.getText ("tr4"),
 							stretch: false,
 							options: [
-								"View plans",
-								"Why premium?",
-								"Why ultimate?"
+								lang.getText ("tr138"),
+								lang.getText ("tr139"),
+								lang.getText ("tr140")
 							]
 						})}
 					</div>
 					${buildMenu_ ({
-						title: "Solutions",
+						title: lang.getText ("tr3"),
 						stretch: true,
 						options: [
-							"Digital transformation",
-							"Security & Compliance",
-							"Automated software delivery",
-							"Agile development",
-							"Cloud transformation",
-							"SCM",
-							"CI/CD",
-							"Value stream management",
-							"GitOps",
-							"Enterprise",
-							"Small business",
-							"Public Sector",
-							"Education",
-							"Financial services"
+							lang.getText ("tr141"),
+							lang.getText ("tr142"),
+							lang.getText ("tr143"),
+							lang.getText ("tr144"),
+							lang.getText ("tr145"),
+							lang.getText ("tr146"),
+							lang.getText ("tr147"),
+							lang.getText ("tr148"),
+							lang.getText ("tr149"),
+							lang.getText ("tr150"),
+							lang.getText ("tr151"),
+							lang.getText ("tr152"),
+							lang.getText ("tr153"),
+							lang.getText ("tr154")
 						]
 					})}
 					${buildMenu_ ({
-						title: "Resources",
+						title: lang.getText ("tr5"),
 						stretch: true,
 						options: [
-							"Install",
-							"Quick setup checklists",
-							"Learn",
-							"Docs",
-							"Blogs",
-							"Customer success stories",
-							"Remote",
-							"TeamOps",
-							"Community",
-							"Forum",
-							"Events",
-							"Partners"
+							lang.getText ("tr155"),
+							lang.getText ("tr156"),
+							lang.getText ("tr157"),
+							lang.getText ("tr158"),
+							lang.getText ("tr159"),
+							lang.getText ("tr160"),
+							lang.getText ("tr161"),
+							lang.getText ("tr162"),
+							lang.getText ("tr163"),
+							lang.getText ("tr164"),
+							lang.getText ("tr165"),
+							lang.getText ("tr166")
 						]
 					})}
 					<div
 						class = "foot-joined"
 					>
 						${buildMenu_ ({
-							title: "Company",
+							title: lang.getText ("tr6"),
 							stretch: false,
 							options: [
-								"About",
-								"Jobs",
-								"Leadership",
-								"Team",
-								"Handbook",
-								"Investor relations",
-								"Trust Center",
-								"Newsletter",
-								"Press"
+								lang.getText ("tr167"),
+								lang.getText ("tr168"),
+								lang.getText ("tr169"),
+								lang.getText ("tr170"),
+								lang.getText ("tr171"),
+								lang.getText ("tr172"),
+								lang.getText ("tr173"),
+								lang.getText ("tr174"),
+								lang.getText ("tr175")
 							]
 						})}
 						${buildMenu_ ({
-							title: "Contact us",
+							title: lang.getText ("tr6"),
 							stretch: false,
 							options: [
-								"Contact an expert",
-								"Get help",
-								"Customer portal",
-								"Status",
-								"Terms of use",
-								"Privacy statement",
-								"Cookie preferences"
+								lang.getText ("tr176"),
+								lang.getText ("tr177"),
+								lang.getText ("tr178"),
+								lang.getText ("tr179"),
+								lang.getText ("tr180"),
+								lang.getText ("tr181"),
+								lang.getText ("tr182")
 							]
 						})}
 					</div>
@@ -214,14 +209,12 @@ function Footer () {
 			<div class = "foot-bottom">
 				<div class = "foot-network">
 					<div class = "foot-langs">
-						<img
-							src = "${`
-								../../../../../assets
-								/icons/planet.svg
-							`}"
-							alt = ''
-						/>
-						<span>Language: </span>
+						${buildIcon ({
+							fileName: Icons.PLANET
+						})}
+						<span>
+							${lang.getText ("tr183")}: 
+						</span>
 						<select>
 							<option
 								value = "english"
@@ -248,46 +241,34 @@ function Footer () {
 					<div
 						class = "foot-contacts"
 					>
-						<img
-							src = "${`
-								../../../../../assets
-								/logos/twiter.svg
-							`}"
-							alt = ''
-						/>
-						<img
-							src = "${`
-								../../../../../assets
-								/logos/facebook.svg
-							`}"
-							alt = ''
-						/>
-						<img
-							src = "${`
-								../../../../../assets
-								/logos/youtube.svg
-							`}"
-							alt = ''
-						/>
-						<img
-							src = "${`
-								../../../../../assets
-								/logos/linkdin.svg
-							`}"
-							alt = ''
-						/>
+						${buildLogo ({
+							fileName: Logos.TWITER 
+						})}
+						${buildLogo ({
+							fileName: Logos.FACEBOOK 
+						})}
+						${buildLogo ({
+							fileName: Logos.YOUTUBE 
+						})}
+						${buildLogo ({
+							fileName: Logos.LINKDIN 
+						})}
 					</div>
 				</div>
 				<p>
-					Git is a trademark of Software 
-					Freedom Conservancy and our 
-					use of 'GitLab' is under 
-					license
+					${lang.getText ("tr184")}
 				</p>
 				<p>
-					View <a>page source</a> 
-					— <a>Edit this page</a> 
-					— <a>please contribute.</a>
+					${lang.getText ("tr185")} 
+					<a>
+						${lang.getText ("tr186")}
+					</a> 
+					— <a>
+							${lang.getText ("tr187")}
+						</a> 
+					— <a>
+							${lang.getText ("tr188")}.
+						</a>
 				</p>
 				<p>© 2023 GitLab B.V.</p>
 			</div>

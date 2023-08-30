@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-21
-* @updated: 2023-08-26
+* @updated: 2023-08-30
 * @file: footer.scss
 * @version: 0.0.2
 */
@@ -168,6 +168,10 @@ div.foot-network {
     color: $footer-text-color;
     cursor: pointer;
     border: none;
+    // Options.
+    option {
+      color: $footer-bg-color;
+    }
   }
   // Network contacts.
   div.foot-contacts {

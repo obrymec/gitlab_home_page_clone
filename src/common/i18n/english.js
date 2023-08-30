@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-08-26
+* @updated 2023-08-30
 * @file english.js
 * @type {English}
 * @version 0.0.2
@@ -332,7 +332,64 @@ const english = {
       Have a question? We're 
       here to help.
     `,
-    tr136: "Talk to an expert"
+    tr136: "Talk to an expert",
+    tr137: "DevSecOps platform",
+    tr138: "View plans",
+    tr139: "Why premium?",
+    tr140: "Why ultimate?",
+    tr141: "Digital transformation",
+    tr142: "Security & Compliance",
+    tr143: "Automated software delivery",
+    tr144: "Agile development",
+    tr145: "Cloud transformation",
+    tr146: "SCM",
+    tr147: "CI/CD",
+    tr148: "Value stream management",
+    tr149: "GitOps",
+    tr150: "Enterprise",
+    tr151: "Small business",
+    tr152: "Public Sector",
+    tr153: "Education",
+    tr154: "Financial services",
+    tr155: "Install",
+    tr156: "Quick setup checklists",
+    tr157: "Learn",
+    tr158: "Docs",
+    tr159: "Blogs",
+    tr160: "Customer success stories",
+    tr161: "Remote",
+    tr162: "TeamOps",
+    tr163: "Community",
+    tr164: "Forum",
+    tr165: "Events",
+    tr166: "Partners",
+    tr167: "About",
+    tr168: "Jobs",
+    tr169: "Leadership",
+    tr170: "Team",
+    tr171: "Handbook",
+    tr172: "Investor relations",
+    tr173: "Trust Center",
+    tr174: "Newsletter",
+    tr175: "Press",
+    tr176: "Contact an expert",
+    tr177: "Get help",
+    tr178: "Customer portal",
+    tr179: "Status",
+    tr180: "Terms of use",
+    tr181: "Privacy statement",
+    tr182: "Cookie preferences",
+    tr183: "Language",
+    tr184: `
+      Git is a trademark of Software 
+      Freedom Conservancy and our 
+      use of 'GitLab' is under 
+      license
+    `,
+    tr185: "View",
+    tr186: "page source",
+    tr187: "Edit this page",
+    tr188: "please contribute"
   }
 };
 
