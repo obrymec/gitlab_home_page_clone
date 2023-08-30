@@ -1373,9 +1373,9 @@ div.sub-infos {
 * @fileoverview: GitLab navbar stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-18
+* @updated: 2023-08-30
 * @file: navbar.scss
-* @version: 0.0.7
+* @version: 0.0.8
 */
 /**
 * @fileoverview: GitLab navbar placeholders stylesheet.
@@ -1441,8 +1441,8 @@ nav.navbar > button:first-child {
 * @supported: DESKTOP, MOBILE
 * @file: animations.scss
 * @created: 2023-08-11
-* @updated: 2023-08-12
-* @version: 0.0.2
+* @updated: 2023-08-30
+* @version: 0.0.3
 */
 /**
 * @fileoverview: GitLab navbar variables stylesheet.
@@ -1454,6 +1454,11 @@ nav.navbar > button:first-child {
 * @updated: 2023-08-04
 * @version: 0.0.2
 */
+@keyframes navOptionBlink {
+  from {
+    background-color: transparent; }
+  to {
+    background-color: #e3dfed; } }
 img.hd-first-gitlab-as {
   transform: rotate(-180deg); }
 
@@ -1567,6 +1572,8 @@ menu.nav-menu-popup {
     menu.nav-menu-popup section:first-child img:first-child,
     menu.nav-menu-popup section:first-child img:last-child {
       cursor: pointer; }
+  menu.nav-menu-popup div.nav-menu-selection {
+    animation: navOptionBlink 100ms linear 0ms 3 normal backwards; }
   menu.nav-menu-popup section:nth-child(2) > div {
     border-bottom: 1px solid #ccc;
     justify-content: space-between;
@@ -1575,8 +1582,6 @@ menu.nav-menu-popup {
     align-items: center;
     font-size: 19px;
     cursor: pointer; }
-    menu.nav-menu-popup section:nth-child(2) > div:hover {
-      background-color: #e3dfed; }
     @media only screen and (max-width: 575px) {
       menu.nav-menu-popup section:nth-child(2) > div {
         font-size: 16px; } }
@@ -1613,6 +1618,9 @@ div.nav-left {
     @media only screen and (max-width: 575px) {
       div.nav-left img:nth-child(2) {
         margin: auto; } }
+  div.nav-left label.nav-active-option {
+    color: #171321;
+    pointer-events: none; }
   div.nav-left label {
     color: #74717a;
     cursor: pointer; }

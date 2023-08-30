@@ -4,9 +4,9 @@
 * @fileoverview: GitLab navbar stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-18
+* @updated: 2023-08-30
 * @file: navbar.scss
-* @version: 0.0.7
+* @version: 0.0.8
 */
 
 // Custom dependencies.
@@ -61,6 +61,10 @@ menu.nav-menu-popup {
 			cursor: pointer;
 		}
 	}
+	// Animate option selection.
+	div.nav-menu-selection {
+		animation: navOptionBlink 100ms linear 0ms 3 normal backwards;
+	}
 	// Options.
 	section:nth-child(2) > div {
 		border-bottom: 1px solid $navbar-menu-items-border-color;
@@ -71,10 +75,6 @@ menu.nav-menu-popup {
 		align-items: center;
 		font-size: 19px;
 		cursor: pointer;
-		// Hover effect.
-		&:hover {
-			background-color: $navbar-menu-items-bg-color;
-		}
 		// From 575 to 0.
 		@media #{$navbar-575} {
 			font-size: 16px;
@@ -136,6 +136,11 @@ div.nav-left {
 		@media #{$navbar-575} {
 			margin: auto;
 		}
+	}
+	// Active option.
+	label.nav-active-option {
+		color: $navbar-btn-bg-color;
+		pointer-events: none;
 	}
 	// Options.
 	label {

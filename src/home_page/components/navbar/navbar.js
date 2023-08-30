@@ -4,10 +4,10 @@
 * @fileoverview NavBar UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-25
+* @updated 2023-08-30
 * @file navbar.js
 * @type {NavBar}
-* @version 0.0.8
+* @version 0.0.9
 */
 
 // Custom dependencies.
@@ -138,7 +138,7 @@ function NavBar () {
 			tag: "medium",
 			timeline
 		});
-		// Returns animation timeine
+		// Returns animation timeline
 		// to control it after.
 		return timeline;
 	};
@@ -173,6 +173,37 @@ function NavBar () {
 	);
 
 	/**
+	 * @description Selects a navbar top
+	 * 	left option.
+	 * @param {int} index The position's
+	 * 	index of an option.
+	 * @function select
+	 * @public
+	 * @returns {void} void
+	 */
+	this.select = index => {
+		// Adjusts the passed index value.
+		index += 2;
+		// Removes `nav-active-option`
+		// class from all options.
+		for (let i = 2; i <= 8; i++) {
+			// Removes `nav-active-option`
+			// from the current option.
+			navLeft_.children[i]
+				.classList.remove (
+					"nav-active-option"
+				);
+		}
+		// Add `nav-active-option`
+		// class to the selected
+		// option.
+		navLeft_.children[index]
+			.classList.add (
+				"nav-active-option"
+			);
+	}
+
+	/**
 	 * @description Animates the navbar
 	 * 	for large screen.
 	 * @function largeAnimation_
@@ -199,7 +230,7 @@ function NavBar () {
 			tag: "large",
 			timeline
 		});
-		// Returns animation timeine
+		// Returns animation timeline
 		// to control it after.
 		return timeline;
 	};
@@ -225,7 +256,7 @@ function NavBar () {
 			translateY: ["10px", "0px"],
 			opacity: [0.0, 1.0]
 		}, 300);
-		// Animates amburger menu.
+		// Animates emburger menu.
 		timeline.add ({
 			translateX: ["-17px", "-17px"],
 			translateY: ["-6px", "-16px"],
@@ -235,7 +266,7 @@ function NavBar () {
 					.children.length - 1
 			)]
 		}, 300);
-		// Returns animation timeine
+		// Returns animation timeline
 		// to control it after.
 		return timeline;
 	};
@@ -323,18 +354,37 @@ function NavBar () {
 		menu_
 			.children[0].children[1]
 			.addEventListener (
-				"click",
-				() => closeMenu_ ()
+				"click", closeMenu_
 			);
 		// Listens `click` event on
 		// emburger menu icon.
-		navRight_.children[(
-			navRight_
-				.children.length - 1
-		)].addEventListener (
-			"click",
-			() => showMenu_ ()
+		navRight_.children[
+			(navRight_.children.length - 1)
+		].addEventListener (
+			"click", showMenu_
 		);
+		// Listens all top left options
+		// `click` event.
+		for (let j = 1; j <= 8; j++) {
+			// Listens `click` event
+			// of the current option.
+			navLeft_.children[j]
+				.addEventListener (
+					"click", () => {
+						// Whether we click on
+						// gitlab logo.
+						if (j === 1) {}
+						// Whether the current
+						// index is great than
+						// one (01).
+						if (j > 1) {
+							// Selects the target
+							// option.
+							this.select (j - 2);
+						}
+					}
+				);
+		}
 		// Listening all menu option
 		// `click` event.
 		for (
@@ -345,8 +395,25 @@ function NavBar () {
 			// Listens `click` event
 			// of the current option.
 			option.addEventListener (
-				"click",
-				() => closeMenu_ ()
+				"click", () => {
+					// Adds `nav-menu-selection`
+					// class to the selected
+					// option.
+					option.classList.add (
+						"nav-menu-selection"
+					);
+					// Waiting for animation
+					// completed.
+					window.setTimeout (() => {
+						// Closes menu.
+						closeMenu_ ();
+						// Removes the added class
+						// to the selected option.
+						option.classList.remove (
+							"nav-menu-selection"
+						);
+					}, 310);
+				}
 			);
 		}
 		// Listens window `resize`
@@ -716,8 +783,8 @@ function NavBar () {
 				)
 			})}
 		`;
-		// Adds a html structure
-		// to the created nav.
+		// Adds a html structure to the
+		// created nav.
 		nav.innerHTML = `
 			${buildButton ({
 				text: lang.getText ("tr9"),
@@ -889,7 +956,8 @@ function NavBar () {
 			</section>
 		`;
 		// Adds the below nav section
-		// to the header tag as a child.
+		// to the header tag as a 
+		// child.
 		header_.appendChild (nav);
 		// Adds the below menu section
 		// to the aside tag as a child.

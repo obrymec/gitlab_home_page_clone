@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-26
+* @updated 2023-08-30
 * @version 0.0.6
 * @file main.js
 */
@@ -24,7 +24,7 @@ import {Footer} from "./components/footer/footer.js";
 import {FAQ} from "./components/faq/faq.js";
 
 // Builds navbar section.
-// new NavBar ().render ();
+new NavBar ().render ();
 // Builds banner section.
 // new Banner ().render ();
 // // Builds customers section.
@@ -44,4 +44,4 @@ import {FAQ} from "./components/faq/faq.js";
 // // Builds faq section.
 // new FAQ ().render ();
 // // Buidls footer section.
-new Footer ().render ();
+// new Footer ().render ();

@@ -5,12 +5,21 @@
 * @supported: DESKTOP, MOBILE
 * @file: animations.scss
 * @created: 2023-08-11
-* @updated: 2023-08-12
-* @version: 0.0.2
+* @updated: 2023-08-30
+* @version: 0.0.3
 */
 
 // Custom dependencies.
 @import "./_variables.scss";
+
+// Blink animation.
+@keyframes navOptionBlink {
+  from {
+    background-color: transparent;
+  } to {
+    background-color: $navbar-menu-items-bg-color;
+  }
+}
 
 // First gitlab animation
 // starting value.
