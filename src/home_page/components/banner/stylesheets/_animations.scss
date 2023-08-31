@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: animations.scss
 * @created: 2023-06-16
-* @updated: 2023-08-11
+* @updated: 2023-08-31
 * @version: 0.0.2
 */
 
@@ -13,7 +13,7 @@
 @import "./_variables.scss";
 
 // Caroussel progress.
-@keyframes progressBar {
+@keyframes bannerProgressBar {
   from {
 		width: 0;
 	} to {

@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-24
+* @updated: 2023-08-31
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -242,9 +242,9 @@ template {
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-06-19
+* @updated: 2023-06-31
 * @file: light.scss
-* @version: 0.0.1
+* @version: 0.0.2
 */
 /**
 * @fileoverview: GitLab collaborators stylesheet.
@@ -1694,7 +1694,7 @@ div.nav-right {
 * @fileoverview: GitLab banner stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-17
-* @updated: 2023-08-11
+* @updated: 2023-08-31
 * @file: banner.scss
 * @version: 0.0.2
 */
@@ -1705,7 +1705,7 @@ div.nav-right {
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-18
-* @updated: 2023-08-18
+* @updated: 2023-08-31
 * @version: 0.0.4
 */
 /**
@@ -1778,8 +1778,8 @@ div.banner-left div:nth-child(5) {
     width: 33.33%;
     height: 2px;
     background-color: #e3d8ff; }
-    div.banner-left div:nth-child(5) > span div.progress-thumb {
-      animation: progressBar 4s linear 0s 1 normal backwards; }
+    div.banner-left div:nth-child(5) > span div.banner-progress-thumb {
+      animation: bannerProgressBar 4s linear 0s 1 normal backwards; }
   div.banner-left div:nth-child(5) > span > div {
     background-color: #171321;
     border-radius: 10px;
@@ -1793,7 +1793,7 @@ div.banner-left div:nth-child(5) {
 * @supported: DESKTOP, MOBILE
 * @file: animations.scss
 * @created: 2023-06-16
-* @updated: 2023-08-11
+* @updated: 2023-08-31
 * @version: 0.0.2
 */
 /**
@@ -1806,7 +1806,7 @@ div.banner-left div:nth-child(5) {
 * @updated: 2023-08-18
 * @version: 0.0.2
 */
-@keyframes progressBar {
+@keyframes bannerProgressBar {
   from {
     width: 0; }
   to {
@@ -1884,8 +1884,13 @@ section.banner {
   background-image: url("../../../../../assets/images/gradient-desktop.jpg");
   background-repeat: no-repeat;
   background-position: 80%;
-  background-size: cover;
+  background-size: cover; }
+
+section.banner-template {
+  transform: translate3d(0, 0, 0);
   margin-top: 78px; }
+  section.banner-template div.banner-hide-skeleton {
+    opacity: 0; }
 
 div.banner-right {
   transform: translate3d(0, 0, 0);
@@ -1910,7 +1915,7 @@ div.banner-right {
     position: fixed;
     opacity: 0;
     top: 0; }
-  div.banner-right img.fade-in {
+  div.banner-right img.banner-fade-in {
     opacity: 1; }
 
 div.banner-left {
@@ -2393,8 +2398,11 @@ div.faq-right {
       filter: brightness(25%); }
 
 @font-face {
-  src: url("../assets/fonts/inter-regular.ttf");
-  font-family: "InterRegular"; }
+  font-family: "InterRegular";
+  src: url("../assets/fonts/inter-regular.ttf"); }
+@keyframes shine {
+  to {
+    background-position-x: -200%; } }
 * {
   transition: all .2s ease-in-out; }
 
@@ -2409,3 +2417,14 @@ body {
   font-size: 16px; }
   body aside > menu.display-popup-menu {
     transform: translateX(0); }
+
+div.skeleton-loading {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  animation: 1.5s shine linear infinite;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  background-size: 200% 100%; }

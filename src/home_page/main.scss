@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-24
+* @updated: 2023-08-31
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -27,8 +27,16 @@
 
 // Inter regular font definition.
 @font-face {
-	src: url("../assets/fonts/inter-regular.ttf");
-	font-family: "InterRegular";
+	font-family: $inter-regular-font;
+	src: url($inter-regular);
+}
+
+// Shine animation for skeleton
+// loading process.
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
 }
 
 // All tags.
@@ -50,4 +58,23 @@ body {
 	aside > menu.display-popup-menu {
 		transform: translateX(0);
 	}
+}
+
+// Any template will be affected
+// by the skeleton loading effect.
+div.skeleton-loading {
+  box-shadow: 0 0 10px $skeleton-shadow-color;
+  animation: 1.5s shine linear infinite;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	top: 0;
+  background: linear-gradient(
+    110deg,
+    $skeleton-line-color-1 8%,
+    $skeleton-line-color-2 18%,
+    $skeleton-line-color-3 33%
+  );
+  background-size: 200% 100%;
 }

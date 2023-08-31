@@ -4,17 +4,21 @@
 * @fileoverview Banner UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-17
-* @updated 2023-08-24
+* @updated 2023-08-31
 * @file banner.js
 * @type {Banner}
 * @version 0.0.2
 */
 
 // Custom dependencies.
-import {clearJSStyle} from "../../../common/utilities/browser/browser.js";
 import {buildButton} from "../../../common/components/button/button.js";
 import ScreenManager from "../../../common/utilities/screen/screen.js";
+import {getUpdates} from "../../../common/utilities/string/string.js";
 import lang from "../../../common/utilities/language/language.js";
+import {
+	listenLoadEvent,
+	clearJSStyle
+} from "../../../common/utilities/browser/browser.js";
 import {
 	buildImage,
 	buildIcon,
@@ -46,6 +50,13 @@ function Banner () {
 	 * @field
 	 */
 	let bannerLeft_ = null;
+	/**
+	 * @description The banner data.
+	 * @private {?Object<String, String>}
+	 * @type {?Object<String, String>}
+	 * @field
+	 */
+	let bannerData_ = {};
 
 	/**
 	 * @description Animates the banner
@@ -72,6 +83,48 @@ function Banner () {
 		}, 300);
 		// Returns the timeline.
 		return timeline;
+	};
+
+	/**
+	 * @description Animates top label.
+	 * @function topLabelAnimation_
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const topLabelAnimation_ = () => {
+		// The texts to be written.
+		const texts = [
+			`${lang.getText ("tr144")} →`,
+			`${lang.getText ("tr154")} →`,
+			lang.getText ("tr10")
+		];
+		// The typewriter animation
+		// data configurations.
+		const typewriter = (
+			new Typewriter (
+				bannerLeft_
+					.children[0]
+					.children[0],
+				{
+					loop: true,
+					delay: 50
+				}
+			)
+		);
+		// Animates the top left
+		// label.
+		typewriter.pauseFor (2000)
+			.typeString (texts[2])
+			.pauseFor (2000)
+			.deleteChars (22)
+			.typeString (texts[0])
+			.pauseFor (2000)
+			.deleteChars (
+				texts[1].length - 1
+			)
+			.typeString (texts[1])
+			.pauseFor (2000)
+			.start ();
 	};
 
 	/**
@@ -103,7 +156,7 @@ function Banner () {
 			translateY: ["-20%", "0%"],
 			opacity: [0.0, 1.0]
 		});
-		// Animates the first element.
+		// Animates the fourth element.
 		timeline.add ({
 			targets: bannerLeft_.children[3],
 			translateY: ["20%", "0%"],
@@ -123,18 +176,6 @@ function Banner () {
 	 * @returns {Object} Object
 	 */
 	const animateBanner_ = () => {
-		// The banner right tag reference.
-		bannerRight_ = (
-			document.querySelector (
-				"div.banner-right"
-			)
-		);
-		// The banner left tag reference.
-		bannerLeft_ = (
-			document.querySelector (
-				"div.banner-left"
-			)
-		);
 		// The animation timeline.
 		let timeline = null;
 		// Listens screen format.
@@ -196,7 +237,7 @@ function Banner () {
 				duration: 120,
 				delay: 140,
 				complete: function () {
-					// Waits for 250 milisecond
+					// Waits for 250 miliseconds
 					// before add paddings.
 					window.setTimeout (() => (
 						clearJSStyle ({
@@ -267,37 +308,37 @@ function Banner () {
 		// The first progress thumb.
 		const progressThumb1 = (
 			document.querySelector (
-				"div#progress-1"
+				"div#banner-progress-1"
 			)
 		);
 		// The second progress thumb.
 		const progressThumb2 = (
 			document.querySelector (
-				"div#progress-2"
+				"div#banner-progress-2"
 			)
 		);
 		// The third progress thumb.
 		const progressThumb3 = (
 			document.querySelector (
-				"div#progress-3"
+				"div#banner-progress-3"
 			)
 		);
 		// The first screenshot.
 		const screenshot1 = (
 			document.querySelector (
-				"img#screenshot-1"
+				"img#banner-shot-1"
 			)
 		);
 		// The second screenshot.
 		const screenshot2 = (
 			document.querySelector (
-				"img#screenshot-2"
+				"img#banner-shot-2"
 			)
 		);
 		// The third screenshot.
 		const screenshot3 = (
 			document.querySelector (
-				"img#screenshot-3"
+				"img#banner-shot-3"
 			)
 		);
 		// Adds the progress
@@ -305,84 +346,84 @@ function Banner () {
 		// first progress.
 		progressThumb1
 			.classList.add (
-				"progress-thumb"
+				"banner-progress-thumb"
 			);
-		// Fadein the first
+		// Fade-in the first
 		// screeshot.
 		screenshot1
 			.classList.add (
-				"fade-in"
+				"banner-fade-in"
 			);
-		// After for 4.1s.
+		// Waits for 4.1s.
 		window.setTimeout (() => {
 			// Removes the progress
 			// animation from the
 			// previous thumb.
 			progressThumb1
 				.classList.remove (
-					"progress-thumb"
+					"banner-progress-thumb"
 				);
 			// Adds the progress
 			// animation to the
 			// second progress.
 			progressThumb2
 				.classList.add (
-					"progress-thumb"
+					"banner-progress-thumb"
 				);
-			// Fadeout the previous
+			// Fade-out the previous
 			// screeshot.
 			screenshot1
 				.classList.remove (
-					"fade-in"
+					"banner-fade-in"
 				);
-			// Fadein the second
+			// Fade-in the second
 			// screeshot.
 			screenshot2
 				.classList.add (
-					"fade-in"
+					"banner-fade-in"
 				);
-			// After for 4.1s.
+			// Waits for 4.1s.
 			window.setTimeout (() => {
 				// Removes the progress
 				// animation from the
 				// previous thumb.
 				progressThumb2
 					.classList.remove (
-						"progress-thumb"
+						"banner-progress-thumb"
 					);
 				// Adds the progress
 				// animation to the
 				// third progress.
 				progressThumb3
 					.classList.add (
-						"progress-thumb"
+						"banner-progress-thumb"
 					);
-				// Fadeout the previous
+				// Fade-out the previous
 				// screeshot.
 				screenshot2
 					.classList.remove (
-						"fade-in"
+						"banner-fade-in"
 					);
-				// Fadein the third
+				// Fade-in the third
 				// screeshot.
 				screenshot3
 					.classList.add (
-						"fade-in"
+						"banner-fade-in"
 					);
-				// After for 4.1s.
+				// Waits for 4.1s.
 				window.setTimeout (() => {
 					// Removes the progress
 					// animation from the
 					// previous thumb.
 					progressThumb3
 						.classList.remove (
-							"progress-thumb"
+							"banner-progress-thumb"
 						);
-					// Fadeout the previous
+					// Fade-out the previous
 					// screeshot.
 					screenshot3
 						.classList.remove (
-							"fade-in"
+							"banner-fade-in"
 						);
 					// Calls inside itself.
 					caroussel_ ();
@@ -405,6 +446,29 @@ function Banner () {
 				"section"
 			)
 		);
+		// Creates a skeleton tag.
+		const skeleton = (
+			document.createElement (
+				"div"
+			)
+		);
+		// Creates banner template
+		// section for skeleton.
+		const tempSection = (
+			document.createElement (
+				"section"
+			)
+		);
+		// Adds a class's name to
+		// our template section.
+		tempSection.classList.add (
+			"banner-template"
+		);
+		// Adds a class's name to
+		// our skeleton loader.
+		skeleton.classList.add (
+			"skeleton-loading"
+		);
 		// Adds a class's name to
 		// the created section.
 		section.classList.add (
@@ -426,44 +490,71 @@ function Banner () {
 				<span
 					class = "bl-first-as"
 				>
-					<label>
-						${lang.getText ("tr10")}
-					</label>
+					<label></label>
 				</span>
 				<h1
 					class = "bl-second-as"
+					banner-index = "tr11"
+					id = "banner-data"
 				>
 					${lang.getText ("tr11")}
 				</h1>
 				<label
 					class = "bl-third-as"
 				>
-					${lang.getText ("tr12")}
+					<span
+						banner-index = "tr12"
+						id = "banner-data"
+					>
+						${lang.getText ("tr12")}
+					</span>
 					<br/>
-					${lang.getText ("tr13")}
+					<span
+						banner-index = "tr13"
+						id = "banner-data"
+					>
+						${lang.getText ("tr13")}
+					</span>
 				</label>
 				<div
 					class = "bl-four-as"
 				>
 					${buildButton ({
-						text: lang.getText ("tr9")
+						text: lang.getText ("tr9"),
+						textId: "banner-data",
+						customAttr: (
+							"banner-index = tr9"
+						)
 					})}
 					<button>
-						${lang.getText ("tr14")}
+						<span
+							banner-index = "tr14"
+							id = "banner-data"
+						>
+							${lang.getText ("tr14")}
+						</span>
 						${buildIcon ({
-							fileName: Icons.ROUNDED_PLAY
+							fileName: (
+								Icons.ROUNDED_PLAY
+							)
 						})}
 					</button>
 				</div>
 				<div>
 					<span>
-						<div id = "progress-1"></div>
+						<div
+							id = "banner-progress-1"
+						></div>
 					</span>
 					<span>
-						<div id = "progress-2"></div>
+						<div
+							id = "banner-progress-2"
+						></div>
 					</span>
 					<span>
-						<div id = "progress-3"></div>
+						<div
+							id = "banner-progress-3"
+						></div>
 					</span>
 				</div>
 			</div>
@@ -473,28 +564,95 @@ function Banner () {
 				}"
 			>
 				${buildImage ({
-					fileName: Images.SCREENSHOT_1,
-					data: {idName: "screenshot-1"}
+					data: {
+						idName: "banner-shot-1"
+					},
+					fileName: (
+						Images.SCREENSHOT_1
+					)
 				})}
 				${buildImage ({
-					fileName: Images.SCREENSHOT_2,
-					data: {idName: "screenshot-2"}
+					data: {
+						idName: "banner-shot-2"
+					},
+					fileName: (
+						Images.SCREENSHOT_2
+					)
 				})}
 				${buildImage ({
-					fileName: Images.SCREENSHOT_3,
-					data: {idName: "screenshot-3"}
+					data: {
+						idName: "banner-shot-3"
+					},
+					fileName: (
+						Images.SCREENSHOT_3
+					)
 				})}
 			</div>
 		`;
 		// Adds the below section to
-		// the main tag as a child.
+		// the template section tag
+		// as a child.
+		tempSection.appendChild (
+			section
+		);
+		// Adds the below skeleton
+		// loader to the template
+		// section tag as a child.
+		tempSection.appendChild (
+			skeleton
+		);
+		// Adds the below template
+		// section to the main tag
+		// as a child.
 		document.querySelector (
 			"main"
-		).appendChild (section);
-		// Animates the banner.
-		animateBanner_ ().play ();
-		// Launches caroussel.
-		caroussel_ ();
+		).appendChild (tempSection);
+		// The fetched language text
+		// data.
+		bannerData_ = getUpdates ({
+			attrPrefix: "banner-index",
+			textualsId: "banner-data"
+		});
+		// The banner right tag
+		// reference.
+		bannerRight_ = (
+			document.querySelector (
+				"div.banner-right"
+			)
+		);
+		// The banner left tag
+		// reference.
+		bannerLeft_ = (
+			document.querySelector (
+				"div.banner-left"
+			)
+		);
+		// Waits until screenshots
+		// are loaded.
+		listenLoadEvent ({
+			tags: bannerRight_.children,
+			onReady: () => {
+				// Animates the banner.
+				animateBanner_ ().play ();
+				// Animates top label.
+				topLabelAnimation_ ();
+				// Launches carousel.
+				caroussel_ ();
+				// Adds `banner-hide-skeleton`
+				// class to the skeleton.
+				skeleton.classList.add (
+					"banner-hide-skeleton"
+				);
+				// Waits for 200ms before
+				// remove `skeleton-loading`
+				// class.
+				window.setTimeout (() => (
+					// Removes the skeleton
+					// loader.
+					skeleton.remove ()
+				), 200);
+			}
+		});
 	}
 }
 

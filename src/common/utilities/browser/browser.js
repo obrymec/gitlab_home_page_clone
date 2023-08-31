@@ -5,11 +5,65 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-28
-* @updated 2023-08-17
+* @updated 2023-08-30
 * @file browser.js
 * @type {Browser}
-* @version 0.0.3
+* @version 0.0.4
 */
+
+/**
+ * @description Listens `load` event
+ *  on every given tag(s) reference(s)
+ *  and trigger an event when all
+ *  passed tag(s) is/are loaded.
+ * @param {{
+ *  tags: Array<Element>,
+ *  onReady: Function
+ * }} data The listener configs. It
+ *  supports the following keys:
+ *
+ *  - Array tags: The target tags.
+ *
+ *  - Function onReady: Called
+ *    when all tags are loaded.
+ * @fires listenLoadEvent#onReady
+ * @function listenLoadEvent
+ * @public
+ * @returns {void} void
+ */
+function listenLoadEvent ({
+  onReady,
+  tags
+}) {
+  // The loaded tags count.
+  let count = 0;
+  // Listening `load` event.
+  for (const tag of tags) {
+    // Listens `load` event
+    // of the current tag.
+    tag.addEventListener (
+      "load", () => {
+        // Increases the count.
+        count++;
+        // Whether all listened
+        // tags are loaded.
+        if (
+          typeof onReady === "function"
+          && count === tags.length
+          ) {
+          /**
+           * @description Throws `onReady`
+           *  event.
+           * @event listenLoadEvent#onReady
+           * @readonly
+           * @emits
+           */
+          onReady ();
+        }
+      }
+    );
+  }
+}
 
 /**
  * @description Creates or changes a cookie.
@@ -277,6 +331,7 @@ function clearJSStyle ({
  * @exports *
  */
 export {
+  listenLoadEvent,
   clearJSStyle,
   getCookie,
   setCookie

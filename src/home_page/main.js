@@ -24,9 +24,9 @@ import {Footer} from "./components/footer/footer.js";
 import {FAQ} from "./components/faq/faq.js";
 
 // Builds navbar section.
-new NavBar ().render ();
+// new NavBar ().render ();
 // Builds banner section.
-// new Banner ().render ();
+new Banner ().render ();
 // // Builds customers section.
 // new Customers ().render ();
 // // Builds services section.

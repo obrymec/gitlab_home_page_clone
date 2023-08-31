@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-18
-* @updated: 2023-08-18
+* @updated: 2023-08-31
 * @version: 0.0.4
 */
 
@@ -25,7 +25,7 @@
 }
 
 // Free trial button.
-%free-trial-button {
+%banner-free-trial-button {
 	border: 1px solid $banner-primary-color;
 	display: inline-block;
 	margin-bottom: 15px;
@@ -82,8 +82,8 @@
 	}
 }
 
-// Caroussel.
-%caroussel {
+// Carousel.
+%banner-caroussel {
 	@extend %banner-inline-center-flexbox;
 	column-gap: 28px;
 	margin-top: 35%;
@@ -107,9 +107,9 @@
 			$amount: 5%
 		);
 		// Progress bar thumb animation.
-		div.progress-thumb {
+		div.banner-progress-thumb {
 			animation: (
-				progressBar 4s linear 0s 1 normal backwards
+				bannerProgressBar 4s linear 0s 1 normal backwards
 			);
 		}
 	}

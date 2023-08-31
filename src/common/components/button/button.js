@@ -4,9 +4,9 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-03
-* @updated 2023-08-18
+* @updated 2023-08-31
 * @file button.js
-* @version 0.0.1
+* @version 0.0.2
 * @type {Button}
 */
 
@@ -17,8 +17,10 @@ import {clearStr} from "../../utilities/string/string.js";
 /**
  * @description Builds a flat button.
  * @param {{
+ *  customAttr?: String=,
  *  className?: String=,
  *  idName?: String=,
+ *  textId?: String=, 
  *  title?: String=,
  *  name?: String=,
  *  text: String
@@ -39,17 +41,32 @@ import {clearStr} from "../../utilities/string/string.js";
  *
  *  - String name: The button's
  *    name.
+ *
+ *  - String textId: The span's
+ *    text tag id.
+ *
+ *  - String customAttr: The custom
+ *    button's text attribute.
  * @function buildFlatButton
  * @public
  * @returns {String} String
  */
 function buildFlatButton ({
+  customAttr = '',
   className = '',
   idName = '',
+  textId = '',
   title = '',
   name = '',
   text = ''
 }) {
+  // The custom attribute.
+  const [attrName, attrValue] = (
+    clearStr ({
+      input: customAttr,
+      clearSpaces: true
+    }).split ('=')
+  );
   // Builds the target flat button.
   return (`
     <button
@@ -58,7 +75,12 @@ function buildFlatButton ({
       name = "${name}"
       id = "${idName}"
     >
-      <span>${text}</span>
+      <span
+        ${attrName} = ${attrValue}
+        id = "${textId}"
+      >
+        ${text}
+      </span>
       ${buildIcon ({
         fileName: Icons.RIGHT_ARROW
       })}
@@ -71,8 +93,10 @@ function buildFlatButton ({
  * @param {{
  *  withIcon?: boolean=,
  *  className?: String=,
- *  iconType?: String,
+ *  customAttr?: String=,
+ *  iconType?: String=,
  *  idName?: String=,
+ *  textId?: String=,
  *  title?: String=,
  *  name?: String=,
  *  text: String
@@ -102,19 +126,34 @@ function buildFlatButton ({
  *
  *  - String name: The button's
  *    name.
+ *
+ *  - String textId: The span's
+ *    text tag id.
+ *
+ *  - String customAttr: The custom
+ *    button's text attribute.
  * @function buildButton
  * @public
  * @returns {String} String
  */
 function buildButton ({
   withIcon = false,
+  customAttr = '',
   className = '',
   iconType = '',
   idName = '',
+  textId = '',
   title = '',
   name = '',
   text = ''
 }) {
+  // The custom attribute.
+  const [attrName, attrValue] = (
+    clearStr ({
+      input: customAttr,
+      clearSpaces: true
+    }).split ('=')
+  );
   // Builds the target button.
   return (`
     <button
@@ -127,7 +166,11 @@ function buildButton ({
         (
           typeof text === "string" &&
           text.trim ().length > 0
-        ) ? `<span>
+        )
+        ? `<span
+            ${attrName} = ${attrValue}
+            id = "${textId}"
+          >
             ${clearStr ({
               input: text
             })}

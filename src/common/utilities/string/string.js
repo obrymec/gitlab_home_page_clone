@@ -5,11 +5,14 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-08-17
+* @updated 2023-08-31
 * @file string.js
 * @type {String}
 * @version 0.0.3
 */
+
+// Custom dependencies.
+import lang from "../language/language.js";
 
 /**
  * @description Removes noise characters
@@ -46,6 +49,130 @@ function clearStr ({
     (clearSpaces ? ' ' : ''),
     ''
   );
+}
+
+/**
+ * @description Returns new language
+ * 	textuals data.
+ * @param {{
+ * 	textualsId: String,
+ * 	attrPrefix: String
+ * }} data The method data configs.
+ * 	It supports the following keys:
+ *
+ *	- String textualsId: The textual
+ * 		tags id for data extraction.
+ *
+ * 	- String attrPrefix: The custom
+ * 		attribute to identify the
+ * 		value of textual tags.
+ * @function getUpdates_
+ * @constant {Function}
+ * @private {Function}
+ * @returns {Object<String, String>} Object
+ */
+function getUpdates ({
+  textualsId,
+  attrPrefix
+}) {
+  // The final result from
+  // the extracted text.
+  let textualData = {};
+  // The section's textual
+  // tags.
+  const tags = (
+    document.querySelectorAll (
+      `*#${textualsId}`
+    )
+  );
+  // Extracting textual data.
+  for (const tag of tags) {
+    // The textual id.
+    const textId = (
+      tag.getAttribute (
+        attrPrefix
+      )
+    );
+    // Extracts the textual
+    // data of the current
+    // detected tag.
+    textualData[
+      clearStr ({
+        clearSpaces: true,
+        input: `
+          ${tag.localName}
+          [${attrPrefix}
+            ='${textId}']
+        `
+      })] = lang.getText (
+        textId
+      );
+  }
+  // Returns the final
+  // results.
+  return textualData;
+}
+
+/**
+ * @description Animates text inside
+ *  the given tag(s).
+ * @param {Object<String, String>} oldData
+ *  All tag(s) id(s) and their
+ *  old text content value.
+ * @param {Object<String, String>} newData
+ *  All tag(s) id(s) and their
+ *  new text content value.
+ * @function animateTextContent
+ * @public
+ * @returns {void} void
+ */
+function animateTextContent (
+  oldData,
+  newData
+) {
+  // Animating texts.
+  for (
+    const id of 
+    Object.keys (oldData)
+  ) {
+    // The tag ref of the
+    // current id.
+    const tag = (
+      document.querySelector (
+        id
+      )
+    );
+    // Whether the ref is
+    // defined.
+    if (
+      tag instanceof Element
+    ) {
+      // Backspaces the old
+      // text content.
+			animateText ({
+				text: oldData[id],
+				isReversed: true,
+				isInverted: true,
+				interval: 50,
+				target: tag,
+        onFinished: () => (
+          // Writes the new
+          // text content.
+          animateText ({
+            isReversed: false,
+            text: newData[id],
+            isInverted: true,
+            interval: 50,
+            target: tag,
+            onFinished: () => (
+              oldData[id]
+                = newData[id]
+            )
+          })
+        )
+			});
+    }
+  }
 }
 
 /**
@@ -464,6 +591,8 @@ function animateText ({
  * @exports *
  */
 export {
+  animateTextContent,
   animateText,
+  getUpdates,
   clearStr
 };
