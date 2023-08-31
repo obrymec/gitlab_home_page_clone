@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-16
-* @updated: 2023-08-18
+* @updated: 2023-08-31
 * @version: 0.0.3
 */
 
@@ -13,7 +13,7 @@
 @import "./_variables.scss";
 
 // Free trial button with radius.
-%free-trial-radius {
+%navbar-free-trial-radius {
 	border: 1px solid $navbar-btn-bg-color;
 	border-radius: 4px;
 }
@@ -50,7 +50,7 @@
 }
 
 // Free trial button with no radius.
-%free-trial-no-radius {
+%navbar-free-trial-no-radius {
 	border-bottom: 1px solid $navbar-btn-bg-color;
 	border-top: 2px solid $navbar-btn-bg-color;
 	// Hover effect.

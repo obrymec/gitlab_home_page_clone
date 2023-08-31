@@ -1373,7 +1373,7 @@ div.sub-infos {
 * @fileoverview: GitLab navbar stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-30
+* @updated: 2023-08-31
 * @file: navbar.scss
 * @version: 0.0.8
 */
@@ -1384,7 +1384,7 @@ div.sub-infos {
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-06-16
-* @updated: 2023-08-18
+* @updated: 2023-08-31
 * @version: 0.0.3
 */
 /**
@@ -1618,19 +1618,19 @@ div.nav-left {
     @media only screen and (max-width: 575px) {
       div.nav-left img:nth-child(2) {
         margin: auto; } }
-  div.nav-left label.nav-active-option {
+  div.nav-left > span.nav-active-option {
     color: #171321;
     pointer-events: none; }
-  div.nav-left label {
+  div.nav-left > span {
     color: #74717a;
     cursor: pointer; }
-    div.nav-left label:hover {
+    div.nav-left > span:hover {
       color: #171321; }
     @media only screen and (max-width: 1170px) {
-      div.nav-left label {
+      div.nav-left > span {
         font-size: 15px; } }
     @media only screen and (max-width: 1050px) {
-      div.nav-left label {
+      div.nav-left > span {
         display: none; } }
 
 div.nav-right {
@@ -1941,14 +1941,14 @@ div.banner-left {
     @media only screen and (max-width: 770px) {
       div.banner-left h1:nth-child(2) {
         text-align: center; } }
-  div.banner-left > label:nth-child(3) {
+  div.banner-left > span:nth-child(3) {
     color: #171321;
     font-size: 20px; }
     @media only screen and (max-width: 1080px) and (min-width: 771px) {
-      div.banner-left > label:nth-child(3) {
+      div.banner-left > span:nth-child(3) {
         font-size: 15px; } }
     @media only screen and (max-width: 770px) {
-      div.banner-left > label:nth-child(3) {
+      div.banner-left > span:nth-child(3) {
         text-align: center; } }
   @media only screen and (max-width: 770px) {
     div.banner-left div:nth-child(4) {

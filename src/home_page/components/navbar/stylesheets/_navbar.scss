@@ -4,7 +4,7 @@
 * @fileoverview: GitLab navbar stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-30
+* @updated: 2023-08-31
 * @file: navbar.scss
 * @version: 0.0.8
 */
@@ -37,7 +37,7 @@ nav.navbar {
 	@extend %navbar-column-flexbox;
 	// Free trial button with no radius.
 	& > button:first-child {
-		@extend %free-trial-no-radius;
+		@extend %navbar-free-trial-no-radius;
 	}
 }
 
@@ -92,7 +92,7 @@ menu.nav-menu-popup {
 	}
 	// Free trial button.
 	button:last-child {
-		@extend %free-trial-radius;
+		@extend %navbar-free-trial-radius;
 		margin-top: 23px;
 		width: 100%;
 		// From 1170 to 0.
@@ -138,12 +138,12 @@ div.nav-left {
 		}
 	}
 	// Active option.
-	label.nav-active-option {
+	& > span.nav-active-option {
 		color: $navbar-btn-bg-color;
 		pointer-events: none;
 	}
 	// Options.
-	label {
+	& > span {
 		color: $navbar-option-color;
 		cursor: pointer;
 		// Hover effect.
@@ -183,7 +183,7 @@ div.nav-right {
 	}
 	// Free trial button.
 	button:nth-child(2) {
-		@extend %free-trial-radius;
+		@extend %navbar-free-trial-radius;
 		// From 1170 to 575.
 		@media #{$navbar-1170} {
 			font-size: 16px;

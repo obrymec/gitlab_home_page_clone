@@ -105,7 +105,7 @@ function getUpdates ({
             ='${textId}']
         `
       })] = lang.getText (
-        textId
+        textId.split ("::")[0]
       );
   }
   // Returns the final

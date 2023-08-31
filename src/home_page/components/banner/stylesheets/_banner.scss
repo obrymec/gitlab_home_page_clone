@@ -108,7 +108,7 @@ div.banner-left {
 		}
 	}
 	// Little description.
-	& > label:nth-child(3) {	
+	& > span:nth-child(3) {	
 		color: $banner-primary-color;
 		font-size: 20px;
 		// From 1080 to 770.

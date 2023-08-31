@@ -493,29 +493,29 @@ function Banner () {
 					<label></label>
 				</span>
 				<h1
+					banner-index = "tr11::0"
 					class = "bl-second-as"
-					banner-index = "tr11"
 					id = "banner-data"
 				>
 					${lang.getText ("tr11")}
 				</h1>
-				<label
+				<span
 					class = "bl-third-as"
 				>
 					<span
-						banner-index = "tr12"
+						banner-index = "tr12::1"
 						id = "banner-data"
 					>
 						${lang.getText ("tr12")}
 					</span>
 					<br/>
 					<span
-						banner-index = "tr13"
+						banner-index = "tr13::2"
 						id = "banner-data"
 					>
 						${lang.getText ("tr13")}
 					</span>
-				</label>
+				</span>
 				<div
 					class = "bl-four-as"
 				>
@@ -523,17 +523,20 @@ function Banner () {
 						text: lang.getText ("tr9"),
 						textId: "banner-data",
 						customAttr: (
-							"banner-index = tr9"
+							"banner-index = tr9::3"
 						)
 					})}
 					<button>
 						<span
-							banner-index = "tr14"
+							banner-index = "tr14::4"
 							id = "banner-data"
 						>
 							${lang.getText ("tr14")}
 						</span>
 						${buildIcon ({
+							data: {
+								idName: "banner-img"
+							},
 							fileName: (
 								Icons.ROUNDED_PLAY
 							)
@@ -630,7 +633,16 @@ function Banner () {
 		// Waits until screenshots
 		// are loaded.
 		listenLoadEvent ({
-			tags: bannerRight_.children,
+			tags: [
+				...Array.from (
+					bannerRight_.children
+				),
+				...Array.from (
+					document.querySelectorAll (
+						"img#banner-img"
+					)
+				)
+			],
 			onReady: () => {
 				// Animates the banner.
 				animateBanner_ ().play ();

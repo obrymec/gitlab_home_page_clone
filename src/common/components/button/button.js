@@ -21,6 +21,7 @@ import {clearStr} from "../../utilities/string/string.js";
  *  className?: String=,
  *  idName?: String=,
  *  textId?: String=, 
+ *  iconId?: String=,
  *  title?: String=,
  *  name?: String=,
  *  text: String
@@ -47,6 +48,9 @@ import {clearStr} from "../../utilities/string/string.js";
  *
  *  - String customAttr: The custom
  *    button's text attribute.
+ *
+ *  - String iconId: The right arrow
+ *    image's id.
  * @function buildFlatButton
  * @public
  * @returns {String} String
@@ -56,6 +60,7 @@ function buildFlatButton ({
   className = '',
   idName = '',
   textId = '',
+  iconId = '',
   title = '',
   name = '',
   text = ''
@@ -82,7 +87,8 @@ function buildFlatButton ({
         ${text}
       </span>
       ${buildIcon ({
-        fileName: Icons.RIGHT_ARROW
+        fileName: Icons.RIGHT_ARROW,
+        data: {idName: iconId}
       })}
     </button>
   `);
@@ -91,10 +97,10 @@ function buildFlatButton ({
 /**
  * @description Builds a native button.
  * @param {{
+ *  icon?: Object<String, String>=,
+ *  customAttr?: String=,
  *  withIcon?: boolean=,
  *  className?: String=,
- *  customAttr?: String=,
- *  iconType?: String=,
  *  idName?: String=,
  *  textId?: String=,
  *  title?: String=,
@@ -110,10 +116,9 @@ function buildFlatButton ({
  *    you want to add an icon to
  *    the right.
  *
- *  - String iconType: The icon
- *    type to be displayed (If
- *    and only if `withIcon` is
- *    set to `true`).
+ *  - String icon: The icon type to
+ *    be displayed (If and only if
+ *    `withIcon` is set to `true`).
  *
  *  - String className: The button
  *    class name.
@@ -140,10 +145,10 @@ function buildButton ({
   withIcon = false,
   customAttr = '',
   className = '',
-  iconType = '',
   idName = '',
   textId = '',
   title = '',
+  icon = {},
   name = '',
   text = ''
 }) {
@@ -180,11 +185,9 @@ function buildButton ({
       ${(
         (
           withIcon &&
-          typeof iconType === "string" &&
-          iconType.trim ().length > 0
-        ) ? buildIcon ({
-          fileName: iconType
-        }) : ''
+          typeof icon === "object" &&
+          !Array.isArray (icon)
+        ) ? buildIcon (icon) : ''
       )}
     </button>
   `);

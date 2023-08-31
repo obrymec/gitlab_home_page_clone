@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-28
-* @updated 2023-08-30
+* @updated 2023-08-31
 * @file browser.js
 * @type {Browser}
 * @version 0.0.4
@@ -50,7 +50,7 @@ function listenLoadEvent ({
         if (
           typeof onReady === "function"
           && count === tags.length
-          ) {
+        ) {
           /**
            * @description Throws `onReady`
            *  event.

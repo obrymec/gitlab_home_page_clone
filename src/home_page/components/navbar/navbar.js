@@ -4,17 +4,21 @@
 * @fileoverview NavBar UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-30
+* @updated 2023-08-31
 * @file navbar.js
 * @type {NavBar}
 * @version 0.0.9
 */
 
 // Custom dependencies.
-import {clearJSStyle} from "../../../common/utilities/browser/browser.js";
 import {buildButton} from "../../../common/components/button/button.js";
 import ScreenManager from "../../../common/utilities/screen/screen.js";
+import {getUpdates} from "../../../common/utilities/string/string.js";
 import lang from "../../../common/utilities/language/language.js";
+import {
+	listenLoadEvent,
+	clearJSStyle
+} from "../../../common/utilities/browser/browser.js";
 import {
 	buildLogo,
 	buildIcon,
@@ -30,6 +34,13 @@ import {
  */
 function NavBar () {
 	// Attributes.
+	/**
+	 * @description The navbar data.
+	 * @private {?Object<String, String>}
+	 * @type {?Object<String, String>}
+	 * @field
+	 */
+	let navbarData_ = {};
 	/**
 	 * @description The nav right
 	 * 	options container tag.
@@ -184,7 +195,7 @@ function NavBar () {
 	this.select = index => {
 		// Adjusts the passed index value.
 		index += 2;
-		// Removes `nav-active-option`
+		// Removing `nav-active-option`
 		// class from all options.
 		for (let i = 2; i <= 8; i++) {
 			// Removes `nav-active-option`
@@ -194,7 +205,7 @@ function NavBar () {
 					"nav-active-option"
 				);
 		}
-		// Add `nav-active-option`
+		// Adds `nav-active-option`
 		// class to the selected
 		// option.
 		navLeft_.children[index]
@@ -373,11 +384,12 @@ function NavBar () {
 					"click", () => {
 						// Whether we click on
 						// gitlab logo.
-						if (j === 1) {}
+						if (j === 1) {
+							console.log ("GitLab !");
 						// Whether the current
-						// index is great than
+						// index is bigger than
 						// one (01).
-						if (j > 1) {
+						} else {
 							// Selects the target
 							// option.
 							this.select (j - 2);
@@ -389,8 +401,7 @@ function NavBar () {
 		// `click` event.
 		for (
 			const option of
-			menu_.children[1]
-				.children
+			menu_.children[1].children
 		) {
 			// Listens `click` event
 			// of the current option.
@@ -422,7 +433,7 @@ function NavBar () {
 		window.addEventListener (
 			"resize", () => {
 				// Whether width is
-				// great than 1050.
+				// bigger than 1050.
 				if (
 					window.innerWidth > 1050
 				) {
@@ -501,7 +512,6 @@ function NavBar () {
 			)
 		}, 0);
 		// Animating menu's options.
-		// Animating options.
 		for (
 			const option of
 			menu_.children[1].children
@@ -526,7 +536,7 @@ function NavBar () {
 
 	/**
 	 * @description Animates the navbar
-	 * 	glabal header.
+	 * 	global header.
 	 * @param {int} to The ending value.
 	 * @function headerAnimation_
 	 * @constant {Function}
@@ -681,6 +691,7 @@ function NavBar () {
 				${buildLogo ({
 					fileName: Logos.GITLAB,
 					data: {
+						idName: "navbar-img",
 						className: (
 							"hd-second-gitlab-as"
 						)
@@ -689,6 +700,7 @@ function NavBar () {
 				${buildIcon ({
 					fileName: Icons.CLOSE,
 					data: {
+						idName: "navbar-img",
 						className: (
 							"hd-close-menu-as"
 						)
@@ -697,6 +709,8 @@ function NavBar () {
 			</section>
 			<section>
 				<div
+					hd-index = "tr1::0"
+					id = "hd-data"
 					class = "${
 						"hd-menu-options-as"
 					}"
@@ -704,6 +718,8 @@ function NavBar () {
 					${lang.getText ("tr1")}
 				</div>
 				<div
+					hd-index = "tr2::1"
+					id = "hd-data"
 					class = "${
 						"hd-menu-options-as"
 					}"
@@ -715,14 +731,24 @@ function NavBar () {
 						"hd-menu-options-as"
 					}"
 				>
-					${lang.getText ("tr3")}
+					<span
+						hd-index = "tr3::2"
+						id = "hd-data"
+					>
+						${lang.getText ("tr3")}
+					</span>
 					${buildIcon ({
+						data: {
+							idName: "navbar-img"
+						},
 						fileName: (
 							Icons.RIGHT_ARROW
 						)
 					})}
 				</div>
 				<div
+					hd-index = "tr4::3"
+					id = "hd-data"
 					class = "${
 						"hd-menu-options-as"
 					}"
@@ -734,8 +760,16 @@ function NavBar () {
 						"hd-menu-options-as"
 					}"
 				>
-					${lang.getText ("tr5")}
+					<span
+						hd-index = "tr5::4"
+						id = "hd-data"
+					>
+						${lang.getText ("tr5")}
+					</span>
 					${buildIcon ({
+						data: {
+							idName: "navbar-img"
+						},
 						fileName: (
 							Icons.RIGHT_ARROW
 						)
@@ -746,8 +780,16 @@ function NavBar () {
 						"hd-menu-options-as"
 					}"
 				>
-					${lang.getText ("tr6")}
+					<span
+						hd-index = "tr6::5"
+						id = "hd-data"
+					>
+						${lang.getText ("tr6")}
+					</span>
 					${buildIcon ({
+						data: {
+							idName: "navbar-img"
+						},
 						fileName: (
 							Icons.RIGHT_ARROW
 						)
@@ -758,8 +800,16 @@ function NavBar () {
 						"hd-menu-options-as"
 					}"
 				>
-					${lang.getText ("tr7")}
+					<span
+						hd-index = "tr7::6"
+						id = "hd-data"
+					>
+						${lang.getText ("tr7")}
+					</span>
 					${buildIcon ({
+						data: {
+							idName: "navbar-img"
+						},
 						fileName: (
 							Icons.RIGHT_ARROW
 						)
@@ -771,33 +821,51 @@ function NavBar () {
 					}"
 				>
 					${buildIcon ({
-						fileName: Icons.SIGN_IN
+						fileName: Icons.SIGN_IN,
+						data: {
+							idName: "navbar-img"
+						}
 					})}
-					${lang.getText ("tr8")}
+					<span
+						hd-index = "tr8::7"
+						id = "hd-data"
+					>
+						${lang.getText ("tr8")}
+					</span>
 				</div>
 			</section>
 			${buildButton ({
+				customAttr: "hd-index = tr9::8",
 				text: lang.getText ("tr9"),
+				textId: "hd-data",
 				className: (
 					"hd-menu-free-trial-as"
 				)
 			})}
 		`;
-		// Adds a html structure to the
-		// created nav.
+		// Adds a html structure
+		// to the created nav.
 		nav.innerHTML = `
 			${buildButton ({
+				customAttr: "hd-index = tr9::9",
 				text: lang.getText ("tr9"),
+				textId: "hd-data",
 				withIcon: true,
-				iconType: (
-					Icons.LONG_RIGHT_ARROW
-				)
+				icon: {
+					fileName:  (
+						Icons.LONG_RIGHT_ARROW
+					),
+					data: {
+						idName: "navbar-img"
+					}
+				}
 			})}
 			<section class = "nav-data">
 				<div class = "nav-left">
 					${buildIcon ({
 						fileName: Icons.SEARCH,
 						data: {
+							idName: "navbar-img",
 							name: "small",
 							className: (
 								"hd-third-search-as"
@@ -807,6 +875,7 @@ function NavBar () {
 					${buildLogo ({
 						fileName: Logos.GITLAB,
 						data: {
+							idName: "navbar-img",
 							name: (
 								"large-medium-small"
 							),
@@ -815,7 +884,9 @@ function NavBar () {
 							)
 						}
 					})}
-					<label
+					<span
+						hd-index = "tr1::10"
+						id = "hd-data"
 						name = "large"
 						title = "${
 							lang.getText ("tr1")
@@ -825,8 +896,10 @@ function NavBar () {
 						}"
 					>
 						${lang.getText ("tr1")}
-					</label>
-					<label
+					</span>
+					<span
+						hd-index = "tr2::11"
+						id = "hd-data"
 						name = "large"
 						title = "${
 							lang.getText ("tr2")
@@ -836,8 +909,10 @@ function NavBar () {
 						}"
 					>
 						${lang.getText ("tr2")}
-					</label>
-					<label
+					</span>
+					<span
+						hd-index = "tr3::12"
+						id = "hd-data"
 						name = "large"
 						title = "${
 							lang.getText ("tr3")
@@ -847,8 +922,10 @@ function NavBar () {
 						}"
 					>
 						${lang.getText ("tr3")}
-					</label>
-					<label
+					</span>
+					<span
+						hd-index = "tr4::13"
+						id = "hd-data"
 						name = "large"
 						title = "${
 							lang.getText ("tr4")
@@ -858,8 +935,10 @@ function NavBar () {
 						}"
 					>
 						${lang.getText ("tr4")}
-					</label>
-					<label
+					</span>
+					<span
+						hd-index = "tr5::14"
+						id = "hd-data"
 						name = "large"
 						title = "${
 							lang.getText ("tr5")
@@ -869,8 +948,10 @@ function NavBar () {
 						}"
 					>
 						${lang.getText ("tr5")}
-					</label>
-					<label
+					</span>
+					<span
+						hd-index = "tr6::15"
+						id = "hd-data"
 						name = "large"
 						title = "${
 							lang.getText ("tr6")
@@ -880,8 +961,10 @@ function NavBar () {
 						}"
 					>
 						${lang.getText ("tr6")}
-					</label>
-					<label
+					</span>
+					<span
+						hd-index = "tr7::16"
+						id = "hd-data"
 						name = "large"
 						title = "${
 							lang.getText ("tr7")
@@ -891,13 +974,14 @@ function NavBar () {
 						}"
 					>
 						${lang.getText ("tr7")}
-					</label>
+					</span>
 				</div>
 				<div class = "nav-wrapper">
 					<div class = "nav-right">
 						${buildIcon ({
 							fileName: Icons.SEARCH,
 							data: {
+								idName: "navbar-img",
 								name: "large",
 								className: (
 									"hd-first-search-as"
@@ -907,11 +991,17 @@ function NavBar () {
 						${buildButton ({
 							text: lang.getText ("tr9"),
 							name: "large-medium",
+							textId: "hd-data",
+							customAttr: (
+								"hd-index = tr9::17"
+							),
 							className: (
 								"hd-free-trial-as"
 							)
 						})}
 						<button
+							hd-index = "tr8::18"
+							id = "hd-data"
 							name = "large"
 							title = "${
 								lang.getText ("tr8")
@@ -925,6 +1015,7 @@ function NavBar () {
 						${buildIcon ({
 							fileName: Icons.SIGN_IN,
 							data: {
+								idName: "navbar-img",
 								name: "medium",
 								className: (
 									"hd-sign-in-as"
@@ -934,6 +1025,7 @@ function NavBar () {
 						${buildIcon ({
 							fileName: Icons.SEARCH,
 							data: {
+								idName: "navbar-img",
 								name: "medium",
 								className: (
 									"hd-second-search-as"
@@ -945,6 +1037,7 @@ function NavBar () {
 								Icons.EMBURGER_MENU
 							),
 							data: {
+								idName: "navbar-img",
 								name: "medium-small",
 								className: (
 									"hd-emburger-menu-as"
@@ -956,7 +1049,7 @@ function NavBar () {
 			</section>
 		`;
 		// Adds the below nav section
-		// to the header tag as a 
+		// to the header tag as a
 		// child.
 		header_.appendChild (nav);
 		// Adds the below menu section
@@ -964,11 +1057,28 @@ function NavBar () {
 		document.querySelector (
 			"aside"
 		).appendChild (menu_);
-		// Listens some tags events
-		// to run certain actions.
-		listenTagsEvents_ ();
-		// Animates the navbar.
-		animateNavBar_ ();
+		// The fetched language text
+		// data.
+		navbarData_ = getUpdates ({
+			attrPrefix: "hd-index",
+			textualsId: "hd-data"
+		});
+		// Waits until all images
+		// are loaded.
+		listenLoadEvent ({
+			tags: Array.from (
+				document.querySelectorAll (
+					"img#navbar-img"
+				)
+			),
+			onReady: () => {
+				// Listens some tags events
+				// to run certain actions.
+				listenTagsEvents_ ();
+				// Animates the navbar.
+				animateNavBar_ ();
+			}
+		});
 	}
 }
 

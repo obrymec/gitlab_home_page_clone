@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-30
+* @updated 2023-08-31
 * @version 0.0.6
 * @file main.js
 */
