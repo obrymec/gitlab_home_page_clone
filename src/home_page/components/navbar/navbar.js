@@ -4,7 +4,7 @@
 * @fileoverview NavBar UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-08-31
+* @updated 2023-09-01
 * @file navbar.js
 * @type {NavBar}
 * @version 0.0.9
@@ -1057,12 +1057,6 @@ function NavBar () {
 		document.querySelector (
 			"aside"
 		).appendChild (menu_);
-		// The fetched language text
-		// data.
-		navbarData_ = getUpdates ({
-			attrPrefix: "hd-index",
-			textualsId: "hd-data"
-		});
 		// Waits until all images
 		// are loaded.
 		listenLoadEvent ({
@@ -1077,6 +1071,12 @@ function NavBar () {
 				listenTagsEvents_ ();
 				// Animates the navbar.
 				animateNavBar_ ();
+				// The fetched language text
+				// data.
+				navbarData_ = getUpdates ({
+					attrPrefix: "hd-index",
+					textualsId: "hd-data"
+				});
 			}
 		});
 	}

@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-31
+* @updated: 2023-09-01
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -1694,7 +1694,7 @@ div.nav-right {
 * @fileoverview: GitLab banner stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-17
-* @updated: 2023-08-31
+* @updated: 2023-09-01
 * @file: banner.scss
 * @version: 0.0.2
 */
@@ -1793,7 +1793,7 @@ div.banner-left div:nth-child(5) {
 * @supported: DESKTOP, MOBILE
 * @file: animations.scss
 * @created: 2023-06-16
-* @updated: 2023-08-31
+* @updated: 2023-09-01
 * @version: 0.0.2
 */
 /**
@@ -1812,12 +1812,12 @@ div.banner-left div:nth-child(5) {
   to {
     width: 100%; } }
 section.banner-as {
-  padding: 0;
-  width: 0; }
+  transform: translateX(-100%);
+  padding: 0; }
 
 section.banner-af {
   padding: 104px 4vw 0 4vw;
-  width: 100%; }
+  transform: translateX(0); }
   @media only screen and (max-width: 770px) {
     section.banner-af {
       padding: 104px 16px 0 16px; } }
@@ -1884,11 +1884,14 @@ section.banner {
   background-image: url("../../../../../assets/images/gradient-desktop.jpg");
   background-repeat: no-repeat;
   background-position: 80%;
-  background-size: cover; }
+  background-size: cover;
+  width: 100%; }
 
 section.banner-template {
   transform: translate3d(0, 0, 0);
-  margin-top: 78px; }
+  overflow-x: hidden;
+  margin-top: 78px;
+  width: 100%; }
   section.banner-template div.banner-hide-skeleton {
     opacity: 0; }
 
@@ -2409,11 +2412,9 @@ div.faq-right {
 body {
   font-family: "InterRegular", sans-serif;
   color: #171321;
-  overflow-x: hidden;
   line-height: 24px;
   user-select: none;
   font-weight: 400;
-  overflow-y: auto;
   font-size: 16px; }
   body aside > menu.display-popup-menu {
     transform: translateX(0); }

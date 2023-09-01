@@ -4,13 +4,14 @@
 * @fileoverview Banner UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-17
-* @updated 2023-08-31
+* @updated 2023-09-01
 * @file banner.js
 * @type {Banner}
 * @version 0.0.2
 */
 
 // Custom dependencies.
+import {ScrollManager} from "../../../common/utilities/scroll/scroll.js";
 import {buildButton} from "../../../common/components/button/button.js";
 import ScreenManager from "../../../common/utilities/screen/screen.js";
 import {getUpdates} from "../../../common/utilities/string/string.js";
@@ -240,50 +241,9 @@ function Banner () {
 					// Waits for 250 miliseconds
 					// before add paddings.
 					window.setTimeout (() => (
-						clearJSStyle ({
-							direction: this.direction,
-							targets: [
-								{
-									ref: bannerLeft_.children[0],
-									start: "bl-first-as",
-									end: "bl-first-af"
-								},
-								{
-									ref: bannerLeft_.children[1],
-									start: "bl-second-as",
-									end: "bl-second-af"
-								},
-								{
-									ref: bannerLeft_.children[2],
-									start: "bl-third-as",
-									end: "bl-third-af"
-								},
-								{
-									ref: bannerLeft_.children[3],
-									start: "bl-four-as",
-									end: "bl-four-af"
-								},
-								{
-									start: "banner-right-as",
-									end: "banner-right-af",
-									ref: bannerRight_
-								},
-								{
-									start: "banner-left-as",
-									end: "banner-left-af",
-									ref: bannerLeft_
-								},
-								{
-									start: "banner-as",
-									end: "banner-af",
-									ref: (
-										this.children[0]
-											.animatables[0]
-											.target
-									)
-								}
-							]
-						})
+						clearAnimationData_ (
+							this.direction
+						)
 					), 250);
 				}
 			})
@@ -291,10 +251,69 @@ function Banner () {
 		// Animates background's
 		// width size.
 		return timeline.add ({
-			targets: "section.banner",
-			width: ["0%", "100%"]
+			translateX: ["-100%", "0%"],
+			targets: "section.banner"
 		});
 	};
+
+	/**
+	 * @description Clears animation
+	 * 	data.
+	 * @param {String} direction The
+	 * 	animation's direction.
+	 * @function clearAnimationData_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const clearAnimationData_ = (
+		direction
+	) => (
+		clearJSStyle ({
+			direction: direction,
+			targets: [
+				{
+					ref: bannerLeft_.children[0],
+					start: "bl-first-as",
+					end: "bl-first-af"
+				},
+				{
+					ref: bannerLeft_.children[1],
+					start: "bl-second-as",
+					end: "bl-second-af"
+				},
+				{
+					ref: bannerLeft_.children[2],
+					start: "bl-third-as",
+					end: "bl-third-af"
+				},
+				{
+					ref: bannerLeft_.children[3],
+					start: "bl-four-as",
+					end: "bl-four-af"
+				},
+				{
+					start: "banner-right-as",
+					end: "banner-right-af",
+					ref: bannerRight_
+				},
+				{
+					start: "banner-left-as",
+					end: "banner-left-af",
+					ref: bannerLeft_
+				},
+				{
+					start: "banner-as",
+					end: "banner-af",
+					ref: (
+						document.querySelector (
+							"section.banner"
+						)
+					)
+				}
+			]
+		})
+	);
 
 	/**
 	 * @description Applies caroussel
@@ -610,12 +629,6 @@ function Banner () {
 		document.querySelector (
 			"main"
 		).appendChild (tempSection);
-		// The fetched language text
-		// data.
-		bannerData_ = getUpdates ({
-			attrPrefix: "banner-index",
-			textualsId: "banner-data"
-		});
 		// The banner right tag
 		// reference.
 		bannerRight_ = (
@@ -644,8 +657,6 @@ function Banner () {
 				)
 			],
 			onReady: () => {
-				// Animates the banner.
-				animateBanner_ ().play ();
 				// Animates top label.
 				topLabelAnimation_ ();
 				// Launches carousel.
@@ -655,14 +666,44 @@ function Banner () {
 				skeleton.classList.add (
 					"banner-hide-skeleton"
 				);
+				// The fetched language text
+				// data.
+				bannerData_ = getUpdates ({
+					attrPrefix: "banner-index",
+					textualsId: "banner-data"
+				});
 				// Waits for 200ms before
 				// remove `skeleton-loading`
 				// class.
-				window.setTimeout (() => (
+				window.setTimeout (() => {
 					// Removes the skeleton
 					// loader.
-					skeleton.remove ()
-				), 200);
+					skeleton.remove ();
+				}, 200);
+				// Focus on the current
+				// section for scrolling.
+				new ScrollManager ({
+					max: 40,
+					min: 0,
+					onEnter: () => {
+						// Animates the banner in
+						// normal mode.
+						animateBanner_ ().play ();
+					},
+					onLeave: () => {
+						// Animates the banner
+						// in reverse mode.
+						animateBanner_ ().reverse ();
+						// Waits for 200ms before
+						// resets section initial
+						// css properties.
+						window.setTimeout (() => (
+							clearAnimationData_ (
+								"reverse"
+							)
+						), 200);
+					}
+				});
 			}
 		});
 	}

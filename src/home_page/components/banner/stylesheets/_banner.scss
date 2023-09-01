@@ -4,7 +4,7 @@
 * @fileoverview: GitLab banner stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-17
-* @updated: 2023-08-31
+* @updated: 2023-09-01
 * @file: banner.scss
 * @version: 0.0.2
 */
@@ -21,12 +21,15 @@ section.banner {
 	background-repeat: no-repeat;
 	background-position: 80%;
 	background-size: cover;
+	width: 100%;
 }
 
 // Banner template section.
 section.banner-template {
 	transform: translate3d(0, 0, 0);
+	overflow-x: hidden;
 	margin-top: 78px;
+	width: 100%;
 	// Hide skeleton loader.
 	div.banner-hide-skeleton {
 		opacity: 0;

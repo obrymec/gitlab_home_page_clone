@@ -6,7 +6,7 @@
 * @file collaborators.js
 * @type {Collaborators}
 * @created 2023-06-24
-* @updated 2023-08-25
+* @updated 2023-09-01
 * @version 0.0.2
 */
 
@@ -228,7 +228,7 @@ function Collaborators () {
 				window.setTimeout (() => {
 					// Sets the current index.
 					index++;
-					// Whether index is great
+					// Whether index is bigger
 					// than five.
 					if (index > 5) index = 1;
 					// Updates view.

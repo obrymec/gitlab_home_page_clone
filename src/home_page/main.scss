@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-08-31
+* @updated: 2023-09-01
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -48,11 +48,9 @@
 body {
 	font-family: $inter-regular-sans-serif;
 	color: $primary-color;
-	overflow-x: hidden;
 	line-height: 24px;
 	user-select: none;
 	font-weight: 400;
-	overflow-y: auto;
 	font-size: 16px;
 	// Shows menu popup.
 	aside > menu.display-popup-menu {

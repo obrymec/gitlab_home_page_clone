@@ -28,11 +28,11 @@ import {FAQ} from "./components/faq/faq.js";
 // Builds banner section.
 new Banner ().render ();
 // // Builds customers section.
-// new Customers ().render ();
+new Customers ().render ();
 // // Builds services section.
-// new Services ().render ();
+new Services ().render ();
 // Builds collaborators section.
-// new Collaborators ().render ();
+new Collaborators ().render ();
 // // Builds methodologies section.
 // new Methodologies ().render ();
 // // Builds badges section.
@@ -44,4 +44,4 @@ new Banner ().render ();
 // // Builds faq section.
 // new FAQ ().render ();
 // // Buidls footer section.
-// new Footer ().render ();
+new Footer ().render ();

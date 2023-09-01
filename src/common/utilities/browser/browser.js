@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-28
-* @updated 2023-08-31
+* @updated 2023-09-01
 * @file browser.js
 * @type {Browser}
 * @version 0.0.4
@@ -249,6 +249,10 @@ function clearJSStyle ({
         // inside `className2`.
         tag.classList
           .add (className2);
+        // Removes `style` attr.
+        tag.removeAttribute (
+          "style"
+        );
       }
     };
     // Whether the direction is
