@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-08-26
+* @updated 2023-09-02
 * @file language.js
 * @type {Language}
 * @version 0.0.2
@@ -303,7 +303,7 @@ function Language ({
         // Returns the default language's
         // data by default.
         return (
-          languages?.length > 0
+          languages.length > 0
           ? Object.assign (
             languages[defaultLanguage],
             {id: defaultLanguage}
@@ -324,7 +324,7 @@ function Language ({
         // Returns the target
         // language's data.
         return (
-          languages?.length > 0
+          languages.length > 0
           ? Object.assign (
             languages[activeId_],
             {id: activeId_}
@@ -352,10 +352,10 @@ function Language ({
         // Updates browser cookie
         // to the new active
         // language.
-        setCookie (
-          cookieName.toString (),
-          id.toString ()
-        );
+        setCookie ({
+          name: cookieName.toString (),
+          value: id.toString ()
+        });
       }
     // Otherwise.
     } else {
@@ -370,38 +370,37 @@ function Language ({
       // language.
       for (
         let y = 0;
-        y < languages?.length;
+        y < languages.length;
         y++
       ) {
         // Whether ever there
         // are a match with
         // the language's name.
         const matchName = (
-          languages[y]?.name
-            ?.toLowerCase ()
-            ?.trim ()
-            ?.includes (id)
+          languages[y].name
+            .toLowerCase ()
+            .trim ()
+            .includes (id)
         );
         // Whether ever there are
         // a match with the
         // language's keywords.
         const matchKeywords = (
-          languages[y]?.keywords
-            ?.indexOf (id) > -1
+          languages[y].keywords
+            .indexOf (id) > -1
         );
         // Whether least matches
         // pass the test.
         if (
-          matchKeywords
-          || matchName
+          matchKeywords || matchName
         ) {
           // Updates browser cookie
           // to the new active
           // language.
-          setCookie (
-            cookieName.toString (),
-            y.toString ()
-          );
+          setCookie ({
+            name: cookieName.toString (),
+            value: y.toString ()
+          });
           // Gets out of the for
           // loop.
           break;

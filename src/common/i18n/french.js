@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-26
-* @updated 2023-08-30
+* @updated 2023-09-02
 * @file french.js
 * @version 0.0.2
 * @type {French}
@@ -39,14 +39,14 @@ const french = {
     tr4: "Tarifs",
     tr5: "Ressources",
     tr6: "Entreprise",
-    tr7: "Contactez-nous",
-    tr8: "Connectez-vous",
-    tr9: "Obtenez un essai gratuit",
+    tr7: "Contact",
+    tr8: "Connexion",
+    tr9: "Essai gratuit",
     tr10: `
-      Découvrez GitLab Duo: des 
+      Découvrez GitLab Duo: Des 
       workflows basés sur l'IA →
     `,
-    tr11: "Logiciel. Plus rapide.",
+    tr11: "Logiciel. Rapide.",
     tr12: "GitLab est le plus complet",
     tr13: `
       Plateforme DevSecOps alimentée 
@@ -344,7 +344,7 @@ const french = {
     tr120: "Afficher toutes les ressources",
     tr121: "Livre électronique",
     tr122: "Guide du débutant sur DevOps",
-    tr123: "Qu'est-ce que CI/CD ?",
+    tr123: "Qu'est-ce que CI/CD?",
     tr124: "Sujets",
     tr125: `
       DevSecOps mondial 2023
@@ -379,8 +379,8 @@ const french = {
     tr136: "Parler à un expert",
     tr137: "Plateforme DevSecOps",
     tr138: "Voir les plans",
-    tr139: "Pourquoi premium ?",
-    tr140: "Pourquoi Ultimate ?",
+    tr139: "Pourquoi premium?",
+    tr140: "Pourquoi Ultime?",
     tr141: "Transformation numérique",
     tr142: "Sécurité et conformité",
     tr143: `
@@ -437,8 +437,8 @@ const french = {
     tr184: `
       Git est une marque commerciale 
       de Software Freedom Conservancy 
-      et notre l'utilisation de 
-      'GitLab' est sous Licence
+      et notre utilisation de 'GitLab' 
+      est sous Licence
     `,
     tr185: "Vue",
     tr186: "source de la page",

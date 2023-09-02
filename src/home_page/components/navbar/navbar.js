@@ -4,7 +4,7 @@
 * @fileoverview NavBar UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-01
+* @updated 2023-09-02
 * @file navbar.js
 * @type {NavBar}
 * @version 0.0.9
@@ -13,8 +13,11 @@
 // Custom dependencies.
 import {buildButton} from "../../../common/components/button/button.js";
 import ScreenManager from "../../../common/utilities/screen/screen.js";
-import {getUpdates} from "../../../common/utilities/string/string.js";
 import lang from "../../../common/utilities/language/language.js";
+import {
+	animateTextContent,
+	getUpdates
+} from "../../../common/utilities/string/string.js";
 import {
 	listenLoadEvent,
 	clearJSStyle
@@ -34,13 +37,6 @@ import {
  */
 function NavBar () {
 	// Attributes.
-	/**
-	 * @description The navbar data.
-	 * @private {?Object<String, String>}
-	 * @type {?Object<String, String>}
-	 * @field
-	 */
-	let navbarData_ = {};
 	/**
 	 * @description The nav right
 	 * 	options container tag.
@@ -73,6 +69,20 @@ function NavBar () {
 	 * @field
 	 */
 	let menu_ = null;
+
+	// Called when any changement
+	// is detected by redux.
+	window.store.subscribe (() => {
+		// Changes all tags text's
+		// content with a textual
+		// animation.
+		animateTextContent (
+			getUpdates ({
+				attrPrefix: "hd-index",
+				textualsId: "hd-data"
+			})
+		);
+	});
 
 	/**
 	 * @description Animates the navbar
@@ -1071,20 +1081,14 @@ function NavBar () {
 				listenTagsEvents_ ();
 				// Animates the navbar.
 				animateNavBar_ ();
-				// The fetched language text
-				// data.
-				navbarData_ = getUpdates ({
-					attrPrefix: "hd-index",
-					textualsId: "hd-data"
-				});
 			}
 		});
 	}
 }
 
 /**
- * @description Exports all
- * 	public features.
+ * @description Exports
+ * 	all public features.
  * @exports *
  */
 export {NavBar};

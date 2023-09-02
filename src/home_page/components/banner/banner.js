@@ -4,7 +4,7 @@
 * @fileoverview Banner UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-17
-* @updated 2023-09-01
+* @updated 2023-09-02
 * @file banner.js
 * @type {Banner}
 * @version 0.0.2
@@ -14,8 +14,11 @@
 import {ScrollManager} from "../../../common/utilities/scroll/scroll.js";
 import {buildButton} from "../../../common/components/button/button.js";
 import ScreenManager from "../../../common/utilities/screen/screen.js";
-import {getUpdates} from "../../../common/utilities/string/string.js";
 import lang from "../../../common/utilities/language/language.js";
+import {
+	animateTextContent,
+	getUpdates
+} from "../../../common/utilities/string/string.js";
 import {
 	listenLoadEvent,
 	clearJSStyle
@@ -51,13 +54,23 @@ function Banner () {
 	 * @field
 	 */
 	let bannerLeft_ = null;
-	/**
-	 * @description The banner data.
-	 * @private {?Object<String, String>}
-	 * @type {?Object<String, String>}
-	 * @field
-	 */
-	let bannerData_ = {};
+
+	// Called when any changement
+	// is detected by redux.
+	window.store.subscribe (() => {
+		// Updates the top label
+		// text animation.
+		topLabelAnimation_ ();
+		// Changes all tags text's
+		// content with a textual
+		// animation.
+		animateTextContent (
+			getUpdates ({
+				attrPrefix: "banner-index",
+				textualsId: "banner-data"
+			})
+		);
+	});
 
 	/**
 	 * @description Animates the banner
@@ -84,48 +97,6 @@ function Banner () {
 		}, 300);
 		// Returns the timeline.
 		return timeline;
-	};
-
-	/**
-	 * @description Animates top label.
-	 * @function topLabelAnimation_
-	 * @private {Function}
-	 * @returns {void} void
-	 */
-	const topLabelAnimation_ = () => {
-		// The texts to be written.
-		const texts = [
-			`${lang.getText ("tr144")} →`,
-			`${lang.getText ("tr154")} →`,
-			lang.getText ("tr10")
-		];
-		// The typewriter animation
-		// data configurations.
-		const typewriter = (
-			new Typewriter (
-				bannerLeft_
-					.children[0]
-					.children[0],
-				{
-					loop: true,
-					delay: 50
-				}
-			)
-		);
-		// Animates the top left
-		// label.
-		typewriter.pauseFor (2000)
-			.typeString (texts[2])
-			.pauseFor (2000)
-			.deleteChars (22)
-			.typeString (texts[0])
-			.pauseFor (2000)
-			.deleteChars (
-				texts[1].length - 1
-			)
-			.typeString (texts[1])
-			.pauseFor (2000)
-			.start ();
 	};
 
 	/**
@@ -165,6 +136,52 @@ function Banner () {
 		});
 		// Returns the timeline.
 		return timeline;
+	};
+
+	/**
+	 * @description Animates top label.
+	 * @function topLabelAnimation_
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const topLabelAnimation_ = () => {
+		// The texts to be written
+		// by the typewriter.
+		const texts = [
+			`${lang.getText ("tr144")} →`,
+			`${lang.getText ("tr154")} →`,
+			lang.getText ("tr10")
+		];
+		// The typewriter animation
+		// data configurations.
+		const typewriter = (
+			new Typewriter (
+				bannerLeft_
+					.children[0]
+					.children[0],
+				{
+					loop: true,
+					delay: 50
+				}
+			)
+		);
+		// Animates the top left
+		// label.
+		typewriter.pauseFor (2000)
+			.typeString (texts[2])
+			.pauseFor (2000)
+			.deleteChars (
+				texts[2].split (':')[1]
+					.length - 1
+			)
+			.typeString (texts[0])
+			.pauseFor (2000)
+			.deleteChars (
+				texts[0].length
+			)
+			.typeString (texts[1])
+			.pauseFor (2000)
+			.start ();
 	};
 
 	/**
@@ -666,12 +683,6 @@ function Banner () {
 				skeleton.classList.add (
 					"banner-hide-skeleton"
 				);
-				// The fetched language text
-				// data.
-				bannerData_ = getUpdates ({
-					attrPrefix: "banner-index",
-					textualsId: "banner-data"
-				});
 				// Waits for 200ms before
 				// remove `skeleton-loading`
 				// class.
@@ -683,7 +694,7 @@ function Banner () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					max: 40,
+					max: 200,
 					min: 0,
 					onEnter: () => {
 						// Animates the banner in
@@ -710,8 +721,8 @@ function Banner () {
 }
 
 /**
- * @description Exports all
- * 	public features.
+ * @description Exports
+ * 	all public features.
  * @exports *
  */
 export {Banner};

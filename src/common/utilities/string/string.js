@@ -5,10 +5,10 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-08-31
+* @updated 2023-09-02
 * @file string.js
 * @type {String}
-* @version 0.0.3
+* @version 0.0.4
 */
 
 // Custom dependencies.
@@ -127,13 +127,12 @@ function getUpdates ({
  * @returns {void} void
  */
 function animateTextContent (
-  oldData,
   newData
 ) {
   // Animating texts.
   for (
     const id of 
-    Object.keys (oldData)
+    Object.keys (newData)
   ) {
     // The tag ref of the
     // current id.
@@ -149,30 +148,180 @@ function animateTextContent (
     ) {
       // Backspaces the old
       // text content.
-			animateText ({
-				text: oldData[id],
-				isReversed: true,
-				isInverted: true,
+			backspace ({
+        invert: true,
 				interval: 50,
-				target: tag,
+				tag,
         onFinished: () => (
           // Writes the new
           // text content.
           animateText ({
             isReversed: false,
             text: newData[id],
-            isInverted: true,
             interval: 50,
             target: tag,
-            onFinished: () => (
-              oldData[id]
-                = newData[id]
-            )
+            onFinished: () => {
+              // Whether the current
+              // markup has a title.
+              if (
+                tag.hasAttribute (
+                  "title"
+                )
+              ) {
+                // Updates his title.
+                tag.setAttribute (
+                  "title",
+                  newData[id]
+                );
+              }
+            }
           })
         )
 			});
     }
   }
+}
+
+/**
+ * @description Backspaces all characters
+ *  of a text content from a given tag.
+ * @param {{
+ *  onBackspace?: Function (String),
+ *  onFinished?: Function (String),
+ *  invert?: boolean=,
+ *  interval?: int=,
+ *  tag: Element
+ * }} data The method data configurations.
+ *  It supports the following keys:
+ *
+ *  - int interval: The timeout between
+ *    each backspace.
+ *
+ *  - boolean invert: Whether we want to
+ *    reverse the backspace direction.
+ *
+ *  - Function onFinished: Called when
+ *    the backspace effect is over.
+ *
+ *  - Element tag: The target markup
+ *    that will be affected by the
+ *    effect.
+ *
+ *  - Function onBackspace: Called at
+ *    every time a backspace is made
+ *    over tag's text content.
+ * @fires backspace#onBackspace
+ * @fires backspace#onFinished
+ * @function backspace
+ * @public
+ * @returns {void} void
+ */
+function backspace ({
+  onBackspace = null,
+  onFinished = null,
+  invert = false,
+  interval = 140,
+  tag = null
+}) {
+  // Backspacing characters.
+  const animation = (
+    window.setInterval (
+      () => {
+        // The current corrected
+        // tag's text content.
+        tag.textContent = (
+          clearStr ({
+            input: (
+              tag.textContent
+            )
+          })
+        );
+        // The current text
+        // content size.
+        const size = (
+          tag.textContent
+            .length
+        );
+        // Whether the text
+        // length is bigger
+        // than one.
+        if (size > 1) {
+          // Whether direction
+          // is normal.
+          if (!invert) {
+            // Removes the first
+            // character.
+            tag.textContent = (
+              tag.textContent
+                .split ('')
+                .slice (1, size)
+                .join ('')
+            );
+          // Otherwise.
+          } else {
+            // Removes the last
+            // character.
+            tag.textContent = (
+              tag.textContent
+                .split ('')
+                .slice (
+                  0, (size - 1)
+                ).join ('')
+            );
+          }
+          // Whether `onBackspace`
+          // event is listening.
+          if (
+            typeof onBackspace
+              === "function"
+          ) {
+            /**
+             * @description Throws
+             *  `onBackspace` event.
+             * @property {String} rest
+             *  The rest of backspaced
+             *  text.
+             * @event backspace#onBackspace
+             * @readonly
+             * @emits
+             */
+            onBackspace (
+              tag.textContent
+            );
+          }
+        // Otherwise.
+        } else {
+          // Clears text content.
+          tag.textContent = '';
+          // Kills animation.
+          window.clearInterval (
+            animation
+          );
+          // Whether `onFinished`
+          // event is listening.
+          if (
+            typeof onFinished
+              === "function"
+          ) {
+            /**
+             * @description Throws
+             *  `onFinished` event.
+             * @property {String} rest
+             *  The rest of backspaced
+             *  text.
+             * @event backspace#onFinished
+             * @readonly
+             * @emits
+             */
+            onFinished (
+              tag.textContent
+            );
+          }
+        }
+      },
+      interval
+    )
+  );
 }
 
 /**
@@ -399,46 +548,19 @@ function animateText ({
   target = null,
   text = ''
 }) {
-  // Corrects the text.
-  text = (
-    typeof text === "string"
-    ? text.trim () : ''
-  );
   // Whether a text is specified.
-  if (text.length > 0) {
+  if (text.trim ().length > 0) {
     // The text characters.
     text = text.split ('');
     // The written text.
     let written = '';
-    // Corrects property.
-    useInnerHTML = (
-      typeof useInnerHTML === "boolean"
-      ? useInnerHTML : false
-    );
-    // Corrects write mode.
-    usePrepend = (
-      typeof usePrepend === "boolean"
-      ? usePrepend : false
-    );
-    // Corrects interval.
-    interval = (
-      Number.isInteger (interval)
-      ? Math.abs (interval) : 140
-    );
-    // Corrects invert.
-    isInverted = (
-      typeof isInverted === "boolean"
-      ? isInverted : false
-    );
     // The last position index.
     const lastIndex = (
       text.length - 1
     );
     // The current index.
     let i = (
-      isInverted
-      ? lastIndex
-      : 0
+      isInverted ? lastIndex : 0
     );
     // Animating the passed text.
     const animationID = (
@@ -500,41 +622,37 @@ function animateText ({
               );
             }
           }
-          // Whether an html tag is
-          // defined.
-          if (target instanceof Element) {
-            // Whether `innerHTML` prop
-            // is chosen.
-            if (useInnerHTML) {
-              // Updates `innerHTML`
-              // property.
-              target.innerHTML = (
-                smartReplace_ (
-                  target.innerHTML,
-                  written,
-                  isInverted,
-                  usePrepend,
-                  isReversed,
-                  text.join (''),
-                  lastIndex
-                )
-              );
-            // Otherwise.
-            } else {
-              // Updates `innerText`
-              // property.
-              target.textContent = (
-                smartReplace_ (
-                  target.textContent,
-                  written,
-                  isInverted,
-                  usePrepend,
-                  isReversed,
-                  text.join (''),
-                  lastIndex
-                )
-              );
-            }
+          // Whether `innerHTML` prop
+          // is chosen.
+          if (useInnerHTML) {
+            // Updates `innerHTML`
+            // property.
+            target.innerHTML = (
+              smartReplace_ (
+                target.innerHTML,
+                written,
+                isInverted,
+                usePrepend,
+                isReversed,
+                text.join (''),
+                lastIndex
+              )
+            );
+          // Otherwise.
+          } else {
+            // Updates `innerText`
+            // property.
+            target.textContent = (
+              smartReplace_ (
+                target.textContent,
+                written,
+                isInverted,
+                usePrepend,
+                isReversed,
+                text.join (''),
+                lastIndex
+              )
+            );
           }
           // Whether `onWrite` event
           // is listening.
@@ -586,13 +704,14 @@ function animateText ({
 }
 
 /** 
- * @description Exports all
- *  public features.
+ * @description Exports
+ *  all public features.
  * @exports *
  */
 export {
   animateTextContent,
   animateText,
   getUpdates,
+  backspace,
   clearStr
 };

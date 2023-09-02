@@ -4,7 +4,7 @@
 * @fileoverview Resources UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-14
-* @updated 2023-08-26
+* @updated 2023-09-01
 * @file resources.js
 * @type {Resources}
 * @version 0.0.2
@@ -298,7 +298,6 @@ function Resources () {
 				}
 				// Disabled controls.
 				disabled = true;
-				console.log ("fff")
 				// Adds `res-move-right`
 				// class to button.
 				rightButton.classList

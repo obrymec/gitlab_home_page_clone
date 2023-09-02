@@ -5,10 +5,65 @@
 * @supported DESKTOP, MOBILE
 * @type {ScrollManager}
 * @created 2023-08-17
-* @updated 2023-08-25
+* @updated 2023-09-01
 * @file scroll.js
-* @version 0.0.1
+* @version 0.0.4
 */
+
+/**
+ * @description Stops an auto scrolling
+ *  process initialized previously.
+ * @param {int} scrollId The target
+ *  auto scrolling process's id.
+ * @function stopAutoScrolling
+ * @public
+ * @returns {void} void
+ */
+function stopAutoScrolling (
+  scrollId
+) {
+  // Whether the given id is
+  // an integer.
+  if (
+    Number.isInteger (scrollId)
+  ) {
+    // Destroys the target auto
+    // scrolling process from
+    // his id.
+    window.clearInterval (
+      scrollId
+    );
+  }
+}
+
+/**
+ * @description Scrolls the scrollbar
+ *  thumb to the specified element.
+ * @param {String} id The target
+ *  element's id.
+ * @function scrollTo
+ * @public
+ * @returns {void} void
+ */
+function scrollTo (id) {
+  // Gets the tag from his id.
+  const tag = (
+    document.querySelector (
+      id.toString ()
+    )
+  );
+  // Whether the passed tag
+  // is really defined.
+  if (tag instanceof Element) {
+    // Scrolls directly to the
+    // target tag reference.
+    tag.scrollIntoView ({
+      behavior: "smooth",
+      inline: "nearest", 
+      block: "start"
+    });
+  }
+}
 
 /**
  * @description Calculates and
@@ -33,6 +88,97 @@ function getScrollPercent () {
   return Math.round (
     (scrollY * 100) / height
   );
+}
+
+/**
+ * @description Scrolls to a multiple
+ *  passed elements regardless a
+ *  direction. This process is
+ *  in automatic mode.
+ * @param {{
+ *  tagIds: Array<String>,
+ *  reversed?: boolean=,
+ *  infinite?: boolean=,
+ *  interval?: int=
+ * }} data The scroller process
+ *  configs. It supports the
+ *  following keys:
+ *
+ *  - Array tagIds: The target tag
+ *    ids to scroll to.
+ *
+ *  - boolean reversed: Whether we
+ *    want to make an auto scrolling
+ *    process in reverse mode.
+ *
+ *  - boolean infinite: Whether we
+ *    want to make an infinite
+ *    auto scrolling process.
+ *
+ *  - int interval: The interval
+ *    between each scroll.
+ * @function autoScroll
+ * @public
+ * @returns {int} int
+ */
+function autoScroll ({
+  infinite = false,
+  reversed = false,
+  interval = 3000,
+  tagIds = []
+}) {
+  // The current scroll index.
+  let index = (
+    reversed ? tagIds.length : -1
+  );
+  // The auto scrolling process
+  // background's id.
+  let processId = null;
+  // Manages auto scrolling.
+  const scroll = () => {
+    // Updates the current index.
+    index += (reversed ? -1 : 1);
+    // Whether the current
+    // position stay valid.
+    if (
+      index < tagIds.length
+      && index > -1 
+    ) {
+      // Scrolls to the current
+      // getted markup element.
+      scrollTo (tagIds[index]);
+    // Otherwise.
+    } else {
+      // Resets the position.
+      index = (
+        reversed ?
+        tagIds.length : -1
+      );
+      // Whether the scrolling
+      // is limited.
+      if (
+        processId != null
+        && !infinite
+      ) {
+        // Stops auto scrolling
+        // process.
+        window.clearInterval (
+          processId
+        );
+      }
+    }
+  };
+  // Makes the first scroll.
+  scroll ();
+  // Auto scrolling process.
+  processId = (
+    window.setInterval (
+      scroll, interval
+    )
+  );
+  // Returns the scroll
+  // background's id.
+  return processId;
 }
 
 /**
@@ -115,7 +261,7 @@ function ScrollManager ({
 
   /**
    * @description Checks scroll position
-   *  to trigger event about that.
+   *  to trigger events about that.
    * @fires checkScroll_#onEnter
    * @fires checkScroll_#onLeave
    * @fires checkScroll_#onOver
@@ -128,7 +274,7 @@ function ScrollManager ({
     // The current scroll progress.
     progress_ = getScrollPercent ();
     // Whether the scroll thumb
-    // is at the top of page.
+    // is in range [min; max].
     if (
       progress_ >= min &&
       progress_ <= max
@@ -194,7 +340,7 @@ function ScrollManager ({
     }
   };
 
-  // Listens document scrollbar.
+  // Listens window scrollbar.
   listenScrollBar_ ();
   // Checks the current
   // scrollbar position.
@@ -207,6 +353,9 @@ function ScrollManager ({
  * @exports *
  */
 export {
+  stopAutoScrolling,
   getScrollPercent,
-  ScrollManager
+  ScrollManager,
+  autoScroll,
+  scrollTo
 };

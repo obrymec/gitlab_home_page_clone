@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-21
-* @updated: 2023-08-30
+* @updated: 2023-09-01
 * @file: footer.scss
 * @version: 0.0.2
 */
@@ -71,7 +71,7 @@ div.foot-bottom {
 }
 
 // Footer section.
-footer.footer {
+footer > section.footer {
   background-color: $primary-color;
   padding: 40px 5%;
   // From 1216 to 640.

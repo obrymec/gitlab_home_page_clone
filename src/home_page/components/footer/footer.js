@@ -4,7 +4,7 @@
 * @fileoverview GitLab footer section.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-21
-* @updated 2023-08-30
+* @updated 2023-09-02
 * @file footer.js
 * @version 0.0.3
 * @type {Footer}
@@ -27,6 +27,7 @@ import {
  * @returns {Footer} Footer
  */
 function Footer () {
+
 	/**
 	 * @description Builds a menu.
 	 * @param {{
@@ -82,6 +83,60 @@ function Footer () {
 		`;
 	};
 
+	/**
+	 * @description Listens dropdown to
+	 * 	known which language is selected.
+	 * @function listenDropdown_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const listenDropdown_ = () => {
+		// The dropdown tag reference.
+		const dropdown = (
+			document.querySelector (
+				"select#foot-av-lang"
+			)
+		);
+		// The active language name.
+		const name = (
+			lang.getActiveLanguage ()
+				.name
+		);
+		// Searching the current
+		// language's name inside
+		// the dropdown options.
+		for (
+			const option of
+				dropdown.children
+		) {
+			// Whether ever the current
+			// name matches with the
+			// current option.
+			if (
+				option.value === name
+			) {
+				// Sets it active.
+				dropdown.value = name;
+				// Gets out of the
+				// `for` loop.
+				break;
+			}
+		}
+		// Listens `change` event.
+		dropdown.addEventListener (
+			"change", () => {
+				// Sets active language
+				// inside the global
+				// state.
+				window.store.dispatch ({
+					type: "SET_LANGUAGE",
+					payload: dropdown.value
+				});
+			}
+		);
+	};
+
   /**
 	 * @description Builds footer html
 	 * 	structure as string format.
@@ -90,20 +145,20 @@ function Footer () {
 	 * @returns {void} void
 	 */
 	this.render = () => {
-		// Creates a footer tag.
-		const footer = (
+		// Creates a section tag.
+		const section = (
 			document.createElement (
-				"footer"
+				"section"
 			)
 		);
 		// Adds a class's name to
-		// the created footer.
-		footer.classList.add (
+		// the created section.
+		section.classList.add (
 			"footer"
 		);
 		// Adds a html structure
-		// to the created footer.
-		footer.innerHTML = `
+		// to the created section.
+		section.innerHTML = `
 			<div class = "foot-top">
 				<div class = "foot-gitlab">
 					${buildLogo ({
@@ -215,7 +270,7 @@ function Footer () {
 						<span>
 							${lang.getText ("tr183")}: 
 						</span>
-						<select>
+						<select id = "foot-av-lang">
 							<option
 								value = "english"
 							>
@@ -277,14 +332,17 @@ function Footer () {
 		// to the selected tag
 		// as a child.
 		document.querySelector (
-			"main"
-		).appendChild (footer);
+			"footer"
+		).appendChild (section);
+		// Listens language
+		// changement.
+		listenDropdown_ ();
 	}
 }
 
 /**
- * @description Exports all
- * 	public features.
+ * @description Exports
+ * 	all public features.
  * @exports *
  */
 export {Footer};

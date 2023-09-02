@@ -1,0 +1,36 @@
++-----------Pricing section shown before resources----+
+// Builds pricing section.
+// new Pricing ().render ();
+
++-----------To stop auto scrolling progress-----------+
+// Listens `click` event
+// on the global header.
+header_.addEventListener (
+  "click", () => (
+    window.store.dispatch ({
+      type: (
+        "STOP_AUTO_SCROLLING"
+      ),
+      payload: (
+        window.store
+          .getState ()
+          .processId
+      )
+    })
+  )
+);
+
++----------Redux reducer define in main---------------+
+// Whether action's name is equal
+// to `STOP_AUTO_SCROLLING`.
+else if (
+  action.type ===
+    "STOP_AUTO_SCROLLING"
+  && action.payload != null
+) {
+  // Kills auto scrolling
+  // process.
+  stopAutoScrolling (
+    action.payload
+  );
+}
