@@ -4,7 +4,7 @@
 * @fileoverview Banner UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-17
-* @updated 2023-09-02
+* @updated 2023-09-06
 * @file banner.js
 * @type {Banner}
 * @version 0.0.2
@@ -287,7 +287,7 @@ function Banner () {
 		direction
 	) => (
 		clearJSStyle ({
-			direction: direction,
+			direction,
 			targets: [
 				{
 					ref: bannerLeft_.children[0],
@@ -678,27 +678,25 @@ function Banner () {
 				topLabelAnimation_ ();
 				// Launches carousel.
 				caroussel_ ();
-				// Adds `banner-hide-skeleton`
-				// class to the skeleton.
+				// Adds `hide-skeleton`
+				// class to skeleton
+				// loader.
 				skeleton.classList.add (
-					"banner-hide-skeleton"
+					"hide-skeleton"
 				);
 				// Waits for 200ms before
-				// remove `skeleton-loading`
-				// class.
-				window.setTimeout (() => {
-					// Removes the skeleton
-					// loader.
-					skeleton.remove ();
-				}, 200);
+				// delete skeleton loader.
+				window.setTimeout (() => (
+					skeleton.remove ()
+				), 200);
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
 					max: 200,
 					min: 0,
 					onEnter: () => {
-						// Animates the banner in
-						// normal mode.
+						// Animates the banner
+						// in  normal mode.
 						animateBanner_ ().play ();
 					},
 					onLeave: () => {

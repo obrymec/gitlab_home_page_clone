@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: customers.scss
 * @created: 2023-06-21
-* @updated: 2023-08-24
+* @updated: 2023-09-06
 * @version: 0.0.1
 */
 
@@ -31,6 +31,7 @@ div.left-customers {
 // Customers logos.
 section.customers {
 	@extend %customers-inline-flexbox;
+	transform: translate3d(0, 0, 0);
 	justify-content: center;
 	padding: 5% 6% 4% 5%;
 	align-items: center;
@@ -45,7 +46,7 @@ section.customers {
 		padding: 10% 16px 12% 16px;
 	}
 	// Trusted text.
-	& > label {
+	& > span {
 		color: $customers-text-color;
 		display: inline-block;
 		white-space: nowrap;

@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-02
+* @updated 2023-09-06
 * @version 0.0.7
 * @file main.js
 */
@@ -118,7 +118,7 @@ new NavBar ().render ();
 // Builds banner section.
 new Banner ().render ();
 // Builds customers section.
-// new Customers ().render ();
+new Customers ().render ();
 // Builds services section.
 // new Services ().render ();
 // Builds collaborators section.
@@ -134,4 +134,4 @@ new Banner ().render ();
 // Builds faq section.
 // new FAQ ().render ();
 // Builds footer section.
-new Footer ().render ();
+// new Footer ().render ();

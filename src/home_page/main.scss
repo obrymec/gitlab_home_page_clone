@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-09-01
+* @updated: 2023-09-06
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -42,6 +42,11 @@
 // All tags.
 * {
 	transition: all .2s ease-in-out;
+}
+
+// Hide skeleton loader.
+div.hide-skeleton {
+	opacity: 0;
 }
 
 // Root.

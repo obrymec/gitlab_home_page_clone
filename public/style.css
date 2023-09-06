@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-09-01
+* @updated: 2023-09-06
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -763,7 +763,7 @@ button.gen-btn {
 * @supported: DESKTOP, MOBILE
 * @file: customers.scss
 * @created: 2023-06-21
-* @updated: 2023-08-24
+* @updated: 2023-09-06
 * @version: 0.0.1
 */
 /**
@@ -815,6 +815,7 @@ div.left-customers {
   column-gap: 5%; }
 
 section.customers {
+  transform: translate3d(0, 0, 0);
   justify-content: center;
   padding: 5% 6% 4% 5%;
   align-items: center;
@@ -826,7 +827,7 @@ section.customers {
   @media only screen and (max-width: 500px) {
     section.customers {
       padding: 10% 16px 12% 16px; } }
-  section.customers > label {
+  section.customers > span {
     color: #171321;
     display: inline-block;
     white-space: nowrap;
@@ -1694,7 +1695,7 @@ div.nav-right {
 * @fileoverview: GitLab banner stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-17
-* @updated: 2023-09-01
+* @updated: 2023-09-06
 * @file: banner.scss
 * @version: 0.0.2
 */
@@ -1892,8 +1893,6 @@ section.banner-template {
   overflow-x: hidden;
   margin-top: 78px;
   width: 100%; }
-  section.banner-template div.banner-hide-skeleton {
-    opacity: 0; }
 
 div.banner-right {
   transform: translate3d(0, 0, 0);
@@ -2408,6 +2407,9 @@ div.faq-right {
     background-position-x: -200%; } }
 * {
   transition: all .2s ease-in-out; }
+
+div.hide-skeleton {
+  opacity: 0; }
 
 body {
   font-family: "InterRegular", sans-serif;
