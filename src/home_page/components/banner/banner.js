@@ -55,23 +55,6 @@ function Banner () {
 	 */
 	let bannerLeft_ = null;
 
-	// Called when any changement
-	// is detected by redux.
-	window.store.subscribe (() => {
-		// Updates the top label
-		// text animation.
-		topLabelAnimation_ ();
-		// Changes all tags text's
-		// content with a textual
-		// animation.
-		animateTextContent (
-			getUpdates ({
-				attrPrefix: "banner-index",
-				textualsId: "banner-data"
-			})
-		);
-	});
-
 	/**
 	 * @description Animates the banner
 	 * 	for large screens.
@@ -258,7 +241,7 @@ function Banner () {
 					// Waits for 250 miliseconds
 					// before add paddings.
 					window.setTimeout (() => (
-						clearAnimationData_ (
+						clearData_ (
 							this.direction
 						)
 					), 250);
@@ -278,12 +261,12 @@ function Banner () {
 	 * 	data.
 	 * @param {String} direction The
 	 * 	animation's direction.
-	 * @function clearAnimationData_
+	 * @function clearData_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {void} void
 	 */
-	const clearAnimationData_ = (
+	const clearData_ = (
 		direction
 	) => (
 		clearJSStyle ({
@@ -689,6 +672,29 @@ function Banner () {
 				window.setTimeout (() => (
 					skeleton.remove ()
 				), 200);
+				// Called when any changement
+				// is detected by redux.
+				window.store.subscribe (
+					() => {
+						// Updates the top label
+						// text animation.
+						topLabelAnimation_ ();
+						// Changes all tags
+						// text's content
+						// with a textual
+						// animation.
+						animateTextContent (
+							getUpdates ({
+								attrPrefix: (
+									"banner-index"
+								),
+								textualsId: (
+									"banner-data"
+								)
+							})
+						);
+					}
+				);
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
@@ -696,21 +702,33 @@ function Banner () {
 					min: 0,
 					onEnter: () => {
 						// Animates the banner
-						// in  normal mode.
-						animateBanner_ ().play ();
+						// in normal mode.
+						animateBanner_ ()
+							.play ();
+						// Puts a focus to
+						// corresponding
+						// option inside
+						// the navbar.
+						window.store
+							.getState ()
+							.navbar
+							.select (0);
 					},
 					onLeave: () => {
 						// Animates the banner
 						// in reverse mode.
-						animateBanner_ ().reverse ();
-						// Waits for 200ms before
-						// resets section initial
-						// css properties.
-						window.setTimeout (() => (
-							clearAnimationData_ (
-								"reverse"
-							)
-						), 200);
+						animateBanner_ ()
+							.reverse ();
+						// Waits for 200ms
+						// before destroy
+						// animation data.
+						window.setTimeout (
+							() => (
+								clearData_ (
+									"reverse"
+								)
+							), 200
+						);
 					}
 				});
 			}

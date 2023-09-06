@@ -1,10 +1,10 @@
 /**
-* @fileoverview Services UI component for the landing page.
 * @author Obrymec - obrymecsprinces@gmail.com
 * @project GitLab - https://www.google.com
+* @fileoverview Services UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-23
-* @updated 2023-08-18
+* @updated 2023-09-06
 * @file services.js
 * @type {Services}
 * @version 0.0.2
@@ -12,10 +12,18 @@
 
 // Custom dependencies.
 import {buildFlatButton} from "../../../common/components/button/button.js";
-import {clearJSStyle} from "../../../common/utilities/browser/browser.js";
+import {ScrollManager} from "../../../common/utilities/scroll/scroll.js";
 import ScreenManager from "../../../common/utilities/screen/screen.js";
-import {clearStr} from "../../../common/utilities/string/string.js";
 import lang from "../../../common/utilities/language/language.js";
+import {
+	animateTextContent,
+	getUpdates,
+	clearStr
+} from "../../../common/utilities/string/string.js";
+import {
+	listenLoadEvent,
+	clearJSStyle
+} from "../../../common/utilities/browser/browser.js";
 import {
 	buildIcon,
 	Icons
@@ -49,11 +57,9 @@ function Services () {
 	 * @returns {Object} Object
 	 */
 	const clearData_ = direction => (
-		// Waits for 250 milisecond
+		// Waits for 250 miliseconds
 		// before add paddings.
 		window.setTimeout (() => (
-			// Clears js animation
-			// data.
 			clearJSStyle ({
 				direction: direction,
 				targets: [
@@ -82,25 +88,25 @@ function Services () {
 	 * @description Builds services html
 	 * 	structure as string format.
 	 * @param {{
-	 * 	buttonText: String,
+	 * 	button: Object<String, any>,
+	 * 	about: Object<String, any>,
+	 * 	title: Object<String, any>,
 	 * 	className: String,
-	 * 	about: String,
-	 * 	title: String,
 	 * 	icon: String
 	 * }} data The service tag configs.
 	 * 	It supports the following keys:
-	 * 
+	 *
 	 * 	- String icon: The service's
 	 * 		front icon.
 	 *
-	 * 	- String title: The service's
+	 * 	- Object title: The service's
 	 * 		main title.
 	 *
-	 * 	- String about: The service's
+	 * 	- Object about: The service's
 	 * 		short description.
 	 *
-	 * 	- String buttonText: The
-	 * 		button's text to display.
+	 * 	- Object button: The button's
+	 * 		text to display.
 	 *
 	 * 	- String className: The
 	 * 		class's name of service.
@@ -111,7 +117,7 @@ function Services () {
 	 */
 	const buildService_ = ({
 		className = '',
-		buttonText,
+		button,
 		about,
 		title,
 		icon
@@ -127,22 +133,41 @@ function Services () {
 					fileName: icon,
 					data: {
 						height: "24px",
-						width: "24px"
+						width: "24px",
+						idName: (
+							"services-img"
+						)
 					}
 				})}
-				<label>
+				<label
+					id = "services-data"
+					services-index = "${
+						title.id
+					}::${title.pos}"
+				>
 					${clearStr ({
-						input: title
+						input: title.value
 					})}
 				</label>
-				<p>
+				<p
+					id = "services-data"
+					services-index = "${
+						about.id
+					}::${about.pos}"
+				>
 					${clearStr ({
-						input: about
+						input: about.value
 					})}
 				</p>
 			</div>
 			${buildFlatButton ({
-				text: buttonText
+				textId: "services-data",
+				text: button.value,
+				customAttr: (
+					`services-index = ${
+						button.id
+					}::${button.pos}`
+				)
 			})}
 		</div>
 	`;
@@ -164,8 +189,7 @@ function Services () {
 			duration: 140,
 			delay: 80,
 			complete: function () {
-				// Clears all animations
-				// data.
+				// Clears all data.
 				clearData_ (this.direction);
 			}
 		});
@@ -174,7 +198,7 @@ function Services () {
 		for (
 			const child of [
 				services_.firstElementChild,
-				services_.lastElementChild
+				services_.children[2]
 			]
 		) {
 			// Adds the current
@@ -276,13 +300,17 @@ function Services () {
 			}, 145);
 		}
 		// The all services animation
-		// configuratons.
+		// configurations.
 		return anime ({
-			targets: services_.children,
 			width: ["0%", "100%"],
 			opacity: [0.0, 1.0],
 			autoplay: false,
 			duration: 140,
+			targets: [
+				services_.children[0],
+				services_.children[1],
+				services_.children[2]
+			],
 			complete: function () {
 				// The animation direction
 				// at the end of them.
@@ -376,26 +404,65 @@ function Services () {
 		// Adds a html structure
 		// to the created section.
 		services_.innerHTML = `
-			${buildService_ ({
-				buttonText: lang.getText ("tr17"),
-				title: lang.getText ("tr16"),
-				about: lang.getText ("tr18"),
-				icon: Icons.VERIFIED
+		${buildService_ ({
+				icon: Icons.VERIFIED,
+				button: {
+					value: lang.getText ("tr17"),
+					id: "tr17",
+					pos: 0
+				},
+				title: {
+					value: lang.getText ("tr16"),
+					id: "tr16",
+					pos: 1
+				},
+				about: {
+					value: lang.getText ("tr18"),
+					id: "tr18",
+					pos: 2
+				}
 			})}
 			${buildService_ ({
-				buttonText: lang.getText ("tr21"),
 				className: "services-second-as",
-				title: lang.getText ("tr19"),
-				about: lang.getText ("tr20"),
-				icon: Icons.REPORT
+				icon: Icons.REPORT,
+				button: {
+					value: lang.getText ("tr21"),
+					id: "tr21",
+					pos: 3
+				},
+				title: {
+					value: lang.getText ("tr19"),
+					id: "tr19",
+					pos: 4
+				},
+				about: {
+					value: lang.getText ("tr20"),
+					id: "tr20",
+					pos: 5
+				}
 			})}
 			${buildService_ ({
-				buttonText: lang.getText ("tr24"),
 				className: "services-third-as",
-				title: lang.getText ("tr22"),
-				about: lang.getText ("tr23"),
-				icon: Icons.CODE_SUGGESTION
+				icon: Icons.CODE_SUGGESTION,
+				button: {
+					value: lang.getText ("tr24"),
+					id: "tr24",
+					pos: 6
+				},
+				title: {
+					value: lang.getText ("tr22"),
+					id: "tr22",
+					pos: 7
+				},
+				about: {
+					value: lang.getText ("tr23"),
+					id: "tr23",
+					pos: 8
+				}
 			})}
+			<div
+				class = "skeleton-loading">
+			</div>
 		`;
 		// Adds the below section
 		// to the selected tag as
@@ -403,14 +470,92 @@ function Services () {
 		document.querySelector (
 			"main"
 		).appendChild (services_);
-		// Animates services.
-		animateServices_ ().play ();
+		// Waits until top icons
+		// are loaded.
+		listenLoadEvent ({
+			tags: (
+				document.querySelectorAll (
+					"img#services-img"
+				)
+			),
+			onReady: () => {
+				// Adds `hide-skeleton`
+				// class to skeleton
+				// loader.
+				services_.lastElementChild
+					.classList.add (
+						"hide-skeleton"
+					);
+				// Waits for 200ms before
+				// delete skeleton loader.
+				window.setTimeout (() => (
+					services_.lastElementChild
+						.remove ()
+				), 200);
+				// Called when any changement
+				// is detected by redux.
+				window.store.subscribe (
+					() => {
+						// Changes all tags
+						// text's content
+						// with a textual
+						// animation.
+						animateTextContent (
+							getUpdates ({
+								attrPrefix: (
+									"services-index"
+								),
+								textualsId: (
+									"services-data"
+								)
+							})
+						);
+					}
+				);
+				// Focus on the current
+				// section for scrolling.
+				new ScrollManager ({
+					max: 200,
+					min: 0,
+					onEnter: () => {
+						// Animates services
+						// in normal mode.
+						animateServices_ ()
+							.play ();
+						// Puts a focus to
+						// corresponding
+						// option inside
+						// the navbar.
+						window.store
+							.getState ()
+							.navbar
+							.select (1);
+					},
+					onLeave: () => {
+						// Animates services
+						// in reverse mode.
+						animateServices_ ()
+							.reverse ();
+						// Waits for 200ms
+						// before destroy
+						// animation data.
+						window.setTimeout (
+							() => (
+								clearData_ (
+									"reverse"
+								)
+							), 200
+						);
+					}
+				});
+			}
+		});
 	}
 }
 
 /**
- * @description Exports all
- * 	public features.
+ * @description Exports
+ * 	all public features.
  * @exports *
  */
 export {Services};

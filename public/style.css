@@ -1004,7 +1004,7 @@ div.resource {
 * @supported: DESKTOP, MOBILE
 * @file: services.scss
 * @created: 2023-06-23
-* @updated: 2023-08-26
+* @updated: 2023-09-06
 * @version: 0.0.3
 */
 /**
@@ -1096,6 +1096,7 @@ div.services-af {
 * @version: 0.0.1
 */
 section.services {
+  transform: translate3d(0, 0, 0);
   background-repeat: no-repeat;
   padding: 80px 7% 75px 7%;
   justify-content: center;

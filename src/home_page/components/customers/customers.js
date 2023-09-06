@@ -52,31 +52,17 @@ function Customers () {
 	 */
 	let leftGuest_ = null;
 
-	// Called when any changement
-	// is detected by redux.
-	window.store.subscribe (() => {
-		// Changes all tags text's
-		// content with a textual
-		// animation.
-		animateTextContent (
-			getUpdates ({
-				attrPrefix: "customers-index",
-				textualsId: "customers-data"
-			})
-		);
-	});
-
 	/**
 	 * @description Clears animation
 	 * 	data.
 	 * @param {String} direction The
 	 * 	animation's direction.
-	 * @function clearAnimationData_
+	 * @function clearData_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {void} void
 	 */
-	const clearAnimationData_ = (
+	const clearData_ = (
 		direction
 	) => (
 		clearJSStyle ({
@@ -150,7 +136,7 @@ function Customers () {
 				complete: function () {
 					// Clears javascript
 					// animation data.
-					clearAnimationData_ (
+					clearData_ (
 						this.direction
 					);
 				}
@@ -368,6 +354,26 @@ function Customers () {
 					section.lastElementChild
 						.remove ()
 				), 200);
+				// Called when any changement
+				// is detected by redux.
+				window.store.subscribe (
+					() => {
+						// Changes all tags
+						// text's content
+						// with a textual
+						// animation.
+						animateTextContent (
+							getUpdates ({
+								attrPrefix: (
+									"customers-index"
+								),
+								textualsId: (
+									"customers-data"
+								)
+							})
+						);
+					}
+				);
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
@@ -382,14 +388,16 @@ function Customers () {
 						// Animates customers
 						// in reverse mode.
 						animate_ ("reverse");
-						// Waits for 200ms before
-						// resets section initial
-						// css properties.
-						window.setTimeout (() => (
-							clearAnimationData_ (
-								"reverse"
-							)
-						), 200);
+						// Waits for 200ms
+						// before destroy
+						// animation data.
+						window.setTimeout (
+							() => (
+								clearData_ (
+									"reverse"
+								)
+							), 200
+						);
 					}
 				});
 			}

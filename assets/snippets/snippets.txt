@@ -1,6 +1,6 @@
 +-----------Pricing section shown before resources----+
 // Builds pricing section.
-// new Pricing ().render ();
+// state.pricing.render ();
 
 +-----------To stop auto scrolling progress-----------+
 // Listens `click` event
@@ -32,5 +32,73 @@ else if (
   // process.
   stopAutoScrolling (
     action.payload
+  );
+}
+
++------------------Auto scroller----------------------+
+// dependencies need for auto
+// scroller process.
+import {listenLoadEvent} from "../common/utilities/browser/browser.js";
+import {
+  stopAutoScrolling,
+  autoScroll
+} from "../common/utilities/scroll/scroll.js";
+
+// To contain auto scroller
+// background process's id.
+processId: null,
+
+// Whether redux starts.
+if (
+  action.type.startsWith (
+    "@@redux/INIT"
+  )
+) {
+  // Listens `scroll` event.
+  window.addEventListener (
+    "scroll", (e) => {
+      // console.log (e);
+      // Whether the process
+      // is running.
+      // if (processId != null) {
+      //   // Destroy auto scroll
+      //   // background process.
+      //   stopAutoScrolling (
+      //     processId
+      //   );
+      // }
+    }
+  );
+  // When html, css and js
+  // are loaded and ready.
+  window.addEventListener (
+    "DOMContentLoaded",
+    () => listenLoadEvent ({
+      tags: (
+        document
+          .querySelectorAll ("img")
+      ),
+      onReady: () => {
+        // Starts auto scroll program.
+        currentState.processId = (
+          autoScroll ({
+            interval: 6000,
+            infinite: true,
+            tagIds: [
+              "section.banner",
+              "section.customers",
+              "section.services",
+              "section.collaborators",
+              "section.methodologies",
+              "section.badges",
+              "section.pricing",
+              "section.resources",
+              "section.faq",
+              "section.footer"
+            ]
+          })
+        );
+      }
+    })
   );
 }

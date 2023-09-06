@@ -4,7 +4,7 @@
 * @fileoverview NavBar UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-02
+* @updated 2023-09-06
 * @file navbar.js
 * @type {NavBar}
 * @version 0.0.9
@@ -13,6 +13,7 @@
 // Custom dependencies.
 import {buildButton} from "../../../common/components/button/button.js";
 import ScreenManager from "../../../common/utilities/screen/screen.js";
+import {scrollTo} from "../../../common/utilities/scroll/scroll.js";
 import lang from "../../../common/utilities/language/language.js";
 import {
 	animateTextContent,
@@ -70,20 +71,6 @@ function NavBar () {
 	 */
 	let menu_ = null;
 
-	// Called when any changement
-	// is detected by redux.
-	window.store.subscribe (() => {
-		// Changes all tags text's
-		// content with a textual
-		// animation.
-		animateTextContent (
-			getUpdates ({
-				attrPrefix: "hd-index",
-				textualsId: "hd-data"
-			})
-		);
-	});
-
 	/**
 	 * @description Animates the navbar
 	 * 	gitlab icon.
@@ -94,7 +81,9 @@ function NavBar () {
 	 * @private {Function}
 	 * @returns {Object} Object
 	 */
-	const gitLabIconAnimation_ = timeline => (
+	const gitLabIconAnimation_ = (
+		timeline
+	) => (
 		timeline.add ({
 			targets: navLeft_.children[1],
 			rotate: ["-180deg", "0deg"],
@@ -148,19 +137,26 @@ function NavBar () {
 	 */
 	const mediumAnimation_ = () => {
 		// Animates the header.
-		let timeline = headerAnimation_ (-38);
+		let timeline = (
+			headerAnimation_ (-38)
+		);
 		// Animates the gitlab icon.
-		timeline = gitLabIconAnimation_ (
-			timeline
+		timeline = (
+			gitLabIconAnimation_ (
+				timeline
+			)
 		);
 		// Animates right options.
-		timeline = optionsAnimation_ ({
-			container: navRight_,
-			tag: "medium",
-			timeline
-		});
-		// Returns animation timeline
-		// to control it after.
+		timeline = (
+			optionsAnimation_ ({
+				container: navRight_,
+				tag: "medium",
+				timeline
+			})
+		);
+		// Returns animation
+		// timeline to handle
+		// it after.
 		return timeline;
 	};
 
@@ -234,25 +230,35 @@ function NavBar () {
 	 */
 	const largeAnimation_ = () => {
 		// Animates the header.
-		let timeline = headerAnimation_ (-38);
-		// Animates the gitlab icon.
-		timeline = gitLabIconAnimation_ (
-			timeline
+		let timeline = (
+			headerAnimation_ (-38)
+		);
+		// Animates the gitlab
+		// icon.
+		timeline = (
+			gitLabIconAnimation_ (
+				timeline
+			)
 		);
 		// Animates left options.
-		timeline = optionsAnimation_ ({
-			container: navLeft_,
-			tag: "large",
-			timeline
-		});
+		timeline = (
+			optionsAnimation_ ({
+				container: navLeft_,
+				tag: "large",
+				timeline
+			})
+		);
 		// Animates right options.
-		timeline = optionsAnimation_ ({
-			container: navRight_,
-			tag: "large",
-			timeline
-		});
-		// Returns animation timeline
-		// to control it after.
+		timeline = (
+			optionsAnimation_ ({
+				container: navRight_,
+				tag: "large",
+				timeline
+			})
+		);
+		// Returns animation
+		// timeline to handle
+		// it after.
 		return timeline;
 	};
 
@@ -266,10 +272,15 @@ function NavBar () {
 	 */
 	const smallAnimation_ = () => {
 		// Animates the header.
-		let timeline = headerAnimation_ (0);
-		// Animates the gitlab icon.
-		timeline = gitLabIconAnimation_ (
-			timeline
+		let timeline = (
+			headerAnimation_ (0)
+		);
+		// Animates the gitlab
+		// icon.
+		timeline = (
+			gitLabIconAnimation_ (
+				timeline
+			)
 		);
 		// Animates the third search.
 		timeline.add ({
@@ -358,20 +369,8 @@ function NavBar () {
 	 * @returns {void} void
 	 */
 	const listenTagsEvents_ = () => {
-		// The nav right tag ref.
-	 	navRight_ = (
-			document.querySelector (
-				"div.nav-right"
-			)
-		);
-		// The nav left tag ref.
-		navLeft_ = (
-			document.querySelector (
-				"div.nav-left"
-			)
-		);
 		// Listens `click` event on
-		// close icon.
+		// menu close icon.
 		menu_
 			.children[0].children[1]
 			.addEventListener (
@@ -384,6 +383,21 @@ function NavBar () {
 		].addEventListener (
 			"click", showMenu_
 		);
+		// Listens `click` event on
+		// menu gitlab icon.
+		menu_
+			.children[0].children[0]
+			.addEventListener (
+				"click", () => {
+					// Closes menu.
+					closeMenu_ ();
+					// Scrolls to banner
+					// section.
+					scrollTo (
+						"section.banner"
+					);
+				}
+			);
 		// Listens all top left options
 		// `click` event.
 		for (let j = 1; j <= 8; j++) {
@@ -395,7 +409,11 @@ function NavBar () {
 						// Whether we click on
 						// gitlab logo.
 						if (j === 1) {
-							console.log ("GitLab !");
+							// Scrolls to banner
+							// section.
+							scrollTo (
+								"section.banner"
+							);
 						// Whether the current
 						// index is bigger than
 						// one (01).
@@ -403,6 +421,25 @@ function NavBar () {
 							// Selects the target
 							// option.
 							this.select (j - 2);
+							// Whether the current
+							// option has `scroll-to`
+							// attribute.
+							if (
+								navLeft_.children[j]
+									.hasAttribute (
+										"scroll-to"
+									)
+							) {
+								// Scrolls to the target
+								// given section on the
+								// web page.
+								scrollTo (
+									navLeft_.children[j]
+										.getAttribute (
+											"scroll-to"
+										)
+								);
+							}
 						}
 					}
 				);
@@ -433,6 +470,23 @@ function NavBar () {
 						option.classList.remove (
 							"nav-menu-selection"
 						);
+						// Whether the current
+						// option has `scroll-to`
+						// attribute.
+						if (
+							option.hasAttribute (
+								"scroll-to"
+							)
+						) {
+							// Scrolls to the target
+							// given section on the
+							// web page.
+							scrollTo (
+								option.getAttribute (
+									"scroll-to"
+								)
+							);
+						}
 					}, 310);
 				}
 			);
@@ -724,6 +778,9 @@ function NavBar () {
 					class = "${
 						"hd-menu-options-as"
 					}"
+					scroll-to = "${
+						"section.banner"
+					}"
 				>
 					${lang.getText ("tr1")}
 				</div>
@@ -733,10 +790,16 @@ function NavBar () {
 					class = "${
 						"hd-menu-options-as"
 					}"
+					scroll-to = "${
+						"section.services"
+					}"
 				>
 					${lang.getText ("tr2")}
 				</div>
 				<div
+					scroll-to = "${
+						"section.methodologies"
+					}"
 					class = "${
 						"hd-menu-options-as"
 					}"
@@ -762,12 +825,18 @@ function NavBar () {
 					class = "${
 						"hd-menu-options-as"
 					}"
+					scroll-to = "${
+						"section.pricing"
+					}"
 				>
 					${lang.getText ("tr4")}
 				</div>
 				<div
 					class = "${
 						"hd-menu-options-as"
+					}"
+					scroll-to = "${
+						"section.resources"
 					}"
 				>
 					<span
@@ -786,6 +855,9 @@ function NavBar () {
 					})}
 				</div>
 				<div
+					scroll-to = "${
+						"section.collaborators"
+					}"
 					class = "${
 						"hd-menu-options-as"
 					}"
@@ -808,6 +880,9 @@ function NavBar () {
 				<div
 					class = "${
 						"hd-menu-options-as"
+					}"
+					scroll-to = "${
+						"section.faq"
 					}"
 				>
 					<span
@@ -904,6 +979,9 @@ function NavBar () {
 						class = "${
 							"hd-left-options-as"
 						}"
+						scroll-to = "${
+							"section.banner"
+						}"
 					>
 						${lang.getText ("tr1")}
 					</span>
@@ -917,6 +995,9 @@ function NavBar () {
 						class = "${
 							"hd-left-options-as"
 						}"
+						scroll-to = "${
+							"section.services"
+						}"
 					>
 						${lang.getText ("tr2")}
 					</span>
@@ -924,6 +1005,9 @@ function NavBar () {
 						hd-index = "tr3::12"
 						id = "hd-data"
 						name = "large"
+						scroll-to = "${
+							"section.methodologies"
+						}"
 						title = "${
 							lang.getText ("tr3")
 						}"
@@ -943,6 +1027,9 @@ function NavBar () {
 						class = "${
 							"hd-left-options-as"
 						}"
+						scroll-to = "${
+							"section.pricing"
+						}"
 					>
 						${lang.getText ("tr4")}
 					</span>
@@ -956,6 +1043,9 @@ function NavBar () {
 						class = "${
 							"hd-left-options-as"
 						}"
+						scroll-to = "${
+							"section.resources"
+						}"
 					>
 						${lang.getText ("tr5")}
 					</span>
@@ -963,6 +1053,9 @@ function NavBar () {
 						hd-index = "tr6::15"
 						id = "hd-data"
 						name = "large"
+						scroll-to = "${
+							"section.collaborators"
+						}"
 						title = "${
 							lang.getText ("tr6")
 						}"
@@ -981,6 +1074,9 @@ function NavBar () {
 						}"
 						class = "${
 							"hd-left-options-as"
+						}"
+						scroll-to = "${
+							"section.faq"
 						}"
 					>
 						${lang.getText ("tr7")}
@@ -1067,10 +1163,22 @@ function NavBar () {
 		document.querySelector (
 			"aside"
 		).appendChild (menu_);
+		// The nav right tag ref.
+		navRight_ = (
+			document.querySelector (
+				"div.nav-right"
+			)
+		);
+		// The nav left tag ref.
+		navLeft_ = (
+			document.querySelector (
+				"div.nav-left"
+			)
+		);
 		// Waits until all images
 		// are loaded.
 		listenLoadEvent ({
-			tags: Array.from (
+			tags: (
 				document.querySelectorAll (
 					"img#navbar-img"
 				)
@@ -1081,6 +1189,26 @@ function NavBar () {
 				listenTagsEvents_ ();
 				// Animates the navbar.
 				animateNavBar_ ();
+				// Called when any changement
+				// is detected by redux.
+				window.store.subscribe (
+					() => {
+						// Changes all tags
+						// text's content
+						// with a textual
+						// animation.
+						animateTextContent (
+							getUpdates ({
+								attrPrefix: (
+									"hd-index"
+								),
+								textualsId: (
+									"hd-data"
+								)
+							})
+						);
+					}
+				);
 			}
 		});
 	}

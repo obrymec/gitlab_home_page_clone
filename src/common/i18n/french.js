@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-26
-* @updated 2023-09-02
+* @updated 2023-09-06
 * @file french.js
 * @version 0.0.2
 * @type {French}
@@ -57,17 +57,17 @@ const french = {
     tr16: "Démarrez avec GitLab",
     tr17: "Explorer les ressources",
     tr18: `
-      Nouveau sur GitLab et non 
-      tu sais par où commencer ? 
-      Nous allons vous guider 
-      les bases pour que tu saches 
-      à quoi s'attendre 
-      le chemin.
+      Nouveau sur GitLab et vous ne 
+      savez pas par où commencer ? 
+      Nous allons vous parlez des 
+      bases pour que vous sachiez 
+      à quoi vous attendre en 
+      cours de route.
     `,
     tr19: `
-      Le Forrester Wave™: intégré 
-      Plateformes de livraison de 
-      logiciels, T2 2023
+      Le Forrester Wave™: Un logiciel 
+      intégré de livraison de services, 
+      Q2 2023
     `,
     tr20: `
       GitLab est le seul leader 
@@ -77,15 +77,15 @@ const french = {
     `,
     tr21: "Lire le rapport",
     tr22: `
-      GitLab assisté par l'IA 
+      GitLab assisté par l'IA, 
       Suggestions de codes
     `,
     tr23: `
       Réduire la charge cognitive et 
-      accroître l'efficacité avec le 
-      l'aide de l'IA générative qui 
-      suggère du code au fur et à 
-      mesure que vous tapez.
+      accroître l'efficacité avec 
+      l'aide de l'IA générative 
+      qui suggère du code au fur 
+      et à mesure que vous tapez.
     `,
     tr24: "En savoir plus",
     tr25: `

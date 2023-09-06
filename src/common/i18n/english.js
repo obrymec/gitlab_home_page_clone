@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-08-30
+* @updated 2023-09-06
 * @file english.js
 * @type {English}
 * @version 0.0.2
@@ -70,7 +70,7 @@ const english = {
     `,
     tr21: "Read the report",
     tr22: `
-      GitLab's AI-assisted 
+      GitLab's AI-assisted, 
       Code Suggestions
     `,
     tr23: `

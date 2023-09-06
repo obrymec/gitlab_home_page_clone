@@ -1,6 +1,6 @@
 /**
 * @fileoverview Imports and manages available
-*		tools to build home page.
+*		components to build home page.
 * @author Obrymec - obrymecsprinces@gmail.com
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
@@ -13,7 +13,6 @@
 // Custom dependencies.
 import {Collaborators} from "./components/collaborators/collaborators.js";
 import {Methodologies} from "./components/methodologies/methodologies.js";
-import {listenLoadEvent} from "../common/utilities/browser/browser.js";
 import {Customers} from "./components/customers/customers.js";
 import {Resources} from "./components/resources/resources.js";
 import lang from "../common/utilities/language/language.js";
@@ -24,15 +23,21 @@ import {Banner} from "./components/banner/banner.js";
 import {Badges} from "./components/badges/badges.js";
 import {Footer} from "./components/footer/footer.js";
 import {FAQ} from "./components/faq/faq.js";
-import {
-  stopAutoScrolling,
-  autoScroll
-} from "../common/utilities/scroll/scroll.js";
 
 // Global attributes.
 window.store = Redux.createStore ((
   currentState = {
-    processId: null,
+    collaborators: new Collaborators (),
+    methodologies: new Methodologies (),
+    customers: new Customers (),
+    resources: new Resources (),
+    services: new Services (),
+    pricing: new Pricing (),
+    navbar: new NavBar (),
+    banner: new Banner (),
+    badges: new Badges (),
+    footer: new Footer (),
+    faq: new FAQ (),
     activeLanguage: (
       lang.getActiveLanguage ()
         .name
@@ -54,73 +59,21 @@ window.store = Redux.createStore ((
       action.payload
     );
   }
-  // Whether redux starts.
-  if (
-    action.type.startsWith (
-      "@@redux/INIT"
-    )
-  ) {
-    // Listens `scroll` event.
-    window.addEventListener (
-      "scroll", (e) => {
-        // console.log (e);
-        // Whether the process
-        // is running.
-        // if (processId != null) {
-        //   // Destroy auto scroll
-        //   // background process.
-        //   stopAutoScrolling (
-        //     processId
-        //   );
-        // }
-      }
-    );
-    // When html, css and js
-    // are loaded and ready.
-    // window.addEventListener (
-    //   "DOMContentLoaded",
-    //   () => listenLoadEvent ({
-    //     tags: (
-    //       document
-    //         .querySelectorAll ("img")
-    //     ),
-    //     onReady: () => {
-    //       // Starts auto scroll program.
-    //       currentState.processId = (
-    //         autoScroll ({
-    //           interval: 6000,
-    //           infinite: true,
-    //           tagIds: [
-    //             "section.banner",
-    //             "section.customers",
-    //             "section.services",
-    //             "section.collaborators",
-    //             "section.methodologies",
-    //             "section.badges",
-    //             "section.pricing",
-    //             "section.resources",
-    //             "section.faq",
-    //             "section.footer"
-    //           ]
-    //         })
-    //       );
-    //     }
-    //   })
-    // );
-  }
   // Returns the current
   // state's data.
   return currentState;
 });
 
+// The current global state.
+const state = window.store.getState ();
 // Builds navbar section.
-new NavBar ().render ();
+// state.navbar.render ();
 // Builds banner section.
-new Banner ().render ();
+// state.banner.render ();
 // Builds customers section.
-new Customers ().render ();
+// state.customers.render ();
 // Builds services section.
-// new Services ().render ();
+state.services.render ();
 // Builds collaborators section.
 // new Collaborators ().render ();
 // Builds methodologies section.
@@ -134,4 +87,4 @@ new Customers ().render ();
 // Builds faq section.
 // new FAQ ().render ();
 // Builds footer section.
-// new Footer ().render ();
+state.footer.render ();
