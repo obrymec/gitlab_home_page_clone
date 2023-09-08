@@ -4,7 +4,7 @@
 * @fileoverview: GitLab pricing stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-27
-* @updated: 2023-08-25
+* @updated: 2023-09-09
 * @file: pricing.scss
 * @version: 0.0.2
 */
@@ -12,6 +12,11 @@
 // Custom dependencies.
 @import "./_placeholders.scss";
 @import "./_variables.scss";
+
+// Show pricing section.
+section.pricing-show {
+  opacity: 1 !important;
+}
 
 // Subscription.
 div.subscription {
@@ -27,8 +32,10 @@ div.subscription {
 
 // Princing section.
 section.pricing {
+  transform: translate3d(0, 0, 0);
   margin-bottom: 96px;
   padding: 16px 5%;
+  opacity: 0;
   // From 1080 to 0.
   @media #{$pricing-1080} {
     padding: 16px;

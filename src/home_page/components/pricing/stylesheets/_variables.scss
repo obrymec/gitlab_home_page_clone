@@ -5,12 +5,13 @@
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-07-27
-* @updated: 2023-08-24
-* @version: 0.0.2
+* @updated: 2023-09-09
+* @version: 0.0.3
 */
 
 // Responsive breakpoints.
 $pricing-1080: "only screen and (min-width: 770px) and (max-width: 1080px)" !default;
+$pricing-900: "only screen and (min-width: 770px) and (max-width: 900px)" !default;
 $pricing-770: "only screen and (max-width: 770px)" !default;
 
 // Resources.

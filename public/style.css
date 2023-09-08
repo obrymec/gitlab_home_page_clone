@@ -1202,7 +1202,7 @@ div.service {
 * @fileoverview: GitLab pricing stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-27
-* @updated: 2023-08-25
+* @updated: 2023-09-09
 * @file: pricing.scss
 * @version: 0.0.2
 */
@@ -1213,7 +1213,7 @@ div.service {
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-27
-* @updated: 2023-08-25
+* @updated: 2023-09-09
 * @version: 0.0.2
 */
 /**
@@ -1223,17 +1223,19 @@ div.service {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-07-27
-* @updated: 2023-08-24
-* @version: 0.0.2
+* @updated: 2023-09-09
+* @version: 0.0.3
 */
 div.sub-infos button {
   border: 1px solid #171321;
   border-radius: 4px; }
   div.sub-infos button:hover {
     background-color: #fff; }
-  @media only screen and (min-width: 770px) and (max-width: 1080px) {
-    div.sub-infos button {
-      font-size: 15px; } }
+  div.sub-infos button span {
+    transition: font-size 0.2s linear; }
+    @media only screen and (min-width: 770px) and (max-width: 900px) {
+      div.sub-infos button span {
+        font-size: 14px; } }
 
 /**
 * @fileoverview: GitLab pricing variables stylesheet.
@@ -1242,9 +1244,12 @@ div.sub-infos button {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-07-27
-* @updated: 2023-08-24
-* @version: 0.0.2
+* @updated: 2023-09-09
+* @version: 0.0.3
 */
+section.pricing-show {
+  opacity: 1 !important; }
+
 div.subscription {
   flex-direction: column;
   display: flex;
@@ -1255,8 +1260,10 @@ div.subscription {
       width: auto; } }
 
 section.pricing {
+  transform: translate3d(0, 0, 0);
   margin-bottom: 96px;
-  padding: 16px 5%; }
+  padding: 16px 5%;
+  opacity: 0; }
   @media only screen and (min-width: 770px) and (max-width: 1080px) {
     section.pricing {
       padding: 16px; } }

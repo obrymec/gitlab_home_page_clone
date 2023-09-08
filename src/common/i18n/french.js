@@ -301,7 +301,7 @@ const french = {
     tr95: "CI/CD avancé",
     tr96: `
       Utilisateur d'entreprise et 
-      La gestion des incidents
+      la gestion des incidents
     `,
     tr97: "Aide",
     tr98: "50Go de stockage",
@@ -324,8 +324,8 @@ const french = {
     `,
     tr106: "Réviseurs suggérés",
     tr107: `
-      Application dynamique 
-      Tests de sécurité
+      Application dynamique de
+      tests de sécurité
     `,
     tr108: "Tableaux de bord de sécurité",
     tr109: "Gestion des vulnérabilités",

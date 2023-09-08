@@ -4,17 +4,23 @@
 * @fileoverview Pricing UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-27
-* @updated 2023-08-25
+* @updated 2023-09-09
 * @file pricing.js
 * @type {Pricing}
 * @version 0.0.2
 */
 
 // Custom dependencies.
+import {listenLoadEvent} from "../../../common/utilities/browser/browser.js";
+import {ScrollManager} from "../../../common/utilities/scroll/scroll.js";
 import {buildButton} from "../../../common/components/button/button.js";
 import ScreenManager from "../../../common/utilities/screen/screen.js";
-import {clearStr} from "../../../common/utilities/string/string.js";
 import lang from "../../../common/utilities/language/language.js";
+import {
+  animateTextContent,
+  getUpdates,
+  clearStr
+} from "../../../common/utilities/string/string.js";
 import {
 	buildIcon,
 	Icons
@@ -28,13 +34,68 @@ import {
  */
 function Pricing () {
   /**
- 	 * @description The old active
-   *  subscription index.
+   * @description The pricing
+   *  section tag reference.
+   * @private {?Element}
+   * @type {?Element}
+   * @field
+   */
+  let section_ = null;
+  /**
+ 	 * @description The old
+   *  active subscription
+   *  index.
 	 * @constant {int}
  	 * @private {int}
 	 * @field
 	 */
-	let oldIndex = 0;
+	let oldIndex_ = 0;
+  /**
+	 * @description The head
+	 * 	tag reference.
+	 * @private {?Element}
+	 * @type {?Element}
+	 * @field
+	 */
+	let head_ = null;
+  /**
+	 * @description The body
+	 * 	tag reference.
+	 * @private {?Element}
+	 * @type {?Element}
+	 * @field
+	 */
+	let body_ = null;
+
+  /**
+	 * @description Animates the
+   *  pricing section with an
+   *  opacity transition.
+   * @param {String} dir The
+   *  animation's direction.
+   * @constant {Function}
+   * @private {Function}
+	 * @function animate_
+	 * @returns {void} void
+	 */
+	const animate_ = dir => {
+		// Whether the direction
+    // isn't normal.
+    if (dir !== "normal") {
+      // Hides the pricing
+      // section.
+      section_.classList.remove (
+        "pricing-show"
+      );
+    // Otherwise.
+    } else {
+      // Shows the pricing
+      // section.
+      section_.classList.add (
+        "pricing-show"
+      );
+    }
+	};
 
  /**
   * @description Coordinates the
@@ -42,10 +103,10 @@ function Pricing () {
   * @param {{
   *  trigger: Element,
   *  index: int
-  * }} data The useful data to
-  *  manage subscriptions
-  *  mutations. It supports the
-  *  following keys:
+  * }} data The useful data configs
+  *  to manage subscriptions
+  *  mutations. It accepts
+  *  the following keys:
   *
   *  - Element trigger: The current
   *    click trigger reference.
@@ -64,17 +125,17 @@ function Pricing () {
     // Whether the old index.
     // isn't equal to the
     // current index.
-    if (oldIndex !== index) {
+    if (oldIndex_ !== index) {
       // Removes `price-active-sub`
       // class from the old
       // subscription trigger.
       trigger.parentNode
-        .children[oldIndex]
+        .children[oldIndex_]
         .classList.remove (
           "price-active-sub"
         );
       // Adds `price-active-sub`
-      // class from the current
+      // class to the current
       // subscription trigger.
       trigger.classList.add (
         "price-active-sub"
@@ -89,9 +150,9 @@ function Pricing () {
   };
 
   /**
-   * @description Go to a section
-   *  according to the old and
-   *  active subscription.
+   * @description Go to a subscription
+   *  according to the old and active
+   *  subscription.
    * @param {{
    *  trigger: Element,
    *  index: int
@@ -116,9 +177,9 @@ function Pricing () {
   }) => {
     // The difference between
     // the current index and
-    // the old inde.
+    // the old index.
     const diff = Math.abs (
-      index - oldIndex
+      index - oldIndex_
     );
     // The subscriptions
     // container tag ref.
@@ -128,13 +189,13 @@ function Pricing () {
         .children[1]
     );
     // Whether active index
-    // is great than the
+    // is greater than the
     // old index.
-    if (index > oldIndex) {
+    if (index > oldIndex_) {
       // Moves the scroll
       // bar of container
       // of subscriptions
-      // to the right.
+      // to right.
       container.scrollLeft += (
         container.children[0]
           .offsetWidth * diff
@@ -144,7 +205,7 @@ function Pricing () {
       // Moves the scroll
       // bar of container
       // of subscriptions
-      // to the left.
+      // to left.
       container.scrollLeft -= (
         container.children[0]
           .offsetWidth * diff
@@ -153,28 +214,21 @@ function Pricing () {
     // Updates the old
     // subscription's
     // index.
-    oldIndex = index;
+    oldIndex_ = index;
   };
 
   /**
    * @description Listens `click`
-   *  on any subscription head
-   *  section.
+   *  event on any subscription
+   *  head section.
    * @function listenClick_
    * @constant {Function}
    * @private {Function}
    * @returns {void} void
    */
   const listenClick_ = () => {
-    // The pricing trigger
-    // container.
-    const head = (
-      document.querySelector (
-        "div.price-head"
-      )
-    );
     // Listens the first trigger.
-    head.children[0].addEventListener (
+    head_.children[0].addEventListener (
       "click", function () {
         // Coordinates subscriptions.
         coordinateSub_ ({
@@ -184,7 +238,7 @@ function Pricing () {
       }
     );
     // Listens the second trigger.
-    head.children[1].addEventListener (
+    head_.children[1].addEventListener (
       "click", function () {
         // Coordinates subscriptions.
         coordinateSub_ ({
@@ -194,7 +248,7 @@ function Pricing () {
       }
     );
     // Listens the third trigger.
-    head.children[2].addEventListener (
+    head_.children[2].addEventListener (
       "click", function () {
         // Coordinates subscriptions.
         coordinateSub_ ({
@@ -208,15 +262,13 @@ function Pricing () {
     const reset = () => {
       // Resets the scroll
       // bar postion.
-      document.querySelector (
-        "div.price-body"
-      ).scrollLeft = 0;
+      body_.scrollLeft = 0;
       // Go to the first
       // subscription.
       coordinateSub_ ({
         index: 0,
         trigger: (
-          head.children[0]
+          head_.children[0]
         )
       });
     };
@@ -243,34 +295,35 @@ function Pricing () {
   /**
    * @description Builds a subscription.
    * @param {{
-   *  features: Array<String>,
-   *  featuresTitle: String,
-   *  buttonText: String,
-   *  priceInfo: String,
+   *  features: Array<Object<String, any>>,
+   *  featuresTitle: Object<String, any>,
+   *  priceInfo: Object<String, any>,
+   *  button: Object<String, any>,
+   *  title: Object<String, any>,
+   *  desc: Object<String, any>,
    *  currency: String,
-   *  title: String,
-   *  desc: String,
-   *  price: int
+   *  price: int,
+   *  id: int
    * }} data The subscription data.
    *  This object supports the
    *  following keys:
    *
-   *  - String title: The subscription
+   *  - Object title: The subscription
    *    global title.
    *
    *  - Array features: The subscription's
    *    features.
    *
-   *  - String buttonText: The starting
+   *  - Object button: The starting
    *    button text.
    *
-   *  - String featuresTitle: The
+   *  - Object featuresTitle: The
    *    provided features's title.
    *
-   *  - String desc: The subscription
+   *  - Object desc: The subscription
    *    description text.
    *
-   *  - String priceInfo: The price
+   *  - Object priceInfo: The price
    *    info of the subscription.
    *
    *  - String currency: The accepted
@@ -280,6 +333,9 @@ function Pricing () {
    *  - int price: The subscription's
    *    price according to the given
    *    currency.
+   *
+   *  - int id: The id of static texts
+   *    data.
    * @function buildSubscription_
    * @constant {Function}
    * @private {Function}
@@ -287,30 +343,40 @@ function Pricing () {
    */
   const buildSubscription_ = ({
     featuresTitle,
-    buttonText,
     priceInfo,
     features,
     currency,
+    button,
     title,
     price,
-    desc
+    desc,
+    id
   }) => {
     // The provided features.
     let fonctionalities = '';
     // Generating features.
     features.forEach (feature => {
       // Generates a `li` tag
-      // for the current feature.
+      // for the current
+      // feature.
       fonctionalities += `
         <span>
           <span>
             ${buildIcon ({
-              fileName: Icons.CHECKED
+              fileName: Icons.CHECKED,
+              data: {
+                idName: "price-img"
+              }
             })}
           </span>
-          <span>
+          <span
+            id = "price-data"
+            price-index = "${
+              feature.id
+            }::${feature.pos}"
+          >
             ${clearStr ({
-              input: feature
+              input: feature.value
             })}
           </span>
         </span>
@@ -320,159 +386,464 @@ function Pricing () {
     return `
       <div class = "subscription">
         <div class = "sub-infos">
-          <h3>${title}</h3>
-          <p>
+          <h3
+            id = "price-data"
+            price-index = "${
+              title.id
+            }::${title.pos}"
+          >
+            ${title.value}
+          </h3>
+          <p
+            id = "price-data"
+            price-index = "${
+              desc.id
+            }::${desc.pos}"
+          >
             ${clearStr ({
-              input: desc
+              input: desc.value
             })}
           </p>
           <span class = "sub-price">
             <label>${currency}</label>
             <label>${price}</label>
             <span>
-              <p>
+              <p
+                price-index = "tr74::${id}"
+                id = "price-data"
+              >
                 ${lang.getText ("tr74")}
               </p>
-              <p>
+              <p
+                id = "price-data"
+                price-index = "${
+                  priceInfo.id
+                }::${priceInfo.pos}"
+              >
                 ${clearStr ({
-                  input: priceInfo
+                  input: (
+                    priceInfo.value
+                  )
                 })}
               </p>
             </span>
           </span>
           ${buildButton ({
-            text: buttonText
+            textId: "price-data",
+            text: button.value,
+            customAttr: (
+							`price-index = ${
+								button.id
+							}::${button.pos}`
+						)
           })}
         </div>
         <div class = "sub-features">
-          <h4>
+          <h4
+            id = "price-data"
+            price-index = "${
+              featuresTitle.id
+            }::${featuresTitle.pos}"
+          >
             ${clearStr ({
-              input: featuresTitle
+              input: (
+                featuresTitle.value
+              )
             })} :
           </h4>
-          <div>${fonctionalities}</div>
+          <div>
+            ${fonctionalities}
+          </div>
         </div>
       </div>
     `;
   };
 
   /**
-	 * @description Builds pricing html
-	 * 	structure as string format.
+	 * @description Builds pricing
+   *  html structure as string
+   *  format.
 	 * @function render
 	 * @public
 	 * @returns {void} void
 	 */
 	this.render = () => {
     // Creates a section tag.
-    const section = (
+    section_ = (
       document.createElement (
         "section"
       )
     );
     // Adds a class's name to
     // the created section.
-    section.classList.add (
+    section_.classList.add (
       "pricing"
     );
     // Adds a html structure
     // to the created section.
-    section.innerHTML = `
-      <h2 class = "price-title">
+    section_.innerHTML = `
+      <h2
+        price-index = "tr75::0"
+        class = "price-title"
+        id = "price-data"
+      >
         ${lang.getText ("tr75")}
       </h2>
       <div class = "price-content">
         <div class = "price-head">
           <button
             class = "price-active-sub"
+            price-index = "tr76::1"
+            id = "price-data"
           >
             ${lang.getText ("tr76")}
           </button>
-          <button>
+          <button
+            price-index = "tr77::2"
+            id = "price-data"
+          >
             ${lang.getText ("tr77")}
           </button>
-          <button>
+          <button
+            price-index = "tr78::3"
+            id = "price-data"
+          >
             ${lang.getText ("tr78")}
           </button>
         </div>
         <div class = "price-body">
           ${buildSubscription_ ({
-            featuresTitle: lang.getText ("tr79"),
-            buttonText: lang.getText ("tr80"),
-            priceInfo: lang.getText ("tr82"),
-            title: lang.getText ("tr76"),
-            desc: lang.getText ("tr81"),
             currency: '$',
             price: 0,
+            id: 0,
+            featuresTitle: {
+              value: lang.getText ("tr79"),
+              id: "tr79",
+              pos: 4
+            },
+            priceInfo: {
+              value: lang.getText ("tr82"),
+              id: "tr82",
+              pos: 6
+            },
+            button: {
+              value: lang.getText ("tr80"),
+              id: "tr80",
+              pos: 5
+            },
+            title: {
+              value: lang.getText ("tr76"),
+              id: "tr76",
+              pos: 7
+            },
+            desc: {
+              value: lang.getText ("tr81"),
+              id: "tr81",
+              pos: 8
+            },
             features: [
-              lang.getText ("tr83"),
-              lang.getText ("tr84"),
-              lang.getText ("tr85"),
-              lang.getText ("tr86")
+              {
+                value: lang.getText ("tr83"),
+                id: "tr83",
+                pos: 9
+              },
+              {
+                value: lang.getText ("tr84"),
+                id: "tr84",
+                pos: 10
+              },
+              {
+                value: lang.getText ("tr85"),
+                id: "tr85",
+                pos: 11
+              },
+              {
+                value: lang.getText ("tr86"),
+                id: "tr86",
+                pos: 12
+              }
             ]
           })}
           ${buildSubscription_ ({
-            featuresTitle: lang.getText ("tr87"),
-            buttonText: lang.getText ("tr88"),
-            priceInfo: lang.getText ("tr89"),
-            title: lang.getText ("tr90"),
-            desc: lang.getText ("tr91"),
             currency: '$',
             price: 29,
+            id: 1,
+            featuresTitle: {
+              value: lang.getText ("tr87"),
+              id: "tr87",
+              pos: 13
+            },
+            priceInfo: {
+              value: lang.getText ("tr89"),
+              id: "tr89",
+              pos: 15
+            },
+            button: {
+              value: lang.getText ("tr88"),
+              id: "tr88",
+              pos: 14
+            },
+            title: {
+              value: lang.getText ("tr90"),
+              id: "tr90",
+              pos: 16
+            },
+            desc: {
+              value: lang.getText ("tr91"),
+              id: "tr91",
+              pos: 17
+            },
             features: [
-              lang.getText ("tr92"),
-              lang.getText ("tr93"),
-              lang.getText ("tr94"),
-              lang.getText ("tr95"),
-              lang.getText ("tr96"),
-              lang.getText ("tr97"),
-              lang.getText ("tr98"),
-              lang.getText ("tr99"),
-              lang.getText ("tr100")
+              {
+                value: lang.getText ("tr92"),
+                id: "tr92",
+                pos: 18
+              },
+              {
+                value: lang.getText ("tr93"),
+                id: "tr93",
+                pos: 19
+              },
+              {
+                value: lang.getText ("tr94"),
+                id: "tr94",
+                pos: 20
+              },
+              {
+                value: lang.getText ("tr95"),
+                id: "tr95",
+                pos: 21
+              },
+              {
+                value: lang.getText ("tr96"),
+                id: "tr96",
+                pos: 22
+              },
+              {
+                value: lang.getText ("tr97"),
+                id: "tr97",
+                pos: 23
+              },
+              {
+                value: lang.getText ("tr98"),
+                id: "tr98",
+                pos: 24
+              },
+              {
+                value: lang.getText ("tr99"),
+                id: "tr99",
+                pos: 25
+              },
+              {
+                value: lang.getText ("tr100"),
+                id: "tr100",
+                pos: 26
+              }
             ]
           })}
           ${buildSubscription_ ({
-            featuresTitle: lang.getText ("tr101"),
-            buttonText: lang.getText ("tr102"),
-            priceInfo: lang.getText ("tr103"),
-            title: lang.getText ("tr104"),
-            desc: lang.getText ("tr105"),
             currency: '$',
             price: 99,
+            id: 2,
+            featuresTitle: {
+              value: lang.getText ("tr101"),
+              id: "tr101",
+              pos: 27
+            },
+            priceInfo: {
+              value: lang.getText ("tr103"),
+              id: "tr103",
+              pos: 28
+            },
+            button: {
+              value: lang.getText ("tr102"),
+              id: "tr102",
+              pos: 29
+            },
+            title: {
+              value: lang.getText ("tr104"),
+              id: "tr104",
+              pos: 30
+            },
+            desc: {
+              value: lang.getText ("tr105"),
+              id: "tr105",
+              pos: 31
+            },
             features: [
-              lang.getText ("tr106"),
-              lang.getText ("tr107"),
-              lang.getText ("tr108"),
-              lang.getText ("tr109"),
-              lang.getText ("tr110"),
-              lang.getText ("tr111"),
-              lang.getText ("tr112"),
-              lang.getText ("tr113"),
-              lang.getText ("tr114"),
-              lang.getText ("tr115"),
-              lang.getText ("tr116"),
-              lang.getText ("tr117"),
-              lang.getText ("tr118")
+              {
+                value: lang.getText ("tr106"),
+                id: "tr106",
+                pos: 32
+              },
+              {
+                value: lang.getText ("tr107"),
+                id: "tr107",
+                pos: 33
+              },
+              {
+                value: lang.getText ("tr108"),
+                id: "tr108",
+                pos: 34
+              },
+              {
+                value: lang.getText ("tr109"),
+                id: "tr109",
+                pos: 35
+              },
+              {
+                value: lang.getText ("tr110"),
+                id: "tr110",
+                pos: 36
+              },
+              {
+                value: lang.getText ("tr111"),
+                id: "tr111",
+                pos: 37
+              },
+              {
+                value: lang.getText ("tr112"),
+                id: "tr112",
+                pos: 38
+              },
+              {
+                value: lang.getText ("tr113"),
+                id: "tr113",
+                pos: 39
+              },
+              {
+                value: lang.getText ("tr114"),
+                id: "tr114",
+                pos: 40
+              },
+              {
+                value: lang.getText ("tr115"),
+                id: "tr115",
+                pos: 41
+              },
+              {
+                value: lang.getText ("tr116"),
+                id: "tr116",
+                pos: 42
+              },
+              {
+                value: lang.getText ("tr117"),
+                id: "tr117",
+                pos: 43
+              },
+              {
+                value: lang.getText ("tr118"),
+                id: "tr118",
+                pos: 44
+              }
             ]
           })}
         </div>
       </div>
+      <div
+				class = "${
+					"skeleton-loading"
+				}"
+			></div>
     `;
     // Adds the below section
     // to the selected tag as
     // a child.
     document.querySelector (
       "main"
-    ).appendChild (section);
-    // Listens subscription
-    // triggers click.
-    listenClick_ ();
+    ).appendChild (section_);
+    // The pricing trigger
+    // container.
+    head_ = (
+      document.querySelector (
+        "div.price-head"
+      )
+    );
+    // The pricing body
+    // container.
+    body_ = (
+      document.querySelector (
+        "div.price-body"
+      )
+    );
+    // Waits until images and
+		// icons are loaded.
+		listenLoadEvent ({
+			tags: (
+				document.querySelectorAll (
+					"img#price-img"
+				)
+			),
+			onReady: () => {
+        // Listens subscription
+        // triggers `click`
+        // event.
+        listenClick_ ();
+				// Adds `hide-skeleton`
+				// class to skeleton
+				// loader.
+				section_.lastElementChild
+					.classList.add (
+						"hide-skeleton"
+					);
+				// Waits for 200ms before
+				// delete skeleton loader.
+				window.setTimeout (() => (
+					section_.lastElementChild
+						.remove ()
+				), 200);
+				// Called when any changement
+				// is detected by redux.
+				window.store.subscribe (
+					() => {
+						// Changes all tags
+						// text's content
+						// with a textual
+						// animation.
+						animateTextContent (
+							getUpdates ({
+								attrPrefix: (
+									"price-index"
+								),
+								textualsId: (
+									"price-data"
+								)
+							})
+						);
+					}
+				);
+				// Focus on the current
+				// section for scrolling.
+				new ScrollManager ({
+					max: 200,
+					min: 0,
+					onEnter: () => {
+            // Animates the pricing
+            // with normal mode.
+            animate_ ("normal");
+						// Puts a focus to
+						// corresponding
+						// option inside
+						// the navbar.
+						window.store
+							.getState ()
+							.navbar
+							.select (3);
+					},
+					onLeave: () => {
+						// Animates the pricing
+            // with reverse mode.
+            animate_ ("reverse");
+					}
+				});
+			}
+		});
   }
 }
 
 /**
- * @description Exports all
- *  public features.
+ * @description Exports
+ *  all public features.
  * @exports *
  */
 export {Pricing};

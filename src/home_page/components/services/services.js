@@ -4,7 +4,7 @@
 * @fileoverview Services UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-23
-* @updated 2023-09-07
+* @updated 2023-09-08
 * @file services.js
 * @type {Services}
 * @version 0.0.2
@@ -228,12 +228,12 @@ function Services () {
 	 * 	screen format (Desktop & Mobile).
 	 * @param {String} dir The animation
 	 * 	direction.
-	 * @function animateServices_
+	 * @function servicesAnimation_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {Object} Object
 	 */
-	const animateServices_ = dir => {
+	const servicesAnimation_ = dir => {
 		// The animation timeline.
 		let timeline = null;
 		// Listens screen format.
@@ -521,7 +521,7 @@ function Services () {
 					onEnter: () => {
 						// Animates services
 						// in normal mode.
-						animateServices_ ()
+						servicesAnimation_ ()
 							.play ();
 						// Puts a focus to
 						// corresponding
@@ -535,7 +535,7 @@ function Services () {
 					onLeave: () => {
 						// Animates services
 						// in reverse mode.
-						animateServices_ ()
+						servicesAnimation_ ()
 							.reverse ();
 						// Waits for 200ms
 						// before destroy

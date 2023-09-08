@@ -172,12 +172,12 @@ function Banner () {
 	 * @description Animates the banner
 	 * 	regardless the detected screen
 	 * 	format (Desktop & Mobile).
-	 * @function animateBanner_
+	 * @function bannerAnimation_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {Object} Object
 	 */
-	const animateBanner_ = () => {
+	const bannerAnimation_ = () => {
 		// The animation timeline.
 		let timeline = null;
 		// Listens screen format.
@@ -704,7 +704,7 @@ function Banner () {
 					onEnter: () => {
 						// Animates the banner
 						// in normal mode.
-						animateBanner_ ()
+						bannerAnimation_ ()
 							.play ();
 						// Puts a focus to
 						// corresponding
@@ -718,7 +718,7 @@ function Banner () {
 					onLeave: () => {
 						// Animates the banner
 						// in reverse mode.
-						animateBanner_ ()
+						bannerAnimation_ ()
 							.reverse ();
 						// Waits for 200ms
 						// before destroy

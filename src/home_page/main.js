@@ -71,7 +71,7 @@ state.navbar.render ();
 // Builds banner section.
 // state.banner.render ();
 // Builds customers section.
-state.customers.render ();
+// state.customers.render ();
 // Builds services section.
 // state.services.render ();
 // Builds collaborators section.
@@ -79,9 +79,9 @@ state.customers.render ();
 // Builds methodologies section.
 // state.methodologies.render ();
 // Builds badges section.
-state.badges.render ();
+// state.badges.render ();
 // Builds pricing section.
-// new Pricing ().render ();
+state.pricing.render ();
 // Builds resources section.
 // new Resources ().render ();
 // Builds faq section.

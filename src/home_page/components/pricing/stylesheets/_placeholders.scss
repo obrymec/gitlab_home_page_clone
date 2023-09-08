@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-27
-* @updated: 2023-08-25
+* @updated: 2023-09-09
 * @version: 0.0.2
 */
 
@@ -20,8 +20,12 @@
 	&:hover {
 		background-color: $pricing-sub-btn-txt-color;
 	}
-	// From 1080 to 0.
-  @media #{$pricing-1080} {
-    font-size: 15px;
+  // Text.
+  span {
+    transition: font-size 0.2s linear;
+    // From 900 to 0.
+    @media #{$pricing-900} {
+      font-size: 14px;
+    }
   }
 }
