@@ -75,9 +75,9 @@ state.navbar.render ();
 // Builds services section.
 // state.services.render ();
 // Builds collaborators section.
-state.collaborators.render ();
+// state.collaborators.render ();
 // Builds methodologies section.
-// new Methodologies ().render ();
+state.methodologies.render ();
 // Builds badges section.
 // new Badges ().render ();
 // Builds pricing section.

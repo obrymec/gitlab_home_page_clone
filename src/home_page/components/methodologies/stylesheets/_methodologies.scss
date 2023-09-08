@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: methodologies.scss
 * @created: 2023-07-06
-* @updated: 2023-08-26
+* @updated: 2023-09-08
 * @version: 0.0.2
 */
 
@@ -14,7 +14,7 @@
 @import "./_variables.scss";
 
 // Learn more button.
-button.learn-more {
+button.mhds-learn-more {
   // From 760 to 0.
   @media #{$mhds-760} {
     margin-top: 32px;
@@ -27,19 +27,38 @@ button.learn-more {
 
 // Work mehodologies section.
 section.methodologies {
+  transform: translate3d(0, 0, 0);
   padding: 96px 12.8%;
   margin-bottom: 40px;
+  overflow-x: hidden;
   // From 1300 to 0.
   @media #{$mhds-1300} {
     padding: 76px 16px;
   }
+  // Show content.
+  div.mhds-content-show {
+    transform: translate3d(0, 0, 0) translateX(0);
+    opacity: 1;
+  }
   // Big title.
   & > h2:first-child {
+    transform: translateX(-110%);
     letter-spacing: -1.4px;
     margin-bottom: 96px;
     line-height: 60px;
     font-weight: 600;
     font-size: 50px;
+    opacity: 0;
+    // From 760 to 0.
+    @media #{$mhds-760} {
+      margin-bottom: 30px;
+      font-size: 40px;
+    }
+  }
+  // Show big title.
+  h2.mhds-bigtitle-show {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -47,6 +66,7 @@ section.methodologies {
 div.methodology {
   pointer-events: none;
   padding: 0 0 0 80px;
+  overflow-x: hidden;
   opacity: .6;
   // From 1300 to 760.
   @media #{$mhds-1300} {
@@ -113,8 +133,9 @@ div.mhds-body {
 
 // Content.
 div.mhds-content {
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0) translateX(110%);
   padding-bottom: 96px;
+  opacity: 0;
   // From 760 to 0.
   @media #{$mhds-760} {
     padding-bottom: 0;
@@ -201,6 +222,11 @@ div.mhds-infos {
     line-height: 48px;
     font-weight: 600;
     font-size: 40px;
+    // From 840 to 760.
+    @media #{$mhds-840} {
+      line-height: 36px;
+      font-size: 32px;
+    }
     // From 760 to 0.
     @media #{$mhds-760} {
       padding-right: 0;
@@ -212,6 +238,11 @@ div.mhds-infos {
     line-height: 24px;
     font-weight: 400;
     font-size: 20px;
+    // From 840 to 760.
+    @media #{$mhds-840} {
+      line-height: 20px;
+      font-size: 18px;
+    }
     // From 760 to 0.
     @media #{$mhds-760} {
       padding-right: 0;

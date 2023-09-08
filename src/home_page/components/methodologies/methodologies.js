@@ -6,16 +6,25 @@
 * @file methodologies.js
 * @type {Methodologies}
 * @created 2023-07-06
-* @updated 2023-08-26
+* @updated 2023-09-08
 * @version 0.0.2
 */
 
 // Custom dependencies.
+import {listenLoadEvent} from "../../../common/utilities/browser/browser.js";
 import {buildFlatButton} from "../../../common/components/button/button.js";
-import {getScrollPercent} from "../../../common/utilities/scroll/scroll.js";
-import {clearStr} from "../../../common/utilities/string/string.js";
+import ScreenManager from "../../../common/utilities/screen/screen.js";
 import lang from "../../../common/utilities/language/language.js";
 import swipe from "../../../common/utilities/swipe/swipe.js";
+import {
+	getScrollPercent,
+	ScrollManager
+} from "../../../common/utilities/scroll/scroll.js";
+import {
+	animateTextContent,
+	getUpdates,
+	clearStr
+} from "../../../common/utilities/string/string.js";
 import {
 	buildImage,
 	buildIcon,
@@ -32,29 +41,52 @@ import {
  */
 function Methodologies () {
 	/**
-	 * @description Returns a reference
-	 *  of a methodology tag element
-	 * 	from his position index
-	 * 	within the HTML tree.
-	 * @param {Number} pos The methodology
-	 * 	position's index to be retrieved.
-	 * @function getMethodology_
-	 * @constant {Function}
-	 * @private {Function}
-	 * @returns {Element} Element
+	 * @description The delay before
+	 * 	dissolve arrows.
+	 * @private {?int}
+	 * @type {?int}
+	 * @field
 	 */
-	const getMethodology_ = pos => (
-		document.querySelector (
-			"div.mhds-body"
-		).children[pos]
-	);
+	let dissolveDelay_ = null;
+	/**
+	 * @description The right arrow
+	 * 	button.
+	 * @private {?Element}
+	 * @type {?Element}
+	 * @field
+	 */
+	let rightButton_ = null;
+	/**
+	 * @description The left arrow
+	 * 	button.
+	 * @private {?Element}
+	 * @type {?Element}
+	 * @field
+	 */
+	let leftButton_ = null;
+	/**
+	 * @description The scroller.
+	 * @private {?Element}
+	 * @type {?Element}
+	 * @field
+	 */
+	let scroll_ = null;
+	/**
+	 * @description The body
+	 * 	tag reference.
+	 * @private {?Element}
+	 * @type {?Element}
+	 * @field
+	 */
+	let body_ = null;
 
 	/**
 	 * @description Toggles effects actions
 	 * 	on the passed tag reference.
-	 * @param {Element} tag The tag to target.
+	 * @param {Element} tag The tag
+	 * 	to target.
 	 * @param {boolean} active Whether
-	 * 	is `true` we'll add effects. 
+	 * 	it's `true`, we'll add effects.
 	 * 	Otherwise, we'll remove them.
 	 * @function toggleEffects_
 	 * @constant {Function}
@@ -62,9 +94,11 @@ function Methodologies () {
 	 * @returns {void} void
 	 */
 	const toggleEffects_ = (
-		tag, active
+		tag,
+		active
 	) => {
-		// Whether active is set to `true`.
+		// Whether active is set
+		// to `true`.
 		if (active) {
 			// Adds `mhds-image-show`
 			// class to his image kid.
@@ -94,27 +128,151 @@ function Methodologies () {
 	};
 
 	/**
-	 * @description Builds a methodology html
-	 * 	structure with a few parameters.
+	 * @description Puts a dissolve
+	 * 	effect on both arrows.
+	 * @param {int=} timeout The
+	 * 	delay before dissolve
+	 * 	arrows.
+	 * @function dissolvable_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const dissolvable_ = (
+		timeout = 3000
+	) => {
+		// Whether the dissolve
+		// process delay is
+		// defined.
+		if (dissolveDelay_ != null) {
+			// Destroys the upcoming
+			// delay in memory.
+			window.clearTimeout (
+				dissolveDelay_
+			);
+		}
+		// Adds `mhds-show-arrows`
+		// class to the right arrow.
+		rightButton_.classList
+			.add ("mhds-show-arrows");
+		// Adds `mhds-show-arrows`
+		// class to the left arrow.
+		leftButton_.classList
+			.add ("mhds-show-arrows");
+		// Launches a new dissolve
+		// delay for (01) second.
+		dissolveDelay_ = (
+			window.setTimeout (() => {
+				// Removes `mhds-show-arrows`
+				// class from the right arrow.
+				rightButton_.classList
+					.remove (
+						"mhds-show-arrows"
+					);
+				// Removes `mhds-show-arrows`
+				// class from the left arrow.
+				leftButton_.classList
+					.remove (
+						"mhds-show-arrows"
+					);
+			}, timeout)
+		);
+	};
+
+	/**
+	 * @description Animates methodologies
+	 * 	regardless the detected screen
+	 * 	format (Desktop & Mobile).
+	 * @param {String} dir The
+	 * 	animation's direction.
+	 * @constant {Function}
+	 * @private {Function}
+	 * @function animate_
+	 * @returns {void} void
+	 */
+	const animate_ = dir => {
+		// Listens screen format.
+		new ScreenManager ({
+			disableDetection: true,
+			mediumScreen: {
+				max: 1300,
+				min: 761
+			},
+			smallScreen: {
+				max: 760,
+				min: 0
+			},
+			largeScreen: {
+				max: 10000,
+				min: 1301
+			},
+			onSmall: () => {
+				// The content tag ref.
+				const content = (
+					body_.parentElement
+				);
+				// The big title tag.
+				const title = (
+					content.parentElement
+					.children[0]
+				);
+				// Whether direction is in
+				// normal mode.
+				if (dir === "normal") {
+					// Adds `mhds-bigtitle-show`
+					// class to the big title
+					// text.
+					title.classList.add (
+						"mhds-bigtitle-show"
+					);
+					// Adds `mhds-content-show`
+					// class to the parent of
+					// methodologies body.
+					content.classList.add (
+						"mhds-content-show"
+					);
+				// Otherwise.
+				} else {
+					// Removes `mhds-bigtitle-show`
+					// class from the big title
+					// text.
+					title.classList.remove (
+						"mhds-bigtitle-show"
+					);
+					// Removes `mhds-content-show`
+					// class from the parent
+					// of methodologies body.
+					content.classList.remove (
+						"mhds-content-show"
+					);
+				}
+			}
+		});
+	};
+
+	/**
+	 * @description Builds a methodology
+	 * 	html structure with a few
+	 * 	parameters.
 	 * @param {{
-	 * 	description: String,
+	 * 	description: Object<String, any>,
+	 * 	title: Object<String, any>,
 	 * 	image: String,
-	 * 	title: String,
 	 * 	icon: String,
 	 * 	id: String
 	 * }} data The methodology data. This
 	 * 	map supports the following keys:
 	 *
-	 * 	- String id: The methodology tag's
-	 * 		id.
+	 * 	- String id: The methodology
+	 * 		tag's id.
 	 *
 	 * 	- String icon: The methodology
 	 * 		tag's icon name.
 	 *
-	 * 	- String title: The methodology
+	 * 	- Object title: The methodology
 	 * 		title text.
 	 *
-	 * 	- String description: The
+	 * 	- Object description: The
 	 * 		description of methodology.
 	 *
 	 * 	- String image: The methodology
@@ -139,36 +297,63 @@ function Methodologies () {
 				<div>
 					<span>
 						${buildIcon ({
-							fileName: icon
+							fileName: icon,
+							data: {
+								idName: (
+									"mhds-img"
+								)
+							}
 						})}
 					</span>
-					<h3>
+					<h3
+						id = "mhds-data"
+						mhds-index = "${
+							title.id
+						}::${title.pos}"
+					>
 						${clearStr ({
-							input: title
+							input: title.value
 						})}
 					</h3>
-					<p>
+					<p
+						id = "mhds-data"
+						mhds-index = "${
+							description.id
+						}::${description.pos}"
+					>
 						${clearStr ({
-							input: description
+							input: (
+								description.value
+							)
 						})}
 					</p>
 				</div>
 				<div>
 					${buildImage ({
-						fileName: image
+						fileName: image,
+						data: {
+							idName: (
+								"mhds-img"
+							)
+						}
 					})}
 				</div>
 			</div>
 			${buildFlatButton ({
+				className: "mhds-learn-more",
 				text: lang.getText ("tr24"),
-				className: "learn-more"
+				textId: "mhds-data",
+				iconId: "mhds-img",
+				customAttr: (
+					`mhds-index = tr24::2${id}`
+				),
 			})}
 		</div>
 	`;
 
 	/**
 	 * @description Checks scroll variation.
-	 * @param {Element} oldTag The previou
+	 * @param {Element} oldTag The previous
 	 *  active or selected methodology
 	 * 	tag section.
 	 * @param {Number} index The position
@@ -179,10 +364,13 @@ function Methodologies () {
 	 * @private {Function}
 	 * @returns {Element} Element
 	*/
-	const checkMatch_ = (oldTag, index) => {
+	const checkMatch_ = (
+		oldTag,
+		index
+	) => {
 		// The new tag reference.
-		const newTag = getMethodology_ (
-			index
+		const newTag = (
+			body_.children[index]
 		);
 		// Whether the old tag is defined.
 		if (oldTag instanceof Element) {
@@ -197,9 +385,7 @@ function Methodologies () {
 				let totalMarginTop = 0;
 				// The custom scrollbar thumb.
 				const scrollThumb = (
-					document.querySelector (
-						"div.mhds-scroll > div"
-					)
+					scroll_.children[0]
 				);
 				// Sets thumb height to the
 				// current methodology
@@ -217,11 +403,11 @@ function Methodologies () {
 					pos++
 				) {
 					// Adds the height of the
-					// previou methodology
+					// previous methodology
 					// plus their container
 					// flexbox gap: `94px`.
 					totalMarginTop += (
-						getMethodology_ (pos)
+						body_.children[pos]
 							.offsetHeight + 94
 					);
 				}
@@ -280,81 +466,91 @@ function Methodologies () {
 		// The starting percentage of
 		// the scroll thumb to start
 		// treatments.
-		const start = 58;
-		// Listens window scrollbar motion.
-		document.addEventListener (
-			"scroll",
-			() => {
-				// Whether window width is
-				// great than 760 pixels.
-				if (window.innerWidth > 760) {
-					// The current scroll progress.
-					const progress = (
-						getScrollPercent ()
-					);
-					// The total percentage since
-					// the starting percentage.
-					let end = start;
-					// Checking scroll thumb
-					// position in percentage
-					// to select the matched
-					// methodology card tag
-					// section.
-					[0, 1, 2, 3, 4, null].forEach (
-						value => {
-							// Whether the current value
-							// is an interger.
+		const start = 28;
+		// Manages methodologies in
+		// for vertical carousel.
+		const carousel = () => {
+			// Whether window width is
+			// greater than 760 pixels.
+			if (
+				window.innerWidth > 760
+			) {
+				// The total percentage
+				// since the starting
+				// percentage.
+				let end = start;
+				// The current scroll
+				// progress.
+				const progress = (
+					getScrollPercent ()
+				);
+				// Checking scroll thumb
+				// position in percentage
+				// to select the matched
+				// methodology card tag
+				// section.
+				[0, 1, 2, 3, 4, null].forEach (
+					value => {
+						// Whether the current value
+						// is an interger.
+						if (
+							Number.isInteger (value)
+						) {
+							// The previous percentage
+							// value.
+							const oldProgress = end;
+							// The next percentage
+							// value.
+							end += mhdCardHeight;
+							// Whether we look the
+							// first methodology.
 							if (
-								Number.isInteger (value)
+								progress >= oldProgress
+								&& progress <= end
 							) {
-								// The previou percentage
-								// value.
-								const oldProgress = end;
-								// The next percentage
-								// value.
-								end += mhdCardHeight;
-								// Whether we look the
-								// first methodology.
-								if (
-									progress >= oldProgress
-									&& progress <= end
-								) {
-									// Updates the old tag
-									// value to the current
-									// returned value of
-									// `checkMach` method
-									// call.
-									oldTag = checkMatch_ (
-										oldTag, value
+								// Updates the old tag
+								// value to the current
+								// returned value of
+								// `checkMach` method
+								// call.
+								oldTag = checkMatch_ (
+									oldTag, value
+								);
+							}
+						// Otherwise.
+						} else {
+							// Whether we are out of
+							// range of the supported
+							// values.
+							if (
+								progress < start ||
+								progress > end
+							) {
+								// Whether the old tag
+								// is defined.
+								if (oldTag != null) {
+									// Removes all those
+									// bound effects.
+									toggleEffects_ (
+										oldTag, false
 									);
 								}
-							// Otherwise.
-							} else {
-								// Whether we are out of
-								// range of the supported
-								// values.
-								if (
-									progress < start ||
-									progress > end
-								) {
-									// Whether the old tag
-									// is defined.
-									if (oldTag != null) {
-										// Removes all those
-										// bound effects.
-										toggleEffects_ (
-											oldTag, false
-										);
-									}
-									// Free `oldTag` variable.
-									oldTag = null;
-								}
+								// Free `oldTag`
+								// variable.
+								oldTag = null;
 							}
 						}
-					);
-				}
+					}
+				);
 			}
+		};
+		// Listens window scrollbar
+		// motion.
+		document.addEventListener (
+			"scroll", carousel
 		);
+		// Applies a first effect.
+		carousel ();
 	};
 
 	/**
@@ -367,9 +563,6 @@ function Methodologies () {
 	 * @returns {void} void
 	*/
 	const horizontalCarousel_ = () => {
-		// The delay to dissolve
-		// arrows.
-		let dissolveDelay = null;
 		// The auto carousel state.
 		let autoCarousel = null;
 		// Whether right scroll
@@ -389,45 +582,26 @@ function Methodologies () {
 		// The first methodology
 		// tag section.
 		const methodology = (
-			getMethodology_ (1)
+			body_.children[1]
 		);
-		// The right arrow button.
-		const rightButton = (
-			document.querySelector (
-				"div.mhds-right-arrow"
-			)
-		);
-		// The left arrow button.
-		const leftButton = (
-			document.querySelector (
-				"div.mhds-left-arrow"
-			)
-		);
-		// The methodologies container.
-		const container = (
-			document.querySelector (
-				"div.mhds-body"
-			)
-		);
-		// Starts auto carusel process.
+		// Starts auto carousel process.
 		const startAutoCarouselProcess = (
 			() => {
-				// Starts auto carousel
-				// process.
+				// Starts carousel process.
 				autoCarousel = (
 					window.setInterval (
 						() => swipeRight (false),
-						5000
+						10000
 					)
 				);
 			}
 		);
-		// Stops auto carusel process
-		// in background direclty.
+		// Stops auto carousel process
+		// in background directly.
 		const stopAutoCarouselProcess = (
 			() => {
-				// The auto carousel timer is
-				// defined.
+				// Whether the auto carousel
+				// timer is defined.
 				if (autoCarousel != null) {
 					// Destroys the upcoming
 					// auto carousel action
@@ -438,45 +612,6 @@ function Methodologies () {
 				}
 			}
 		);
-		// Puts a dissolve effect on
-		// both arrow.
-		const dissolvable = () => {
-			// The dissolve delay is
-			// defined.
-			if (dissolveDelay != null) {
-				// Destroys the upcoming
-				// delay in memory.
-				window.clearTimeout (
-					dissolveDelay
-				);
-			}
-			// Adds `mhds-show-arrows`
-			// class to the right arrow.
-			rightButton.classList
-				.add ("mhds-show-arrows");
-			// Adds `mhds-show-arrows`
-			// class to the left arrow.
-			leftButton.classList
-				.add ("mhds-show-arrows");
-			// Launches a new dissolve
-			// delay for (01) second.
-			dissolveDelay = (
-				window.setTimeout (() => {
-					// Removes `mhds-show-arrows`
-					// class from the right arrow.
-					rightButton.classList
-						.remove (
-							"mhds-show-arrows"
-						);
-					// Removes `mhds-show-arrows`
-					// class from the left arrow.
-					leftButton.classList
-						.remove (
-							"mhds-show-arrows"
-						);
-				}, 1000)
-			);
-		};
 		// A lambda method that scroll
 		// methodologies to right.
 		const swipeRight = dissolve => {
@@ -484,7 +619,7 @@ function Methodologies () {
 			// is set to `false`.
 			if (!disabled) {
 				// Whether arrows are dissolvable.
-				if (dissolve) dissolvable ();
+				if (dissolve) dissolvable_ ();
 				// Stops auto carousel.
 				stopAutoCarouselProcess ();
 				// Starts auto carousel.
@@ -495,13 +630,13 @@ function Methodologies () {
 				// is not busy.
 				if (!rightBusy) {
 					// Moves the scroll thumb.
-					container.scrollLeft = (
-						container.scrollLeft
+					body_.scrollLeft = (
+						body_.scrollLeft
 						+ methodology.offsetWidth
 					);
 					// The real scroll position.
 					const scrollPos = (
-						container.scrollLeft
+						body_.scrollLeft
 						+ methodology.offsetWidth
 					);
 					// The total methodology
@@ -511,7 +646,7 @@ function Methodologies () {
 						(
 							methodology.offsetWidth
 							* (
-									container.children
+									body_.children
 										.length - 1
 								)
 						) - 100
@@ -534,7 +669,7 @@ function Methodologies () {
 				// Otherwise.
 				} else {
 					// Resets the scroll thumb.
-					container.scrollLeft = 0;
+					body_.scrollLeft = 0;
 					// Increases enable wait.
 					waitForEnable = 800;
 					// Sets the scroll right
@@ -544,22 +679,22 @@ function Methodologies () {
 					// availability.
 					leftBusy = true;
 				}
-				// Disabled controls.
+				// Disables any controls.
 				disabled = true;
 				// Adds `mhds-move-right`
 				// class to button.
-				rightButton.classList
+				rightButton_.classList
 					.add (
 						"mhds-move-right"
 					)
-				// Waits for 150 miliseconds.
+				// Waits for 150 milliseconds.
 				window.setTimeout (() => (
-					rightButton.classList
+					rightButton_.classList
 						.remove (
 							"mhds-move-right"
 						)
 				), 150);
-				// Waits for 400 miliseconds.
+				// Waits for a few milliseconds.
 				window.setTimeout (() => (
 					disabled = false
 				), waitForEnable);
@@ -572,7 +707,7 @@ function Methodologies () {
 			// is set to `false`.
 			if (!disabled) {
 				// Whether arrows are dissolvable.
-				if (dissolve) dissolvable ();
+				if (dissolve) dissolvable_ ();
 				// Stops auto carousel.
 				stopAutoCarouselProcess ();
 				// Starts auto carousel.
@@ -583,13 +718,13 @@ function Methodologies () {
 				// is not busy.
 				if (!leftBusy) {
 					// Moves the scroll thumb.
-					container.scrollLeft = (
-						container.scrollLeft
+					body_.scrollLeft = (
+						body_.scrollLeft
 						- methodology.offsetWidth
 					);
 					// The real scroll position.
 					const scrollPos = (
-						container.scrollLeft
+						body_.scrollLeft
 						- methodology.offsetWidth
 					);
 					// Whether the scroll thumb
@@ -616,28 +751,28 @@ function Methodologies () {
 					// availability.
 					leftBusy = false;
 					// Resets the scroll thumb.
-					container.scrollLeft = (
+					body_.scrollLeft = (
 						methodology.offsetWidth
-							* container.children
+							* body_.children
 								.length
 					);
 				}
-				// Disabled controls.
+				// Disables controls.
 				disabled = true;
 				// Adds `mhds-move-left`
 				// class to button.
-				leftButton.classList
+				leftButton_.classList
 					.add (
 						"mhds-move-left"
 					)
-				// Waits for 150 miliseconds.
+				// Waits for 150 milliseconds.
 				window.setTimeout (() => (
-					leftButton.classList
+					leftButton_.classList
 						.remove (
 							"mhds-move-left"
 						)
 				), 150);
-				// Waits for 400 miliseconds.
+				// Waits for a few milliseconds.
 				window.setTimeout (() => (
 					disabled = false
 				), waitForEnable);
@@ -645,13 +780,13 @@ function Methodologies () {
 		};
 		// Listens right arrow
 		// `click` event.
-		rightButton.addEventListener (
+		rightButton_.addEventListener (
 			"click",
 			() => swipeRight (true)
 		);
 		// Listens left arrow
 		// `click` event.
-		leftButton.addEventListener (
+		leftButton_.addEventListener (
 			"click",
 			() => swipeLeft (true)
 		);
@@ -662,13 +797,14 @@ function Methodologies () {
 				10000
 			)
 		);
-		// Listens user click event
+		// Listens `click` event
 		// on every methodologies.
 		[0, 1, 2, 3, 4].forEach (
 			index => (
-				getMethodology_ (index)
+				body_.children[index]
 					.addEventListener (
-						"click", dissolvable
+						"click",
+						() => dissolvable_ ()
 					)
 			)
 		);
@@ -694,8 +830,7 @@ function Methodologies () {
 		});
 		// Listens window resizing.
 		window.addEventListener (
-			"resize",
-			() => {
+			"resize", () => {
 				// Stops auto carousel.
 				stopAutoCarouselProcess ();
 				// Whether window's width
@@ -708,14 +843,17 @@ function Methodologies () {
 					// done.
 					if (!isReset) {
 						// Resets the scroll thumb.
-						container.scrollLeft = 0;
+						body_.scrollLeft = 0;
+						// Warns user about a 
+						// swapable element.
+						dissolvable_ (5000);
 						// Sets the scroll right
 						// availability.
 						rightBusy = false;
 						// Sets the scroll left
 						// availability.
 						leftBusy = true;
-						// Overrides the reseting
+						// Overrides the reset
 						// state.
 						isReset = true;
 					}
@@ -723,7 +861,7 @@ function Methodologies () {
 					startAutoCarouselProcess ();
 				// Otherwise.
 				} else {
-					// Overrides the reseting
+					// Overrides the reset
 					// state.
 					isReset = false;
 				}
@@ -753,18 +891,35 @@ function Methodologies () {
 		// Adds a html structure
 		// to the created section.
 		section.innerHTML = `
-			<h2>
+			<h2
+				mhds-index = "tr58::0"
+				id = "mhds-data"
+			>
 				${lang.getText ("tr58")}
 			</h2>
 			<div class = "mhds-content">
-				<div class = "mhds-left-arrow">
+				<div
+					class = "mhds-left-arrow"
+				>
 					${buildIcon ({
-						fileName: Icons.RIGHT_ARROW
+						fileName: (
+							Icons.RIGHT_ARROW
+						),
+						data: {
+							idName: "mhds-img"
+						}
 					})}
 				</div>
-				<div class = "mhds-right-arrow">
+				<div
+					class = "mhds-right-arrow"
+				>
 					${buildIcon ({
-						fileName: Icons.RIGHT_ARROW
+						fileName: (
+							Icons.RIGHT_ARROW
+						),
+						data: {
+							idName: "mhds-img"
+						}
 					})}
 				</div>
 				<div class = "mhds-scroll">
@@ -772,42 +927,87 @@ function Methodologies () {
 				</div>
 				<div class = "mhds-body">
 					${buildMethodology_ ({
-						description: lang.getText ("tr60"),
-						title: lang.getText ("tr59"),
 						image: Images.METHODOLOGY_1,
 						icon: Icons.METHODOLOGY_1,
-						id: 1
+						id: 1,
+						description: {
+							value: lang.getText ("tr60"),
+							id: "tr60",
+							pos: 1
+						},
+						title: {
+							value: lang.getText ("tr59"),
+							id: "tr59",
+							pos: 2
+						}
 					})}
 					${buildMethodology_ ({
-						description: lang.getText ("tr62"),
-						title: lang.getText ("tr61"),
 						image: Images.METHODOLOGY_2,
 						icon: Icons.METHODOLOGY_2,
-						id: 2
+						id: 2,
+						description: {
+							value: lang.getText ("tr62"),
+							id: "tr62",
+							pos: 3
+						},
+						title: {
+							value: lang.getText ("tr61"),
+							id: "tr61",
+							pos: 4
+						}
 					})}
 					${buildMethodology_ ({
-						description: lang.getText ("tr64"),
-						title: lang.getText ("tr63"),
 						image: Images.METHODOLOGY_3,
 						icon: Icons.METHODOLOGY_3,
-						id: 3
+						id: 3,
+						description: {
+							value: lang.getText ("tr64"),
+							id: "tr64",
+							pos: 5
+						},
+						title: {
+							value: lang.getText ("tr63"),
+							id: "tr63",
+							pos: 6
+						}
 					})}
 					${buildMethodology_ ({
-						description: lang.getText ("tr66"),
-						title: lang.getText ("tr65"),
 						image: Images.METHODOLOGY_4,
 						icon: Icons.METHODOLOGY_4,
-						id: 4
+						id: 4,
+						description: {
+							value: lang.getText ("tr66"),
+							id: "tr66",
+							pos: 7
+						},
+						title: {
+							value: lang.getText ("tr65"),
+							id: "tr65",
+							pos: 8
+						}
 					})}
 					${buildMethodology_ ({
-						description: lang.getText ("tr68"),
-						title: lang.getText ("tr67"),
 						image: Images.METHODOLOGY_5,
 						icon: Icons.METHODOLOGY_5,
-						id: 5
+						id: 5,
+						description: {
+							value: lang.getText ("tr68"),
+							id: "tr68",
+							pos: 9
+						},
+						title: {
+							value: lang.getText ("tr67"),
+							id: "tr67",
+							pos: 10
+						}
 					})}
 				</div>
 			</div>
+			<div
+				class = "${
+					"skeleton-loading"
+				}"
+			></div>
 		`;
 		// Adds the below section
 		// to the selected tag as
@@ -815,19 +1015,115 @@ function Methodologies () {
 		document.querySelector (
 			"main"
 		).appendChild (section);
-		// Listens controls to apply
-		// horizontal carousel effect.
-		horizontalCarousel_ ();
-		// Listens browser scrollbar
-		// thumb motion to apply the
-		// vertical carousel effect.
-		verticalCarousel_ ();
+		// The right arrow button.
+		rightButton_ = (
+			document.querySelector (
+				"div.mhds-right-arrow"
+			)
+		);
+		// The left arrow button.
+		leftButton_ = (
+			document.querySelector (
+				"div.mhds-left-arrow"
+			)
+		);
+		// The scroll container.
+		scroll_ = (
+			document.querySelector (
+				"div.mhds-scroll"
+			)
+		);
+		// The methodologies body.
+		body_ = (
+			document.querySelector (
+				"div.mhds-body"
+			)
+		);
+		// Waits until images and
+		// icons are loaded.
+		listenLoadEvent ({
+			tags: (
+				document.querySelectorAll (
+					"img#mhds-img"
+				)
+			),
+			onReady: () => {
+				// Listens controls to apply
+				// horizontal carousel effect.
+				horizontalCarousel_ ();
+				// Listens browser scrollbar
+				// thumb motion to apply the
+				// vertical carousel effect.
+				verticalCarousel_ ();
+				// Adds `hide-skeleton`
+				// class to skeleton
+				// loader.
+				section.lastElementChild
+					.classList.add (
+						"hide-skeleton"
+					);
+				// Waits for 200ms before
+				// delete skeleton loader.
+				window.setTimeout (() => (
+					section.lastElementChild
+						.remove ()
+				), 200);
+				// Called when any mutation
+				// is detected by redux.
+				window.store.subscribe (
+					() => {
+						// Changes all tags
+						// text's content
+						// with a textual
+						// animation.
+						animateTextContent (
+							getUpdates ({
+								attrPrefix: (
+									"mhds-index"
+								),
+								textualsId: (
+									"mhds-data"
+								)
+							})
+						);
+					}
+				);
+				// Focus on the current
+				// section for scrolling.
+				new ScrollManager ({
+					max: 200,
+					min: 0,
+					onEnter: () => {
+						// Warns user about a 
+						// swapable element.
+						dissolvable_ (5000);
+						// Animates methodologies
+						// section in normal mode.
+						animate_ ("normal");
+						// Puts a focus to
+						// corresponding
+						// option inside
+						// the navbar.
+						window.store
+							.getState ()
+							.navbar
+							.select (2);
+					},
+					onLeave: () => {
+						// Animates methodologies
+						// section in reverse
+						// mode.
+						animate_ ("reverse");
+					}
+				});
+			}
+		});
 	}
 }
 
 /**
- * @description Exports all
- * 	public features.
+ * @description Exports
+ * 	all public features.
  * @exports *
  */
 export {Methodologies};

@@ -507,7 +507,7 @@ div.cobs-infos {
 * @supported: DESKTOP, MOBILE
 * @file: methodologies.scss
 * @created: 2023-07-06
-* @updated: 2023-08-26
+* @updated: 2023-09-08
 * @version: 0.0.2
 */
 /**
@@ -531,31 +531,46 @@ div.mhds-infos, div.mhds-infos div:nth-child(2) {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-07-06
-* @updated: 2023-08-25
-* @version: 0.0.1
+* @updated: 2023-09-08
+* @version: 0.0.2
 */
 @media only screen and (max-width: 760px) {
-  button.learn-more {
+  button.mhds-learn-more {
     margin-top: 32px; } }
-button.learn-more img {
+button.mhds-learn-more img {
   filter: brightness(0); }
 
 section.methodologies {
+  transform: translate3d(0, 0, 0);
   padding: 96px 12.8%;
-  margin-bottom: 40px; }
+  margin-bottom: 40px;
+  overflow-x: hidden; }
   @media only screen and (max-width: 1300px) {
     section.methodologies {
       padding: 76px 16px; } }
+  section.methodologies div.mhds-content-show {
+    transform: translate3d(0, 0, 0) translateX(0);
+    opacity: 1; }
   section.methodologies > h2:first-child {
+    transform: translateX(-110%);
     letter-spacing: -1.4px;
     margin-bottom: 96px;
     line-height: 60px;
     font-weight: 600;
-    font-size: 50px; }
+    font-size: 50px;
+    opacity: 0; }
+    @media only screen and (max-width: 760px) {
+      section.methodologies > h2:first-child {
+        margin-bottom: 30px;
+        font-size: 40px; } }
+  section.methodologies h2.mhds-bigtitle-show {
+    transform: translateX(0);
+    opacity: 1; }
 
 div.methodology {
   pointer-events: none;
   padding: 0 0 0 80px;
+  overflow-x: hidden;
   opacity: .6; }
   @media only screen and (max-width: 1300px) {
     div.methodology {
@@ -606,8 +621,9 @@ div.mhds-body {
         height: 2px; } }
 
 div.mhds-content {
-  transform: translate3d(0, 0, 0);
-  padding-bottom: 96px; }
+  transform: translate3d(0, 0, 0) translateX(110%);
+  padding-bottom: 96px;
+  opacity: 0; }
   @media only screen and (max-width: 760px) {
     div.mhds-content {
       padding-bottom: 0; } }
@@ -669,6 +685,10 @@ div.mhds-infos {
     line-height: 48px;
     font-weight: 600;
     font-size: 40px; }
+    @media only screen and (min-width: 760px) and (max-width: 840px) {
+      div.mhds-infos div:first-child > h3 {
+        line-height: 36px;
+        font-size: 32px; } }
     @media only screen and (max-width: 760px) {
       div.mhds-infos div:first-child > h3 {
         padding-right: 0; } }
@@ -677,6 +697,10 @@ div.mhds-infos {
     line-height: 24px;
     font-weight: 400;
     font-size: 20px; }
+    @media only screen and (min-width: 760px) and (max-width: 840px) {
+      div.mhds-infos div:first-child > p {
+        line-height: 20px;
+        font-size: 18px; } }
     @media only screen and (max-width: 760px) {
       div.mhds-infos div:first-child > p {
         padding-right: 0; } }

@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-26
-* @updated 2023-09-07
+* @updated 2023-09-08
 * @file french.js
 * @version 0.0.2
 * @type {French}
@@ -222,38 +222,37 @@ const french = {
       rapidement
     `,
     tr62: `
-      Automatisez la livraison de vos 
-      logiciels processus afin que vous 
+      Automatisez le processus de livraison 
+      de vos logiciels afin que vous 
       puissiez apporter de la valeur 
-      code plus rapide et de qualité 
-      plus souvent.
+      au code.
     `,
     tr63: "Assurer la conformité",
     tr64: `
-      Simplifiez les logiciels continus 
-      conformité en définissant, en 
-      appliquant et rendre compte de 
-      la conformité sur une seule 
-      plateforme.
+      Simplifiez la conformité des 
+      logiciels tout en définissant, 
+      en appliquant et rendre compte 
+      sur une seule plateforme.
     `,
     tr65: "Construire la sécurité",
     tr66: `
       Adoptez les pratiques DevSecOps 
-      avec sécurité logicielle continue 
-      assurance à chaque étape.
+      avec une sécurité logicielle 
+      continue à chaque étape.
     `,
     tr67: `
       Améliorer la collaboration 
-      et visibilité
+      et la visibilité
     `,
     tr68: `
-      Donnez à chacun une plateforme 
+      Donnez à chacun, une plate-forme 
       pour collaborer et tout voir 
       de la planification à la 
       production.
     `,
     tr69: `
-      GitLab est le DevSecOps Plate-forme
+      GitLab est la plate-forme 
+      DevSecOps
     `,
     tr70: "Leaders du DevSecOps",
     tr71: "Recherche d'analystes industriels",
@@ -261,7 +260,7 @@ const french = {
     tr73: `
       GitLab se classe parmi les 
       G2 Leader dans l'ensemble 
-      du DevSecOps catégories
+      des catégories du DevSecOps
     `,
     tr74: "Par utilisateur/mois",
     tr75: "Tarifs",
