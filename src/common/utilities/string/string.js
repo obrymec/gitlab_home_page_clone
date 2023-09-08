@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-09-02
+* @updated 2023-09-07
 * @file string.js
 * @type {String}
 * @version 0.0.4
@@ -150,7 +150,7 @@ function animateTextContent (
       // text content.
 			backspace ({
         invert: true,
-				interval: 50,
+				interval: 25,
 				tag,
         onFinished: () => (
           // Writes the new
@@ -158,7 +158,7 @@ function animateTextContent (
           animateText ({
             isReversed: false,
             text: newData[id],
-            interval: 50,
+            interval: 25,
             target: tag,
             onFinished: () => {
               // Whether the current
@@ -214,7 +214,7 @@ function animateTextContent (
  * @fires backspace#onFinished
  * @function backspace
  * @public
- * @returns {void} void
+ * @returns {int} int
  */
 function backspace ({
   onBackspace = null,
@@ -322,6 +322,9 @@ function backspace ({
       interval
     )
   );
+  // Returns the process
+  // id.
+  return animation;
 }
 
 /**
@@ -535,7 +538,7 @@ function smartReplace_ (
  * @fires animateText#onWrite
  * @function animateText
  * @public
- * @returns {void} void
+ * @returns {?int} ?int
  */
 function animateText ({
   useInnerHTML = false,
@@ -700,6 +703,9 @@ function animateText ({
         }
       }, interval)
     );
+    // Returns the process
+    // id.
+    return animationID;
   }
 }
 

@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-06
+* @updated 2023-09-08
 * @version 0.0.7
 * @file main.js
 */
@@ -67,15 +67,15 @@ window.store = Redux.createStore ((
 // The current global state.
 const state = window.store.getState ();
 // Builds navbar section.
-// state.navbar.render ();
+state.navbar.render ();
 // Builds banner section.
 // state.banner.render ();
 // Builds customers section.
 // state.customers.render ();
 // Builds services section.
-state.services.render ();
+// state.services.render ();
 // Builds collaborators section.
-// new Collaborators ().render ();
+state.collaborators.render ();
 // Builds methodologies section.
 // new Methodologies ().render ();
 // Builds badges section.
@@ -87,4 +87,4 @@ state.services.render ();
 // Builds faq section.
 // new FAQ ().render ();
 // Builds footer section.
-state.footer.render ();
+// state.footer.render ();

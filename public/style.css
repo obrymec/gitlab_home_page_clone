@@ -253,7 +253,7 @@ template {
 * @supported: DESKTOP, MOBILE
 * @file: collaborators.scss
 * @created: 2023-06-24
-* @updated: 2023-08-26
+* @updated: 2023-09-07
 * @version: 0.0.2
 */
 /**
@@ -266,12 +266,12 @@ template {
 * @updated: 2023-08-24
 * @version: 0.0.1
 */
-section.collaborators, div.controls, div.statistics, div.statistics div:first-child,
-div.statistics div:last-child, div.infos {
+section.collaborators, div.cobs-controls, div.cobs-statistics, div.cobs-statistics div:first-child,
+div.cobs-statistics div:last-child, div.cobs-infos {
   flex-direction: column;
   display: flex; }
 
-div.customer, div.about, div.identity {
+div.collaborator, div.cobs-about, div.cobs-identity {
   flex-direction: row;
   display: flex; }
 
@@ -285,13 +285,14 @@ div.customer, div.about, div.identity {
 * @updated: 2023-08-24
 * @version: 0.0.1
 */
-div.customer {
+div.collaborator {
+  display: none;
   gap: 24px; }
   @media only screen and (max-width: 1030px) {
-    div.customer {
+    div.collaborator {
       flex-direction: column;
       gap: 16px; } }
-  div.customer div.cobs-border-radius {
+  div.collaborator div.cobs-border-radius {
     border-bottom-right-radius: 60px; }
 
 section.collaborators {
@@ -302,7 +303,7 @@ section.collaborators {
   @media only screen and (max-width: 1030px) {
     section.collaborators {
       padding: 96px 16px; } }
-  section.collaborators div.header-title {
+  section.collaborators div.cobs-header-title {
     color: #171321;
     letter-spacing: -1px;
     margin-bottom: 48px;
@@ -311,98 +312,96 @@ section.collaborators {
     font-weight: 600;
     font-size: 40px; }
     @media only screen and (max-width: 1170px) and (min-width: 1031px) {
-      section.collaborators div.header-title {
+      section.collaborators div.cobs-header-title {
         font-size: 30px; } }
-  section.collaborators div.body {
+  section.collaborators div.cobs-body {
     margin-bottom: 50px;
     margin-left: 16px; }
     @media only screen and (max-width: 1030px) {
-      section.collaborators div.body {
+      section.collaborators div.cobs-body {
         margin-bottom: 24px;
         margin-left: 0; } }
-    section.collaborators div.body div.customer {
-      display: none; }
-    section.collaborators div.body div.cobs-display {
+    section.collaborators div.cobs-body div.cobs-display {
       display: flex; }
   section.collaborators div.cobs-opacity {
     opacity: 0; }
 
-div.about {
+div.cobs-about {
   margin-top: 26px;
   font-size: 14px;
   gap: 24px; }
   @media only screen and (max-width: 1030px) {
-    div.about {
+    div.cobs-about {
       flex-direction: column;
       gap: 15px; } }
   @media only screen and (max-width: 1030px) {
-    div.about div:first-child {
+    div.cobs-about div:first-child {
       width: 50%; } }
-  div.about div:last-child {
+  div.cobs-about div:last-child {
     line-height: 20px;
     width: 100%; }
-  div.about div:last-child > label {
+  div.cobs-about div:last-child > span {
     font-weight: 600; }
 
-div.controls {
+div.cobs-controls {
   align-items: center;
   position: fixed;
   left: 1.8%;
   gap: 15px;
   top: 38%; }
   @media only screen and (max-width: 1030px) {
-    div.controls {
+    div.cobs-controls {
       flex-direction: row;
       position: relative;
       left: 0;
       top: 0;
       gap: 0; } }
-  div.controls img:nth-child(1) {
+  div.cobs-controls img:nth-child(1) {
     transform: rotate(-90deg);
     filter: brightness(0);
     display: inline-block;
     cursor: pointer; }
     @media only screen and (max-width: 1030px) {
-      div.controls img:nth-child(1) {
+      div.cobs-controls img:nth-child(1) {
         transform: rotate(-180deg);
         margin-right: 7px; } }
-  div.controls div {
+  div.cobs-controls div {
     background-color: #d1d0d3;
     border-radius: 24px;
     cursor: pointer;
     margin: 0 8px;
     height: 10px;
     width: 10px; }
-  div.controls div.cobs-selected-node {
+  div.cobs-controls div.cobs-selected-node {
     box-shadow: 0 0 0 3px #171321;
     background-color: transparent; }
-  div.controls img:nth-child(7) {
+  div.cobs-controls img:nth-child(7) {
     transform: rotate(90deg);
     display: inline-block;
     filter: brightness(0);
     cursor: pointer; }
     @media only screen and (max-width: 1030px) {
-      div.controls img:nth-child(7) {
+      div.cobs-controls img:nth-child(7) {
         transform: rotate(0deg);
         margin-left: 7px; } }
 
-div.identity {
+div.cobs-identity {
   border: 1px solid #e8e7eb;
   background-color: #fff;
   border-bottom-left-radius: 8px;
   border-top-left-radius: 8px;
   width: 100%; }
   @media only screen and (max-width: 1030px) {
-    div.identity {
+    div.cobs-identity {
       flex-direction: column; } }
-  div.identity div.profile {
+  div.cobs-identity div.cobs-profile {
     position: relative;
     min-width: 230px; }
     @media only screen and (max-width: 1030px) {
-      div.identity div.profile {
+      div.cobs-identity div.cobs-profile {
         max-width: 230px;
         height: auto; } }
-  div.identity div.profile > img {
+  div.cobs-identity div.cobs-profile > img {
     box-shadow: 0 16px 50px -24px #d1d0d3;
     border-bottom-right-radius: 66px;
     position: absolute;
@@ -410,13 +409,13 @@ div.identity {
     left: -16px;
     top: -16px; }
     @media only screen and (max-width: 1030px) {
-      div.identity div.profile > img {
+      div.cobs-identity div.cobs-profile > img {
         position: relative;
         margin-left: 16px;
         margin-top: 20px;
         left: 0;
         top: 0; } }
-  div.identity div.profile::after {
+  div.cobs-identity div.cobs-profile::after {
     border-right: 1px solid #a989f5;
     border-top: 1px solid #a989f5;
     border-radius: 0 4px;
@@ -428,76 +427,76 @@ div.identity {
     right: 21px;
     top: -21px; }
     @media only screen and (max-width: 1030px) {
-      div.identity div.profile::after {
+      div.cobs-identity div.cobs-profile::after {
         right: -12px;
         top: 15px; } }
 
-div.statistics {
+div.cobs-statistics {
   width: 36%;
   gap: 20px; }
   @media only screen and (max-width: 1030px) {
-    div.statistics {
+    div.cobs-statistics {
       width: auto; } }
-  div.statistics div:last-child {
+  div.cobs-statistics div:last-child {
     border-bottom-right-radius: 60px; }
-  div.statistics div:first-child,
-  div.statistics div:last-child {
+  div.cobs-statistics div:first-child,
+  div.cobs-statistics div:last-child {
     border: 1px solid #e8e7eb;
     background-color: #fff;
     justify-content: center;
     padding: 18px 32px;
     height: 100%; }
     @media only screen and (max-width: 1030px) {
-      div.statistics div:first-child,
-      div.statistics div:last-child {
+      div.cobs-statistics div:first-child,
+      div.cobs-statistics div:last-child {
         padding: 26px 16px; } }
-    div.statistics div:first-child label,
-    div.statistics div:last-child label {
+    div.cobs-statistics div:first-child span,
+    div.cobs-statistics div:last-child span {
       color: #7759c2;
       letter-spacing: -1.4px;
       line-height: 60px;
       font-weight: 600;
       font-size: 50px; }
-    div.statistics div:first-child p,
-    div.statistics div:last-child p {
+    div.cobs-statistics div:first-child p,
+    div.cobs-statistics div:last-child p {
       letter-spacing: -.8px;
       line-height: 32px;
       font-weight: 400;
       font-size: 24px; }
   @media only screen and (max-width: 1170px) and (min-width: 1031px) {
-    div.statistics div:first-child > label,
-    div.statistics div:last-child > label {
+    div.cobs-statistics div:first-child > span,
+    div.cobs-statistics div:last-child > span {
       font-size: 40px; } }
   @media only screen and (max-width: 1170px) and (min-width: 1031px) {
-    div.statistics div:first-child > p,
-    div.statistics div:last-child > p {
+    div.cobs-statistics div:first-child > p,
+    div.cobs-statistics div:last-child > p {
       font-size: 20px; } }
 
-div.infos {
+div.cobs-infos {
   padding: 48px 32px 48px 0;
   row-gap: 13px; }
   @media only screen and (max-width: 1030px) {
-    div.infos {
+    div.cobs-infos {
       padding: 16px 16px 48px 16px; } }
-  div.infos:hover > button.read-more > img {
+  div.cobs-infos:hover > button.cobs-read-more > img {
     transform: translate(6px, 1px); }
-  div.infos:hover > button.read-more > label {
+  div.cobs-infos:hover > button.cobs-read-more > span {
     text-decoration: underline; }
-  div.infos blockquote.description {
+  div.cobs-infos blockquote.cobs-description {
     font-style: italic;
     line-height: 38px;
     font-size: 22.5px;
     font-weight: 400;
     cursor: pointer; }
     @media only screen and (max-width: 1170px) and (min-width: 1031px) {
-      div.infos blockquote.description {
+      div.cobs-infos blockquote.cobs-description {
         line-height: 32px;
         font-size: 20px; } }
-  div.infos button.read-more {
+  div.cobs-infos button.cobs-read-more {
     color: #7759c2; }
-    div.infos button.read-more img {
+    div.cobs-infos button.cobs-read-more img {
       transform: translate(0, 1px); }
-    div.infos button.read-more span {
+    div.cobs-infos button.cobs-read-more span {
       line-height: 38px;
       font-size: 23px; }
 
@@ -1004,7 +1003,7 @@ div.resource {
 * @supported: DESKTOP, MOBILE
 * @file: services.scss
 * @created: 2023-06-23
-* @updated: 2023-09-06
+* @updated: 2023-09-07
 * @version: 0.0.3
 */
 /**
@@ -1152,14 +1151,14 @@ div.service {
       div.service div > p {
         line-height: 18px;
         font-size: 14px; } }
-  div.service div > label {
+  div.service div > span {
     letter-spacing: -.6px;
     line-height: 32px;
     font-weight: 600;
     font-size: 24px;
     cursor: pointer; }
     @media only screen and (max-width: 1130px) and (min-width: 1025px) {
-      div.service div > label {
+      div.service div > span {
         line-height: 22px;
         font-size: 18px; } }
   div.service button {

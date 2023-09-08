@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: collaborators.scss
 * @created: 2023-06-24
-* @updated: 2023-08-26
+* @updated: 2023-09-07
 * @version: 0.0.2
 */
 
@@ -13,9 +13,10 @@
 @import "./_placeholders.scss";
 @import "./_variables.scss";
 
-// Customer section.
-div.customer {
+// Collaborator section.
+div.collaborator {
 	@extend %collaborators-row-flexbox;
+	display: none;
 	gap: 24px;
 	// From 1030 to 0.
 	@media #{$collaborators-1030} {
@@ -40,7 +41,7 @@ section.collaborators {
 		padding: 96px 16px;
 	}
 	// Header title
-	div.header-title {
+	div.cobs-header-title {
 		color: $collaborators-text-color;
     letter-spacing: -1px;
 		margin-bottom: 48px;
@@ -54,17 +55,13 @@ section.collaborators {
 		}
 	}
 	// Body.
-	div.body {
+	div.cobs-body {
 		margin-bottom: 50px;
 		margin-left: 16px;
 		// From 1030 to 0.
 		@media #{$collaborators-1030} {
 			margin-bottom: 24px;
 			margin-left: 0;
-		}
-		// Customers.
-		div.customer {
-			display: none;
 		}
 		// Display enabled.
 		div.cobs-display {
@@ -78,7 +75,7 @@ section.collaborators {
 }
 
 // Industry.
-div.about {
+div.cobs-about {
 	@extend %collaborators-row-flexbox;
 	margin-top: 26px;
 	font-size: 14px;
@@ -101,13 +98,13 @@ div.about {
 		width: 100%;
 	}
 	// Customer name.
-	div:last-child > label {
+	div:last-child > span {
 		font-weight: 600;
 	}
 }
 
 // Controls section.
-div.controls {
+div.cobs-controls {
 	@extend %collaborators-column-flexbox;
 	align-items: center;
 	position: fixed;
@@ -163,7 +160,7 @@ div.controls {
 }
 
 // Identity section.
-div.identity {
+div.cobs-identity {
 	border: 1px solid $collaborators-card-border-color;
 	background-color: $collaborators-card-bg-color;
 	@extend %collaborators-row-flexbox;
@@ -175,7 +172,7 @@ div.identity {
 		flex-direction: column;
 	}
 	// Profile container.
-	div.profile {
+	div.cobs-profile {
 		position: relative;
 		min-width: 230px;
 		// From 1030 to 0.
@@ -185,7 +182,7 @@ div.identity {
 		}
 	}
 	// Profile image.
-	div.profile > img {
+	div.cobs-profile > img {
 		box-shadow: 0 16px 50px -24px $collaborators-controls-item-bg-color;
 		border-bottom-right-radius: 66px;
 		position: absolute;
@@ -202,7 +199,7 @@ div.identity {
 		}
 	}
 	// Profile box.
-	div.profile::after {
+	div.cobs-profile::after {
 		border-right: 1px solid $collaborators-img-color-effect;
 		border-top: 1px solid $collaborators-img-color-effect;
 		border-radius: 0 4px;
@@ -222,7 +219,7 @@ div.identity {
 }
 
 // Statistics section.
-div.statistics {
+div.cobs-statistics {
 	@extend %collaborators-column-flexbox;
 	width: 36%;
 	gap: 20px;
@@ -248,7 +245,7 @@ div.statistics {
 			padding: 26px 16px;
 		}
 		// Label.
-		label {
+		span {
 			color: $collaborators-btn-text-color;
 			letter-spacing: -1.4px;
 			line-height: 60px;
@@ -264,8 +261,8 @@ div.statistics {
 		}
 	}
 	// Labels.
-	div:first-child > label,
-	div:last-child > label {
+	div:first-child > span,
+	div:last-child > span {
 		// From 1170 to 0.
 		@media #{$collaborators-1170} {
 			font-size: 40px;
@@ -282,7 +279,7 @@ div.statistics {
 }
 
 // Infos container.
-div.infos {
+div.cobs-infos {
 	@extend %collaborators-column-flexbox;
 	padding: 48px 32px 48px 0;
 	row-gap: 13px;
@@ -291,15 +288,15 @@ div.infos {
 		padding: 16px 16px 48px 16px;
 	}
 	// Move right arrow.
-	&:hover > button.read-more > img {
+	&:hover > button.cobs-read-more > img {
 		transform: translate(6px, 1px);
 	}
 	// Underline the text.
-	&:hover > button.read-more > label {
+	&:hover > button.cobs-read-more > span {
 		text-decoration: underline;
 	}
 	// Description.
-	blockquote.description {
+	blockquote.cobs-description {
     font-style: italic;
     line-height: 38px;
 		font-size: 22.5px;
@@ -312,7 +309,7 @@ div.infos {
 		}
 	}
 	// Button for read more.
-	button.read-more {
+	button.cobs-read-more {
 		color: $collaborators-btn-text-color;
 		// Right arrow.
 		img {

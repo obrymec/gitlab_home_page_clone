@@ -4,7 +4,7 @@
 * @fileoverview Services UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-23
-* @updated 2023-09-06
+* @updated 2023-09-07
 * @file services.js
 * @type {Services}
 * @version 0.0.2
@@ -139,7 +139,7 @@ function Services () {
 						)
 					}
 				})}
-				<label
+				<span
 					id = "services-data"
 					services-index = "${
 						title.id
@@ -148,7 +148,7 @@ function Services () {
 					${clearStr ({
 						input: title.value
 					})}
-				</label>
+				</span>
 				<p
 					id = "services-data"
 					services-index = "${
@@ -162,6 +162,7 @@ function Services () {
 			</div>
 			${buildFlatButton ({
 				textId: "services-data",
+				iconId: "services-img",
 				text: button.value,
 				customAttr: (
 					`services-index = ${
@@ -461,8 +462,8 @@ function Services () {
 				}
 			})}
 			<div
-				class = "skeleton-loading">
-			</div>
+				class = "skeleton-loading"
+			></div>
 		`;
 		// Adds the below section
 		// to the selected tag as

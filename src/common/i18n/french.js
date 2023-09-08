@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-26
-* @updated 2023-09-06
+* @updated 2023-09-07
 * @file french.js
 * @version 0.0.2
 * @type {French}
@@ -105,13 +105,13 @@ const french = {
     `,
     tr30: "Lockheed Martin",
     tr31: `
-      moins de temps passé sur 
-      le système entretien
+      de moins de temps passé sur 
+      l'entretien du système
     `,
     tr32: `
       En passant à GitLab et 
       automatisation du déploiement, 
-      des équipes avez déménagé de 
+      des équipes avez déménagé du 
       mensuel ou livraisons hebdomadaires 
       à quotidiennes ou plusieurs 
       livraisons quotidiennes.
@@ -119,27 +119,29 @@ const french = {
     tr33: "Jason Monoharan",
     tr34: "heures",
     tr35: `
-      économies approximatives par an
+      approximatives d'économies 
+      par an
     `,
     tr36: "VP de la technologie",
-    tr37: "Montagne de Fer",
+    tr37: "Iron Mountain",
     tr38: `
       économisé en temps d'intégration 
       par projet
     `,
     tr39: `
       La vision qu'a GitLab en termes de 
-      stratégie de vente liée la portée 
-      et le code sont très puissant. je 
-      suis reconnaissante pour niveau 
-      d'investissement qu'ils sont 
-      continuer à faire dans le 
+      stratégie de vente liée à la portée 
+      et le code est très puissant. je 
+      suis reconnaissant pour le niveau 
+      d'investissement qu'ils ont 
+      continuer à faire sur la 
       plate-forme.
     `,
     tr40: "Evan O'Connor",
     tr41: `
-      des utilisateurs mensuels sont 
-      sécurisés travaux de scanner
+      des utilisateurs mensuels ont 
+      sécurisés le secret des 
+      travaux du scanner
     `,
     tr42: `
       Responsable de l'ingénierie 
@@ -148,42 +150,42 @@ const french = {
     tr43: "Haven Technologies",
     tr44: `
       des utilisateurs mensuels 
-      ont utilisé le secret 
+      ont utilisé le secret des 
       travaux de détection
     `,
     tr45: `
       L'engagement de GitLab en faveur 
-      d'un environnement ouvert communauté 
-      source signifiait que nous pourrait 
-      s'engager directement avec ingénieurs 
-      à travailler technique difficile 
-      problèmes.
+      d'un environnement ouvert à la 
+      communauté source signifierait qu'on 
+      pourrait s'engager directement avec 
+      des ingénieurs pour travailler sur 
+      les problèmes difficile. 
     `,
     tr46: "millions",
     tr47: "Rick Carey",
     tr48: "Utilisateurs actifs de GitLab",
     tr49: `
-      Directeur de la Technologie 
-      du Groupe
+      Directeur de Group Technology 
+      Officer
     `,
     tr50: "UBS",
     tr51: `
-      builds réussis en premier 
-      six mois
+      des premières constructions 
+      réussites en six mois
     `,
     tr52: `
       Nous avons une expression à l'UBS, 
       Tous les développeurs attendent au 
       même vitesse, donc tout ce que nous 
-      peuvent faire pour réduire leur 
-      attente le temps est une valeur 
+      peuvont faire pour réduire leur 
+      temps attente est une valeur 
       ajoutée. Et GitLab nous permet 
-      d'avoir ça expérience intégrée.
+      d'avoir l'expérience intégrée.
     `,
     tr53: "Regardez la vidéo",
     tr54: "Lakshmi Venkatraman",
     tr55: "Chef de projet",
-    tr56: "Biotechnologies Singlerons",
+    tr56: "Singleron Biotechnologies",
     tr57: `
       GitLab nous permet de collaborer 
       très bien avec les membres de 
@@ -192,7 +194,7 @@ const french = {
       étant capable de suivre un projet 
       ou la charge de travail d'un membre 
       de l'équipe aide à prévenir un projet 
-      des retards. Quand le le projet est 
+      des retards. Quand le projet est 
       terminé, nous pouvons facilement 
       automatiser un processus d'emballage 
       et renvoyer les résultats au client. 
@@ -204,14 +206,16 @@ const french = {
       devrait être
     `,
     tr59: `
-      Accélérez votre digital
-      transformation
+      Accélérez votre transformation 
+      digital
     `,
     tr60: `
-      Atteignez votre transformation 
-      numérique objectifs plus rapidement 
-      avec un DevSecOps plateforme pour 
-      l'ensemble de votre organisation.
+      Atteignez les objectifs de votre 
+      transformation numérique le plus 
+      rapidement que possible avec une 
+      plate-forme DevSecOps pour 
+      l'ensemble de votre 
+      organisation.
     `,
     tr61: `
       Livrer les logiciels plus 

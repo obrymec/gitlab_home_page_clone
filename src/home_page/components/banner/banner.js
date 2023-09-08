@@ -4,7 +4,7 @@
 * @fileoverview Banner UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-17
-* @updated 2023-09-06
+* @updated 2023-09-08
 * @file banner.js
 * @type {Banner}
 * @version 0.0.2
@@ -124,6 +124,7 @@ function Banner () {
 	/**
 	 * @description Animates top label.
 	 * @function topLabelAnimation_
+	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {void} void
 	 */

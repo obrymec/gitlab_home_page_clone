@@ -4,7 +4,7 @@
 * @fileoverview Customers UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-21
-* @updated 2023-09-06
+* @updated 2023-09-08
 * @file customers.js
 * @type {Customers}
 * @version 0.0.2
@@ -92,6 +92,7 @@ function Customers () {
 	 * @param {Element} parent The
 	 * 	target children parent.
 	 * @function putTimeline_
+	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {Object} Object
 	 */
@@ -121,6 +122,7 @@ function Customers () {
 	/**
 	 * @description Animates customers.
 	 * @function animateCustomers_
+	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {Object} Object
 	 */
@@ -312,8 +314,8 @@ function Customers () {
 				</div>
 			</div>
 			<div
-				class = "skeleton-loading">
-			</div>
+				class = "skeleton-loading"
+			></div>
 		`;
 		// Adds the below nav section
 		// to the main tag as a child.
