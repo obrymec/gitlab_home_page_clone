@@ -725,7 +725,7 @@ div.mhds-infos {
 * @fileoverview: GitLab button stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-08-03
-* @updated: 2023-08-26
+* @updated: 2023-09-08
 * @file: button.scss
 * @version: 0.0.2
 */
@@ -740,7 +740,6 @@ div.mhds-infos {
 * @version: 0.0.2
 */
 button.flat-btn {
-  color: #171321;
   display: inline-flex;
   align-items: center;
   column-gap: 5px;
@@ -753,6 +752,7 @@ button.flat-btn {
   button.flat-btn img {
     display: inline-block; }
   button.flat-btn span {
+    color: #171321;
     line-height: 24px;
     font-weight: 600;
     font-size: 20px; }
@@ -760,13 +760,10 @@ button.flat-btn {
 button.gen-btn {
   transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
   background-color: #171321;
-  color: #fff;
   justify-content: center;
   display: inline-flex;
   padding: 11px 16px;
-  line-height: 20px;
-  font-weight: 600;
-  font-size: 18px; }
+  outline: none; }
   button.gen-btn:hover {
     background-color: transparent; }
     button.gen-btn:hover span {
@@ -777,7 +774,10 @@ button.gen-btn {
     margin-left: 8px; }
   button.gen-btn span {
     transition: color 0.3s cubic-bezier(0.7, 0, 0.3, 1);
-    color: #fff; }
+    color: #fff;
+    line-height: 20px;
+    font-weight: 600;
+    font-size: 18px; }
 
 /**
 * @author: Obrymec - obrymecsprinces@gmail.com
@@ -2007,7 +2007,7 @@ div.banner-left {
 * @fileoverview: GitLab badges stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-13
-* @updated: 2023-08-25
+* @updated: 2023-09-08
 * @file: badges.scss
 * @version: 0.0.2
 */
@@ -2018,7 +2018,7 @@ div.banner-left {
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-13
-* @updated: 2023-08-25
+* @updated: 2023-09-08
 * @version: 0.0.2
 */
 /**
@@ -2055,20 +2055,11 @@ div.bds-foot > button:last-child, div.bds-left button:last-child {
       color: #fff; }
     div.bds-foot > button:hover:last-child img, div.bds-left button:hover:last-child img {
       filter: brightness(300%); }
-  @media only screen and (max-width: 770px) {
-    div.bds-foot > button:last-child, div.bds-left button:last-child {
-      justify-content: center;
-      padding: 11px 16px;
-      width: 100%; }
-      div.bds-foot > button:last-child img, div.bds-left button:last-child img {
-        transform: translateY(2px) !important; } }
   div.bds-foot > button:last-child span, div.bds-left button:last-child span {
     color: #171321; }
   div.bds-foot > button:last-child img, div.bds-left button:last-child img {
     transform: translateY(2px);
-    filter: brightness(1%);
-    display: inline-block;
-    margin-left: 8px; }
+    filter: brightness(1%); }
 
 /**
 * @fileoverview: GitLab badges variables stylesheet.
@@ -2080,24 +2071,35 @@ div.bds-foot > button:last-child, div.bds-left button:last-child {
 * @updated: 2023-07-13
 * @version: 0.0.1
 */
+.bds-head-show {
+  transform: translateY(0) !important; }
+
+section.bds-show {
+  opacity: 1 !important; }
+
 section.badges {
   background-color: #171321;
+  transform: translate3d(0, 0, 0);
   margin-bottom: 96px;
-  padding: 96px 5%; }
+  overflow: hidden;
+  padding: 96px 5%;
+  opacity: 0; }
   @media only screen and (max-width: 770px) {
     section.badges {
       padding: 96px 16px; } }
 
-div.bds-head h2:first-child {
-  color: #fff;
-  letter-spacing: -1.4px;
-  margin-bottom: 64px;
-  line-height: 60px;
-  font-weight: 600;
-  font-size: 50px; }
-  @media only screen and (max-width: 770px) {
-    div.bds-head h2:first-child {
-      margin-bottom: 24px; } }
+div.bds-head {
+  transform: translateY(-156%); }
+  div.bds-head h2:first-child {
+    color: #fff;
+    letter-spacing: -1.4px;
+    margin-bottom: 64px;
+    line-height: 60px;
+    font-weight: 600;
+    font-size: 50px; }
+    @media only screen and (max-width: 770px) {
+      div.bds-head h2:first-child {
+        margin-bottom: 24px; } }
 
 div.bds-options {
   margin-bottom: 64px;
@@ -2122,6 +2124,7 @@ div.bds-foot {
       flex-direction: column; } }
   div.bds-foot div.bds-right {
     justify-content: flex-start;
+    transform: translateX(150%);
     flex-wrap: wrap;
     display: flex;
     flex: 1 0 50%;
@@ -2130,13 +2133,17 @@ div.bds-foot {
       div.bds-foot div.bds-right {
         justify-content: center;
         margin-bottom: 24px; } }
+  div.bds-foot div.bds-part-show {
+    transform: translateX(0); }
   div.bds-foot > button:last-child {
+    transform: translateY(400%);
     display: none; }
     @media only screen and (max-width: 770px) {
       div.bds-foot > button:last-child {
         display: inline-flex; } }
 
 div.bds-left {
+  transform: translateX(-150%);
   padding-right: 24px;
   width: 100%; }
   div.bds-left p {

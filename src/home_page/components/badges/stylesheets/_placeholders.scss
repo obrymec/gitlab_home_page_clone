@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: placeholders.scss
 * @created: 2023-07-13
-* @updated: 2023-08-25
+* @updated: 2023-09-08
 * @version: 0.0.2
 */
 
@@ -29,7 +29,7 @@
   }
 }
 
-// Learn more button design.
+// Learn more button.
 %badges-lm-btn {
   background-color: $badges-intial-text-color;
   border: 1px solid $badges-intial-text-color;
@@ -37,7 +37,7 @@
   // Hover effect.
   &:hover {
     background-color: $badges-bg-color;
-    // Button text.
+    // Text.
     span {
       color: $badges-intial-text-color;
     }
@@ -46,17 +46,7 @@
       filter: brightness(300%);
     }
   }
-  // From 770 to 0.
-  @media #{$badges-770} {
-    justify-content: center;
-    padding: 11px 16px;
-    width: 100%;
-    // Right arrow.
-    img {
-      transform: translateY(2px) !important;
-    }
-  }
-  // Button text.
+  // Text.
   span {
     color: $badges-bg-color;
   }
@@ -64,7 +54,5 @@
   img {
     transform: translateY(2px);
     filter: brightness(1%);
-    display: inline-block;
-    margin-left: 8px;
   }
 }

@@ -4,7 +4,7 @@
 * @fileoverview: GitLab button stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-08-03
-* @updated: 2023-08-26
+* @updated: 2023-09-08
 * @file: button.scss
 * @version: 0.0.2
 */
@@ -14,7 +14,6 @@
 
 // Flat Button.
 button.flat-btn {
-	color: $button-bg-color;
 	display: inline-flex;
 	align-items: center;
 	column-gap: 5px;
@@ -37,6 +36,7 @@ button.flat-btn {
 	}
 	// Text.
 	span {
+		color: $button-bg-color;
 		line-height: 24px;
 		font-weight: 600;
 		font-size: 20px;
@@ -47,13 +47,10 @@ button.flat-btn {
 button.gen-btn {
 	transition: all .3s cubic-bezier(.7, 0, .3, 1);
 	background-color: $button-bg-color;
-	color: $button-text-color;
 	justify-content: center;
   display: inline-flex;
 	padding: 11px 16px;
-	line-height: 20px;
-	font-weight: 600;
-	font-size: 18px;
+	outline: none;
 	// Hover effect.
 	&:hover {
 		background-color: $button-tr-bg;
@@ -72,5 +69,8 @@ button.gen-btn {
 	span {
 		transition: color .3s cubic-bezier(.7, 0, .3, 1);
 		color: $button-text-color;
+		line-height: 20px;
+		font-weight: 600;
+		font-size: 18px;
 	}
 }

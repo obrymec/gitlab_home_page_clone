@@ -4,7 +4,7 @@
 * @fileoverview: GitLab badges stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-13
-* @updated: 2023-08-25
+* @updated: 2023-09-08
 * @file: badges.scss
 * @version: 0.0.2
 */
@@ -13,11 +13,24 @@
 @import "./_placeholders.scss";
 @import "./_variables.scss";
 
+// Show head.
+.bds-head-show {
+  transform: translateY(0) !important;
+}
+
+// Show background.
+section.bds-show {
+  opacity: 1 !important;
+}
+
 // Badges section.
 section.badges {
   background-color: $badges-bg-color;
+  transform: translate3d(0, 0, 0);
   margin-bottom: 96px;
+  overflow: hidden;
   padding: 96px 5%;
+  opacity: 0;
   // From 770 to 0.
   @media #{$badges-770} {
     padding: 96px 16px;
@@ -26,6 +39,7 @@ section.badges {
 
 // Header.
 div.bds-head {
+  transform: translateY(-156%);
   // Huge title.
   h2:first-child {
     color: $badges-intial-text-color;
@@ -36,7 +50,7 @@ div.bds-head {
     font-size: 50px;
     // From 770 to 0.
     @media #{$badges-770} {
-      margin-bottom: 24px;;
+      margin-bottom: 24px;
     }
   }
 }
@@ -78,6 +92,7 @@ div.bds-foot {
   // Right content.
   div.bds-right {
     justify-content: flex-start;
+    transform: translateX(150%);
     flex-wrap: wrap;
     display: flex;
     flex: 1 0 50%;
@@ -88,8 +103,13 @@ div.bds-foot {
       margin-bottom: 24px;
     }
   }
+  // Show left/right part.
+  div.bds-part-show {
+    transform: translateX(0);
+  }
   // The second learn more button.
   & > button:last-child {
+    transform: translateY(400%);
     @extend %badges-lm-btn;
     display: none;
     // From 770 to 0.
@@ -101,6 +121,7 @@ div.bds-foot {
 
 // Left content.
 div.bds-left {
+  transform: translateX(-150%);
   padding-right: 24px;
   width: 100%;
   // Short paragraph.
