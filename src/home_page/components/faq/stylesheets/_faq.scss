@@ -4,7 +4,7 @@
 * @fileoverview: GitLab faq stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-20
-* @updated: 2023-08-26
+* @updated: 2023-09-09
 * @file: faq.scss
 * @version: 0.0.2
 */
@@ -14,8 +14,9 @@
 @import "./_variables.scss";
 
 // Vertical line.
-div.v-line {
+div.faq-vline {
   border-right: 2px solid $faq-border-color;
+  transform: translateY(200%);
   margin: 0 96px;
   display: block;
   // From 1024 to 0.
@@ -26,6 +27,8 @@ div.v-line {
 
 // FAQ section.
 section.faq {
+  transform: translate3d(0, 0, 0);
+  overflow: hidden;
   padding: 96px 5%;
   display: flex;
   background: (
@@ -50,10 +53,19 @@ section.faq {
   @media #{$faq-640} {
     padding: 96px 16px;
   }
+  // Show part.
+  div.faq-part-show {
+    transform: translateX(0);
+  }
+  // Vline show.
+  div.faq-vline-show {
+    transform: translateY(0);
+  }
 }
 
 // Left section.
 div.faq-left {
+  transform: translateX(-200%);
   // Huge title.
   h2 {
     letter-spacing: -1.4px;
@@ -82,7 +94,7 @@ div.faq-left {
 
 // Right section.
 div.faq-right {
-  transition: width .2s ease-in-out;
+  transform: translateX(200%);
   width: 48%;
   // From 1024 to 0.
   @media #{$faq-1024} {

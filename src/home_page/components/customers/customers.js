@@ -4,7 +4,7 @@
 * @fileoverview Customers UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-21
-* @updated 2023-09-08
+* @updated 2023-09-09
 * @file customers.js
 * @type {Customers}
 * @version 0.0.2
@@ -317,7 +317,7 @@ function Customers () {
 				class = "skeleton-loading"
 			></div>
 		`;
-		// Adds the below nav section
+		// Adds the above nav section
 		// to the main tag as a child.
 		document.querySelector (
 			"main"
@@ -334,8 +334,8 @@ function Customers () {
 				"div.left-customers"
 			)
 		);
-		// Waits until logos
-		// are loaded.
+		// Waits until images and
+		// icons are loaded.
 		listenLoadEvent ({
 			tags: (
 				document.querySelectorAll (

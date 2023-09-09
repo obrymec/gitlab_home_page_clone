@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-08
+* @updated 2023-09-09
 * @version 0.0.7
 * @file main.js
 */
@@ -81,10 +81,10 @@ state.navbar.render ();
 // Builds badges section.
 // state.badges.render ();
 // Builds pricing section.
-state.pricing.render ();
+// state.pricing.render ();
 // Builds resources section.
-// new Resources ().render ();
+state.resources.render ();
 // Builds faq section.
-// new FAQ ().render ();
+state.faq.render ();
 // Builds footer section.
 state.footer.render ();

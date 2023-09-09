@@ -6,7 +6,7 @@
 * @file collaborators.js
 * @type {Collaborators}
 * @created 2023-06-24
-* @updated 2023-09-08
+* @updated 2023-09-09
 * @version 0.0.2
 */
 
@@ -41,24 +41,24 @@ function Collaborators () {
 	/**
 	 * @description The description
 	 * 	process id.
-	 * @private {int}
-	 * @type {int}
+	 * @private {?int}
+	 * @type {?int}
 	 * @field
 	 */
 	let descriptionId_ = null;
 	/**
 	 * @description The percent
 	 * 	comment process id.
-	 * @private {int}
-	 * @type {int}
+	 * @private {?int}
+	 * @type {?int}
 	 * @field
 	 */
 	let percentId_ = null;
 	/**
 	 * @description The company
 	 * 	process id.
-	 * @private {int}
-	 * @type {int}
+	 * @private {?int}
+	 * @type {?int}
 	 * @field
 	 */
 	let companyId_ = null;
@@ -73,24 +73,24 @@ function Collaborators () {
 	/**
 	 * @description The credit
 	 * 	comment process id.
-	 * @private {int}
-	 * @type {int}
+	 * @private {?int}
+	 * @type {?int}
 	 * @field
 	 */
 	let creditId_ = null;
 	/**
 	 * @description The role
 	 * 	process id.
-	 * @private {int}
-	 * @type {int}
+	 * @private {?int}
+	 * @type {?int}
 	 * @field
 	 */
 	let roleId_ = null;
 	/**
 	 * @description The name
 	 * 	process id.
-	 * @private {int}
-	 * @type {int}
+	 * @private {?int}
+	 * @type {?int}
 	 * @field
 	 */
 	let nameId_ = null;
@@ -1096,7 +1096,7 @@ function Collaborators () {
 				}"
 			></div>
 		`;
-		// Adds the below section
+		// Adds the above section
 		// to the selected tag as
 		// a child.
 		document.querySelector (

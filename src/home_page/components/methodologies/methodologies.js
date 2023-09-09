@@ -6,7 +6,7 @@
 * @file methodologies.js
 * @type {Methodologies}
 * @created 2023-07-06
-* @updated 2023-09-08
+* @updated 2023-09-09
 * @version 0.0.2
 */
 
@@ -41,24 +41,24 @@ import {
  */
 function Methodologies () {
 	/**
-	 * @description The delay before
-	 * 	dissolve arrows.
+	 * @description The delay
+	 * 	before hide arrows.
 	 * @private {?int}
 	 * @type {?int}
 	 * @field
 	 */
 	let dissolveDelay_ = null;
 	/**
-	 * @description The right arrow
-	 * 	button.
+	 * @description The right
+	 * 	arrow button.
 	 * @private {?Element}
 	 * @type {?Element}
 	 * @field
 	 */
 	let rightButton_ = null;
 	/**
-	 * @description The left arrow
-	 * 	button.
+	 * @description The left
+	 * 	arrow button.
 	 * @private {?Element}
 	 * @type {?Element}
 	 * @field
@@ -160,7 +160,7 @@ function Methodologies () {
 		leftButton_.classList
 			.add ("mhds-show-arrows");
 		// Launches a new dissolve
-		// delay for (01) second.
+		// delay for x second.
 		dissolveDelay_ = (
 			window.setTimeout (() => {
 				// Removes `mhds-show-arrows`
@@ -346,7 +346,7 @@ function Methodologies () {
 				iconId: "mhds-img",
 				customAttr: (
 					`mhds-index = tr24::2${id}`
-				),
+				)
 			})}
 		</div>
 	`;
@@ -565,17 +565,17 @@ function Methodologies () {
 	const horizontalCarousel_ = () => {
 		// The auto carousel state.
 		let autoCarousel = null;
-		// Whether right scroll
+		// Whether the right scroll
 		// is busy or not.
 		let rightBusy = false;
 		// Whether a button is
 		// enabled or disabled.
 		let disabled = false;
-		// Whether left scroll
+		// Whether the left scroll
 		// is busy or not.
 		let leftBusy = true;
-		// Whether carousel state
-		// is reset.
+		// Whether the carousel
+		// state is reset.
 		let isReset = (
 			window.innerWidth <= 760
 		);
@@ -778,6 +778,8 @@ function Methodologies () {
 				), waitForEnable);
 			}
 		};
+		// Starts auto carousel process.
+		startAutoCarouselProcess ();
 		// Listens right arrow
 		// `click` event.
 		rightButton_.addEventListener (
@@ -789,13 +791,6 @@ function Methodologies () {
 		leftButton_.addEventListener (
 			"click",
 			() => swipeLeft (true)
-		);
-		// Starts auto carousel process.
-		autoCarousel = (
-			window.setInterval (
-				() => swipeRight (false),
-				10000
-			)
 		);
 		// Listens `click` event
 		// on every methodologies.
@@ -839,10 +834,11 @@ function Methodologies () {
 				if (
 					window.innerWidth <= 760
 				) {
-					// Whether no reset has been
-					// done.
+					// Whether no reset has
+					// been done.
 					if (!isReset) {
-						// Resets the scroll thumb.
+						// Resets the scroll
+						// thumb.
 						body_.scrollLeft = 0;
 						// Warns user about a 
 						// swapable element.
@@ -1009,7 +1005,7 @@ function Methodologies () {
 				}"
 			></div>
 		`;
-		// Adds the below section
+		// Adds the above section
 		// to the selected tag as
 		// a child.
 		document.querySelector (
@@ -1094,7 +1090,7 @@ function Methodologies () {
 					max: 200,
 					min: 0,
 					onEnter: () => {
-						// Warns user about a 
+						// Warns user about a
 						// swapable element.
 						dissolvable_ (5000);
 						// Animates methodologies

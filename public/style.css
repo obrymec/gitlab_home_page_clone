@@ -874,7 +874,7 @@ section.customers {
 * @supported: DESKTOP, MOBILE
 * @file: resources.scss
 * @created: 2023-07-14
-* @updated: 2023-08-26
+* @updated: 2023-09-09
 * @version: 0.0.2
 */
 /**
@@ -938,10 +938,16 @@ div.res-content div.res-right-arrow, div.res-content div.res-left-arrow {
 * @version: 0.0.1
 */
 section.resources {
+  transform: translate3d(0, 0, 0);
+  overflow: hidden;
   padding: 0 5%; }
   @media only screen and (max-width: 640px) {
     section.resources {
       padding: 2.5%, 16px; } }
+  section.resources div.res-content-show {
+    transform: translate3d(0, 0, 0) translateX(0); }
+  section.resources div.res-head-show {
+    transform: translateX(0); }
 
 div.res-head {
   border-bottom: 2px solid #a2a1a6;
@@ -953,6 +959,9 @@ div.res-head {
   flex-wrap: wrap;
   row-gap: 8px;
   width: 100%; }
+  @media only screen and (max-width: 770px) {
+    div.res-head {
+      transform: translateX(200%); } }
   div.res-head h2:first-child {
     letter-spacing: -1.4px;
     line-height: 60px;
@@ -965,7 +974,10 @@ div.res-head {
     font-size: 18px; }
 
 div.res-content {
-  transform: translate3d(0, 0, 0); }
+  transform: translate3d(0, 0, 0) translateX(0%); }
+  @media only screen and (max-width: 770px) {
+    div.res-content {
+      transform: translate3d(0, 0, 0) translateX(-200%); } }
   div.res-content div.res-show-arrows {
     opacity: 1; }
   div.res-content div.res-right-arrow {
@@ -980,6 +992,11 @@ div.res-content {
         scroll-behavior: smooth;
         overflow-x: hidden;
         flex-wrap: nowrap; } }
+    div.res-content div.res-body div:nth-child(3) ~ div.resource {
+      transform: translateY(48px); }
+    div.res-content div.res-body div.resource-show {
+      transform: translateY(0) !important;
+      opacity: 1; }
   div.res-content div.res-left-arrow {
     left: 15px; }
     div.res-content div.res-left-arrow img {
@@ -990,6 +1007,7 @@ div.res-content {
     left: 6px; }
 
 div.resource {
+  transform: translateY(-48px);
   flex-direction: column;
   margin-bottom: 48px;
   flex: 0 0 32.3333%;
@@ -997,13 +1015,16 @@ div.resource {
   cursor: pointer;
   display: flex;
   padding: 16px;
-  row-gap: 20px; }
+  row-gap: 20px;
+  opacity: 0; }
   div.resource:hover {
     background-color: #eee7fd;
     border-radius: 0 0 100px 0; }
   @media only screen and (max-width: 770px) {
     div.resource {
-      min-width: 100%; } }
+      transform: translateY(0);
+      min-width: 100%;
+      opacity: 1; } }
   div.resource div:first-child {
     display: inline-flex;
     align-items: center;
@@ -2331,7 +2352,7 @@ div.foot-network {
 * @fileoverview: GitLab faq stylesheet.
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-20
-* @updated: 2023-08-26
+* @updated: 2023-09-09
 * @file: faq.scss
 * @version: 0.0.2
 */
@@ -2352,7 +2373,7 @@ div.foot-network {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-07-20
-* @updated: 2023-07-21
+* @updated: 2023-09-09
 * @version: 0.0.1
 */
 div.faq-left button {
@@ -2369,18 +2390,21 @@ div.faq-left button {
 * @supported: DESKTOP, MOBILE
 * @file: variables.scss
 * @created: 2023-07-20
-* @updated: 2023-07-21
+* @updated: 2023-09-09
 * @version: 0.0.1
 */
-div.v-line {
+div.faq-vline {
   border-right: 2px solid #74717a;
+  transform: translateY(200%);
   margin: 0 96px;
   display: block; }
   @media only screen and (max-width: 1024px) {
-    div.v-line {
+    div.faq-vline {
       display: none; } }
 
 section.faq {
+  transform: translate3d(0, 0, 0);
+  overflow: hidden;
   padding: 96px 5%;
   display: flex;
   background: radial-gradient(50.08% 44.51% at 100% 100%, rgba(169, 137, 245, 0.2) 0, rgba(119, 89, 194, 0) 100%), radial-gradient(60.76% 48.01% at 0 100%, rgba(226, 67, 41, 0.2) 0, rgba(226, 67, 41, 0) 100%), #fff; }
@@ -2391,25 +2415,31 @@ section.faq {
   @media only screen and (max-width: 640px) {
     section.faq {
       padding: 96px 16px; } }
+  section.faq div.faq-part-show {
+    transform: translateX(0); }
+  section.faq div.faq-vline-show {
+    transform: translateY(0); }
 
-div.faq-left h2 {
-  letter-spacing: -1.4px;
-  margin-bottom: 16px;
-  line-height: 60px;
-  font-weight: 600;
-  font-size: 50px; }
-div.faq-left p {
-  letter-spacing: -1.1px;
-  margin-bottom: 24px;
-  line-height: 40px;
-  font-weight: 400;
-  font-size: 32px; }
-@media only screen and (max-width: 1024px) {
-  div.faq-left button {
-    width: 100%; } }
+div.faq-left {
+  transform: translateX(-200%); }
+  div.faq-left h2 {
+    letter-spacing: -1.4px;
+    margin-bottom: 16px;
+    line-height: 60px;
+    font-weight: 600;
+    font-size: 50px; }
+  div.faq-left p {
+    letter-spacing: -1.1px;
+    margin-bottom: 24px;
+    line-height: 40px;
+    font-weight: 400;
+    font-size: 32px; }
+  @media only screen and (max-width: 1024px) {
+    div.faq-left button {
+      width: 100%; } }
 
 div.faq-right {
-  transition: width .2s ease-in-out;
+  transform: translateX(200%);
   width: 48%; }
   @media only screen and (max-width: 1024px) {
     div.faq-right {

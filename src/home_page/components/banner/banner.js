@@ -4,7 +4,7 @@
 * @fileoverview Banner UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-17
-* @updated 2023-09-08
+* @updated 2023-09-09
 * @file banner.js
 * @type {Banner}
 * @version 0.0.2
@@ -612,7 +612,7 @@ function Banner () {
 				})}
 			</div>
 		`;
-		// Adds the below section to
+		// Adds the above section to
 		// the template section tag
 		// as a child.
 		tempSection.appendChild (
@@ -644,8 +644,8 @@ function Banner () {
 				"div.banner-left"
 			)
 		);
-		// Waits until screenshots
-		// are loaded.
+		// Waits until images and
+		// icons are loaded.
 		listenLoadEvent ({
 			tags: [
 				...Array.from (

@@ -4,7 +4,7 @@
 * @fileoverview Services UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-23
-* @updated 2023-09-08
+* @updated 2023-09-09
 * @file services.js
 * @type {Services}
 * @version 0.0.2
@@ -465,14 +465,14 @@ function Services () {
 				class = "skeleton-loading"
 			></div>
 		`;
-		// Adds the below section
+		// Adds the above section
 		// to the selected tag as
 		// a child.
 		document.querySelector (
 			"main"
 		).appendChild (services_);
-		// Waits until top icons
-		// are loaded.
+		// Waits until images and
+		// icons are loaded.
 		listenLoadEvent ({
 			tags: (
 				document.querySelectorAll (

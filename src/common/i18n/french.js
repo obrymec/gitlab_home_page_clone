@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-26
-* @updated 2023-09-08
+* @updated 2023-09-09
 * @file french.js
 * @version 0.0.2
 * @type {French}
@@ -350,8 +350,8 @@ const french = {
     tr123: "Qu'est-ce que CI/CD?",
     tr124: "Sujets",
     tr125: `
-      DevSecOps mondial 2023
-      Série de rapports
+      DevSecOps mondial 2023,
+      série de rapports
     `,
     tr126: "Rapport",
     tr127: `
@@ -364,8 +364,8 @@ const french = {
     `,
     tr130: "Partenaires",
     tr131: `
-      GitLab 16.1 publié avec toute 
-      nouvelle navigation
+      GitLab 16.1 publié avec une 
+      toute nouvelle navigation
     `,
     tr132: "Libérer",
     tr133: "Essayez GitLab",
@@ -375,12 +375,11 @@ const french = {
       plateforme DevSecOps.
     `,
     tr135: `
-      Avoir une question? Étaient
-      Ici pour aider.
+      Avez-vous des questions? Nous 
+      somme ici pour aider.
     `,
     tr136: "Parler à un expert",
-    tr136: "Parler à un expert",
-    tr137: "Plateforme DevSecOps",
+    tr137: "Plate-forme DevSecOps",
     tr138: "Voir les plans",
     tr139: "Pourquoi premium?",
     tr140: "Pourquoi Ultime?",
@@ -401,7 +400,7 @@ const french = {
     tr152: "Secteur public",
     tr153: "Éducation",
     tr154: "Services financiers",
-    tr155: "Installer",
+    tr155: "Installation",
     tr156: `
       Listes de contrôle de 
       configuration rapide

@@ -4,7 +4,7 @@
 * @fileoverview Badges UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-13
-* @updated 2023-09-08
+* @updated 2023-09-09
 * @file badges.js
 * @type {Badges}
 * @version 0.0.2
@@ -409,7 +409,7 @@ function Badges () {
 				}"
 			></div>
 		`;
-		// Adds the below section
+		// Adds the above section
 		// to the selected tag as
 		// a child.
 		document.querySelector (

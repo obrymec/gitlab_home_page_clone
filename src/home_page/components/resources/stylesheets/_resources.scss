@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: resources.scss
 * @created: 2023-07-14
-* @updated: 2023-08-26
+* @updated: 2023-09-09
 * @version: 0.0.2
 */
 
@@ -15,10 +15,20 @@
 
 // Resources section.
 section.resources {
+  transform: translate3d(0, 0, 0);
+  overflow: hidden;
   padding: 0 5%;
   // From 640 to 0.
   @media #{$resources-640} {
     padding: 2.5%, 16px;
+  }
+  // Show content.
+  div.res-content-show {
+    transform: translate3d(0, 0, 0) translateX(0);
+  }
+  // Show head.
+  div.res-head-show {
+    transform: translateX(0);
   }
 }
 
@@ -33,6 +43,10 @@ div.res-head {
   flex-wrap: wrap;
   row-gap: 8px;
   width: 100%;
+  // From 770 to 0.
+  @media #{$resources-770} {
+    transform: translateX(200%);
+  }
   // Huge title.
   h2:first-child {
     letter-spacing: -1.4px;
@@ -53,7 +67,11 @@ div.res-head {
 
 // Content.
 div.res-content {
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0) translateX(0%);
+  // From 770 to 0.
+  @media #{$resources-770} {
+    transform: translate3d(0, 0, 0) translateX(-200%);
+  }
   // Show arrow containers.
   div.res-show-arrows {
     opacity: 1;
@@ -74,6 +92,15 @@ div.res-content {
       scroll-behavior: smooth;
       overflow-x: hidden;
       flex-wrap: nowrap;
+    }
+    // The tree last resources.
+    div:nth-child(3) ~ div.resource {
+      transform: translateY(48px);
+    }
+    // Show any resource.
+    div.resource-show {
+      transform: translateY(0) !important;
+      opacity: 1;
     }
   }
   // Left arrow container.
@@ -97,6 +124,7 @@ div.res-content {
 
 // Resource block.
 div.resource {
+  transform: translateY(-48px);
   flex-direction: column;
   margin-bottom: 48px;
   flex: 0 0 32.3333%;
@@ -105,6 +133,7 @@ div.resource {
   display: flex;
   padding: 16px;
   row-gap: 20px;
+  opacity: 0;
   // Hover effect.
   &:hover {
     background-color: $resources-card-bg-color;
@@ -112,7 +141,9 @@ div.resource {
   }
   // From 770 to 0.
   @media #{$resources-770} {
+    transform: translateY(0);
     min-width: 100%;
+    opacity: 1;
   }
   // Header.
   div:first-child {

@@ -4,7 +4,7 @@
 * @fileoverview NavBar UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-06
+* @updated 2023-09-09
 * @file navbar.js
 * @type {NavBar}
 * @version 0.0.9
@@ -1154,11 +1154,11 @@ function NavBar () {
 				</div>
 			</section>
 		`;
-		// Adds the below nav section
+		// Adds the above nav section
 		// to the header tag as a
 		// child.
 		header_.appendChild (nav);
-		// Adds the below menu section
+		// Adds the above menu section
 		// to the aside tag as a child.
 		document.querySelector (
 			"aside"
@@ -1176,7 +1176,7 @@ function NavBar () {
 			)
 		);
 		// Waits until all images
-		// are loaded.
+		// and icons are loaded.
 		listenLoadEvent ({
 			tags: (
 				document.querySelectorAll (

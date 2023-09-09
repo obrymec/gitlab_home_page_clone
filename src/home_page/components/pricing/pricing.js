@@ -746,7 +746,7 @@ function Pricing () {
 				}"
 			></div>
     `;
-    // Adds the below section
+    // Adds the above section
     // to the selected tag as
     // a child.
     document.querySelector (
