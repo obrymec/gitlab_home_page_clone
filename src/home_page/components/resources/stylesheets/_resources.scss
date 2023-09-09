@@ -25,10 +25,12 @@ section.resources {
   // Show content.
   div.res-content-show {
     transform: translate3d(0, 0, 0) translateX(0);
+    opacity: 1;
   }
   // Show head.
   div.res-head-show {
     transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -46,6 +48,7 @@ div.res-head {
   // From 770 to 0.
   @media #{$resources-770} {
     transform: translateX(200%);
+    opacity: 0;
   }
   // Huge title.
   h2:first-child {
@@ -71,6 +74,7 @@ div.res-content {
   // From 770 to 0.
   @media #{$resources-770} {
     transform: translate3d(0, 0, 0) translateX(-200%);
+    opacity: 0;
   }
   // Show arrow containers.
   div.res-show-arrows {

@@ -945,9 +945,11 @@ section.resources {
     section.resources {
       padding: 2.5%, 16px; } }
   section.resources div.res-content-show {
-    transform: translate3d(0, 0, 0) translateX(0); }
+    transform: translate3d(0, 0, 0) translateX(0);
+    opacity: 1; }
   section.resources div.res-head-show {
-    transform: translateX(0); }
+    transform: translateX(0);
+    opacity: 1; }
 
 div.res-head {
   border-bottom: 2px solid #a2a1a6;
@@ -961,7 +963,8 @@ div.res-head {
   width: 100%; }
   @media only screen and (max-width: 770px) {
     div.res-head {
-      transform: translateX(200%); } }
+      transform: translateX(200%);
+      opacity: 0; } }
   div.res-head h2:first-child {
     letter-spacing: -1.4px;
     line-height: 60px;
@@ -977,7 +980,8 @@ div.res-content {
   transform: translate3d(0, 0, 0) translateX(0%); }
   @media only screen and (max-width: 770px) {
     div.res-content {
-      transform: translate3d(0, 0, 0) translateX(-200%); } }
+      transform: translate3d(0, 0, 0) translateX(-200%);
+      opacity: 0; } }
   div.res-content div.res-show-arrows {
     opacity: 1; }
   div.res-content div.res-right-arrow {
@@ -2397,7 +2401,8 @@ div.faq-vline {
   border-right: 2px solid #74717a;
   transform: translateY(200%);
   margin: 0 96px;
-  display: block; }
+  display: block;
+  opacity: 0; }
   @media only screen and (max-width: 1024px) {
     div.faq-vline {
       display: none; } }
@@ -2416,12 +2421,15 @@ section.faq {
     section.faq {
       padding: 96px 16px; } }
   section.faq div.faq-part-show {
-    transform: translateX(0); }
+    transform: translateX(0);
+    opacity: 1; }
   section.faq div.faq-vline-show {
-    transform: translateY(0); }
+    transform: translateY(0);
+    opacity: 1; }
 
 div.faq-left {
-  transform: translateX(-200%); }
+  transform: translateX(-200%);
+  opacity: 0; }
   div.faq-left h2 {
     letter-spacing: -1.4px;
     margin-bottom: 16px;
@@ -2440,6 +2448,7 @@ div.faq-left {
 
 div.faq-right {
   transform: translateX(200%);
+  opacity: 0;
   width: 48%; }
   @media only screen and (max-width: 1024px) {
     div.faq-right {
