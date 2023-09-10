@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-09-06
+* @updated 2023-09-10
 * @file english.js
 * @type {English}
 * @version 0.0.2
@@ -389,7 +389,7 @@ const english = {
     tr185: "View",
     tr186: "page source",
     tr187: "Edit this page",
-    tr188: "please contribute"
+    tr188: "please contribute."
   }
 };
 

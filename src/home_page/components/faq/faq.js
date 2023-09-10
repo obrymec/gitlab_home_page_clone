@@ -4,7 +4,7 @@
 * @fileoverview FAQ UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-20
-* @updated 2023-09-09
+* @updated 2023-09-10
 * @version 0.0.2
 * @file faq.js
 * @type {FAQ}
@@ -256,8 +256,8 @@ function FAQ () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					max: 100,
-					min: 50,
+					max: 200,
+					min: 0,
 					onEnter: () => {
 						// Animates faq
 						// section in

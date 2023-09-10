@@ -83,7 +83,7 @@ state.navbar.render ();
 // Builds pricing section.
 // state.pricing.render ();
 // Builds resources section.
-state.resources.render ();
+// state.resources.render ();
 // Builds faq section.
 state.faq.render ();
 // Builds footer section.

@@ -2203,7 +2203,7 @@ div.bds-left {
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-21
-* @updated: 2023-09-01
+* @updated: 2023-09-10
 * @file: footer.scss
 * @version: 0.0.2
 */
@@ -2275,13 +2275,14 @@ div.foot-bottom {
 
 footer > section.footer {
   background-color: #171321;
+  transform: translate3d(0, 0, 0);
   padding: 40px 5%; }
   @media only screen and (max-width: 1216px) {
     footer > section.footer {
       padding: 40px 32px; } }
   @media only screen and (max-width: 640px) {
     footer > section.footer {
-      padding: 42px 24px; } }
+      padding: 42px 16px; } }
   footer > section.footer span, footer > section.footer h3, footer > section.footer li, footer > section.footer p, footer > section.footer a {
     color: #fff; }
 

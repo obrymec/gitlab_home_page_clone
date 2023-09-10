@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-26
-* @updated 2023-09-09
+* @updated 2023-09-10
 * @file french.js
 * @version 0.0.2
 * @type {French}
@@ -34,7 +34,7 @@ const french = {
   ],
   data: {
     tr1: "Pourquoi GitLab",
-    tr2: "Plateforme",
+    tr2: "Plate-forme",
     tr3: "Solutions",
     tr4: "Tarifs",
     tr5: "Ressources",
@@ -49,7 +49,7 @@ const french = {
     tr11: "Logiciel. Rapide.",
     tr12: "GitLab est le plus complet",
     tr13: `
-      Plateforme DevSecOps alimentée 
+      Plate-forme DevSecOps alimentée 
       par l'IA.
     `,
     tr14: "Qu'est-ce que GitLab ?",
@@ -145,7 +145,7 @@ const french = {
     `,
     tr42: `
       Responsable de l'ingénierie 
-      de la plateforme
+      de la plate-forme
     `,
     tr43: "Haven Technologies",
     tr44: `
@@ -232,7 +232,7 @@ const french = {
       Simplifiez la conformité des 
       logiciels tout en définissant, 
       en appliquant et rendre compte 
-      sur une seule plateforme.
+      sur une seule plate-forme.
     `,
     tr65: "Construire la sécurité",
     tr66: `
@@ -372,7 +372,7 @@ const french = {
     tr134: `
       Découvrez ce que votre équipe 
       pourrait faire avec la 
-      plateforme DevSecOps.
+      plate-forme DevSecOps.
     `,
     tr135: `
       Avez-vous des questions? Nous 
@@ -442,10 +442,10 @@ const french = {
       et notre utilisation de 'GitLab' 
       est sous Licence
     `,
-    tr185: "Vue",
+    tr185: "Voir",
     tr186: "source de la page",
     tr187: "Modifier cette page",
-    tr188: "veuillez contribuer"
+    tr188: "veuillez contribuer."
   }
 }
 

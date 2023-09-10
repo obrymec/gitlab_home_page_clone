@@ -4,7 +4,7 @@
 * @fileoverview Resources UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-14
-* @updated 2023-09-09
+* @updated 2023-09-10
 * @file resources.js
 * @type {Resources}
 * @version 0.0.2
@@ -1042,7 +1042,7 @@ function Resources () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					max: 40,
+					max: 200,
 					min: 0,
 					onEnter: () => {
 						// Warns user about a
