@@ -1,0 +1,73 @@
+/**
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @fileoverview: GitLab arrows stylesheet.
+* @supported: DESKTOP, MOBILE
+* @created: 2023-09-12
+* @updated: 2023-09-12
+* @file: arrows.scss
+* @version: 0.0.1
+*/
+
+// Custom dependencies.
+@import "./_variables.scss";
+
+// Hide arrows bottom.
+div.arrows-hide-bottom {
+  transform: translate3d(0, 0, 0) translateY(-25px) !important;
+}
+
+// Hide arrows top.
+div.arrows-hide-top {
+  transform: translate3d(0, 0, 0) translateY(25px) !important;
+}
+
+// Show a specific arrow.
+img.arrow-show {
+  display: block !important;
+}
+
+// Show arrows.
+div.arrows-show {
+  transform: translate3d(0, 0, 0) translateY(0) !important;
+  opacity: 1 !important;
+}
+
+// Arrows section.
+div.arrows {
+  box-shadow: 0 0 8px $arrows-shadow-color;
+  background-color: $arrows-bg-color;
+  transform: translate3d(0, 0, 0);
+  justify-content: center;
+  display: inline-flex;
+  border-radius: 25px;
+  align-items: center;
+  position: fixed;
+  cursor: pointer;
+  padding: 10px;
+  bottom: 25px;
+  right: 25px;
+  opacity: 0;
+  // Hover effect.
+  &:hover {
+    background-color: lighten(
+      $color: $arrows-bg-color,
+      $amount: 20%
+    );
+  }
+  // All arrows.
+  img {
+    filter: brightness(400%);
+    display: none;
+    height: 24px;
+    width: 24px;
+  }
+  // Top arrow.
+  img:first-child {
+    transform: rotate(-90deg);
+  }
+  // Bottom arrow.
+  img:last-child {
+    transform: rotate(90deg);
+  }
+}

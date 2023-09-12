@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: collaborators.scss
 * @created: 2023-06-24
-* @updated: 2023-09-07
+* @updated: 2023-09-12
 * @version: 0.0.2
 */
 
@@ -294,6 +294,7 @@ div.cobs-infos {
 	// Underline the text.
 	&:hover > button.cobs-read-more > span {
 		text-decoration: underline;
+		text-underline-offset: 4px;
 	}
 	// Description.
 	blockquote.cobs-description {
@@ -310,13 +311,13 @@ div.cobs-infos {
 	}
 	// Button for read more.
 	button.cobs-read-more {
-		color: $collaborators-btn-text-color;
 		// Right arrow.
 		img {
 			transform: translate(0, 1px);
 		}
 		// Text.
 		span {		
+			color: $collaborators-btn-text-color;
 			line-height: 38px;
 			font-size: 23px;
 		}

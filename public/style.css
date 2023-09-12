@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-06-16
-* @updated: 2023-09-06
+* @updated: 2023-09-12
 * @file: main.scss
 * @version: 0.0.6
 */
@@ -253,7 +253,7 @@ template {
 * @supported: DESKTOP, MOBILE
 * @file: collaborators.scss
 * @created: 2023-06-24
-* @updated: 2023-09-07
+* @updated: 2023-09-12
 * @version: 0.0.2
 */
 /**
@@ -481,7 +481,8 @@ div.cobs-infos {
   div.cobs-infos:hover > button.cobs-read-more > img {
     transform: translate(6px, 1px); }
   div.cobs-infos:hover > button.cobs-read-more > span {
-    text-decoration: underline; }
+    text-decoration: underline;
+    text-underline-offset: 4px; }
   div.cobs-infos blockquote.cobs-description {
     font-style: italic;
     line-height: 38px;
@@ -492,13 +493,12 @@ div.cobs-infos {
       div.cobs-infos blockquote.cobs-description {
         line-height: 32px;
         font-size: 20px; } }
-  div.cobs-infos button.cobs-read-more {
-    color: #7759c2; }
-    div.cobs-infos button.cobs-read-more img {
-      transform: translate(0, 1px); }
-    div.cobs-infos button.cobs-read-more span {
-      line-height: 38px;
-      font-size: 23px; }
+  div.cobs-infos button.cobs-read-more img {
+    transform: translate(0, 1px); }
+  div.cobs-infos button.cobs-read-more span {
+    color: #7759c2;
+    line-height: 38px;
+    font-size: 23px; }
 
 /**
 * @fileoverview: GitLab methodologies stylesheet.
@@ -507,7 +507,7 @@ div.cobs-infos {
 * @supported: DESKTOP, MOBILE
 * @file: methodologies.scss
 * @created: 2023-07-06
-* @updated: 2023-09-08
+* @updated: 2023-09-12
 * @version: 0.0.2
 */
 /**
@@ -552,17 +552,17 @@ section.methodologies {
     transform: translate3d(0, 0, 0) translateX(0);
     opacity: 1; }
   section.methodologies > h2:first-child {
-    transform: translateX(-110%);
     letter-spacing: -1.4px;
     margin-bottom: 96px;
     line-height: 60px;
     font-weight: 600;
-    font-size: 50px;
-    opacity: 0; }
+    font-size: 50px; }
     @media only screen and (max-width: 760px) {
       section.methodologies > h2:first-child {
+        transform: translateX(-110%);
         margin-bottom: 30px;
-        font-size: 40px; } }
+        font-size: 40px;
+        opacity: 0; } }
   section.methodologies h2.mhds-bigtitle-show {
     transform: translateX(0);
     opacity: 1; }
@@ -621,12 +621,12 @@ div.mhds-body {
         height: 2px; } }
 
 div.mhds-content {
-  transform: translate3d(0, 0, 0) translateX(110%);
-  padding-bottom: 96px;
-  opacity: 0; }
+  padding-bottom: 96px; }
   @media only screen and (max-width: 760px) {
     div.mhds-content {
-      padding-bottom: 0; } }
+      transform: translate3d(0, 0, 0) translateX(110%);
+      padding-bottom: 0;
+      opacity: 0; } }
   div.mhds-content div.mhds-right-arrow,
   div.mhds-content div.mhds-left-arrow {
     border: 1px ridge #171321;
@@ -1052,7 +1052,7 @@ div.resource {
 * @supported: DESKTOP, MOBILE
 * @file: services.scss
 * @created: 2023-06-23
-* @updated: 2023-09-07
+* @updated: 2023-09-12
 * @version: 0.0.3
 */
 /**
@@ -1210,14 +1210,14 @@ div.service {
       div.service div > span {
         line-height: 22px;
         font-size: 18px; } }
-  div.service button {
+  div.service button:hover > img {
+    transform: translate(8px, 0.6px); }
+  div.service button img {
+    transform: translate(0, 0.6px); }
+  div.service button > span {
     color: #7759c2; }
-    div.service button:hover > img {
-      transform: translate(8px, 0.6px); }
-    div.service button img {
-      transform: translate(0, 0.6px); }
     @media only screen and (max-width: 1130px) and (min-width: 1025px) {
-      div.service button {
+      div.service button > span {
         line-height: 18px;
         font-size: 15px; } }
 
@@ -2203,7 +2203,7 @@ div.bds-left {
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-21
-* @updated: 2023-09-10
+* @updated: 2023-09-12
 * @file: footer.scss
 * @version: 0.0.2
 */
@@ -2240,27 +2240,7 @@ div.bds-left {
 @media only screen and (max-width: 768px) {
   div.foot-joined {
     justify-content: space-between;
-    display: inline-flex;
-    padding-right: 20px; } }
-
-div.foot-joined:last-child {
-  display: inline-flex;
-  column-gap: 64px; }
-  @media only screen and (max-width: 1216px) {
-    div.foot-joined:last-child {
-      column-gap: 42px; } }
-  @media only screen and (max-width: 768px) {
-    div.foot-joined:last-child {
-      column-gap: 0; } }
-
-@media only screen and (max-width: 768px) {
-  div.foot-joined:first-child {
-    padding-right: 48px; } }
-div.foot-joined:first-child > div:last-child {
-  margin-top: 24px; }
-  @media only screen and (max-width: 768px) {
-    div.foot-joined:first-child > div:last-child {
-      margin-top: 0; } }
+    display: inline-flex; } }
 
 div.foot-bottom {
   padding-top: 64px; }
@@ -2272,6 +2252,17 @@ div.foot-bottom {
       font-weight: 600;
       font-size: 14px;
       cursor: pointer; }
+
+@media only screen and (max-width: 768px) {
+  div.foot-joined:first-child {
+    display: inline-flex;
+    column-gap: 64px; } }
+div.foot-joined:first-child > div:last-child {
+  margin-top: 24px; }
+  @media only screen and (max-width: 768px) {
+    div.foot-joined:first-child > div:last-child {
+      margin-top: 0;
+      width: 148px; } }
 
 footer > section.footer {
   background-color: #171321;
@@ -2285,6 +2276,19 @@ footer > section.footer {
       padding: 42px 16px; } }
   footer > section.footer span, footer > section.footer h3, footer > section.footer li, footer > section.footer p, footer > section.footer a {
     color: #fff; }
+
+div.foot-joined:last-child {
+  display: inline-flex;
+  column-gap: 64px; }
+  @media only screen and (max-width: 1216px) {
+    div.foot-joined:last-child {
+      column-gap: 42px; } }
+  @media only screen and (max-width: 768px) {
+    div.foot-joined:last-child {
+      column-gap: 0; } }
+  @media only screen and (max-width: 768px) {
+    div.foot-joined:last-child div:last-child {
+      width: 148px; } }
 
 div.foot-top {
   column-gap: 42px;
@@ -2312,7 +2316,7 @@ div.foot-menu h3 {
   font-size: 20px; }
 @media only screen and (max-width: 768px) {
   div.foot-menu ul[name="true"] {
-    column-gap: calc(100% - 290px);
+    column-gap: calc(100% - 294px);
     columns: 100px 2; } }
 div.foot-menu ul > li {
   margin-bottom: 8px;
@@ -2350,6 +2354,65 @@ div.foot-network {
       cursor: pointer; }
     div.foot-network div.foot-contacts img:hover {
       filter: brightness(150%); }
+
+/**
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @fileoverview: GitLab arrows stylesheet.
+* @supported: DESKTOP, MOBILE
+* @created: 2023-09-12
+* @updated: 2023-09-12
+* @file: arrows.scss
+* @version: 0.0.1
+*/
+/**
+* @fileoverview: GitLab arrows variables stylesheet.
+* @author: Obrymec - obrymecsprinces@gmail.com
+* @project: GitLab - https://www.google.com
+* @supported: DESKTOP, MOBILE
+* @file: variables.scss
+* @created: 2023-09-12
+* @updated: 2023-09-12
+* @version: 0.0.1
+*/
+div.arrows-hide-bottom {
+  transform: translate3d(0, 0, 0) translateY(-25px) !important; }
+
+div.arrows-hide-top {
+  transform: translate3d(0, 0, 0) translateY(25px) !important; }
+
+img.arrow-show {
+  display: block !important; }
+
+div.arrows-show {
+  transform: translate3d(0, 0, 0) translateY(0) !important;
+  opacity: 1 !important; }
+
+div.arrows {
+  box-shadow: 0 0 8px grey;
+  background-color: #171321;
+  transform: translate3d(0, 0, 0);
+  justify-content: center;
+  display: inline-flex;
+  border-radius: 25px;
+  align-items: center;
+  position: fixed;
+  cursor: pointer;
+  padding: 10px;
+  bottom: 25px;
+  right: 25px;
+  opacity: 0; }
+  div.arrows:hover {
+    background-color: #443862; }
+  div.arrows img {
+    filter: brightness(400%);
+    display: none;
+    height: 24px;
+    width: 24px; }
+  div.arrows img:first-child {
+    transform: rotate(-90deg); }
+  div.arrows img:last-child {
+    transform: rotate(90deg); }
 
 /**
 * @author: Obrymec - obrymecsprinces@gmail.com

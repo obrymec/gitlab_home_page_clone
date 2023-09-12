@@ -4,7 +4,7 @@
 * @fileoverview Resources UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-14
-* @updated 2023-09-10
+* @updated 2023-09-12
 * @file resources.js
 * @type {Resources}
 * @version 0.0.2
@@ -139,7 +139,6 @@ function Resources () {
 	const animate_ = dir => (
 		// Listens screen format.
 		new ScreenManager ({
-			disableDetection: true,
 			onMedium: () => (
 				smallAnimation_ (dir)
 			),

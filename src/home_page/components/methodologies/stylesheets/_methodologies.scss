@@ -5,7 +5,7 @@
 * @supported: DESKTOP, MOBILE
 * @file: methodologies.scss
 * @created: 2023-07-06
-* @updated: 2023-09-08
+* @updated: 2023-09-12
 * @version: 0.0.2
 */
 
@@ -42,17 +42,17 @@ section.methodologies {
   }
   // Big title.
   & > h2:first-child {
-    transform: translateX(-110%);
     letter-spacing: -1.4px;
     margin-bottom: 96px;
     line-height: 60px;
     font-weight: 600;
     font-size: 50px;
-    opacity: 0;
     // From 760 to 0.
     @media #{$mhds-760} {
+      transform: translateX(-110%);
       margin-bottom: 30px;
       font-size: 40px;
+      opacity: 0;
     }
   }
   // Show big title.
@@ -133,12 +133,12 @@ div.mhds-body {
 
 // Content.
 div.mhds-content {
-  transform: translate3d(0, 0, 0) translateX(110%);
   padding-bottom: 96px;
-  opacity: 0;
   // From 760 to 0.
   @media #{$mhds-760} {
+    transform: translate3d(0, 0, 0) translateX(110%);
     padding-bottom: 0;
+    opacity: 0;
   }
   // Left and right arrow container.
   div.mhds-right-arrow,

@@ -4,7 +4,7 @@
 * @project: GitLab - https://www.google.com
 * @supported: DESKTOP, MOBILE
 * @created: 2023-07-21
-* @updated: 2023-09-10
+* @updated: 2023-09-12
 * @file: footer.scss
 * @version: 0.0.2
 */
@@ -19,37 +19,6 @@ div.foot-joined {
   @media #{$footer-768} {
     justify-content: space-between;
     display: inline-flex;
-    padding-right: 20px;
-  }
-}
-
-// The second joined refs.
-div.foot-joined:last-child {
-  display: inline-flex;
-  column-gap: 64px;
-  // From 1216 to 768.
-  @media #{$footer-1216} {
-    column-gap: 42px;
-  }
-  // From 768 to 0.
-  @media #{$footer-768} {
-    column-gap: 0;
-  }
-}
-
-// The first joined refs.
-div.foot-joined:first-child {
-  // From 768 to 0.
-  @media #{$footer-768} {
-    padding-right: 48px;
-  }
-  // Pricing section.
-  & > div:last-child {
-    margin-top: 24px;
-    // From 768 to 0.
-    @media #{$footer-768} {
-      margin-top: 0;
-    }
   }
 }
 
@@ -70,6 +39,24 @@ div.foot-bottom {
   }
 }
 
+// The first joined refs.
+div.foot-joined:first-child {
+  // From 768 to 0.
+  @media #{$footer-768} {
+    display: inline-flex;
+    column-gap: 64px;
+  }
+  // Pricing links.
+  & > div:last-child {
+    margin-top: 24px;
+    // From 768 to 0.
+    @media #{$footer-768} {
+      margin-top: 0;
+      width: 148px;
+    }
+  }
+}
+
 // Footer section.
 footer > section.footer {
   background-color: $primary-color;
@@ -86,6 +73,27 @@ footer > section.footer {
   // All text.
   span, h3, li, p, a {
     color: $footer-text-color;
+  }
+}
+
+// The second joined refs.
+div.foot-joined:last-child {
+  display: inline-flex;
+  column-gap: 64px;
+  // From 1216 to 768.
+  @media #{$footer-1216} {
+    column-gap: 42px;
+  }
+  // From 768 to 0.
+  @media #{$footer-768} {
+    column-gap: 0;
+  }
+  // Contact links.
+  div:last-child {
+    // From 768 to 0.
+    @media #{$footer-768} {
+      width: 148px;
+    }
   }
 }
 
@@ -129,7 +137,7 @@ div.foot-menu {
   ul[name="true"] {
     // Only target lists.
     @media #{$footer-768} {
-      column-gap: calc(100% - 290px);
+      column-gap: calc(100% - 294px);
       columns: 100px 2;
     }
   }

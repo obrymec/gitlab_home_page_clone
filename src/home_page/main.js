@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-09
+* @updated 2023-09-12
 * @version 0.0.7
 * @file main.js
 */
@@ -21,6 +21,7 @@ import {Pricing} from "./components/pricing/pricing.js";
 import {NavBar} from "./components/navbar/navbar.js";
 import {Banner} from "./components/banner/banner.js";
 import {Badges} from "./components/badges/badges.js";
+import {Arrows} from "./components/arrows/arrows.js";
 import {Footer} from "./components/footer/footer.js";
 import {FAQ} from "./components/faq/faq.js";
 
@@ -37,6 +38,7 @@ window.store = Redux.createStore ((
     banner: new Banner (),
     badges: new Badges (),
     footer: new Footer (),
+    arrows: new Arrows (),
     faq: new FAQ (),
     activeLanguage: (
       lang.getActiveLanguage ()
@@ -68,22 +70,24 @@ window.store = Redux.createStore ((
 const state = window.store.getState ();
 // Builds navbar section.
 state.navbar.render ();
+// Builds arrows helper section.
+state.arrows.render ();
 // Builds banner section.
-// state.banner.render ();
+state.banner.render ();
 // Builds customers section.
-// state.customers.render ();
+state.customers.render ();
 // Builds services section.
-// state.services.render ();
+state.services.render ();
 // Builds collaborators section.
-// state.collaborators.render ();
+state.collaborators.render ();
 // Builds methodologies section.
-// state.methodologies.render ();
+state.methodologies.render ();
 // Builds badges section.
-// state.badges.render ();
+state.badges.render ();
 // Builds pricing section.
-// state.pricing.render ();
+state.pricing.render ();
 // Builds resources section.
-// state.resources.render ();
+state.resources.render ();
 // Builds faq section.
 state.faq.render ();
 // Builds footer section.

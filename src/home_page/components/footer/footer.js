@@ -4,7 +4,7 @@
 * @fileoverview GitLab footer section.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-21
-* @updated 2023-09-10
+* @updated 2023-09-12
 * @file footer.js
 * @version 0.0.3
 * @type {Footer}
@@ -628,7 +628,6 @@ function Footer () {
 				)
 			),
 			onReady: () => {
-				console.log ("dddd")
 				// Listens language
 				// changement.
 				listenDropdown_ ();

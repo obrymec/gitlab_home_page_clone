@@ -6,7 +6,7 @@
 * @file methodologies.js
 * @type {Methodologies}
 * @created 2023-07-06
-* @updated 2023-09-09
+* @updated 2023-09-12
 * @version 0.0.2
 */
 
@@ -193,7 +193,12 @@ function Methodologies () {
 	const animate_ = dir => {
 		// Listens screen format.
 		new ScreenManager ({
-			disableDetection: true,
+			onMedium: () => (
+				smallAnimation_ (dir)
+			),
+			onSmall: () => (
+				smallAnimation_ (dir)
+			),
 			mediumScreen: {
 				max: 1300,
 				min: 761
@@ -205,49 +210,62 @@ function Methodologies () {
 			largeScreen: {
 				max: 10000,
 				min: 1301
-			},
-			onSmall: () => {
-				// The content tag ref.
-				const content = (
-					body_.parentElement
-				);
-				// The big title tag.
-				const title = (
-					content.parentElement
-					.children[0]
-				);
-				// Whether direction is in
-				// normal mode.
-				if (dir === "normal") {
-					// Adds `mhds-bigtitle-show`
-					// class to the big title
-					// text.
-					title.classList.add (
-						"mhds-bigtitle-show"
-					);
-					// Adds `mhds-content-show`
-					// class to the parent of
-					// methodologies body.
-					content.classList.add (
-						"mhds-content-show"
-					);
-				// Otherwise.
-				} else {
-					// Removes `mhds-bigtitle-show`
-					// class from the big title
-					// text.
-					title.classList.remove (
-						"mhds-bigtitle-show"
-					);
-					// Removes `mhds-content-show`
-					// class from the parent
-					// of methodologies body.
-					content.classList.remove (
-						"mhds-content-show"
-					);
-				}
 			}
 		});
+	};
+
+	/**
+	 * @description Animates methodologies
+	 * 	for small screens.
+	 * @param {String} direction The
+	 * 	animation's direction.
+	 * @function largeAnimation_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const smallAnimation_ = (
+		direction
+	) => {
+		// The content tag ref.
+		const content = (
+			body_.parentElement
+		);
+		// The big title tag.
+		const title = (
+			content.parentElement
+				.children[0]
+		);
+		// Whether direction is in
+		// normal mode.
+		if (direction === "normal") {
+			// Adds `mhds-bigtitle-show`
+			// class to the big title
+			// text.
+			title.classList.add (
+				"mhds-bigtitle-show"
+			);
+			// Adds `mhds-content-show`
+			// class to the parent of
+			// methodologies body.
+			content.classList.add (
+				"mhds-content-show"
+			);
+		// Otherwise.
+		} else {
+			// Removes `mhds-bigtitle-show`
+			// class from the big title
+			// text.
+			title.classList.remove (
+				"mhds-bigtitle-show"
+			);
+			// Removes `mhds-content-show`
+			// class from the parent
+			// of methodologies body.
+			content.classList.remove (
+				"mhds-content-show"
+			);
+		}
 	};
 
 	/**
