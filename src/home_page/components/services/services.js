@@ -4,7 +4,7 @@
 * @fileoverview Services UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-23
-* @updated 2023-09-09
+* @updated 2023-09-14
 * @file services.js
 * @type {Services}
 * @version 0.0.2
@@ -47,6 +47,59 @@ function Services () {
 	let services_ = null;
 
 	/**
+	 * @description Removes an
+	 * 	attribute and adds an
+	 * 	attribute to services
+	 * 	container.
+	 * @constant {Function}
+	 * @private {Function}
+	 * @function reajust_
+	 * @returns {void} void
+	 */
+	const reajust_ = () => {
+		// Destroys `auto-scrollable`
+		// attribute from services
+		// children and itself.
+		removeAttribute_ ();
+		// Adds `auto-scrollable`
+		// attribute to services.
+		services_.setAttribute (
+			"auto-scrollable",
+			true
+		);
+	};
+
+	/**
+	 * @description Removes `auto-scrollable`
+	 * 	attribute from all target tag.
+	 * @function removeAttribute_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const removeAttribute_ = () => {
+		// Removes `auto-scrollable`
+		// attribute from services.
+		services_.removeAttribute (
+			"auto-scrollable"
+		);
+		// Removing `auto-scrollable`
+		// attribute from services
+		// children.
+		for (
+			const service of
+			services_.children
+		) {
+			// Removes `auto-scrollable`
+			// attribute from the
+			// current service.
+			service.removeAttribute (
+				"auto-scrollable"
+			);
+		}
+	};
+
+	/**
 	 * @description Clears animation 
 	 * 	timeline data.
 	 * @param {String} direction The
@@ -85,93 +138,54 @@ function Services () {
 	);
 
 	/**
-	 * @description Builds services html
-	 * 	structure as string format.
-	 * @param {{
-	 * 	button: Object<String, any>,
-	 * 	about: Object<String, any>,
-	 * 	title: Object<String, any>,
-	 * 	className: String,
-	 * 	icon: String
-	 * }} data The service tag configs.
-	 * 	It supports the following keys:
-	 *
-	 * 	- String icon: The service's
-	 * 		front icon.
-	 *
-	 * 	- Object title: The service's
-	 * 		main title.
-	 *
-	 * 	- Object about: The service's
-	 * 		short description.
-	 *
-	 * 	- Object button: The button's
-	 * 		text to display.
-	 *
-	 * 	- String className: The
-	 * 		class's name of service.
-	 * @function buildService_
+	 * @description Adjusts auto scrolling
+	 * 	process by applying an attribute
+	 * 	to control his path according to
+	 * 	the detected screen.
+	 * @function adjustAutoScroll_
 	 * @constant {Function}
 	 * @private {Function}
-	 * @returns {String} String
+	 * @returns {void} void
 	 */
-	const buildService_ = ({
-		className = '',
-		button,
-		about,
-		title,
-		icon
-	}) => `
-		<div
-			class = "${
-				"service services-as" +
-				` ${className}`
-			}"
-		>
-			<div>
-				${buildIcon ({
-					fileName: icon,
-					data: {
-						height: "24px",
-						width: "24px",
-						idName: (
-							"services-img"
-						)
-					}
-				})}
-				<span
-					id = "services-data"
-					services-index = "${
-						title.id
-					}::${title.pos}"
-				>
-					${clearStr ({
-						input: title.value
-					})}
-				</span>
-				<p
-					id = "services-data"
-					services-index = "${
-						about.id
-					}::${about.pos}"
-				>
-					${clearStr ({
-						input: about.value
-					})}
-				</p>
-			</div>
-			${buildFlatButton ({
-				textId: "services-data",
-				iconId: "services-img",
-				text: button.value,
-				customAttr: (
-					`services-index = ${
-						button.id
-					}::${button.pos}`
-				)
-			})}
-		</div>
-	`;
+	const adjustAutoScroll_ = () => (
+		new ScreenManager ({
+			onMedium: reajust_,
+			onLarge: reajust_,
+			mediumScreen: {
+				max: 1130,
+				min: 1026
+			},
+			smallScreen: {
+				max: 1025,
+				min: 0
+			},
+			largeScreen: {
+				max: 10000,
+				min: 1131
+			},
+			onSmall: () => {
+				// Destroys `auto-scrollable`
+				// attribute from services
+				// children and itself.
+				removeAttribute_ ();
+				// Adding `auto-scrollable`
+				// attribute from services
+				// children.
+				for (
+					const service of
+					services_.children
+				) {
+					// Adds `auto-scrollable`
+					// attribute from the
+					// current service.
+					service.setAttribute (
+						"auto-scrollable",
+						true
+					);
+				}
+			}
+		})
+	);
 
 	/**
 	 * @description Animates services
@@ -279,6 +293,95 @@ function Services () {
 		// Returns the timeline.
 		return timeline;
 	};
+
+	/**
+	 * @description Builds services html
+	 * 	structure as string format.
+	 * @param {{
+	 * 	button: Object<String, any>,
+	 * 	about: Object<String, any>,
+	 * 	title: Object<String, any>,
+	 * 	className: String,
+	 * 	icon: String
+	 * }} data The service tag configs.
+	 * 	It supports the following keys:
+	 *
+	 * 	- String icon: The service's
+	 * 		front icon.
+	 *
+	 * 	- Object title: The service's
+	 * 		main title.
+	 *
+	 * 	- Object about: The service's
+	 * 		short description.
+	 *
+	 * 	- Object button: The button's
+	 * 		text to display.
+	 *
+	 * 	- String className: The
+	 * 		class's name of service.
+	 * @function buildService_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {String} String
+	 */
+	const buildService_ = ({
+		className = '',
+		button,
+		about,
+		title,
+		icon
+	}) => `
+		<div
+			class = "${
+				"service services-as" +
+				` ${className}`
+			}"
+		>
+			<div>
+				${buildIcon ({
+					fileName: icon,
+					data: {
+						height: "24px",
+						width: "24px",
+						idName: (
+							"services-img"
+						)
+					}
+				})}
+				<span
+					id = "services-data"
+					services-index = "${
+						title.id
+					}::${title.pos}"
+				>
+					${clearStr ({
+						input: title.value
+					})}
+				</span>
+				<p
+					id = "services-data"
+					services-index = "${
+						about.id
+					}::${about.pos}"
+				>
+					${clearStr ({
+						input: about.value
+					})}
+				</p>
+			</div>
+			${buildFlatButton ({
+				textId: "services-data",
+				iconId: "services-img",
+				text: button.value,
+				customAttr: (
+					`services-index = ${
+						button.id
+					}::${button.pos}`
+				)
+			})}
+		</div>
+	`;
 
 	/**
 	 * @description Animates services
@@ -405,7 +508,7 @@ function Services () {
 		// Adds a html structure
 		// to the created section.
 		services_.innerHTML = `
-		${buildService_ ({
+			${buildService_ ({
 				icon: Icons.VERIFIED,
 				button: {
 					value: lang.getText ("tr17"),
@@ -480,6 +583,10 @@ function Services () {
 				)
 			),
 			onReady: () => {
+				// Listens screen format to
+				// manage the path of auto
+				// scroller.
+				adjustAutoScroll_ ();
 				// Adds `hide-skeleton`
 				// class to skeleton
 				// loader.

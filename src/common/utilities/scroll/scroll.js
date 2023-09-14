@@ -5,10 +5,13 @@
 * @supported DESKTOP, MOBILE
 * @type {ScrollManager}
 * @created 2023-08-17
-* @updated 2023-09-01
+* @updated 2023-09-14
 * @file scroll.js
 * @version 0.0.4
 */
+
+// Custom dependencies.
+import {listenLoadEvent} from "../browser/browser.js";
 
 /**
  * @description Stops an auto scrolling
@@ -40,7 +43,7 @@ function stopAutoScrolling (
  * @description Scrolls the scrollbar
  *  thumb to the specified element.
  * @param {String} id The target
- *  element's id.
+ *  element.
  * @function scrollTo
  * @public
  * @returns {void} void
@@ -48,9 +51,10 @@ function stopAutoScrolling (
 function scrollTo (id) {
   // Gets the tag from his id.
   const tag = (
+    typeof id === "string" ?
     document.querySelector (
       id.toString ()
-    )
+    ) : id
   );
   // Whether the passed tag
   // is really defined.
@@ -59,7 +63,7 @@ function scrollTo (id) {
     // target tag reference.
     tag.scrollIntoView ({
       behavior: "smooth",
-      inline: "nearest", 
+      inline: "nearest",
       block: "start"
     });
   }
@@ -121,7 +125,7 @@ function getScrollPercent () {
  * @public
  * @returns {int} int
  */
-function autoScroll ({
+function autoScroll ({ 
   infinite = false,
   reversed = false,
   interval = 3000,
@@ -179,6 +183,91 @@ function autoScroll ({
   // Returns the scroll
   // background's id.
   return processId;
+}
+
+/**
+ * @description Updates auto scroller
+ *  process targets at any window
+ *  resizement.
+ * @param {Function(int)} onMutate
+ *  Called when the auto scroller
+ *  process id changed.
+ * @fires autoScroller#onMutate
+ * @function autoScroller
+ * @public
+ * @returns {void} void
+ */
+function autoScroller (
+  onMutate
+) {
+  // Launches auto scroller process.
+  const launch = scrollerId => {
+    // Stops old auto scroller.
+    window.clearInterval (
+      scrollerId
+    );
+    // Starts auto scroll program.
+    scrollerId = (
+      autoScroll ({
+        interval: 10000,
+        infinite: true,
+        tagIds: (
+          document.querySelectorAll (
+            `*[auto-scrollable="true"]`
+          )
+        )
+      })
+    );
+    // Whether `onMutate` event is
+    // listening.
+    if (
+      typeof onMutate === "function"
+    ) {
+      /**
+       * @description Throws `onMutate`
+       *  event.
+       * @property {int} scrollerId
+       *  The current process's id.
+       * @event autoScroller#onMutate
+       * @readonly
+       * @emits
+       */
+      onMutate (scrollerId);
+    }
+    // Returns the current
+    // scroller process id.
+    return scrollerId;
+  };
+  // When html, css and js
+  // are loaded and ready.
+  window.addEventListener (
+    "DOMContentLoaded",
+    () => listenLoadEvent ({
+      tags: (
+        document.querySelectorAll (
+          "img"
+        )
+      ),
+      onReady: () => {
+        // The current process's id.
+        let processId = null;
+        // Listens window `resize`
+        // event.
+        window.addEventListener (
+          "resize", () => (
+            processId = launch (
+              processId
+            ) 
+          )
+        );
+        // Makes the first
+        // launch.
+        processId = launch (
+          processId
+        );
+      }
+    })
+  );
 }
 
 /**
@@ -348,14 +437,15 @@ function ScrollManager ({
 }
 
 /** 
- * @description Exports all
- *  public features.
+ * @description Exports
+ *  all public features.
  * @exports *
  */
 export {
   stopAutoScrolling,
   getScrollPercent,
   ScrollManager,
+  autoScroller,
   autoScroll,
   scrollTo
 };

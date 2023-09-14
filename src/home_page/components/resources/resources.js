@@ -4,7 +4,7 @@
 * @fileoverview Resources UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-14
-* @updated 2023-09-12
+* @updated 2023-09-14
 * @file resources.js
 * @type {Resources}
 * @version 0.0.2
@@ -124,44 +124,6 @@ function Resources () {
 			);
 		}
 	};
-
-	/**
-	 * @description Animates resources
-	 * 	regardless the detected screen
-	 * 	format (Desktop & Mobile).
-	 * @param {String} dir The
-	 * 	animation's direction.
-	 * @constant {Function}
-	 * @private {Function}
-	 * @function animate_
-	 * @returns {void} void
-	 */
-	const animate_ = dir => (
-		// Listens screen format.
-		new ScreenManager ({
-			onMedium: () => (
-				smallAnimation_ (dir)
-			),
-			onSmall: () => (
-				smallAnimation_ (dir)
-			),
-			onLarge: () => (
-				largeAnimation_ (dir)
-			),
-			mediumScreen: {
-				max: 770,
-				min: 581
-			},
-			smallScreen: {
-				max: 580,
-				min: 0
-			},
-			largeScreen: {
-				max: 10000,
-				min: 771
-			}
-		})
-	);
 
 	/**
 	 * @description Animates the
@@ -409,6 +371,69 @@ function Resources () {
 			}, timeout)
 		);
 	};
+
+	/**
+	 * @description Animates resources
+	 * 	regardless the detected screen
+	 * 	format (Desktop & Mobile).
+	 * @param {String} dir The
+	 * 	animation's direction.
+	 * @constant {Function}
+	 * @private {Function}
+	 * @function animate_
+	 * @returns {void} void
+	 */
+	const animate_ = dir => (
+		// Listens screen format.
+		new ScreenManager ({
+			mediumScreen: {
+				max: 770,
+				min: 581
+			},
+			smallScreen: {
+				max: 580,
+				min: 0
+			},
+			largeScreen: {
+				max: 10000,
+				min: 771
+			},
+			onMedium: () => {
+				// Makes animation.
+				smallAnimation_ (dir);
+				// Adjusts auto scroller
+				// path.
+				body_.children[0]
+					.children[2]
+					.removeAttribute (
+						"auto-scrollable"
+					);
+			},
+			onSmall: () => {
+				// Makes animation.
+				smallAnimation_ (dir);
+				// Adjusts auto scroller
+				// path.
+				body_.children[0]
+					.children[2]
+					.removeAttribute (
+						"auto-scrollable"
+					);
+			},
+			onLarge: () => {
+				// Makes animation.
+				largeAnimation_ (dir);
+				// Adjusts auto scroller
+				// path.
+				body_.children[0]
+					.children[2]
+					.setAttribute (
+						"auto-scrollable",
+						true
+					);
+			}
+		})
+	);
 
 	/**
 	 * @description Builds a resource
@@ -832,6 +857,13 @@ function Resources () {
 		// the created section.
 		section_.classList.add (
 			"resources"
+		);
+		// Adds `auto-scrollable`
+		// attribute for auto
+		// background process.
+		section_.setAttribute (
+			"auto-scrollable",
+			true
 		);
 		// Adds a html structure
 		// to the created section.

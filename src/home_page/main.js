@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-12
+* @updated 2023-09-14
 * @version 0.0.7
 * @file main.js
 */
@@ -39,6 +39,7 @@ window.store = Redux.createStore ((
     badges: new Badges (),
     footer: new Footer (),
     arrows: new Arrows (),
+    processId: null,
     faq: new FAQ (),
     activeLanguage: (
       lang.getActiveLanguage ()
@@ -52,13 +53,30 @@ window.store = Redux.createStore ((
   if (
     action.type === "SET_LANGUAGE"
   ) {
-    // Sets the global state data.
-    currentState.activeLanguage = (
-      action.payload
-    );
+    // Sets the global state
+    // data.
+    currentState
+      .activeLanguage = (
+        action.payload
+      );
     // Changes active language.
     lang.setActiveLanguage (
       action.payload
+    );
+  // Whether redux starts.
+  } else if (
+    action.type.startsWith (
+      "@@redux/INIT"
+    )
+  ) {
+    // Listens `click` event
+    // on the document body.
+    document.body.addEventListener (
+      "click", () => (
+        window.clearInterval (
+          currentState.processId
+        )
+      )
     );
   }
   // Returns the current

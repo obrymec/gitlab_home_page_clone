@@ -6,7 +6,7 @@
 * @file collaborators.js
 * @type {Collaborators}
 * @created 2023-06-24
-* @updated 2023-09-09
+* @updated 2023-09-14
 * @version 0.0.2
 */
 
@@ -14,6 +14,7 @@
 import {listenLoadEvent} from "../../../common/utilities/browser/browser.js";
 import {buildFlatButton} from "../../../common/components/button/button.js";
 import {ScrollManager} from "../../../common/utilities/scroll/scroll.js";
+import ScreenManager from "../../../common/utilities/screen/screen.js";
 import lang from "../../../common/utilities/language/language.js";
 import {
 	animateTextContent,
@@ -143,6 +144,118 @@ function Collaborators () {
 	};
 
 	/**
+	 * @description Adjusts auto scrolling
+	 * 	process by applying an attribute
+	 * 	to control his path according to
+	 * 	the detected screen.
+	 * @function adjustAutoScroll_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const adjustAutoScroll_ = () => (
+		new ScreenManager ({
+			onMedium: removeAttribute_,
+			onLarge: removeAttribute_,
+			onSmall: addAttribute_,
+			mediumScreen: {
+				max: 1170,
+				min: 1031
+			},
+			smallScreen: {
+				max: 1030,
+				min: 0
+			},
+			largeScreen: {
+				max: 10000,
+				min: 1171
+			}
+		})
+	);
+
+	/**
+	 * @description Removes `auto-scrollable`
+	 * 	attribute from all target tag.
+	 * @function removeAttribute_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const removeAttribute_ = () => {
+		// Removing `auto-scrollable`
+		// attribute from collaborators
+		// children.
+		for (
+			const cob of body_.children
+		) {
+			// Removes `auto-scrollable`
+			// attribute from the current
+			// child identity section.
+			cob.children[0]
+				.removeAttribute (
+					"auto-scrollable"
+				);
+			// Removes `auto-scrollable`
+			// attribute from the current
+			// child statistics section.
+			cob.children[0]
+				.children[1]
+				.children[2]
+				.removeAttribute (
+					"auto-scrollable"
+				);
+		}
+	};
+
+	/**
+	 * @description Adds `auto-scrollable`
+	 * 	attribute to the target tag.
+	 * @function addAttribute_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const addAttribute_ = () => {
+		// Adding `auto-scrollable`
+		// attribute to a specific
+		// collaborator child.
+		for (
+			const cob of body_.children
+		) {
+			// Whether the current child
+			// has `cobs-display` tag.
+			if (
+				cob.classList.contains (
+					"cobs-display"
+				)
+			) {
+				// Adds `auto-scrollable`
+				// attribute to the
+				// current child
+				// identity.
+				cob.children[0]
+					.setAttribute (
+						"auto-scrollable",
+						true
+					);
+				// Adds `auto-scrollable`
+				// attribute to the
+				// current child
+				// statistics.
+				cob.children[0]
+					.children[1]
+					.children[2]
+					.setAttribute (
+						"auto-scrollable",
+						true
+					);
+				// Gets out of loop.
+				break;
+			}
+		}
+	};
+
+	/**
 	 * @description Toggles collaborator
 	 * 	and node elements together
 	 * 	by affect their display
@@ -233,6 +346,14 @@ function Collaborators () {
 				]
 			);
 		}
+		// Removes `auto-scrollable`
+		// attribute from all
+		// collaborators.
+		removeAttribute_ ();
+		// Adds `auto-scrollable`
+		// attribute to the active
+		// collaborator only.
+		addAttribute_ ();
 		// Returns tags references.
 		return {
 			collaborator,
@@ -1031,6 +1152,13 @@ function Collaborators () {
 		section.classList.add (
 			"collaborators"
 		);
+		// Adds `auto-scrollable`
+		// attribute for auto
+		// background process.
+		section.setAttribute (
+			"auto-scrollable",
+			true
+		);
 		// Adds a html structure
 		// to the created section.
 		section.innerHTML = `
@@ -1123,6 +1251,10 @@ function Collaborators () {
 				)
 			),
 			onReady: () => {
+				// Listens screen format to
+				// manage the path of auto
+				// scroller.
+				adjustAutoScroll_ ();
 				// Listens any interaction.
 				swap_ ();
 				// Adds `hide-skeleton`

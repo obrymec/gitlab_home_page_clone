@@ -4,7 +4,7 @@
 * @fileoverview Badges UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-13
-* @updated 2023-09-09
+* @updated 2023-09-14
 * @file badges.js
 * @type {Badges}
 * @version 0.0.2
@@ -308,6 +308,13 @@ function Badges () {
 		// the created section.
 		section_.classList.add (
 			"badges"
+		);
+		// Adds `auto-scrollable`
+		// attribute for auto
+		// background process.
+		section_.setAttribute (
+			"auto-scrollable",
+			true
 		);
 		// Adds a html structure
 		// to the created section.

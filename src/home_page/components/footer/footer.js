@@ -4,7 +4,7 @@
 * @fileoverview GitLab footer section.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-21
-* @updated 2023-09-12
+* @updated 2023-09-14
 * @file footer.js
 * @version 0.0.3
 * @type {Footer}
@@ -183,6 +183,13 @@ function Footer () {
 		// the created section.
 		section.classList.add (
 			"footer"
+		);
+		// Adds `auto-scrollable`
+		// attribute for auto
+		// background process.
+		section.setAttribute (
+			"auto-scrollable",
+			true
 		);
 		// Adds a html structure
 		// to the created section.
@@ -500,7 +507,10 @@ function Footer () {
 					</div>
 				</div>
 			</div>
-			<div class = "foot-bottom">
+			<div
+				auto-scrollable = "true"
+				class = "foot-bottom"
+			>
 				<div class = "foot-network">
 					<div class = "foot-langs">
 						${buildIcon ({

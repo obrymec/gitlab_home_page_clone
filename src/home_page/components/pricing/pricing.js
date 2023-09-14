@@ -4,7 +4,7 @@
 * @fileoverview Pricing UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-27
-* @updated 2023-09-09
+* @updated 2023-09-14
 * @file pricing.js
 * @type {Pricing}
 * @version 0.0.2
@@ -479,6 +479,13 @@ function Pricing () {
     section_.classList.add (
       "pricing"
     );
+    // Adds `auto-scrollable`
+		// attribute for auto
+		// background process.
+		section_.setAttribute (
+			"auto-scrollable",
+			true
+		);
     // Adds a html structure
     // to the created section.
     section_.innerHTML = `

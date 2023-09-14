@@ -4,7 +4,7 @@
 * @fileoverview Customers UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-21
-* @updated 2023-09-09
+* @updated 2023-09-14
 * @file customers.js
 * @type {Customers}
 * @version 0.0.2
@@ -227,6 +227,13 @@ function Customers () {
 		// the created section.
 		section.classList.add (
 			"customers"
+		);
+		// Adds `auto-scrollable`
+		// attribute for auto
+		// background process.
+		section.setAttribute (
+			"auto-scrollable",
+			true
 		);
 		// Adds a html structure
 		// to the created section.

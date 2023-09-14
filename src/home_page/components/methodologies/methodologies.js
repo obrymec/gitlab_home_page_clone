@@ -6,7 +6,7 @@
 * @file methodologies.js
 * @type {Methodologies}
 * @created 2023-07-06
-* @updated 2023-09-12
+* @updated 2023-09-14
 * @version 0.0.2
 */
 
@@ -79,6 +79,97 @@ function Methodologies () {
 	 * @field
 	 */
 	let body_ = null;
+
+	/**
+	 * @description Removes `auto-scrollable`
+	 * 	attribute from all target tag.
+	 * @function removeAttribute_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const removeAttribute_ = () => {
+		// Removing `auto-scrollable`
+		// attribute from methodologies
+		// children.
+		for (
+			const mhd of body_.children
+		) {
+			// Removes `auto-scrollable`
+			// attribute from the
+			// current child.
+			mhd.removeAttribute (
+				"auto-scrollable"
+			);
+		}
+	};
+
+	/**
+	 * @description Adds `auto-scrollable`
+	 * 	attribute to the target tags.
+	 * @function addAttribute_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const addAttribute_ = () => {
+		// Adding `auto-scrollable`
+		// attribute to all
+		// children.
+		for (
+			const mhd of body_.children
+		) {
+			// Adds `auto-scrollable`
+			// attribute to the
+			// current child.
+			mhd.setAttribute (
+				"auto-scrollable",
+				true
+			);
+		}
+	};
+
+	/**
+	 * @description Animates methodologies
+	 * 	regardless the detected screen
+	 * 	format (Desktop & Mobile).
+	 * @param {String} dir The
+	 * 	animation's direction.
+	 * @constant {Function}
+	 * @private {Function}
+	 * @function animate_
+	 * @returns {void} void
+	 */
+	const animate_ = dir => {
+		// Listens screen format.
+		new ScreenManager ({
+			onLarge: addAttribute_,
+			mediumScreen: {
+				max: 1300,
+				min: 761
+			},
+			smallScreen: {
+				max: 760,
+				min: 0
+			},
+			largeScreen: {
+				max: 10000,
+				min: 1301
+			},
+			onMedium: () => {
+				// Makes animation.
+				smallAnimation_ (dir);
+				// Adds attribute.
+				addAttribute_ ();
+			},
+			onSmall: () => {
+				// Makes animation.
+				smallAnimation_ (dir);
+				// Destroys attribute.
+				removeAttribute_ ();
+			}
+		});
+	};
 
 	/**
 	 * @description Toggles effects actions
@@ -177,41 +268,6 @@ function Methodologies () {
 					);
 			}, timeout)
 		);
-	};
-
-	/**
-	 * @description Animates methodologies
-	 * 	regardless the detected screen
-	 * 	format (Desktop & Mobile).
-	 * @param {String} dir The
-	 * 	animation's direction.
-	 * @constant {Function}
-	 * @private {Function}
-	 * @function animate_
-	 * @returns {void} void
-	 */
-	const animate_ = dir => {
-		// Listens screen format.
-		new ScreenManager ({
-			onMedium: () => (
-				smallAnimation_ (dir)
-			),
-			onSmall: () => (
-				smallAnimation_ (dir)
-			),
-			mediumScreen: {
-				max: 1300,
-				min: 761
-			},
-			smallScreen: {
-				max: 760,
-				min: 0
-			},
-			largeScreen: {
-				max: 10000,
-				min: 1301
-			}
-		});
 	};
 
 	/**
@@ -901,6 +957,13 @@ function Methodologies () {
 		// the created section.
 		section.classList.add (
 			"methodologies"
+		);
+		// Adds `auto-scrollable`
+		// attribute for auto
+		// background process.
+		section.setAttribute (
+			"auto-scrollable",
+			true
 		);
 		// Adds a html structure
 		// to the created section.
