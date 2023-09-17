@@ -507,7 +507,7 @@ div.cobs-infos {
 * @supported: DESKTOP, MOBILE
 * @file: methodologies.scss
 * @created: 2023-07-06
-* @updated: 2023-09-12
+* @updated: 2023-09-16
 * @version: 0.0.2
 */
 /**
@@ -621,6 +621,7 @@ div.mhds-body {
         height: 2px; } }
 
 div.mhds-content {
+  transform: translate3d(0, 0, 0);
   padding-bottom: 96px; }
   @media only screen and (max-width: 760px) {
     div.mhds-content {
@@ -1052,7 +1053,7 @@ div.resource {
 * @supported: DESKTOP, MOBILE
 * @file: services.scss
 * @created: 2023-06-23
-* @updated: 2023-09-12
+* @updated: 2023-09-15
 * @version: 0.0.3
 */
 /**
@@ -1080,7 +1081,7 @@ div.service, div.service div {
 * @supported: DESKTOP, MOBILE
 * @file: animations.scss
 * @created: 2023-08-18
-* @updated: 2023-08-19
+* @updated: 2023-09-15
 * @version: 0.0.2
 */
 /**
@@ -1102,8 +1103,10 @@ div.services-as {
       height: 280px; } }
   @media only screen and (max-width: 1025px) {
     div.services-as {
+      transform: translateY(200%);
       padding: 20px;
-      height: 250px;
+      height: auto;
+      width: 100%;
       opacity: 0; } }
 
 div.services-af {
@@ -1116,8 +1119,10 @@ div.services-af {
       padding: 25px; } }
   @media only screen and (max-width: 1025px) {
     div.services-af {
+      transform: translateX(0%);
       padding: 20px;
       height: auto;
+      width: 100%;
       opacity: 1; } }
 
 @media only screen and (max-width: 1025px) {
@@ -1161,7 +1166,8 @@ section.services {
   @media only screen and (max-width: 1025px) {
     section.services {
       padding: 30px 5% 25px 5%;
-      flex-direction: column; } }
+      flex-direction: column;
+      overflow-x: hidden; } }
   @media only screen and (max-width: 1025px) {
     section.services div.service:nth-child(1) {
       z-index: 2; } }

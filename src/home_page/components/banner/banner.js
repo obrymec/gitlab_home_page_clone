@@ -4,7 +4,7 @@
 * @fileoverview Banner UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-17
-* @updated 2023-09-14
+* @updated 2023-09-16
 * @file banner.js
 * @type {Banner}
 * @version 0.0.2
@@ -460,6 +460,11 @@ function Banner () {
 	 * @returns {void} void
 	 */
 	this.render = () => {
+		// The main tag element.
+		const main = (
+			window.store.getState ()
+				.main
+		);
 		// Creates a section tag.
 		const section = (
 			document.createElement (
@@ -634,9 +639,9 @@ function Banner () {
 		// Adds the below template
 		// section to the main tag
 		// as a child.
-		document.querySelector (
-			"main"
-		).appendChild (tempSection);
+		main.appendChild (
+			tempSection
+		);
 		// The banner right tag
 		// reference.
 		bannerRight_ = (
@@ -706,8 +711,10 @@ function Banner () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					max: 200,
-					min: 0,
+					target: tempSection,
+					offsetBottom: 140,
+					scope: window,
+					root: main,
 					onEnter: () => {
 						// Animates the banner
 						// in normal mode.

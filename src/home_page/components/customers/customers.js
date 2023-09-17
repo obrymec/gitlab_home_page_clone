@@ -4,7 +4,7 @@
 * @fileoverview Customers UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-21
-* @updated 2023-09-14
+* @updated 2023-09-16
 * @file customers.js
 * @type {Customers}
 * @version 0.0.2
@@ -36,21 +36,36 @@ import {
 function Customers () {
 	// Attributes.
 	/**
-	 * @description Customers right
-	 * 	container tag.
+	 * @description The customers
+	 * 	right container tag.
 	 * @private {?Element}
 	 * @type {?Element}
 	 * @field
 	 */
 	let rightGuest_ = null;
 	/**
-	 * @description Customers left
-	 * 	container tag.
+	 * @description The customers
+	 * 	left container tag.
 	 * @private {?Element}
 	 * @type {?Element}
 	 * @field
 	 */
 	let leftGuest_ = null;
+	/**
+	 * @description The textual
+	 * 	animation process id.
+	 * @private {?int}
+	 * @type {?int}
+	 * @field
+	 */
+	let processId_ = null;
+	/**
+	 * @description The customers.
+	 * @private {?Element}
+	 * @type {?Element}
+	 * @field
+	 */
+	let section_ = null;
 
 	/**
 	 * @description Clears animation
@@ -170,15 +185,22 @@ function Customers () {
 	 * @returns {void} void
 	 */
 	const animate_ = direction => {
+		// Stops the previous process.
+		window.clearInterval (
+			processId_
+		);
 		// Whether the direction is
 		// normal mode.
 		if (direction === "normal") {
 			// Animates customers
 			// with normal mode.
 			animateCustomers_ ().play ();
+			// Clears the title text.
+			section_.children[0]
+				.textContent = '';
 			// Animates the text
 			// in reverse mode.
-			animateText ({
+			processId_ = animateText ({
 				text: lang.getText ("tr15"),
 				interval: 100,
 				target: (
@@ -194,7 +216,7 @@ function Customers () {
 			animateCustomers_ ().reverse ();
 			// Animates the text
 			// in reverse mode.
-			animateText ({
+			processId_ = animateText ({
 				text: lang.getText ("tr15"),
 				isReversed: true,
 				isInverted: true,
@@ -217,27 +239,32 @@ function Customers () {
 	 * @returns {void} void
 	 */
 	this.render = () => {
+		// The main tag element.
+		const main = (
+			window.store.getState ()
+				.main
+		);
 		// Creates a section tag.
-		const section = (
+		section_ = (
 			document.createElement (
 				"section"
 			)
 		);
 		// Adds a class's name to
 		// the created section.
-		section.classList.add (
+		section_.classList.add (
 			"customers"
 		);
 		// Adds `auto-scrollable`
 		// attribute for auto
 		// background process.
-		section.setAttribute (
+		section_.setAttribute (
 			"auto-scrollable",
 			true
 		);
 		// Adds a html structure
 		// to the created section.
-		section.innerHTML = `
+		section_.innerHTML = `
 			<span
 				customers-index = "tr15::0"
 				id = "customers-data"
@@ -326,9 +353,7 @@ function Customers () {
 		`;
 		// Adds the above nav section
 		// to the main tag as a child.
-		document.querySelector (
-			"main"
-		).appendChild (section);
+		main.appendChild (section_);
 		// The right customers tag.
 		rightGuest_ = (
 			document.querySelector (
@@ -353,14 +378,14 @@ function Customers () {
 				// Adds `hide-skeleton`
 				// class to skeleton
 				// loader.
-				section.lastElementChild
+				section_.lastElementChild
 					.classList.add (
 						"hide-skeleton"
 					);
 				// Waits for 200ms before
 				// delete skeleton loader.
 				window.setTimeout (() => (
-					section.lastElementChild
+					section_.lastElementChild
 						.remove ()
 				), 200);
 				// Called when any changement
@@ -386,8 +411,9 @@ function Customers () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					max: 200,
-					min: 0,
+					target: section_,
+					scope: window,
+					root: main,
 					onEnter: () => {
 						// Animates customers
 						// in normal mode.

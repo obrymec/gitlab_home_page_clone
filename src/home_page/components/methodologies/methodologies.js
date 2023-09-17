@@ -6,20 +6,17 @@
 * @file methodologies.js
 * @type {Methodologies}
 * @created 2023-07-06
-* @updated 2023-09-14
+* @updated 2023-09-17
 * @version 0.0.2
 */
 
 // Custom dependencies.
 import {listenLoadEvent} from "../../../common/utilities/browser/browser.js";
 import {buildFlatButton} from "../../../common/components/button/button.js";
+import {ScrollManager} from "../../../common/utilities/scroll/scroll.js";
 import ScreenManager from "../../../common/utilities/screen/screen.js";
 import lang from "../../../common/utilities/language/language.js";
 import swipe from "../../../common/utilities/swipe/swipe.js";
-import {
-	getScrollPercent,
-	ScrollManager
-} from "../../../common/utilities/scroll/scroll.js";
 import {
 	animateTextContent,
 	getUpdates,
@@ -41,6 +38,15 @@ import {
  */
 function Methodologies () {
 	/**
+	 * @description The scroll
+	 * 	manager of methodologies
+	 * 	section.
+	 * @private {?ScrollManager}
+	 * @type {?ScrollManager}
+	 * @field
+	 */
+	let scrollManager_ = null;
+	/**
 	 * @description The delay
 	 * 	before hide arrows.
 	 * @private {?int}
@@ -48,6 +54,14 @@ function Methodologies () {
 	 * @field
 	 */
 	let dissolveDelay_ = null;
+	/**
+	 * @description The auto
+	 * 	carousel state.
+	 * @private {?int}
+	 * @type {?int}
+	 * @field
+	 */
+	let autoCarousel_ = null;
 	/**
 	 * @description The right
 	 * 	arrow button.
@@ -63,7 +77,42 @@ function Methodologies () {
 	 * @type {?Element}
 	 * @field
 	 */
-	let leftButton_ = null;
+	let leftButton_ = null;	
+	/**
+	 * @description Whether the
+	 * 	right scroll is busy or
+	 * 	not.
+	 * @private {boolean}
+	 * @type {boolean}
+	 * @field
+	 */
+	let rightBusy_ = false;
+	/**
+	 * @description Whether a
+	 * 	button is enabled or
+	 * 	disabled.
+	 * @private {boolean}
+	 * @type {boolean}
+	 * @field
+	 */
+	let disabled_ = false;
+	/**
+	 * @description Whether the
+	 * 	left scroll is busy or
+	 * 	not.
+	 * @private {boolean}
+	 * @type {boolean}
+	 * @field
+	 */
+	let leftBusy_ = true;
+	/**
+	 * @description The methodologies
+	 * 	section.
+	 * @private {?Element}
+	 * @type {?Element}
+	 * @field
+	 */
+	let section_ = null;
 	/**
 	 * @description The scroller.
 	 * @private {?Element}
@@ -79,6 +128,87 @@ function Methodologies () {
 	 * @field
 	 */
 	let body_ = null;
+	/**
+	 * @description The main
+	 * 	tag element.
+	 * @private {?Element}
+	 * @type {?Element}
+	 * @field
+	 */
+	let main_ = null;
+	/**
+	 * @description The methodologies
+	 * 	scroll manager object
+	 * 	instances.
+	 * @private {Array<?ScrollManager>}
+	 * @type {Array<?ScrollManager>}
+	 * @field
+	 */
+	let mhds_ = [
+		null, null, null,
+		null, null
+	];
+
+	/**
+	 * @description Starts auto carousel
+	 * 	process.
+	 * @function startAutoCarouselProcess_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const startAutoCarouselProcess_ = () => {
+		// Starts carousel process.
+		autoCarousel_ = (
+			window.setInterval (
+				() => swipeRight_ (false),
+				10000
+			)
+		);
+	};
+
+	/**
+	 * @description Stops auto carousel
+	 * 	process in background directly.
+	 * @function stopAutoCarouselProcess_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const stopAutoCarouselProcess_ = () => {
+		// Whether the auto carousel
+		// timer is defined.
+		if (autoCarousel_ != null) {
+			// Destroys the upcoming
+			// auto carousel action
+			// in memory.
+			window.clearInterval (
+				autoCarousel_
+			);
+		}
+	};
+
+	/**
+	 * @description Resets auto carousel
+	 * 	process.
+	 * @function resetAutoCarousel_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const resetAutoCarousel_ = () => {
+		// Resets the scroll thumb.
+		body_.scrollLeft = 0;
+		// Warns user about a
+		// swapable element.
+		dissolvable_ (5000);
+		// Sets the scroll right
+		// availability.
+		rightBusy_ = false;
+		// Sets the scroll left
+		// availability.
+		leftBusy_ = true;
+	};
 
 	/**
 	 * @description Removes `auto-scrollable`
@@ -105,6 +235,32 @@ function Methodologies () {
 	};
 
 	/**
+	 * @description Clears `scroll`
+	 * 	event on all methodologies.
+	 * @function clearScrollEvents_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const clearScrollEvents_ = () => {
+		// Clearing `scroll` events
+		// and theirs data.
+		for (
+			let x = 0;
+			x < mhds_.length;
+			x++
+		) {
+			// Destroys the current
+			// `scroll` event and
+			// those associated
+			// data.
+			mhds_[x]?.clearEvents ();
+			// Empty this item.
+			mhds_[x] = null;
+		}
+	};
+
+	/**
 	 * @description Adds `auto-scrollable`
 	 * 	attribute to the target tags.
 	 * @function addAttribute_
@@ -113,6 +269,18 @@ function Methodologies () {
 	 * @returns {void} void
 	 */
 	const addAttribute_ = () => {
+		// Clears the global
+		// scroll manager.
+		scrollManager_?.clearEvents ();
+		// Stops auto carousel.
+		stopAutoCarouselProcess_ ();
+		// Empty this field.
+		scrollManager_ = null;
+		// Listens scrollbar
+		// thumb motion to
+		// apply the vertical
+		// carousel effect.
+		verticalCarousel_ ();
 		// Adding `auto-scrollable`
 		// attribute to all
 		// children.
@@ -123,70 +291,28 @@ function Methodologies () {
 			// attribute to the
 			// current child.
 			mhd.setAttribute (
-				"auto-scrollable",
-				true
+				"auto-scrollable", true
 			);
 		}
 	};
 
 	/**
-	 * @description Animates methodologies
-	 * 	regardless the detected screen
-	 * 	format (Desktop & Mobile).
-	 * @param {String} dir The
-	 * 	animation's direction.
-	 * @constant {Function}
-	 * @private {Function}
-	 * @function animate_
-	 * @returns {void} void
-	 */
-	const animate_ = dir => {
-		// Listens screen format.
-		new ScreenManager ({
-			onLarge: addAttribute_,
-			mediumScreen: {
-				max: 1300,
-				min: 761
-			},
-			smallScreen: {
-				max: 760,
-				min: 0
-			},
-			largeScreen: {
-				max: 10000,
-				min: 1301
-			},
-			onMedium: () => {
-				// Makes animation.
-				smallAnimation_ (dir);
-				// Adds attribute.
-				addAttribute_ ();
-			},
-			onSmall: () => {
-				// Makes animation.
-				smallAnimation_ (dir);
-				// Destroys attribute.
-				removeAttribute_ ();
-			}
-		});
-	};
-
-	/**
-	 * @description Toggles effects actions
-	 * 	on the passed tag reference.
+	 * @description Toggles effects
+	 * 	actions on the passed tag
+	 * 	reference.
 	 * @param {Element} tag The tag
 	 * 	to target.
-	 * @param {boolean} active Whether
-	 * 	it's `true`, we'll add effects.
-	 * 	Otherwise, we'll remove them.
+	 * @param {boolean} active if
+	 * 	it's `true`, we'll add
+	 * 	effects. Otherwise, we
+	 * 	will remove them.
 	 * @function toggleEffects_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {void} void
 	 */
 	const toggleEffects_ = (
-		tag,
-		active
+		tag, active
 	) => {
 		// Whether active is set
 		// to `true`.
@@ -271,18 +397,200 @@ function Methodologies () {
 	};
 
 	/**
+	 * @description Animates or moves
+	 * 	the fake scroll bar to the
+	 * 	active methodology child
+	 * 	position.
+	 * @param {Number} index The
+	 * 	index of a methodology.
+	 * @function moveScroller_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const moveScroller_ = index => {
+		// The total margin top to be
+		// generated to go directly
+		// to methodology tag
+		// section.
+		let totalMarginTop = 0;
+		// The custom scrollbar
+		// thumb.
+		const scrollThumb = (
+			scroll_.children[0]
+		);
+		// Sets thumb height to the
+		// current methodology tag
+		// height.
+		scrollThumb.style.height = (
+			`${
+				body_.children[index]
+					.offsetHeight
+			}px`
+		);
+		// Computing the margin top
+		// that we need to move our
+		// scroll thumb directly to
+		// the current methodology.
+		for (
+			let pos = 1;
+			pos < (index + 1);
+			pos++
+		) {
+			// Adds the height of the
+			// previous methodology
+			// plus their container
+			// flexbox gap: `94px`.
+			totalMarginTop += (
+				body_.children[pos]
+					.offsetHeight + 94
+			);
+		}
+		// Updates scroll thumb
+		// margin top.
+		scrollThumb.style
+			.marginTop = (
+				`${totalMarginTop}px`
+			);
+	};
+
+	/**
+	 * @description Applies vertical
+	 * 	carousel according to the
+	 * 	browser scrollbar progress.
+	 * @function verticalCarousel_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const verticalCarousel_ = () => {
+		// The methodologies list.
+		const mhds = body_.children;
+		// Listening `scroll` event.
+		for (
+			let t = 0;
+			t < body_.childElementCount;
+			t++
+		) {
+			// Adds a `scroll` event
+			// to the current child.
+			mhds_[t] = (
+				new ScrollManager ({
+					offsetBottom: 300,
+					target: mhds[t],
+					offsetTop: 300,
+					scope: window,
+					root: main_,
+					onLeave: () => {
+						// Removes focus
+						// from active
+						// child.
+						toggleEffects_ (
+							mhds[t], false
+						);
+					},
+					onEnter: () => {
+						// Animates the
+						// scroller to
+						// child pos.
+						moveScroller_ (t);
+						// Puts focus on
+						// the current
+						// child.
+						toggleEffects_ (
+							mhds[t], true
+						);
+						// Puts a focus to
+						// corresponding
+						// option inside
+						// the navbar.
+						window.store
+							.getState ()
+							.navbar
+							.select (2);
+					}
+				})
+			);
+		}
+	};
+
+	/**
+	 * @description Applies a horizontal
+	 * 	carousel according to the target
+	 * 	scroll bar.
+	 * @function horizontalCarousel_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const horizontalCarousel_ = () => {
+		// Starts auto carousel process.
+		startAutoCarouselProcess_ ();
+		// Listens right arrow `click`
+		// event.
+		rightButton_.addEventListener (
+			"click",
+			() => swipeRight_ (true)
+		);
+		// Listens left arrow `click`
+		// event.
+		leftButton_.addEventListener (
+			"click",
+			() => swipeLeft_ (true)
+		);
+		// Listens `click` event
+		// on every methodologies.
+		Array.from (body_.children)
+			.forEach (child => (
+				child.addEventListener (
+					"click",
+					() => dissolvable_ ()
+				)
+			)
+		);
+		// Listens human fingers
+		// motion on mobile for
+		// the right swipe.
+		swipe.swipeRight ({
+			tagId: "div.mhds-body",
+			feedback: () => {
+				// Swipes methodologies
+				// to left.
+				swipeLeft_ (true);
+			}
+		});
+		// Listens human fingers
+		// motion on mobile for
+		// the left swipe.
+		swipe.swipeLeft ({
+			tagId: "div.mhds-body",
+			feedback: () => {
+				// Swipes methodologies
+				// to right.
+				swipeRight_ (true);
+			}
+		});
+	};
+
+	/**
 	 * @description Animates methodologies
 	 * 	for small screens.
-	 * @param {String} direction The
-	 * 	animation's direction.
 	 * @function largeAnimation_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {void} void
 	 */
-	const smallAnimation_ = (
-		direction
-	) => {
+	const smallAnimation_ = () => {
+		// Listens controls to
+		// apply horizontal
+		// carousel effect.
+		horizontalCarousel_ ();
+		// Clears methodologies
+		// children `scroll`
+		// events and data.
+		clearScrollEvents_ ();
+		// Resets auto carousel.
+		resetAutoCarousel_ ();
 		// The content tag ref.
 		const content = (
 			body_.parentElement
@@ -292,36 +600,56 @@ function Methodologies () {
 			content.parentElement
 				.children[0]
 		);
-		// Whether direction is in
-		// normal mode.
-		if (direction === "normal") {
-			// Adds `mhds-bigtitle-show`
-			// class to the big title
-			// text.
-			title.classList.add (
-				"mhds-bigtitle-show"
-			);
-			// Adds `mhds-content-show`
-			// class to the parent of
-			// methodologies body.
-			content.classList.add (
-				"mhds-content-show"
-			);
-		// Otherwise.
-		} else {
-			// Removes `mhds-bigtitle-show`
-			// class from the big title
-			// text.
-			title.classList.remove (
-				"mhds-bigtitle-show"
-			);
-			// Removes `mhds-content-show`
-			// class from the parent
-			// of methodologies body.
-			content.classList.remove (
-				"mhds-content-show"
-			);
-		}
+		// Focus on the current
+		// section for scrolling.
+		scrollManager_ = (
+			new ScrollManager ({
+				offsetBottom: 340,
+				target: section_,
+				offsetTop: 340,
+				scope: window,
+				root: main_,
+				onEnter: () => {
+					// Warns user about a
+					// swapable element.
+					dissolvable_ (5000);
+					// Adds `mhds-bigtitle-show`
+					// class to the big title
+					// text.
+					title.classList.add (
+						"mhds-bigtitle-show"
+					);
+					// Adds `mhds-content-show`
+					// class to the parent of
+					// methodologies body.
+					content.classList.add (
+						"mhds-content-show"
+					);
+					// Puts a focus to
+					// corresponding
+					// option inside
+					// the navbar.
+					window.store
+						.getState ()
+						.navbar
+						.select (2);
+				},
+				onLeave: () => {
+					// Removes `mhds-bigtitle-show`
+					// class from the big title
+					// text.
+					title.classList.remove (
+						"mhds-bigtitle-show"
+					);
+					// Removes `mhds-content-show`
+					// class from the parent
+					// of methodologies body.
+					content.classList.remove (
+						"mhds-content-show"
+					);
+				}
+			})
+		);
 	};
 
 	/**
@@ -426,517 +754,195 @@ function Methodologies () {
 	`;
 
 	/**
-	 * @description Checks scroll variation.
-	 * @param {Element} oldTag The previous
-	 *  active or selected methodology
-	 * 	tag section.
-	 * @param {Number} index The position
-	 * 	index of the next methodology
-	 * 	tag section.
-	 * @function checkMatch_
+	 * @description Scrolls content
+	 * 	from left to right.
+	 * @param {boolean} dissolve
+	 * 	whether we want to hide
+	 * 	arrows after some few
+	 * 	times.
+	 * @function swipeRight_
 	 * @constant {Function}
 	 * @private {Function}
-	 * @returns {Element} Element
-	*/
-	const checkMatch_ = (
-		oldTag,
-		index
-	) => {
-		// The new tag reference.
-		const newTag = (
-			body_.children[index]
-		);
-		// Whether the old tag is defined.
-		if (oldTag instanceof Element) {
-			// The old tag id value.
-			const oldId = oldTag.id;
-			// Whether the given ids
-			// aren't the same.
-			if (oldId !== newTag.id) {
-				// The total margin top to be
-				// generated to go directly
-				// to methodology tag section.
-				let totalMarginTop = 0;
-				// The custom scrollbar thumb.
-				const scrollThumb = (
-					scroll_.children[0]
+	 * @returns {void} void
+	 */
+	const swipeRight_ = dissolve => {
+		// Whether `disabled` field
+		// is set to `false`.
+		if (!disabled_) {
+			// Whether arrows are hidable.
+			if (dissolve) dissolvable_ ();
+			// Stops auto carousel.
+			stopAutoCarouselProcess_ ();
+			// Starts auto carousel.
+			startAutoCarouselProcess_ ();
+			// The enable wait delay.
+			let waitForEnable = 400;
+			// Whether the right scroll
+			// is not busy.
+			if (!rightBusy_) {
+				// Moves the scroll thumb.
+				body_.scrollLeft = (
+					body_.scrollLeft +
+					body_.children[1]
+						.offsetWidth
 				);
-				// Sets thumb height to the
-				// current methodology
-				// tag's height.
-				scrollThumb.style.height = (
-					`${newTag.offsetHeight}px`
+				// The real scroll position.
+				const scrollPos = (
+					body_.scrollLeft +
+					body_.children[1]
+						.offsetWidth
 				);
-				// Computing the margin top
-				// that we need to move our
-				// scroll thumb directly to
-				// the current methodology.
-				for (
-					let pos = 1;
-					pos < (index + 1);
-					pos++
+				// The total methodology
+				// width size with a few
+				// margins: `100px`.
+				const totalWidth = (
+					(
+						body_.children[1]
+							.offsetWidth *
+						(
+							body_.children
+								.length - 1
+						)
+					) - 100
+				);
+				// Whether the scroll thumb
+				// comes to the end of the
+				// container.
+				if (
+					scrollPos >= totalWidth
 				) {
-					// Adds the height of the
-					// previous methodology
-					// plus their container
-					// flexbox gap: `94px`.
-					totalMarginTop += (
-						body_.children[pos]
-							.offsetHeight + 94
-					);
+					// Makes the right scroll
+					// be busy.
+					rightBusy_ = true;
+				// Otherwise.
+				} else {
+					// Sets the scroll left
+					// availability.
+					leftBusy_ = false;
 				}
-				// Updates scroll thumb
-				// margin top.
-				scrollThumb.style
-					.marginTop = (
-						`${totalMarginTop}px`
-					);
-				// Removes effects from
-				// the old tag.
-				toggleEffects_ (
-					oldTag, false
-				);
-				// Adds effects to the
-				// new tag.
-				toggleEffects_ (
-					newTag, true
-				);
 			// Otherwise.
 			} else {
-				// Don't touch the old
-				// tag reference and
-				// returns it.
-				return oldTag;
+				// Resets the scroll thumb.
+				body_.scrollLeft = 0;
+				// Increases enable wait.
+				waitForEnable = 800;
+				// Sets the scroll right
+				// availability.
+				rightBusy_ = false;
+				// Sets the scroll left
+				// availability.
+				leftBusy_ = true;
 			}
-		// Otherwise.
-		} else {
-			// Adds effects to the 
-			// new tag.
-			toggleEffects_ (
-				newTag, true
-			);
-		}
-		// Returns the new tag
-		// reference for others
-		// use cases.
-		return newTag;
-	};
-
-	/**
-	 * @description Applies vertical
-	 * 	carousel according to the
-	 * 	browser scrollbar progress.
-	 * @function verticalCarousel_
-	 * @constant {Function}
-	 * @private {Function}
-	 * @returns {void} void
-	*/
-	const verticalCarousel_ = () => {
-		// The height of one methodology
-		// card in percentage.
-		const mhdCardHeight = 10;
-		// The old tag object reference.
-		let oldTag = null;
-		// The starting percentage of
-		// the scroll thumb to start
-		// treatments.
-		const start = 28;
-		// Manages methodologies in
-		// for vertical carousel.
-		const carousel = () => {
-			// Whether window width is
-			// greater than 760 pixels.
-			if (
-				window.innerWidth > 760
-			) {
-				// The total percentage
-				// since the starting
-				// percentage.
-				let end = start;
-				// The current scroll
-				// progress.
-				const progress = (
-					getScrollPercent ()
-				);
-				// Checking scroll thumb
-				// position in percentage
-				// to select the matched
-				// methodology card tag
-				// section.
-				[0, 1, 2, 3, 4, null].forEach (
-					value => {
-						// Whether the current value
-						// is an interger.
-						if (
-							Number.isInteger (value)
-						) {
-							// The previous percentage
-							// value.
-							const oldProgress = end;
-							// The next percentage
-							// value.
-							end += mhdCardHeight;
-							// Whether we look the
-							// first methodology.
-							if (
-								progress >= oldProgress
-								&& progress <= end
-							) {
-								// Updates the old tag
-								// value to the current
-								// returned value of
-								// `checkMach` method
-								// call.
-								oldTag = checkMatch_ (
-									oldTag, value
-								);
-							}
-						// Otherwise.
-						} else {
-							// Whether we are out of
-							// range of the supported
-							// values.
-							if (
-								progress < start ||
-								progress > end
-							) {
-								// Whether the old tag
-								// is defined.
-								if (oldTag != null) {
-									// Removes all those
-									// bound effects.
-									toggleEffects_ (
-										oldTag, false
-									);
-								}
-								// Free `oldTag`
-								// variable.
-								oldTag = null;
-							}
-						}
-					}
-				);
-			}
-		};
-		// Listens window scrollbar
-		// motion.
-		document.addEventListener (
-			"scroll", carousel
-		);
-		// Applies a first effect.
-		carousel ();
-	};
-
-	/**
-	 * @description Applies a horizontal
-	 * 	carousel according to the target
-	 * 	scroll bar.
-	 * @function horizontalCarousel_
-	 * @constant {Function}
-	 * @private {Function}
-	 * @returns {void} void
-	*/
-	const horizontalCarousel_ = () => {
-		// The auto carousel state.
-		let autoCarousel = null;
-		// Whether the right scroll
-		// is busy or not.
-		let rightBusy = false;
-		// Whether a button is
-		// enabled or disabled.
-		let disabled = false;
-		// Whether the left scroll
-		// is busy or not.
-		let leftBusy = true;
-		// Whether the carousel
-		// state is reset.
-		let isReset = (
-			window.innerWidth <= 760
-		);
-		// The first methodology
-		// tag section.
-		const methodology = (
-			body_.children[1]
-		);
-		// Starts auto carousel process.
-		const startAutoCarouselProcess = (
-			() => {
-				// Starts carousel process.
-				autoCarousel = (
-					window.setInterval (
-						() => swipeRight (false),
-						10000
-					)
-				);
-			}
-		);
-		// Stops auto carousel process
-		// in background directly.
-		const stopAutoCarouselProcess = (
-			() => {
-				// Whether the auto carousel
-				// timer is defined.
-				if (autoCarousel != null) {
-					// Destroys the upcoming
-					// auto carousel action
-					// in memory.
-					window.clearInterval (
-						autoCarousel
-					);
-				}
-			}
-		);
-		// A lambda method that scroll
-		// methodologies to right.
-		const swipeRight = dissolve => {
-			// Whether `disabled` field
-			// is set to `false`.
-			if (!disabled) {
-				// Whether arrows are dissolvable.
-				if (dissolve) dissolvable_ ();
-				// Stops auto carousel.
-				stopAutoCarouselProcess ();
-				// Starts auto carousel.
-				startAutoCarouselProcess ();
-				// The enable wait delay.
-				let waitForEnable = 400;
-				// Whether the right scroll
-				// is not busy.
-				if (!rightBusy) {
-					// Moves the scroll thumb.
-					body_.scrollLeft = (
-						body_.scrollLeft
-						+ methodology.offsetWidth
-					);
-					// The real scroll position.
-					const scrollPos = (
-						body_.scrollLeft
-						+ methodology.offsetWidth
-					);
-					// The total methodology
-					// width size with a few
-					// margins: `100px`.
-					const totalWidth = (
-						(
-							methodology.offsetWidth
-							* (
-									body_.children
-										.length - 1
-								)
-						) - 100
-					);
-					// Whether the scroll thumb
-					// comes to the end of the
-					// container.
-					if (
-						scrollPos >= totalWidth
-					) {
-						// Makes the right scroll
-						// be busy.
-						rightBusy = true;
-					// Otherwise.
-					} else {
-						// Sets the scroll left
-						// availability.
-						leftBusy = false;
-					}
-				// Otherwise.
-				} else {
-					// Resets the scroll thumb.
-					body_.scrollLeft = 0;
-					// Increases enable wait.
-					waitForEnable = 800;
-					// Sets the scroll right
-					// availability.
-					rightBusy = false;
-					// Sets the scroll left
-					// availability.
-					leftBusy = true;
-				}
-				// Disables any controls.
-				disabled = true;
-				// Adds `mhds-move-right`
-				// class to button.
+			// Disables any controls.
+			disabled_ = true;
+			// Adds `mhds-move-right`
+			// class to button.
+			rightButton_.classList
+				.add (
+					"mhds-move-right"
+				)
+			// Waits for 150 milliseconds.
+			window.setTimeout (() => (
 				rightButton_.classList
-					.add (
+					.remove (
 						"mhds-move-right"
 					)
-				// Waits for 150 milliseconds.
-				window.setTimeout (() => (
-					rightButton_.classList
-						.remove (
-							"mhds-move-right"
-						)
-				), 150);
-				// Waits for a few milliseconds.
-				window.setTimeout (() => (
-					disabled = false
-				), waitForEnable);
-			}
-		};
-		// A lambda method that scroll
-		// methodologies to left.
-		const swipeLeft = dissolve => {
-			// Whether `disabled` field
-			// is set to `false`.
-			if (!disabled) {
-				// Whether arrows are dissolvable.
-				if (dissolve) dissolvable_ ();
-				// Stops auto carousel.
-				stopAutoCarouselProcess ();
-				// Starts auto carousel.
-				startAutoCarouselProcess ();
-				// The enable wait delay.
-				let waitForEnable = 400;
-				// Whether the left scroll
-				// is not busy.
-				if (!leftBusy) {
-					// Moves the scroll thumb.
-					body_.scrollLeft = (
-						body_.scrollLeft
-						- methodology.offsetWidth
-					);
-					// The real scroll position.
-					const scrollPos = (
-						body_.scrollLeft
-						- methodology.offsetWidth
-					);
-					// Whether the scroll thumb
-					// comes to start of the
-					// container.
-					if (scrollPos <= 0) {
-						// Makes the left scroll
-						// be busy.
-						leftBusy = true;
-					// Otherwise.
-					} else {
-						// Sets the scroll right
-						// availability.
-						rightBusy = false;
-					}
+			), 150);
+			// Waits for a few milliseconds.
+			window.setTimeout (() => (
+				disabled_ = false
+			), waitForEnable);
+		}
+	};
+
+	/**
+	 * @description Scrolls content
+	 * 	from right to left.
+	 * @param {boolean} dissolve
+	 * 	whether we want to hide
+	 * 	arrows after some few
+	 * 	times.
+	 * @function swipeLeft_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const swipeLeft_ = dissolve => {
+		// Whether `disabled` field
+		// is set to `false`.
+		if (!disabled_) {
+			// Whether arrows are hidable.
+			if (dissolve) dissolvable_ ();
+			// Stops auto carousel.
+			stopAutoCarouselProcess_ ();
+			// Starts auto carousel.
+			startAutoCarouselProcess_ ();
+			// The enable wait delay.
+			let waitForEnable = 400;
+			// Whether the left scroll
+			// is not busy.
+			if (!leftBusy_) {
+				// Moves the scroll thumb.
+				body_.scrollLeft = (
+					body_.scrollLeft -
+					body_.children[1]
+						.offsetWidth
+				);
+				// The real scroll position.
+				const scrollPos = (
+					body_.scrollLeft -
+					body_.children[1]
+						.offsetWidth
+				);
+				// Whether the scroll thumb
+				// comes to start of the
+				// container.
+				if (scrollPos <= 0) {
+					// Makes the left scroll
+					// be busy.
+					leftBusy_ = true;
 				// Otherwise.
 				} else {
-					// Increases enable wait.
-					waitForEnable = 800;
 					// Sets the scroll right
 					// availability.
-					rightBusy = true;
-					// Sets the scroll left
-					// availability.
-					leftBusy = false;
-					// Resets the scroll thumb.
-					body_.scrollLeft = (
-						methodology.offsetWidth
-							* body_.children
-								.length
-					);
+					rightBusy_ = false;
 				}
-				// Disables controls.
-				disabled = true;
-				// Adds `mhds-move-left`
-				// class to button.
+			// Otherwise.
+			} else {
+				// Increases enable wait.
+				waitForEnable = 800;
+				// Sets the scroll right
+				// availability.
+				rightBusy_ = true;
+				// Sets the scroll left
+				// availability.
+				leftBusy_ = false;
+				// Resets the scroll thumb.
+				body_.scrollLeft = (
+					body_.children[1]
+						.offsetWidth *
+					body_.children.length
+				);
+			}
+			// Disables controls.
+			disabled_ = true;
+			// Adds `mhds-move-left`
+			// class to button.
+			leftButton_.classList.add (
+				"mhds-move-left"
+			)
+			// Waits for 150 milliseconds.
+			window.setTimeout (() => (
 				leftButton_.classList
-					.add (
+					.remove (
 						"mhds-move-left"
 					)
-				// Waits for 150 milliseconds.
-				window.setTimeout (() => (
-					leftButton_.classList
-						.remove (
-							"mhds-move-left"
-						)
-				), 150);
-				// Waits for a few milliseconds.
-				window.setTimeout (() => (
-					disabled = false
-				), waitForEnable);
-			}
-		};
-		// Starts auto carousel process.
-		startAutoCarouselProcess ();
-		// Listens right arrow
-		// `click` event.
-		rightButton_.addEventListener (
-			"click",
-			() => swipeRight (true)
-		);
-		// Listens left arrow
-		// `click` event.
-		leftButton_.addEventListener (
-			"click",
-			() => swipeLeft (true)
-		);
-		// Listens `click` event
-		// on every methodologies.
-		[0, 1, 2, 3, 4].forEach (
-			index => (
-				body_.children[index]
-					.addEventListener (
-						"click",
-						() => dissolvable_ ()
-					)
-			)
-		);
-		// Listens human fingers motion
-		// on mobile for the left swipe.
-		swipe.swipeLeft ({
-			tagId: "div.mhds-body",
-			feedback: () => {
-				// Swipes methodologies
-				// to right.
-				swipeRight (true);
-			}
-		});
-		// Listens human fingers motion
-		// on mobile for the right swipe.
-		swipe.swipeRight ({
-			tagId: "div.mhds-body",
-			feedback: () => {
-				// Swipes methodologies
-				// to left.
-				swipeLeft (true);
-			}
-		});
-		// Listens window resizing.
-		window.addEventListener (
-			"resize", () => {
-				// Stops auto carousel.
-				stopAutoCarouselProcess ();
-				// Whether window's width
-				// is less than or equal
-				// to `760px`.
-				if (
-					window.innerWidth <= 760
-				) {
-					// Whether no reset has
-					// been done.
-					if (!isReset) {
-						// Resets the scroll
-						// thumb.
-						body_.scrollLeft = 0;
-						// Warns user about a 
-						// swapable element.
-						dissolvable_ (5000);
-						// Sets the scroll right
-						// availability.
-						rightBusy = false;
-						// Sets the scroll left
-						// availability.
-						leftBusy = true;
-						// Overrides the reset
-						// state.
-						isReset = true;
-					}
-					// Starts auto carousel.
-					startAutoCarouselProcess ();
-				// Otherwise.
-				} else {
-					// Overrides the reset
-					// state.
-					isReset = false;
-				}
-			}
-		);
+			), 150);
+			// Waits for a few milliseconds.
+			window.setTimeout (() => (
+				disabled_ = false
+			), waitForEnable);
+		}
 	};
 
 	/**
@@ -947,27 +953,32 @@ function Methodologies () {
 	 * @returns {void} void
 	 */
 	this.render = () => {
+		// The main tag reference.
+		main_ = (
+			window.store.getState ()
+				.main
+		);
 		// Creates a section tag.
-		const section = (
+		section_ = (
 			document.createElement (
 				"section"
 			)
 		);
 		// Adds a class's name to
 		// the created section.
-		section.classList.add (
+		section_.classList.add (
 			"methodologies"
 		);
 		// Adds `auto-scrollable`
 		// attribute for auto
 		// background process.
-		section.setAttribute (
+		section_.setAttribute (
 			"auto-scrollable",
 			true
 		);
 		// Adds a html structure
 		// to the created section.
-		section.innerHTML = `
+		section_.innerHTML = `
 			<h2
 				mhds-index = "tr58::0"
 				id = "mhds-data"
@@ -1089,9 +1100,7 @@ function Methodologies () {
 		// Adds the above section
 		// to the selected tag as
 		// a child.
-		document.querySelector (
-			"main"
-		).appendChild (section);
+		main_.appendChild (section_);
 		// The right arrow button.
 		rightButton_ = (
 			document.querySelector (
@@ -1125,24 +1134,17 @@ function Methodologies () {
 				)
 			),
 			onReady: () => {
-				// Listens controls to apply
-				// horizontal carousel effect.
-				horizontalCarousel_ ();
-				// Listens browser scrollbar
-				// thumb motion to apply the
-				// vertical carousel effect.
-				verticalCarousel_ ();
 				// Adds `hide-skeleton`
 				// class to skeleton
 				// loader.
-				section.lastElementChild
+				section_.lastElementChild
 					.classList.add (
 						"hide-skeleton"
 					);
 				// Waits for 200ms before
 				// delete skeleton loader.
 				window.setTimeout (() => (
-					section.lastElementChild
+					section_.lastElementChild
 						.remove ()
 				), 200);
 				// Called when any mutation
@@ -1165,32 +1167,27 @@ function Methodologies () {
 						);
 					}
 				);
-				// Focus on the current
-				// section for scrolling.
-				new ScrollManager ({
-					max: 200,
-					min: 0,
-					onEnter: () => {
-						// Warns user about a
-						// swapable element.
-						dissolvable_ (5000);
-						// Animates methodologies
-						// section in normal mode.
-						animate_ ("normal");
-						// Puts a focus to
-						// corresponding
-						// option inside
-						// the navbar.
-						window.store
-							.getState ()
-							.navbar
-							.select (2);
+				// Listens screen format.
+				new ScreenManager ({
+					onMedium: addAttribute_,
+					onLarge: addAttribute_,
+					mediumScreen: {
+						max: 1300,
+						min: 761
 					},
-					onLeave: () => {
-						// Animates methodologies
-						// section in reverse
-						// mode.
-						animate_ ("reverse");
+					smallScreen: {
+						max: 760,
+						min: 0
+					},
+					largeScreen: {
+						max: 10000,
+						min: 1301
+					},
+					onSmall: () => {
+						// Destroys attribute.
+						removeAttribute_ ();
+						// Makes animation.
+						smallAnimation_ ();
 					}
 				});
 			}

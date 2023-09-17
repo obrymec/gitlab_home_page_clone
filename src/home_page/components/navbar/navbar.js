@@ -4,7 +4,7 @@
 * @fileoverview NavBar UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-09
+* @updated 2023-09-17
 * @file navbar.js
 * @type {NavBar}
 * @version 0.0.9
@@ -172,8 +172,6 @@ function NavBar () {
 		new ScreenManager ({
 			onMedium: mediumAnimation_,
 			onSmall: smallAnimation_,
-			onLarge: largeAnimation_,
-			disableDetection: true,
 			mediumScreen: {
 				max: 1050,
 				min: 576
@@ -185,6 +183,12 @@ function NavBar () {
 			largeScreen: {
 				max: 10000,
 				min: 1051
+			},
+			onLarge: () => {
+				// Makes animation.
+				largeAnimation_ ();
+				// Closes menu.
+				closeMenu_ ();
 			}
 		})
 	);
@@ -491,21 +495,6 @@ function NavBar () {
 				}
 			);
 		}
-		// Listens window `resize`
-		// event to manage menu
-		// display.
-		window.addEventListener (
-			"resize", () => {
-				// Whether width is
-				// bigger than 1050.
-				if (
-					window.innerWidth > 1050
-				) {
-					// Closes menu.
-					closeMenu_ ();
-				}
-			}
-		);
 	};
 
 	/**

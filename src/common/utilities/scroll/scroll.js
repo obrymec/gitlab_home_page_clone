@@ -5,7 +5,7 @@
 * @supported DESKTOP, MOBILE
 * @type {ScrollManager}
 * @created 2023-08-17
-* @updated 2023-09-14
+* @updated 2023-09-17
 * @file scroll.js
 * @version 0.0.4
 */
@@ -271,61 +271,90 @@ function autoScroller (
 }
 
 /**
- * @classdesc Listens scroll position
- *  to trigger some events about that.
+ * @classdesc Listens scroll
+ *  position to trigger some
+ *  events about that.
  * @param {{
+ *  offsetBottom?: Number=,
+ *  scope: !Element|Window,
  *  onEnter?: ?Function,
  *  onLeave?: ?Function,
+ *  offsetTop?: Number=,
  *  onOver?: ?Function,
- *  min: Number,
- *  max: Number
- * }} data The scroll manager data
- *  configurations. It supports
- *  the following keys:
+ *  target: !Element,
+ *  root: !Element
+ * }} data The scroll manager
+ *  data configurations. It
+ *  supports the following
+ *  keys:
  *
  *  - Function onEnter: Called
- *    when the scroll position
- *    is between `min` and `max`.
+ *    when the specified tag
+ *    enters inside the client
+ *    screen regardless offsets.
  *
  *  - Function onLeave: Called
- *    when the scroll position
- *    isn't between `min` and
- *    `max`.
+ *    when the specified tag
+ *    get out of the client
+ *    screen regardless offsets.
  *
  *  - Function onOver: Called
- *    every time when scroll
- *    position changed.
+ *    every time when the tag
+ *    is visible within the
+ *    client screen regardless
+ *    offsets.
  *
- *  - Number min: The lower number
- *    to trigger `onEnter` event
- *    in percentage.
+ *  - Number offsetBottom: The
+ *    offset value to seek
+ *    before element becomes
+ *    visible on the client
+ *    screen.
  *
- *  - Number max: The upper number
- *    to trigger `onEnter` event
- *    in percentage.
+ *  - Number offsetTop: The
+ *    offset value to seek
+ *    before get out of the
+ *    client screen.
+ *
+ *  - Element target: The where
+ *    scroll effect must be
+ *    applied to.
+ *
+ *  - any scope: The markup
+ *    where the scroll effect
+ *    must be applied.
+ *
+ *  - Element root: The markup
+ *    where the scroll effect
+ *    should start computing
+ *    spaces.
  * @public
  * @class
  * @type {ScrollManager}
  * @returns {ScrollManager} ScrollManager
  */
 function ScrollManager ({
-  max = 0,
-  min = 0,
+  offsetBottom = 0,
+  offsetTop = 0,
   onEnter,
   onLeave,
-  onOver
+  onOver,
+  target,
+  scope,
+  root
 }) {
   // Attributes.
   /**
-   * @description The scroll state.
+   * @description The scroll
+   *  state.
    * @private {boolean}
    * @type {boolean}
    * @field
    */
   let scrollState_ = false;
   /**
-   * @description The current scroll
-   *  position in percentage.
+   * @description The current
+   *  scroll position in
+   *  percentage.
    * @private {int}
    * @type {int}
    * @field
@@ -333,7 +362,7 @@ function ScrollManager ({
   let progress_ = 0;
 
   /**
-   * @description Listens document
+   * @description Listens scope
    * 	scroll thumb position.
    * @function listenScrollBar_
    * @constant {Function}
@@ -341,12 +370,267 @@ function ScrollManager ({
    * @returns {void} void
    */
   const listenScrollBar_ = () => (
-    // Listens window `scroll`
-    // event.
-    window.addEventListener (
+    // Listens `scroll` event.
+    scope.addEventListener (
       "scroll", checkScroll_
     )
   );
+
+  /**
+   * @description Clears all created
+   *  events for the process.
+   * @function clearEvents
+   * @public
+   * @returns {void} void
+   */
+  this.clearEvents = () => {
+    // Removes the created
+    // event listener for
+    // the scroll.
+    scope.removeEventListener (
+      "scroll", checkScroll_
+    );
+    // Removes `scroll-root`
+    // attribute from the
+    // passed root markup.
+    root.removeAttribute (
+      "scroll-root"
+    );
+  }
+
+  /**
+   * @description Calculates the
+   *  margin top of the given
+   *  markup.
+   * @param {Element} markup The
+   *  markup element to be
+   *  targeted.
+   * @function computeMarkupHeight_
+   * @constant {Function}
+   * @private {Function}
+   * @returns {float} float
+   */
+  const computeMarkupHeight_ = (
+    markup
+  ) => {
+    // The tag stylesheet.
+    let {
+      marginTop
+    } = window.getComputedStyle (
+      markup
+    );
+    // The margin top value.
+    marginTop = parseFloat (
+      marginTop
+    );
+    // Returns the margin
+    // top value if and
+    // only if it's a
+    // real number.
+    return (
+      isNaN (marginTop)
+      ? 0 : marginTop
+    );
+  };
+
+  /**
+   * @description Calculates the
+   *  vertical height for the
+   *  parent of the given
+   *  markup.
+   * @param {Element} parent The
+   *  parent tag.
+   * @param {int} index The given
+   *  markup index.
+   * @function computeParentHeight_
+   * @constant {Function}
+   * @private {Function}
+   * @returns {float} float
+   */
+  const computeParentHeight_ = (
+    parent,
+    index
+  ) => {
+    // The parent stylesheet.
+    let {
+      borderTopWidth,
+      paddingTop,
+      rowGap
+    } = window.getComputedStyle (
+      parent
+    );
+    // The border top width.
+    borderTopWidth = parseFloat (
+      borderTopWidth
+    );
+    // The padding top value.
+    paddingTop = parseFloat (
+      paddingTop
+    );
+    // The row gap value.
+    rowGap = parseFloat (
+      rowGap
+    );
+    // Computes the three
+    // values above.
+    return (
+      (
+        isNaN (borderTopWidth)
+        ? 0 : borderTopWidth
+      ) +
+      (
+        isNaN (paddingTop)
+        ? 0 : paddingTop
+      ) +
+      (
+        isNaN (rowGap) ? 0
+        : (rowGap * index)
+      )
+    );
+  };
+
+  /**
+   * @description Calculates the
+   *  total height from the
+   *  target tag to the
+   *  target root.
+   * @param {Element} tag The
+   *  target tag.
+   * @param {float} initial The
+   *  first value of the total
+   *  height.
+   * @function verticalCompute_
+   * @constant {Function}
+   * @private {Function}
+   * @returns {float} float
+   */
+  function verticalCompute_ (
+    tag, initial
+  ) {
+    // Whether the current tag
+    // has `scroll-root` attr.
+    if (
+      tag.hasAttribute (
+        "scroll-root"
+      )
+    ) {
+      // Returns the current
+      // total height value.
+      return initial;
+    // Otherwise.
+    } else {
+      // The parent of the passed
+      // tag.
+      const parent = tag.parentElement;
+      // The children elements.
+      const kids = parent.children;
+      // The index of the given
+      // tag.
+      const tagIndex = (
+        Array.prototype.indexOf.call (
+          kids, tag
+        )
+      );
+      // Adds the parent full height
+      // and the active markup
+      // margin top.
+      initial += (
+        computeMarkupHeight_ (tag)
+        + computeParentHeight_ (
+          parent, tagIndex
+        )
+      );
+      // Computing the total height.
+      for (
+        let n = 0;
+        n < tagIndex;
+        n++
+      ) {
+        // Adds the current child
+        // full height.
+        initial += (
+          computeChildHeight_ (
+            kids[n]
+          )  
+        );
+      }
+      // Calls it itself.
+      return verticalCompute_ (
+        parent, initial
+      );
+    }
+  };
+
+  /**
+   * @description Calculates the
+   *  margin top of the given
+   *  child tag.
+   * @param {Element} child The
+   *  markup kid element to be
+   *  targeted.
+   * @function computeChildHeight_
+   * @constant {Function}
+   * @private {Function}
+   * @returns {float} float
+   */
+  const computeChildHeight_ = (
+    child
+  ) => {
+    // The kid stylesheet.
+    let {
+      marginBottom,
+      marginTop,
+      position,
+      display
+    } = window.getComputedStyle (
+      child
+    );
+    // The margin top value.
+    marginBottom = parseFloat (
+      marginBottom
+    );
+    // The margin top value.
+    marginTop = parseFloat (
+      marginTop
+    );
+    // Converts the position
+    // into lower case.
+    position = (
+      position.toLowerCase ()
+    );
+    // Converts the display
+    // into lower case.
+    display = (
+      display.toLowerCase ()
+    );
+    // Whether the child is
+    // really visible on the
+    // document.
+    if (
+      position === "absolute" ||
+      position === "fixed" ||
+      display === "none"
+    ) {
+      // No make any compute.
+      return 0;
+    // Otherwise.
+    } else {
+      // Computes the child
+      // full height, margin
+      // top and bottom.
+      return (
+        child.offsetHeight +
+        (
+          isNaN (marginBottom)
+          ? 0 : marginBottom
+        ) +
+        (
+          isNaN (marginTop)
+          ? 0 : marginTop
+        )
+      );
+    }
+  };
 
   /**
    * @description Checks scroll position
@@ -362,11 +646,45 @@ function ScrollManager ({
   const checkScroll_ = () => {
     // The current scroll progress.
     progress_ = getScrollPercent ();
-    // Whether the scroll thumb
-    // is in range [min; max].
+    // Adds `scroll-root`attr
+    // to the root tag.
+    root.setAttribute (
+      "scroll-root", true
+    );
+    // The total height from the
+    // given target to the root.
+    let totalHeight = (
+      verticalCompute_ (target, 0)
+    );
+    // The scroll top and client
+    // height.
+    const {
+      clientHeight, scrollTop
+    } = document.documentElement;
+    // The total scrolled height.
+    const fullScrolled = (
+      clientHeight + scrollTop
+    );
+    // Adds the top offset to
+    // the total height.
+    const offsetTotalHeight = (
+      Math.abs (offsetTop)
+      + totalHeight
+    );
+    // Adds the total height
+    // to the given markup's
+    // height and substract
+    // the bottom offset.
+    const fullHeight = (
+      target.offsetHeight
+      + totalHeight
+      - Math.abs (offsetBottom)
+    );
+    // Whether the tag enters
+    // the client screen.
     if (
-      progress_ >= min &&
-      progress_ <= max
+      fullScrolled >= offsetTotalHeight
+      && scrollTop <= fullHeight
     ) {
       // Whether `onOver` event
       // is listening.
@@ -384,12 +702,11 @@ function ScrollManager ({
          */
         onOver (progress_);
       }
-      // Whether the scrollbar
-      // isn't between `min`
-      // and `max` yet.
+      // Whether the passed wasn't
+      // visible within the client
+      // screen.
       if (!scrollState_) {
-        // Sets scroll state
-        // to `true`.
+        // Sets the scroll state.
         scrollState_ = true;
         // Whether `onEnter` event
         // is listening.
@@ -406,11 +723,10 @@ function ScrollManager ({
           onEnter ();
         }
       }
-    // Whether the scrollbar
-    // get out of range.
+    // Whether the tag gets out
+    // of the client screen.
     } else if (scrollState_) {
-      // Sets scroll state
-      // to `false`.
+      // Sets the scroll state.
       scrollState_ = false;
       // Whether `onLeave` event
       // is listening.
@@ -429,11 +745,22 @@ function ScrollManager ({
     }
   };
 
-  // Listens window scrollbar.
-  listenScrollBar_ ();
-  // Checks the current
-  // scrollbar position.
-  checkScroll_ ();
+  // Whether all main elements
+  // are defined.
+  if (
+    target instanceof Element &&
+    (
+      scope instanceof Element ||
+      scope instanceof Window
+    ) &&
+    root instanceof Element
+  ) {
+    // Listens window scrollbar.
+    listenScrollBar_ ();
+    // Checks the current
+    // scrollbar position.
+    checkScroll_ ();
+  }
 }
 
 /** 

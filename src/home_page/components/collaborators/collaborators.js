@@ -6,7 +6,7 @@
 * @file collaborators.js
 * @type {Collaborators}
 * @created 2023-06-24
-* @updated 2023-09-14
+* @updated 2023-09-16
 * @version 0.0.2
 */
 
@@ -1141,6 +1141,11 @@ function Collaborators () {
 	this.render = () => {
 		// The raw's data.
 		const cobs = getDataList_ ();
+		// The main tag element.
+		const main = (
+			window.store.getState ()
+				.main
+		);
 		// Creates a section tag.
 		const section = (
 			document.createElement (
@@ -1293,8 +1298,11 @@ function Collaborators () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					max: 200,
-					min: 0,
+					offsetBottom: 140,
+					target: section,
+					offsetTop: 140,
+					scope: window,
+					root: main,
 					onEnter: () => {
 						// Shows collaborators
 						// section.

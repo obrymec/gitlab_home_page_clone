@@ -4,7 +4,7 @@
 * @fileoverview Services UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-23
-* @updated 2023-09-14
+* @updated 2023-09-16
 * @file services.js
 * @type {Services}
 * @version 0.0.2
@@ -406,7 +406,7 @@ function Services () {
 		// The all services animation
 		// configurations.
 		return anime ({
-			width: ["0%", "100%"],
+			translateX: ["200%", "0%"],
 			opacity: [0.0, 1.0],
 			autoplay: false,
 			duration: 140,
@@ -494,6 +494,11 @@ function Services () {
 	 * @returns {void} void
 	 */
 	this.render = () => {
+		// The main tag element.
+		const main = (
+			window.store.getState ()
+				.main
+		);
 		// Creates a section tag.
 		services_ = (
 			document.createElement (
@@ -571,9 +576,7 @@ function Services () {
 		// Adds the above section
 		// to the selected tag as
 		// a child.
-		document.querySelector (
-			"main"
-		).appendChild (services_);
+		main.appendChild (services_);
 		// Waits until images and
 		// icons are loaded.
 		listenLoadEvent ({
@@ -623,8 +626,11 @@ function Services () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					max: 200,
-					min: 0,
+					offsetBottom: 140,
+					target: services_, 
+					offsetTop: 140,
+					scope: window,
+					root: main,
 					onEnter: () => {
 						// Animates services
 						// in normal mode.

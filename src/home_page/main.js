@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-14
+* @updated 2023-09-16
 * @version 0.0.7
 * @file main.js
 */
@@ -44,6 +44,11 @@ window.store = Redux.createStore ((
     activeLanguage: (
       lang.getActiveLanguage ()
         .name
+    ),
+    main: (
+      document.querySelector (
+        "main"
+      )
     )
   },
   action
