@@ -6,7 +6,7 @@
 * @file collaborators.js
 * @type {Collaborators}
 * @created 2023-06-24
-* @updated 2023-09-16
+* @updated 2023-09-17
 * @version 0.0.2
 */
 
@@ -1298,9 +1298,9 @@ function Collaborators () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					offsetBottom: 140,
+					offsetBottom: 240,
 					target: section,
-					offsetTop: 140,
+					offsetTop: 240,
 					scope: window,
 					root: main,
 					onEnter: () => {

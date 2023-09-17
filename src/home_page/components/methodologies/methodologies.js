@@ -604,9 +604,9 @@ function Methodologies () {
 		// section for scrolling.
 		scrollManager_ = (
 			new ScrollManager ({
-				offsetBottom: 340,
+				offsetBottom: 240,
 				target: section_,
-				offsetTop: 340,
+				offsetTop: 240,
 				scope: window,
 				root: main_,
 				onEnter: () => {

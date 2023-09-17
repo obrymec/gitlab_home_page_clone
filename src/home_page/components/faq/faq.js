@@ -4,7 +4,7 @@
 * @fileoverview FAQ UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-20
-* @updated 2023-09-14
+* @updated 2023-09-17
 * @version 0.0.2
 * @file faq.js
 * @type {FAQ}
@@ -121,6 +121,11 @@ function FAQ () {
 	 * @returns {void} void
 	 */
 	this.render = () => {
+		// The main tag element.
+		const main = (
+			window.store.getState ()
+				.main
+		);
 		// Creates a section tag.
 		const section = (
 			document.createElement (
@@ -263,8 +268,11 @@ function FAQ () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					max: 200,
-					min: 0,
+					offsetBottom: 240,
+					target: section,
+					offsetTop: 240,
+					scope: window,
+					root: main,
 					onEnter: () => {
 						// Animates faq
 						// section in

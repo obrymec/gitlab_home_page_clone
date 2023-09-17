@@ -4,7 +4,7 @@
 * @fileoverview Badges UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-13
-* @updated 2023-09-14
+* @updated 2023-09-17
 * @file badges.js
 * @type {Badges}
 * @version 0.0.2
@@ -298,6 +298,11 @@ function Badges () {
 	 * @returns {void} void
 	 */
 	this.render = () => {
+		// The main tag element.
+		const main = (
+			window.store.getState ()
+				.main
+		);
 		// Creates a section tag.
 		section_ = (
 			document.createElement (
@@ -491,8 +496,11 @@ function Badges () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					max: 200,
-					min: 0,
+					offsetBottom: 240,
+					target: section_,
+					offsetTop: 240,
+					scope: window,
+					root: main,
 					onEnter: () => {
 						// Animates badges
 						// in normal mode.

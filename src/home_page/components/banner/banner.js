@@ -4,7 +4,7 @@
 * @fileoverview Banner UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-17
-* @updated 2023-09-16
+* @updated 2023-09-17
 * @file banner.js
 * @type {Banner}
 * @version 0.0.2
@@ -712,7 +712,7 @@ function Banner () {
 				// section for scrolling.
 				new ScrollManager ({
 					target: tempSection,
-					offsetBottom: 140,
+					offsetBottom: 240,
 					scope: window,
 					root: main,
 					onEnter: () => {

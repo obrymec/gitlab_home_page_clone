@@ -4,7 +4,7 @@
 * @fileoverview Pricing UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-27
-* @updated 2023-09-14
+* @updated 2023-09-17
 * @file pricing.js
 * @type {Pricing}
 * @version 0.0.2
@@ -468,6 +468,11 @@ function Pricing () {
 	 * @returns {void} void
 	 */
 	this.render = () => {
+    // The main tag element.
+		const main = (
+			window.store.getState ()
+				.main
+		);
     // Creates a section tag.
     section_ = (
       document.createElement (
@@ -822,8 +827,11 @@ function Pricing () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					max: 200,
-					min: 0,
+					offsetBottom: 240,
+					target: section_,
+					offsetTop: 240,
+					scope: window,
+					root: main,
 					onEnter: () => {
             // Animates the pricing
             // with normal mode.

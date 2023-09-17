@@ -4,7 +4,7 @@
 * @fileoverview Services UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-23
-* @updated 2023-09-16
+* @updated 2023-09-17
 * @file services.js
 * @type {Services}
 * @version 0.0.2
@@ -626,9 +626,9 @@ function Services () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					offsetBottom: 140,
+					offsetBottom: 240,
 					target: services_, 
-					offsetTop: 140,
+					offsetTop: 240,
 					scope: window,
 					root: main,
 					onEnter: () => {
