@@ -4,7 +4,7 @@
 * @fileoverview Resources UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-14
-* @updated 2023-09-14
+* @updated 2023-09-18
 * @file resources.js
 * @type {Resources}
 * @version 0.0.2
@@ -45,6 +45,14 @@ function Resources () {
 	 */
 	let dissolveDelay_ = null;
 	/**
+	 * @description The auto
+	 * 	carousel state.
+	 * @private {?int}
+	 * @type {?int}
+	 * @field
+	 */
+	let autoCarousel_ = null;
+	/**
 	 * @description The right
 	 * 	arrow button.
 	 * @private {?Element}
@@ -60,6 +68,33 @@ function Resources () {
 	 * @field
 	 */
 	let leftButton_ = null;
+	/**
+	 * @description Whether the
+	 * 	right scroll is busy or
+	 * 	not.
+	 * @private {boolean}
+	 * @type {boolean}
+	 * @field
+	 */
+	let rightBusy_ = false;
+	/**
+	 * @description Whether a
+	 * 	button is enabled or
+	 * 	disabled.
+	 * @private {boolean}
+	 * @type {boolean}
+	 * @field
+	 */
+	let disabled_ = false;
+	/**
+	 * @description Whether the
+	 * 	left scroll is busy or
+	 * 	not.
+	 * @private {boolean}
+	 * @type {boolean}
+	 * @field
+	 */
+	let leftBusy_ = true;
 	/**
 	 * @description The resources.
 	 * @private {?Element}
@@ -87,6 +122,70 @@ function Resources () {
 		-1, -1, -1,
 		-1, -1, -1
 	];
+
+	/**
+	 * @description Starts auto carousel
+	 * 	process.
+	 * @function startAutoCarouselProcess_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const startAutoCarouselProcess_ = () => {
+		// Starts carousel process.
+		autoCarousel_ = (
+			window.setInterval (
+				() => swipeLeft_ (false),
+				10000
+			)
+		);
+	};
+
+	/**
+	 * @description Stops auto carousel
+	 * 	process in background directly.
+	 * @function stopAutoCarouselProcess_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const stopAutoCarouselProcess_ = () => {
+		// Whether the auto carousel
+		// timer is defined.s
+		if (autoCarousel_ != null) {
+			// Destroys the upcoming
+			// auto carousel action
+			// in memory.
+			window.clearInterval (
+				autoCarousel_
+			);
+		}
+	};
+
+	/**
+	 * @description Resets auto carousel
+	 * 	process.
+	 * @function resetAutoCarousel_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const resetAutoCarousel_ = () => {
+		// Warns user about a
+		// swapable element.
+		dissolvable_ (5000);
+		// Sets the scroll right
+		// availability.
+		rightBusy_ = true;
+		// Sets the scroll left
+		// availability.
+		leftBusy_ = false;
+		// Resets the scroll thumb.
+		body_.scrollLeft = (
+			body_.children[1].offsetWidth *
+			body_.childElementCount
+		);
+	};
 
 	/**
 	 * @description Adds/Removes
@@ -165,7 +264,7 @@ function Resources () {
 				)
 			);
 			// Increases the delay.
-			delay += 200;
+			delay += 150;
 		}
 		// Returns the last
 		// value of delay.
@@ -209,7 +308,7 @@ function Resources () {
 				)
 			);
 			// Increases the delay.
-			delay += 200;
+			delay += 150;
 		}
 		// Returns the last
 		// value of delay.
@@ -229,6 +328,14 @@ function Resources () {
 	const largeAnimation_ = (
 		direction
 	) => {
+		// Stops auto carousel.
+		stopAutoCarouselProcess_ ();
+		// Adjusts auto scroller
+		// path.
+		body_.children[0].children[2]
+			.setAttribute (
+				"auto-scrollable", true
+			);
 		// Cancels all animations.
 		processIds_.forEach (id => {
 			// Stops the current
@@ -283,9 +390,17 @@ function Resources () {
 		direction
 	) => {
 		// Resets position of
-		// resources from large
-		// animation.
+		// resources from
+		// large animation.
 		largeAnimation_ ("normal");
+		// Resets auto carousel.
+		resetAutoCarousel_ ();
+		// Adjusts auto scroller
+		// path.
+		body_.children[0].children[2]
+			.removeAttribute (
+				"auto-scrollable"
+			);
 		// Whether the direction
 		// is normal.
 		if (
@@ -373,6 +488,64 @@ function Resources () {
 	};
 
 	/**
+	 * @description Applies a horizontal
+	 * 	carousel according to the target
+	 * 	scroll bar.
+	 * @function horizontalCarousel_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const horizontalCarousel_ = () => {
+		// Starts auto carousel process.
+		startAutoCarouselProcess_ ();
+		// Listens right arrow
+		// `click` event.
+		rightButton_.addEventListener (
+			"click",
+			() => swipeRight_ (true)
+		);
+		// Listens left arrow
+		// `click` event.
+		leftButton_.addEventListener (
+			"click",
+			() => swipeLeft_ (true)
+		);
+		// Listens `click` event
+		// on every resources.
+		Array.from (body_.children)
+			.forEach (child => (
+				child.addEventListener (
+					"click",
+					() => dissolvable_ ()
+				)
+			)
+		);
+		// Listens human fingers
+		// motion on mobile for
+		// the left swipe.
+		swipe.swipeLeft ({
+			tagId: "div.res-body",
+			feedback: () => {
+				// Swipes resources
+				// to right.
+				swipeRight_ (true);
+			}
+		});
+		// Listens human fingers
+		// motion on mobile for
+		// the right swipe.
+		swipe.swipeRight ({
+			tagId: "div.res-body",
+			feedback: () => {
+				// Swipes resources
+				// to left.
+				swipeLeft_ (true);
+			}
+		});
+	};
+
+	/**
 	 * @description Animates resources
 	 * 	regardless the detected screen
 	 * 	format (Desktop & Mobile).
@@ -401,36 +574,14 @@ function Resources () {
 			onMedium: () => {
 				// Makes animation.
 				smallAnimation_ (dir);
-				// Adjusts auto scroller
-				// path.
-				body_.children[0]
-					.children[2]
-					.removeAttribute (
-						"auto-scrollable"
-					);
 			},
 			onSmall: () => {
 				// Makes animation.
 				smallAnimation_ (dir);
-				// Adjusts auto scroller
-				// path.
-				body_.children[0]
-					.children[2]
-					.removeAttribute (
-						"auto-scrollable"
-					);
 			},
 			onLarge: () => {
 				// Makes animation.
 				largeAnimation_ (dir);
-				// Adjusts auto scroller
-				// path.
-				body_.children[0]
-					.children[2]
-					.setAttribute (
-						"auto-scrollable",
-						true
-					);
 			}
 		})
 	);
@@ -524,318 +675,194 @@ function Resources () {
 	`;
 
 	/**
-	 * @description Applies a horizontal
-	 * 	carousel according to the target
-	 * 	scroll bar.
-	 * @function horizontalCarousel_
+	 * @description Scrolls content
+	 * 	from left to right.
+	 * @param {boolean} dissolve
+	 * 	whether we want to hide
+	 * 	arrows after some few
+	 * 	times.
+	 * @function swipeRight_
 	 * @constant {Function}
 	 * @private {Function}
 	 * @returns {void} void
 	 */
-	const horizontalCarousel_ = () => {
-		// The auto carousel state.
-		let autoCarousel = null;
-		// Whether the right scroll
-		// is busy or not.
-		let rightBusy = true;
-		// Whether a button is
-		// enabled or disabled.
-		let disabled = false;
-		// Whether the left scroll
-		// is busy or not.
-		let leftBusy = false;
-		// Whether the carousel
-		// state is reset.
-		let isReset = (
-			window.innerWidth <= 760
-		);
-		// The first resource
-		// tag section.
-		const resource = (
-			body_.children[1]
-		);
-		// Starts auto carousel process.
-		const startAutoCarouselProcess = (
-			() => {
-				// Starts carousel process.
-				autoCarousel = (
-					window.setInterval (
-						() => swipeLeft (false),
-						10000
-					)
+	const swipeRight_ = dissolve => {
+		// Whether `disabled` field
+		// is set to `false`.
+		if (!disabled_) {
+			// Whether arrows are hidable.
+			if (dissolve) dissolvable_ ();
+			// Stops auto carousel.
+			stopAutoCarouselProcess_ ();
+			// Starts auto carousel.
+			startAutoCarouselProcess_ ();
+			// The enable wait delay.
+			let waitForEnable = 400;
+			// Whether the right scroll
+			// is not busy.
+			if (!rightBusy_) {
+				// Moves the scroll thumb.
+				body_.scrollLeft = (
+					body_.scrollLeft +
+					body_.children[1]
+						.offsetWidth
 				);
-			}
-		);
-		// Stops auto carousel process
-		// in background directly.
-		const stopAutoCarouselProcess = (
-			() => {
-				// Whether the auto carousel
-				// timer is defined.
-				if (autoCarousel != null) {
-					// Destroys the upcoming
-					// auto carousel action
-					// in memory.
-					window.clearInterval (
-						autoCarousel
-					);
-				}
-			}
-		);
-		// A lambda method that scroll
-		// methodologies to right.
-		const swipeRight = dissolve => {
-			// Whether `disabled` field
-			// is set to `false`.
-			if (!disabled) {
-				// Whether arrows are dissolvable.
-				if (dissolve) dissolvable_ ();
-				// Stops auto carousel.
-				stopAutoCarouselProcess ();
-				// Starts auto carousel.
-				startAutoCarouselProcess ();
-				// The enable wait delay.
-				let waitForEnable = 400;
-				// Whether the right scroll
-				// is not busy.
-				if (!rightBusy) {
-					// Moves the scroll thumb.
-					body_.scrollLeft = (
-						body_.scrollLeft
-						+ resource.offsetWidth
-					);
-					// The real scroll position.
-					const scrollPos = (
-						body_.scrollLeft
-						+ resource.offsetWidth
-					);
-					// The total resource
-					// width size with a few
-					// margins: `100px`.
-					const totalWidth = (
+				// The real scroll position.
+				const scrollPos = (
+					body_.scrollLeft +
+					body_.children[1]
+						.offsetWidth
+				);
+				// The total resource
+				// width size with a
+				// few margins: `100px`.
+				const totalWidth = (
+					(
+						body_.children[1]
+							.offsetWidth *
 						(
-							resource.offsetWidth
-							* (
-									body_.children
-										.length - 1
-								)
-						) - 100
-					);
-					// Whether the scroll thumb
-					// comes to the end of the
-					// container.
-					if (
-						scrollPos >= totalWidth
-					) {
-						// Makes the right scroll
-						// be busy.
-						rightBusy = true;
-					// Otherwise.
-					} else {
-						// Sets the scroll left
-						// availability.
-						leftBusy = false;
-					}
+							body_.children
+								.length - 1
+						)
+					) - 100
+				);
+				// Whether the scroll thumb
+				// comes at the end of the
+				// container.
+				if (
+					scrollPos >= totalWidth
+				) {
+					// Makes the right scroll
+					// be busy.
+					rightBusy_ = true;
 				// Otherwise.
 				} else {
-					// Resets the scroll thumb.
-					body_.scrollLeft = 0;
-					// Increases enable wait.
-					waitForEnable = 800;
-					// Sets the scroll right
-					// availability.
-					rightBusy = false;
 					// Sets the scroll left
 					// availability.
-					leftBusy = true;
+					leftBusy_ = false;
 				}
-				// Disables any controls.
-				disabled = true;
-				// Adds `res-move-right`
-				// class to button.
+			// Otherwise.
+			} else {
+				// Resets the scroll thumb.
+				body_.scrollLeft = 0;
+				// Increases enable wait.
+				waitForEnable = 800;
+				// Sets the scroll right
+				// availability.
+				rightBusy_ = false;
+				// Sets the scroll left
+				// availability.
+				leftBusy_ = true;
+			}
+			// Disables any controls.
+			disabled_ = true;
+			// Adds `res-move-right`
+			// class to button.
+			rightButton_.classList.add (
+				"res-move-right"
+			);
+			// Waits for 150 milliseconds.
+			window.setTimeout (() => (
 				rightButton_.classList
-					.add (
+					.remove (
 						"res-move-right"
 					)
-				// Waits for 150 milliseconds.
-				window.setTimeout (() => (
-					rightButton_.classList
-						.remove (
-							"res-move-right"
-						)
-				), 150);
-				// Waits for a few milliseconds.
-				window.setTimeout (() => (
-					disabled = false
-				), waitForEnable);
-			}
-		};
-		// A lambda method that scroll
-		// methodologies to left.
-		const swipeLeft = dissolve => {
-			// Whether `disabled` field
-			// is set to `false`.
-			if (!disabled) {
-				// Whether arrows are dissolvable.
-				if (dissolve) dissolvable_ ();
-				// Stops auto carousel.
-				stopAutoCarouselProcess ();
-				// Starts auto carousel.
-				startAutoCarouselProcess ();
-				// The enable wait delay.
-				let waitForEnable = 400;
-				// Whether the left scroll
-				// is not busy.
-				if (!leftBusy) {
-					// Moves the scroll thumb.
-					body_.scrollLeft = (
-						body_.scrollLeft
-						- resource.offsetWidth
-					);
-					// The real scroll position.
-					const scrollPos = (
-						body_.scrollLeft
-						- resource.offsetWidth
-					);
-					// Whether the scroll thumb
-					// comes to start of the
-					// container.
-					if (scrollPos <= 0) {
-						// Makes the left scroll
-						// be busy.
-						leftBusy = true;
-					// Otherwise.
-					} else {
-						// Sets the scroll right
-						// availability.
-						rightBusy = false;
-					}
+			), 150);
+			// Waits for a few milliseconds.
+			window.setTimeout (() => (
+				disabled_ = false
+			), waitForEnable);
+		}
+	};
+
+	/**
+	 * @description Scrolls content
+	 * 	from right to left.
+	 * @param {boolean} dissolve
+	 * 	whether we want to hide
+	 * 	arrows after some few
+	 * 	times.
+	 * @function swipeLeft_
+	 * @constant {Function}
+	 * @private {Function}
+	 * @returns {void} void
+	 */
+	const swipeLeft_ = dissolve => {
+		// Whether `disabled` field
+		// is set to `false`.
+		if (!disabled_) {
+			// Whether arrows are hidable.
+			if (dissolve) dissolvable_ ();
+			// Stops auto carousel.
+			stopAutoCarouselProcess_ ();
+			// Starts auto carousel.
+			startAutoCarouselProcess_ ();
+			// The enable wait delay.
+			let waitForEnable = 400;
+			// Whether the left scroll
+			// is not busy.
+			if (!leftBusy_) {
+				// Moves the scroll thumb.
+				body_.scrollLeft = (
+					body_.scrollLeft -
+					body_.children[1]
+						.offsetWidth
+				);
+				// The real scroll position.
+				const scrollPos = (
+					body_.scrollLeft -
+					body_.children[1]
+						.offsetWidth
+				);
+				// Whether the scroll thumb
+				// comes to start of the
+				// container.
+				if (scrollPos <= 0) {
+					// Makes the left scroll
+					// be busy.
+					leftBusy_ = true;
 				// Otherwise.
 				} else {
-					// Increases enable wait.
-					waitForEnable = 800;
 					// Sets the scroll right
 					// availability.
-					rightBusy = true;
-					// Sets the scroll left
-					// availability.
-					leftBusy = false;
-					// Resets the scroll thumb.
-					body_.scrollLeft = (
-						resource.offsetWidth
-							* body_.children
-								.length
-					);
+					rightBusy_ = false;
 				}
-				// Disables controls.
-				disabled = true;
-				// Adds `res-move-left`
-				// class to button.
+			// Otherwise.
+			} else {
+				// Increases enable wait.
+				waitForEnable = 800;
+				// Sets the scroll right
+				// availability.
+				rightBusy_ = true;
+				// Sets the scroll left
+				// availability.
+				leftBusy_ = false;
+				// Resets the scroll thumb.
+				body_.scrollLeft = (
+					body_.children[1]
+						.offsetWidth *
+					body_.children.length
+				);
+			}
+			// Disables controls.
+			disabled_ = true;
+			// Adds `res-move-left`
+			// class to button.
+			leftButton_.classList.add (
+				"res-move-left"
+			);
+			// Waits for 150 milliseconds.
+			window.setTimeout (() => (
 				leftButton_.classList
-					.add (
+					.remove (
 						"res-move-left"
 					)
-				// Waits for 150 milliseconds.
-				window.setTimeout (() => (
-					leftButton_.classList
-						.remove (
-							"res-move-left"
-						)
-				), 150);
-				// Waits for a few milliseconds.
-				window.setTimeout (() => (
-					disabled = false
-				), waitForEnable);
-			}
-		};
-		// Starts auto carousel process.
-		startAutoCarouselProcess ();
-		// Listens right arrow
-		// `click` event.
-		rightButton_.addEventListener (
-			"click",
-			() => swipeRight (true)
-		);
-		// Listens left arrow
-		// `click` event.
-		leftButton_.addEventListener (
-			"click",
-			() => swipeLeft (true)
-		);
-		// Listens `click` event
-		// on every methodologies.
-		[0, 1, 2, 3, 4, 5].forEach (
-			index => (
-				body_.children[index]
-					.addEventListener (
-						"click",
-						() => dissolvable_ ()
-					)
-			)
-		);
-		// Listens human fingers motion
-		// on mobile for the left swipe.
-		swipe.swipeLeft ({
-			tagId: "div.res-body",
-			feedback: () => {
-				// Swipes methodologies
-				// to right.
-				swipeRight (true);
-			}
-		});
-		// Listens human fingers motion
-		// on mobile for the right swipe.
-		swipe.swipeRight ({
-			tagId: "div.res-body",
-			feedback: () => {
-				// Swipes methodologies
-				// to left.
-				swipeLeft (true);
-			}
-		});
-		// Listens window resizing.
-		window.addEventListener (
-			"resize", () => {
-				// Stops auto carousel.
-				stopAutoCarouselProcess ();
-				// Whether window's width
-				// is less than or equal
-				// to `760px`.
-				if (
-					window.innerWidth <= 760
-				) {
-					// Whether no reset has
-					// been done.
-					if (!isReset) {
-						// Warns user about a 
-						// swapable element.
-						dissolvable_ (5000);
-						// Sets the scroll right
-						// availability.
-						rightBusy = true;
-						// Sets the scroll left
-						// availability.
-						leftBusy = false;
-						// Overrides the reset
-						// state.
-						isReset = true;
-						// Resets the scroll
-						// thumb.
-						body_.scrollLeft = (
-							resource.offsetWidth *
-							body_.childElementCount
-						);
-					}
-					// Starts auto carousel.
-					startAutoCarouselProcess ();
-				// Otherwise.
-				} else {
-					// Overrides the reset
-					// state.
-					isReset = false;
-				}
-			}
-		);
+			), 150);
+			// Waits for a few milliseconds.
+			window.setTimeout (() => (
+				disabled_ = false
+			), waitForEnable);
+		}
 	};
 
   /**
@@ -847,6 +874,11 @@ function Resources () {
 	 * @returns {void} void
 	 */
 	this.render = () => {
+		// The main tag reference.
+		const main = (
+			window.store.getState ()
+				.main
+		);
 		// Creates a section tag.
 		section_ = (
 			document.createElement (
@@ -1073,8 +1105,11 @@ function Resources () {
 				// Focus on the current
 				// section for scrolling.
 				new ScrollManager ({
-					max: 200,
-					min: 0,
+					offsetBottom: 240,
+					target: section_,
+					offsetTop: 240,
+					scope: window,
+					root: main,
 					onEnter: () => {
 						// Warns user about a
 						// swapable element.

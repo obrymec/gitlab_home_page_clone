@@ -6,7 +6,7 @@
 * @file methodologies.js
 * @type {Methodologies}
 * @created 2023-07-06
-* @updated 2023-09-17
+* @updated 2023-09-18
 * @version 0.0.2
 */
 
@@ -837,10 +837,9 @@ function Methodologies () {
 			disabled_ = true;
 			// Adds `mhds-move-right`
 			// class to button.
-			rightButton_.classList
-				.add (
-					"mhds-move-right"
-				)
+			rightButton_.classList.add (
+				"mhds-move-right"
+			);
 			// Waits for 150 milliseconds.
 			window.setTimeout (() => (
 				rightButton_.classList
@@ -930,7 +929,7 @@ function Methodologies () {
 			// class to button.
 			leftButton_.classList.add (
 				"mhds-move-left"
-			)
+			);
 			// Waits for 150 milliseconds.
 			window.setTimeout (() => (
 				leftButton_.classList

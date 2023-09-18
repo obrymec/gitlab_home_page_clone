@@ -6,7 +6,7 @@
 * @file collaborators.js
 * @type {Collaborators}
 * @created 2023-06-24
-* @updated 2023-09-17
+* @updated 2023-09-18
 * @version 0.0.2
 */
 
@@ -1312,10 +1312,8 @@ function Collaborators () {
 						// Animates the active
 						// collaborator item.
 						animate_ (
-							body_.children[
-								index_
-							],
-							cobs[index_]
+							body_.children[index_],
+							getDataList_ ()[index_]
 						);
 						// Puts a focus to
 						// corresponding

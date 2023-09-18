@@ -1,0 +1,14 @@
+{
+  "description": "The old home page clone of GitLab website made with html, css and javascript.",
+  "repository": "git@github.com:obrymec/gitlab_home_page_clone.git",
+  "author": "Obrymec - obrymecsprinces@gmail.com",
+  "name": "gitlab-home-page-clone",
+  "start": "./server.js",
+  "main": "server.js",
+  "version": "0.0.1",
+  "license": "MIT",
+  "test": "mocha",
+  "dependencies": {
+    "mocha": "^10.2.0"
+  }
+}
