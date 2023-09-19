@@ -9,6 +9,7 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![PWA](https://img.shields.io/badge/PWA%20APP-8A2BE2?style=flat-square)
 
 This project is an academy project. This's made to evaluate
 my level in native web development languages; test my

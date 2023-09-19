@@ -4,7 +4,7 @@
 * @fileoverview Arrows UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-09-12
-* @updated 2023-09-12
+* @updated 2023-09-19
 * @file arrows.js
 * @type {Arrows}
 * @version 0.0.1
@@ -225,6 +225,8 @@ function Arrows () {
     // arrows container.
     arrows_.addEventListener (
       "click", () => {
+        // Resets arrow state.
+        reset_ ();
         // Whether we try to
         // go at bottom.
         if (isBottom_) {
