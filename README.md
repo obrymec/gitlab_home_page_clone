@@ -1,7 +1,14 @@
 # GitLab Home Page Clone
-![](https://img.shields.io/badge/javascript-ES6-orange)
-![](https://img.shields.io/badge/css-%203-lightgrey)
-![](https://img.shields.io/badge/html-%205-blue)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![Mocha](https://img.shields.io/badge/-mocha-%238D6748?style=for-the-badge&logo=mocha&logoColor=white)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 
 This project is an academy project. This's made to evaluate
 my level in native web development languages; test my
@@ -23,7 +30,7 @@ accessible through one of these links below:<br/>
 ## Final result
 This is the final result of the project:<br/><br/>
 ### Video
-![Watch the project's video](https://youtu.be/6vv_dhTlSUA)
+[![Watch the project's video](https://img.youtube.com/vi/j7LeZvGRDzQ/maxresdefault.jpg)](https://youtu.be/j7LeZvGRDzQ)
 
 ### Screenshots
 ![First render](./assets/render/render_1.png)
@@ -32,28 +39,27 @@ This is the final result of the project:<br/><br/>
 ![Fourth render](./assets/render/render_4.png)
 
 ## Project installation
-⚠️ This project uses some nodejs packages for
-code minification, css purge and auto prefixer
-for his production phase.
-If you want to use <i><u>![vscode](https://www.google.com)</u></i>
-to open the project sources, you can skip all
-steps before clone the project sources code
-and also dependencies installation whether
-you want. Otherwise, <b><i>it's mandatory
-to follow the steps below</i></b>.
-
-### <u>Install curl</u>:
-```sh
-sudo apt install curl
-```
+⚠️ This project uses some nodejs packages for code
+minification, css purge and auto prefixer for his
+production phase.
+If you want to use <i><u><a href = "https://code.visualstudio.com/download">
+vscode</a></u></i> to open the project sources,
+you can skip all steps before clone the project
+sources code and also dependencies installation
+whether you want. Otherwise, <b><i>it's
+mandatory to follow the steps below</i></b>.
 
 ### <u>Install nodejs</u>:
 ```sh
 cd ~;\
-curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh;\
-sudo bash /tmp/nodesource_setup.sh;\
-sudo apt install nodejs;\
-node -v
+sudo apt install curl;\
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash;\
+source ~/.bashrc;\
+nvm --version;\
+nvm install --lts;\
+node --version;\
+npm install yarn --global;\
+yarn --version
 ```
 
 ### <u>Sources code cloning</u>:
@@ -70,24 +76,26 @@ yarn install
 
 ### <u>Run project</u>:
 Whether the project sources is opening with
-<i><u>![vscode](https://www.google.com)</u></i>,
-follow the steps below:
+<i><u><a href = "https://code.visualstudio.com/download">
+vscode</a></u></i>, follow the steps below:
 
 - Make sure that your computer is connected
 to Internet;
 - Go to extensions section and tap `live server`
 within extensions search bar;
 - Then, install it. After installation, close
-your <i><u>![vscode](https://www.google.com)</u></i>
-and open it again;
+your <i><u><a href = "https://code.visualstudio.com/download">
+vscode</a></u></i> and open it again;
 - When that is done, open `index.html` file
 inside `./public/index.html` and make a right
 click;
 - In the displayed contextual menu, click on
 `Open with Live Server...`
 
-Whether you don't using <i><u>![vscode](https://www.google.com)</u></i>,
-go to the root folder of the project and run:
+Whether you don't using <i><u>
+<a href = "https://code.visualstudio.com/download">vscode
+</a></u></i>, go to the root folder of the
+project and run:
 ```shs
 yarn start
 ```
