@@ -5,7 +5,7 @@
 * @supported DESKTOP, MOBILE
 * @type {ScrollManager}
 * @created 2023-08-17
-* @updated 2023-09-17
+* @updated 2023-09-21
 * @file scroll.js
 * @version 0.0.4
 */
@@ -42,14 +42,14 @@ function stopAutoScrolling (
 /**
  * @description Scrolls the scrollbar
  *  thumb to the specified element.
- * @param {String} id The target
- *  element.
+ * @param {String|Element} el The
+ *  target element.
  * @function scrollTo
  * @public
  * @returns {void} void
  */
 function scrollTo (id) {
-  // Gets the tag from his id.
+  // Gets the passed tag.
   const tag = (
     typeof id === "string" ?
     document.querySelector (
@@ -95,7 +95,7 @@ function getScrollPercent () {
 }
 
 /**
- * @description Scrolls to a multiple
+ * @description Scrolls to multiple
  *  passed elements regardless a
  *  direction. This process is
  *  in automatic mode.
@@ -119,7 +119,7 @@ function getScrollPercent () {
  *    want to make an infinite
  *    auto scrolling process.
  *
- *  - int interval: The interval
+ *  - int interval: The delay
  *    between each scroll.
  * @function autoScroll
  * @public
@@ -174,7 +174,8 @@ function autoScroll ({
   };
   // Makes the first scroll.
   scroll ();
-  // Auto scrolling process.
+  // Start Auto scrolling
+  // process.
   processId = (
     window.setInterval (
       scroll, interval
@@ -315,9 +316,9 @@ function autoScroller (
  *    before get out of the
  *    client screen.
  *
- *  - Element target: The where
- *    scroll effect must be
- *    applied to.
+ *  - Element target: The tag
+ *    where scroll effect must
+ *    be applied to.
  *
  *  - any scope: The markup
  *    where the scroll effect
@@ -326,7 +327,7 @@ function autoScroller (
  *  - Element root: The markup
  *    where the scroll effect
  *    should start computing
- *    spaces.
+ *    margins and paddings.
  * @public
  * @class
  * @type {ScrollManager}
@@ -346,8 +347,8 @@ function ScrollManager ({
   /**
    * @description The scroll
    *  state.
-   * @private {boolean}
-   * @type {boolean}
+   * @private {boolean=}
+   * @type {boolean=}
    * @field
    */
   let scrollState_ = false;
@@ -355,8 +356,8 @@ function ScrollManager ({
    * @description The current
    *  scroll position in
    *  percentage.
-   * @private {int}
-   * @type {int}
+   * @private {int=}
+   * @type {int=}
    * @field
    */
   let progress_ = 0;
@@ -448,8 +449,7 @@ function ScrollManager ({
    * @returns {float} float
    */
   const computeParentHeight_ = (
-    parent,
-    index
+    parent, index
   ) => {
     // The parent stylesheet.
     let {
@@ -504,9 +504,9 @@ function ScrollManager ({
    * @private {Function}
    * @returns {float} float
    */
-  function verticalCompute_ (
+  const verticalCompute_ = (
     tag, initial
-  ) {
+  ) => {
     // Whether the current tag
     // has `scroll-root` attr.
     if (
@@ -681,7 +681,8 @@ function ScrollManager ({
       - Math.abs (offsetBottom)
     );
     // Whether the tag enters
-    // the client screen.
+    // inside the client
+    // screen.
     if (
       fullScrolled >= offsetTotalHeight
       && scrollTop <= fullHeight
@@ -702,7 +703,7 @@ function ScrollManager ({
          */
         onOver (progress_);
       }
-      // Whether the passed wasn't
+      // Whether the passed tag wasn't
       // visible within the client
       // screen.
       if (!scrollState_) {

@@ -6,7 +6,7 @@
 * @file icon_logo_image.js
 * @type {IconLogoImage}
 * @created 2023-08-03
-* @updated 2023-08-24
+* @updated 2023-09-21
 * @version 0.0.3
 */
  
@@ -202,8 +202,8 @@ const Images = {
  *  image. It supports the
  *  keys following:
  *
- *  - String root: The root
- *    folder's path.
+ *  - String root: The root folder's
+ *    path.
  *
  *  - String fileName: The icon,
  *    logo or image to be loaded.
@@ -286,8 +286,8 @@ function buildView_ ({
  *    image file's name in app
  *    assets.
  *
- *  - Object data: The created tag
- *    attributes.
+ *  - Object data: The created
+ *    tag attributes.
  * @function buildIcon
  * @public
  * @returns {String} String
@@ -317,8 +317,8 @@ function buildImage ({
  *    icon file's name in app
  *    assets.
  *
- *  - Object data: The created tag
- *    attributes.
+ *  - Object data: The created
+ *    tag attributes.
  * @function buildIcon
  * @public
  * @returns {String} String
@@ -367,8 +367,8 @@ function buildLogo ({
 }
 
 /** 
- * @description Exports all
- *  public features.
+ * @description Exports
+ *  all public features.
  * @exports *
  */
 export {

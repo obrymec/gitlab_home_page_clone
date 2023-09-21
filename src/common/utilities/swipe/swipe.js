@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-28
-* @updated 2023-08-17
+* @updated 2023-09-21
 * @type {SwipeEvent}
 * @file swipe.js
 * @version 0.0.3
@@ -13,8 +13,8 @@
 
 // Enumerations.
 /**
- * @description All supported touch
- * 	screen event types.
+ * @description All supported
+ * 	touch screen event types.
  * @constant {{
  * 	SWIPE_RIGHT: String,
  *	SWIPE_DOWN: String,
@@ -96,9 +96,9 @@ function SwipeEvent () {
 			let startX;
 			// The start point on y axis.
 			let startY;
-			// The distance on x asis.
+			// The distance on x axis.
 			let distX;
-			// The distance on y asis.
+			// The distance on y axis.
 			let distY;
 			// Listens `touchstart` event.
 			tag.addEventListener (
@@ -210,12 +210,11 @@ function SwipeEvent () {
 	 * 	following keys:
 	 *
 	 * 	- Function feedback: The method
-	 * 		to be called when a right swipe
-	 * 		is detected.
+	 * 		to be called when a right
+	 * 		swipe is detected.
 	 *
 	 * 	- String tagId: The target HTML
 	 * 		tag's id within the DOM.
-	 * @constant {Function}
 	 * @function swipeRight
 	 * @public
 	 * @returns {void} void
@@ -245,7 +244,6 @@ function SwipeEvent () {
 	 *
 	 * 	- String tagId: The target HTML
 	 * 		tag's id within the DOM.
-	 * @constant {Function}
 	 * @function swipeDown
 	 * @public
 	 * @returns {void} void
@@ -275,7 +273,6 @@ function SwipeEvent () {
 	 *
 	 * 	- String tagId: The target HTML
 	 * 		tag's id within the DOM.
-	 * @constant {Function}
 	 * @function swipeLeft
 	 * @public
 	 * @returns {void} void
@@ -305,7 +302,6 @@ function SwipeEvent () {
 	 *
 	 * 	- String tagId: The target HTML
 	 * 		tag's id within the DOM.
-	 * @constant {Function}
 	 * @function swipeUp
 	 * @public
 	 * @returns {void} void
@@ -338,7 +334,6 @@ function SwipeEvent () {
 	 *
 	 *	- EventType eventType: The swipe
 	 *		event's type to listen.
-	 * @constant {Function}
 	 * @function listen
 	 * @public
 	 * @returns {void} void

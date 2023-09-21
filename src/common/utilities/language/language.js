@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-09-02
+* @updated 2023-09-21
 * @file language.js
 * @type {Language}
 * @version 0.0.2
@@ -67,6 +67,7 @@ function Language ({
    *  language's id from browser's
    *  cookies.
    * @function fetchLanguage_
+   * @constant {Function}
    * @private {Function}
    * @returns {?{
    *  data: Object<String, String>,
@@ -96,6 +97,7 @@ function Language ({
    * @param {int} index The item's
    *  position index.
    * @function isValidIndex_
+   * @constant {Function}
    * @private {Function}
    * @returns {boolean} boolean
    */
@@ -134,6 +136,7 @@ function Language ({
    *
    *  - Object data: The target
    *    language's data.
+   * @constant {Function}
    * @private {Function}
    * @function has_
    * @returns {boolean} boolean
@@ -201,9 +204,11 @@ function Language ({
 
   /**
    * @description Returns language's
-   *  text according to the given key.
-   * @param {String} key The key's name
-   *  associated to the returned text.
+   *  text according to the given
+   *  key.
+   * @param {String} key The key's
+   *  name associated to the
+   *  returned text.
    * @function getText
    * @public
    * @returns {?String} ?String

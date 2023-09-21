@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-03
-* @updated 2023-08-31
+* @updated 2023-09-21
 * @file button.js
 * @version 0.0.2
 * @type {Button}
@@ -114,7 +114,7 @@ function buildFlatButton ({
  *
  *  - boolean withIcon: Whether
  *    you want to add an icon to
- *    the right.
+ *    right.
  *
  *  - String icon: The icon type to
  *    be displayed (If and only if
@@ -194,8 +194,8 @@ function buildButton ({
 }
 
 /** 
- * @description Exports all
- *  public features.
+ * @description Exports
+ * all public features.
  * @exports *
  */
 export {

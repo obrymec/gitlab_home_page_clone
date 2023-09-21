@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-28
-* @updated 2023-09-01
+* @updated 2023-09-21
 * @file browser.js
 * @type {Browser}
 * @version 0.0.4
@@ -94,7 +94,7 @@ function setCookie ({
     typeof name === "string"
     ? name.trim () : ''
   );
-  // Corrects the given exipre day.
+  // Corrects the given expire day.
   expireDay = (
     Number.isInteger (expireDay)
     ? expireDay : 0
@@ -260,7 +260,7 @@ function clearJSStyle ({
     if (direction === "normal") {
       // Clearing js stylesheets.
       targets.forEach (data => {
-        // Whether only chidren
+        // Whether only children
         // are target.
         if (data.children) {
           // Clearing js styles
@@ -296,7 +296,7 @@ function clearJSStyle ({
     ) {
       // Clearing js stylesheets.
       targets.forEach (data => {
-        // Whether only chidren
+        // Whether only children
         // are target.
         if (data.children) {
           // Clearing js styles
@@ -330,8 +330,8 @@ function clearJSStyle ({
 }
 
 /** 
- * @description Exports all
- *  public features.
+ * @description Exports
+ *  all public features.
  * @exports *
  */
 export {

@@ -6,7 +6,7 @@
 * @supported DESKTOP, MOBILE
 * @type {ScreenManager}
 * @created 2023-08-17
-* @updated 2023-08-25
+* @updated 2023-09-21
 * @file screen.js
 * @version 0.0.1
 */
@@ -92,24 +92,24 @@ function ScreenManager ({
   /**
    * @description The medium
    *  screen state.
-   * @private {boolean}
-   * @type {boolean}
+   * @private {boolean=}
+   * @type {boolean=}
    * @field
    */
   let mediumState_ = false;
   /**
    * @description The large
    *  screen state.
-   * @private {boolean}
-   * @type {boolean}
+   * @private {boolean=}
+   * @type {boolean=}
    * @field
    */
   let largeState_ = false;
   /**
    * @description The small
    *  screen state.
-   * @private {boolean}
-   * @type {boolean}
+   * @private {boolean=}
+   * @type {boolean=}
    * @field
    */
   let smallState_ = false;
@@ -150,8 +150,9 @@ function ScreenManager ({
       width >= mediumScreen.min &&
       width <= mediumScreen.max
     ) {
-      // Whether `useLoopScreen`
-      // configurations matches.
+      // Whether `useLoopDetection`
+      // configurations get a
+      // match.
       if (
         (
           !useLoopDetection
@@ -187,7 +188,7 @@ function ScreenManager ({
       width >= smallScreen.min &&
       width <= smallScreen.max
     ) {
-      // Whether `useLoopScreen`
+      // Whether `useLoopDetection`
       // configurations matches.
       if (
         (
@@ -224,7 +225,7 @@ function ScreenManager ({
       width >= largeScreen.min &&
       width <= largeScreen.max
     ) {
-      // Whether `useLoopScreen`
+      // Whether `useLoopDetection`
       // configurations matches.
       if (
         (
@@ -270,8 +271,8 @@ function ScreenManager ({
 }
 
 /** 
- * @description Exports all
- *  public features.
+ * @description Exports
+ *  all public features.
  * @exports *
  */
 export default ScreenManager;

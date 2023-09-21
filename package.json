@@ -3,12 +3,19 @@
   "repository": "git@github.com:obrymec/gitlab_home_page_clone.git",
   "author": "Obrymec - obrymecsprinces@gmail.com",
   "name": "gitlab-home-page-clone",
-  "start": "./server.js",
   "main": "server.js",
   "version": "0.0.1",
   "license": "MIT",
-  "test": "mocha",
+  "type": "module",
+  "scripts": {
+    "test": "mocha ./**/*.test.js --recursive",
+    "start": "nodemon ./server.js"
+  },
   "dependencies": {
+    "mock-browser": "^0.92.14",
+    "expect.js": "^0.3.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1",
     "mocha": "^10.2.0"
   }
 }

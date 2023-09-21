@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-07-28
-* @updated 2023-09-07
+* @updated 2023-09-21
 * @file string.js
 * @type {String}
 * @version 0.0.4
@@ -28,7 +28,7 @@ import lang from "../language/language.js";
  *    on the string.
  *
  *  - String input: The string to
- *    clear.  
+ *    purge.  
  * @function clearStr
  * @public
  * @returns {String} String
@@ -37,7 +37,7 @@ function clearStr ({
   clearSpaces = false,
   input
 }) {
-  // Returns the cleared
+  // Returns the purged
   // shape of the given
   // input string.
   return (
@@ -208,8 +208,8 @@ function animateTextContent (
  *    effect.
  *
  *  - Function onBackspace: Called at
- *    every time a backspace is made
- *    over tag's text content.
+ *    every time when a backspace is
+ *    made over tag's text content.
  * @fires backspace#onBackspace
  * @fires backspace#onFinished
  * @function backspace
@@ -368,9 +368,11 @@ function smartReplace_ (
     // is enabled.
     if (reverse) {
       // Whether the current
-      // input length is zero.
+      // input length is
+      // greater than zero.
       if (input.length > 0) {
-        // The original text one part.
+        // The original text one
+        // part.
         const part = (
           text.split (input)[1]
         );
@@ -386,7 +388,8 @@ function smartReplace_ (
         lastInput = text[0];
       }
     // Whether the current
-    // input length is one.
+    // input length is
+    // greater than one.
     } else if (input.length > 1) {
       // Removes the last char
       // of the original input.
@@ -402,9 +405,11 @@ function smartReplace_ (
     // is enabled.
     if (reverse) {
       // Whether the current
-      // input length is zero.
+      // input length is
+      // greater than zero.
       if (input.length > 0) {
-        // The original text one part.
+        // The original text one
+        // part.
         const part = (
           text.split (input)[0]
         );
@@ -418,11 +423,12 @@ function smartReplace_ (
         );
       // Otherwise.
       } else {
-        // The last character.
+        // Gets the last character.
         lastInput = text[lastIndex];
       }
     // Whether the current
-    // input length is one.
+    // input length is
+    // greater than one.
     } else if (input.length > 1) {
       // Removes the first char
       // of the original input.
@@ -441,7 +447,7 @@ function smartReplace_ (
       lastInput.length > 0 &&
       scope.endsWith (lastInput)
     ) {
-      // Replace the old input
+      // Replaces the old input
       // value by the new one.
       return scope.replace (
         new RegExp (
@@ -463,7 +469,7 @@ function smartReplace_ (
       lastInput.length > 0 &&
       scope.startsWith (lastInput)
     ) {
-      // Replace the old input
+      // Replaces the old input
       // value by the new one.
       return scope.replace (
         new RegExp (
@@ -583,8 +589,8 @@ function animateText ({
             // Whether reverse mode
             // is enabled.
             if (isReversed) {
-              // Whether index is great
-              // than the fist index.
+              // Whether index is greater
+              // than the first index.
               if (i > 0) {
                 // Removes the last I chars
                 // from the initial text.
@@ -595,8 +601,8 @@ function animateText ({
             // Otherwise.
             } else {
               // Adds each text char
-              // on the start of the
-              // final result.
+              // at the beginning of
+              // the final result.
               written = (
                 `${text[i]}${written}`
               );
