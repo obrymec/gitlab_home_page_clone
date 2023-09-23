@@ -4,7 +4,7 @@
 	@fileoverview: The main html structure.
 	@supported: DESKTOP, MOBILE
 	@created: 2023-06-16
-	@updated: 2023-09-21
+	@updated: 2023-09-23
 	@file: index.html
 	@version: 0.0.3
 -->
@@ -39,6 +39,27 @@
 				type = "image/ico"
 				rel = "icon"
 			/>
+			<!--PWA-->
+			<meta
+				name = "apple-mobile-web-status-bar"
+				content = "black"
+			/>
+			<link
+				href = "../assets/logos/icon-96.png"
+				rel = "apple-touch-icon"
+			/>
+			<meta
+				http-equiv = "X-UA-Compatible"
+				content = "id=edge"
+			/>
+			<link
+				href = "../manifest.json"
+				rel = "manifest"
+			/>
+			<meta
+				name = "theme-color"
+				content = "black"
+			/>
 		</head>
 		<!--Global root-->
 		<body>
@@ -53,6 +74,10 @@
 			<!--External libraries-->
 			<script
 				src = "../src/common/utilities/typewriter/typewriter.min.js"
+				type = "text/javascript"
+			></script>
+			<script
+				src = "../src/common/utilities/toastify/toastify.min.js"
 				type = "text/javascript"
 			></script>
 			<script

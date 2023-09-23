@@ -5,7 +5,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-18
+* @updated 2023-09-23
 * @version 0.0.7
 * @file main.js
 */
@@ -74,6 +74,18 @@ window.store = Redux.createStore ((
       "@@redux/INIT"
     )
   ) {
+    // The common toast configs.
+    const toastConfigs = {
+      gravity: "bottom",
+      stopOnFocus: true,
+      position: "left",
+      duration: 3000,
+      close: true,
+      style: {
+        background: "#171321",
+        color: "#fff"
+      }
+    };
     // Listens `click` event
     // on the document body.
     document.body.addEventListener (
@@ -82,6 +94,67 @@ window.store = Redux.createStore ((
           currentState.processId
         )
       )
+    );
+    // When the browser is offline.
+    window.addEventListener (
+      "offline", () => {
+        // Shows a toast message
+        // to warn user about
+        // no connection.
+        Toastify ({
+          ...toastConfigs,
+          text: lang.getText (
+            "tr190"
+          ),
+        }).showToast ();
+      }
+    );
+    // When the browser is online.
+    window.addEventListener (
+      "online", () => {
+        // Shows a toast message
+        // to warn user about
+        // internet established.
+        Toastify ({
+          ...toastConfigs,
+          text: lang.getText (
+            "tr189"
+          ),
+          callback: () => {
+            // Refreshes navigator.
+            window.location.reload ();
+          }
+        }).showToast ();
+      }
+    );
+    // Listens `load` event
+    // on the window.
+    window.addEventListener (
+      "load", async () => {
+        // Whether the current
+        // browser supports
+        // service workers.
+        if (
+          "serviceWorker" in
+            navigator
+        ) {
+          // Tries this line
+          // of code.
+          try {
+            // Register the project
+            // service worker.
+            navigator.serviceWorker
+              .register (
+                "../../service_worker.js"
+              );
+          // An error occurred.
+          } catch (exp) {
+            // Unable to register
+            // the service worker.
+            console.error (exp);
+          }
+        }
+      }
     );
   }
   // Returns the current

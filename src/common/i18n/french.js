@@ -4,7 +4,7 @@
 * @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-26
-* @updated 2023-09-10
+* @updated 2023-09-23
 * @file french.js
 * @version 0.0.2
 * @type {French}
@@ -445,7 +445,17 @@ const french = {
     tr185: "Voir",
     tr186: "source de la page",
     tr187: "Modifier cette page",
-    tr188: "veuillez contribuer."
+    tr188: "veuillez contribuer.",
+    tr189: `
+      Vous êtes maintenant connecté 
+      à Internet.
+    `,
+    tr190: `
+      Vous n'êtes pas connecté à Internet. 
+      Vérifiez votre câble réseau ou 
+      modem et assurez-vous que vous 
+      êtes connecté à l'Internet.
+    `
   }
 }
 
