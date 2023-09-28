@@ -14,9 +14,9 @@
 const catchName = "gitlab-clone-v1";
 const staticAssets = [
   "./src/home_page/main.js",
-  "./public/index.html",
   "./public/style.css",
   "./manifest.json",
+  "./index.html",
   "./"
 ];
 
