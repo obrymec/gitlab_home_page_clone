@@ -1,12 +1,12 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @fileoverview Defines icon, logo and image view.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @file icon_logo_image.js
 * @type {IconLogoImage}
 * @created 2023-08-03
-* @updated 2023-09-21
+* @updated 2023-09-28
 * @version 0.0.3
 */
  

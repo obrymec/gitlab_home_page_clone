@@ -1,12 +1,11 @@
 /**
-* @fileoverview Defines tests process for browser
-*  module.
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
+* @fileoverview Defines tests process for browser module.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @file browser.test.js
 * @created 2023-09-21
-* @updated 2023-09-21
+* @updated 2023-09-28
 * @type {Browser}
 * @version 0.0.1
 */

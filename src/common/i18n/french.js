@@ -1,10 +1,10 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @fileoverview Defines language textuals data.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-26
-* @updated 2023-09-23
+* @updated 2023-09-28
 * @file french.js
 * @version 0.0.2
 * @type {French}

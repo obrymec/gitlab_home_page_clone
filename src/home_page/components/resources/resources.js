@@ -1,10 +1,10 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @fileoverview Resources UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-07-14
-* @updated 2023-09-18
+* @updated 2023-09-28
 * @file resources.js
 * @type {Resources}
 * @version 0.0.2

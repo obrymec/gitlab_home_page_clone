@@ -1,13 +1,12 @@
 /**
-* @fileoverview Defines tests process for image,
-*  logo and icon view.
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
+* @fileoverview Defines tests process for image, logo and icon view.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @file icon_logo_image.test.js
 * @supported DESKTOP, MOBILE
 * @type {IconLogoImage}
 * @created 2023-09-21
-* @updated 2023-09-21
+* @updated 2023-09-28
 * @version 0.0.1
 */
 

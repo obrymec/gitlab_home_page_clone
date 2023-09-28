@@ -1,10 +1,10 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @fileoverview Services UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-23
-* @updated 2023-09-17
+* @updated 2023-09-28
 * @file services.js
 * @type {Services}
 * @version 0.0.2

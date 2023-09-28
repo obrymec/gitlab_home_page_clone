@@ -25,9 +25,9 @@ JavaScript as well as DOM manipulation.
 ## Access links
 This project is already hosted on web and can be
 accessible through one of these links below:<br/>
-- https://www.google.com
-- https://www.google.com
-- https://www.google.com
+- https://obrymec.github.io/gitlab_home_page_clone/
+- https://obrymec.gitlab.io/gitlab_home_page_clone/
+- https://gitlab-home-page-clone.onrender.com
 
 ## Final result
 This is the final result of the project:<br/><br/>
@@ -98,7 +98,7 @@ Whether you don't using <i><u>
 <a href = "https://code.visualstudio.com/download">vscode
 </a></u></i>, go to the root folder of the
 project and run:
-```shs
+```sh
 yarn start
 ```
 Then, open your favorite browser and tap on

@@ -1,11 +1,11 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @fileoverview Defines tests process for button.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @file button.test.js
 * @created 2023-09-21
-* @updated 2023-09-21
+* @updated 2023-09-28
 * @version 0.0.1
 * @type {Button}
 */

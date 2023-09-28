@@ -1,11 +1,11 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @fileoverview Defines a class to manage touch
-*   screen events on mobile.
+*  screen events on mobile.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-28
-* @updated 2023-09-21
+* @updated 2023-09-28
 * @type {SwipeEvent}
 * @file swipe.js
 * @version 0.0.3

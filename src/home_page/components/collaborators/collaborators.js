@@ -1,12 +1,12 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @author Obrymec - obrymecsprinces@gmail.com
 * @fileoverview Collaborators UI component.
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @file collaborators.js
 * @type {Collaborators}
 * @created 2023-06-24
-* @updated 2023-09-18
+* @updated 2023-09-28
 * @version 0.0.2
 */
 

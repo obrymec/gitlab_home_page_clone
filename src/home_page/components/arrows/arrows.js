@@ -1,10 +1,10 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @fileoverview Arrows UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-09-12
-* @updated 2023-09-19
+* @updated 2023-09-28
 * @file arrows.js
 * @type {Arrows}
 * @version 0.0.1

@@ -1,11 +1,10 @@
 /**
-* @fileoverview Defines tests process for i18n
-*  module.
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
+* @fileoverview Defines tests process for i18n module.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-09-21
-* @updated 2023-09-21
+* @updated 2023-09-28
 * @file i18n.test.js
 * @version 0.0.1
 * @type {I18n}

@@ -1,11 +1,11 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @fileoverview Defines a multitude of methods
-*   to manage common navigator treatments.
+*  to manage common navigator treatments.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-07-28
-* @updated 2023-09-21
+* @updated 2023-09-28
 * @file browser.js
 * @type {Browser}
 * @version 0.0.4

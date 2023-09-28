@@ -1,11 +1,11 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @fileoverview Imports and manages available
-*		components to build home page.
+*	 components to build home page.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-23
+* @updated 2023-09-28
 * @version 0.0.7
 * @file main.js
 */

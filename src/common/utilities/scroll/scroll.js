@@ -1,11 +1,11 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @fileoverview Defines a class to detect scroll.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @type {ScrollManager}
 * @created 2023-08-17
-* @updated 2023-09-21
+* @updated 2023-09-28
 * @file scroll.js
 * @version 0.0.4
 */

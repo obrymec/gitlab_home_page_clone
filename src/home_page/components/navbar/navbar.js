@@ -1,10 +1,10 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @fileoverview NavBar UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-16
-* @updated 2023-09-17
+* @updated 2023-09-28
 * @file navbar.js
 * @type {NavBar}
 * @version 0.0.9

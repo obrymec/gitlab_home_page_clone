@@ -1,10 +1,10 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @fileoverview Customers UI component.
 * @supported DESKTOP, MOBILE
 * @created 2023-06-21
-* @updated 2023-09-16
+* @updated 2023-09-28
 * @file customers.js
 * @type {Customers}
 * @version 0.0.2

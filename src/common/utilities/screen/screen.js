@@ -1,12 +1,12 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @fileoverview Defines a class to detect screen
-*   formats: Large, Medium and Small.
+*  formats: Large, Medium and Small.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @type {ScreenManager}
 * @created 2023-08-17
-* @updated 2023-09-21
+* @updated 2023-09-28
 * @file screen.js
 * @version 0.0.1
 */

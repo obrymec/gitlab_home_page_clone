@@ -1,10 +1,10 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @fileoverview Defines a common button for focus.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2023-08-03
-* @updated 2023-09-21
+* @updated 2023-09-28
 * @file button.js
 * @version 0.0.2
 * @type {Button}

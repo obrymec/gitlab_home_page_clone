@@ -1,10 +1,10 @@
 /**
+* @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
 * @fileoverview Defines server configs with expressjs.
 * @author Obrymec - obrymecsprinces@gmail.com
-* @project GitLab - https://www.google.com
 * @supported DESKTOP, MOBILE
 * @created 2021-09-21
-* @updated 2023-09-21
+* @updated 2023-09-28
 * @file server.js
 * @type {Server}
 * @version 0.0.1
