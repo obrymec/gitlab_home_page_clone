@@ -6,7 +6,7 @@
 * @supported DESKTOP, MOBILE
 * @file service_worker.js
 * @created 2023-09-23
-* @updated 2023-09-28
+* @updated 2023-09-29
 * @version 0.0.1
 */
 
@@ -14,9 +14,9 @@
 const catchName = "gitlab-clone-v1";
 const staticAssets = [
   "./src/home_page/main.js",
-  "./public/style.css",
   "./manifest.json",
   "./index.html",
+  "./style.css",
   "./"
 ];
 
