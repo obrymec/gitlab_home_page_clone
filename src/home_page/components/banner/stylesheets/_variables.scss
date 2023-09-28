@@ -9,13 +9,13 @@
 * @version: 0.0.2
 */
 
-// Resources.
-$banner-bg-image-path: "../../../../../assets/images/gradient-desktop.jpg" !default;
-
 // Responsive breakpoints.
 $banner-1080: "only screen and (max-width: 1080px) and (min-width: 771px)" !default;
 $banner-770: "only screen and (max-width: 770px)" !default;
 $banner-420: "only screen and (max-width: 420px)" !default;
+
+// Resources.
+$banner-bg-image-path: "./assets/images/gradient-desktop.jpg" !default;
 
 // Colors theme.
 $banner-label-bg-start-color: #f5f1ff !default;

@@ -145,7 +145,7 @@ window.store = Redux.createStore ((
             // service worker.
             navigator.serviceWorker
               .register (
-                "../../service_worker.js"
+                "./service_worker.js"
               );
           // An error occurred.
           } catch (exp) {

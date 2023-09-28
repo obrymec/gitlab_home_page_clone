@@ -263,8 +263,7 @@ function buildView_ ({
           clearStr ({
             clearSpaces: true,
             input: `
-              ../../../../../assets/
-              ${root}/${fileName}
+              ./assets/${root}/${fileName}
             `
           })
         }"

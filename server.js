@@ -39,7 +39,7 @@ app.get (
 	"/*", (_, res) => (
     // Go to the home page.
     res.sendFile (
-		  `${__dirname}/public/index.html`
+		  `${__dirname}/index.html`
 	  )
   )
 );

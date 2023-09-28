@@ -1,11 +1,11 @@
 {
   "description": "The old GitLab home page clone.",
-  "start_url": "./public/index.html",
   "orientation": "portrait-primary",
   "name": "GitLab Home Page Clone",
   "short_name": "GitLab Clone",
   "background_color": "white",
   "id": "gitlabhomepageclone",
+  "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "white",
   "lang": "en",
