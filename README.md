@@ -12,15 +12,13 @@
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![PWA](https://img.shields.io/badge/PWA%20APP-8A2BE2?style=flat-square)
 
-This project is an academy project. This's made to evaluate
-my level in native web development languages; test my
-capacity to build advanced user interfaces with HTML,
-CSS and JavaScript only and learn more things about
-those technologies. It's a front-end project only.
-No any back-end API is called. The main goal of
-the project is to reproduce the old GitLab home
-page only to increase my level in HTML, CSS and
-JavaScript as well as DOM manipulation.
+The project is academic. It's made to evaluate my level in
+native web development languages; test my capacity to build
+advanced user interfaces with HTML, CSS and JavaScript only
+and learn more things about those technologies. It's a
+front-end project only. No any back-end API is called.
+The main goal of this project is to reproduce the old
+GitLab home page only.
 
 ## Access links
 This project is already hosted on web and can be
