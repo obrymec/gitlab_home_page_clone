@@ -23,8 +23,8 @@ GitLab home page only.
 ## Access links
 The project is already hosted on web and can be
 accessible through one of these links below :<br/>
-- https://obrymec.github.io/gitlab_home_page_clone/
-- https://obrymec.gitlab.io/gitlab_home_page_clone/
+- https://obrymec.github.io/gitlab_home_page_clone
+- https://obrymec.gitlab.io/gitlab_home_page_clone
 - https://gitlab-home-page-clone.onrender.com
 
 ## Reference
