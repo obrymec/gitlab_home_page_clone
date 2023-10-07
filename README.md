@@ -21,11 +21,15 @@ The main goal of this project is to reproduce the old
 GitLab home page only.
 
 ## Access links
-This project is already hosted on web and can be
-accessible through one of these links below:<br/>
+The project is already hosted on web and can be
+accessible through one of these links below :<br/>
 - https://obrymec.github.io/gitlab_home_page_clone/
 - https://obrymec.gitlab.io/gitlab_home_page_clone/
 - https://gitlab-home-page-clone.onrender.com
+
+## Reference
+The project can be found via the link below :<br/>
+- https://gitlab.com/obrymec/gitlab_home_page_clone
 
 ## Final result
 This is the final result of the project:<br/><br/>
@@ -42,14 +46,14 @@ This is the final result of the project:<br/><br/>
 ⚠️ This project uses some nodejs packages for code
 minification, css purge and auto prefixer for his
 production phase.
-If you want to use <i><u><a href = "https://code.visualstudio.com/download">
-vscode</a></u></i> to open the project sources,
+If you want to use <i><a href = "https://code.visualstudio.com/download">
+vscode</a></i> to open the project sources,
 you can skip all steps before clone the project
 sources code and also dependencies installation
 whether you want. Otherwise, <b><i>it's
 mandatory to follow the steps below</i></b>.
 
-### <u>Install nodejs</u>:
+### <u>Install nodejs</u>
 ```sh
 cd ~;\
 sudo apt install curl;\
@@ -62,40 +66,39 @@ npm install yarn --global;\
 yarn --version
 ```
 
-### <u>Sources code cloning</u>:
+### <u>Sources code cloning</u>
 ```sh
-git clone git@github.com:obrymec/gitlab_home_page_clone.git home_page/
+git clone git@github.com:obrymec/gitlab_home_page_clone.git gitlab_home_page/
 ```
 
-### <u>Install dependencies</u>:
+### <u>Install dependencies</u>
 Go to the root folder of the project sources
 and run:
 ```sh
 yarn install
 ```
 
-### <u>Run project</u>:
+### <u>Run project</u>
 Whether the project sources is opening with
-<i><u><a href = "https://code.visualstudio.com/download">
-vscode</a></u></i>, follow the steps below:
+<i><a href = "https://code.visualstudio.com/download">
+vscode</a></i>, follow the steps below:
 
 - Make sure that your computer is connected
 to Internet;
 - Go to extensions section and tap `live server`
 within extensions search bar;
 - Then, install it. After installation, close
-your <i><u><a href = "https://code.visualstudio.com/download">
-vscode</a></u></i> and open it again;
+your <i><a href = "https://code.visualstudio.com/download">
+vscode</a></i> and open it again;
 - When that is done, open `index.html` file
 inside `./public/index.html` and make a right
 click;
 - In the displayed contextual menu, click on
 `Open with Live Server...`
 
-Whether you don't using <i><u>
-<a href = "https://code.visualstudio.com/download">vscode
-</a></u></i>, go to the root folder of the
-project and run:
+Whether you don't using <i>
+<a href = "https://code.visualstudio.com/download">vscode</a></i>,
+go to the root folder of the project and run:
 ```sh
 yarn start
 ```
