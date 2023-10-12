@@ -1,4 +1,5 @@
 # GitLab Home Page Clone
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
@@ -32,7 +33,7 @@ The project can be found via the link below :<br/>
 - https://gitlab.com/obrymec/gitlab_home_page_clone
 
 ## Final result
-This is the final result of the project:<br/><br/>
+This is the final result of the project :<br/><br/>
 ### Video
 [![Watch the project's video](https://img.youtube.com/vi/j7LeZvGRDzQ/maxresdefault.jpg)](https://youtu.be/j7LeZvGRDzQ)
 
@@ -42,7 +43,7 @@ This is the final result of the project:<br/><br/>
 ![Third render](./assets/render/render_3.png)
 ![Fourth render](./assets/render/render_4.png)
 
-## Project installation
+## Project Installation
 ⚠️ This project uses some nodejs packages for code
 minification, css purge and auto prefixer for his
 production phase.
@@ -53,7 +54,7 @@ sources code and also dependencies installation
 whether you want. Otherwise, <b><i>it's
 mandatory to follow the steps below</i></b>.
 
-### <u>Install nodejs</u>
+### <u>Nodejs Installation</u>
 ```sh
 cd ~;\
 sudo apt install curl;\
@@ -71,39 +72,44 @@ yarn --version
 git clone git@github.com:obrymec/gitlab_home_page_clone.git gitlab_home_page/
 ```
 
-### <u>Install dependencies</u>
+### <u>Dependencies installation</u>
 Go to the root folder of the project sources
-and run:
+and run :
 ```sh
 yarn install
 ```
 
-### <u>Run project</u>
+### <u>Project execution</u>
 Whether the project sources is opening with
 <i><a href = "https://code.visualstudio.com/download">
-vscode</a></i>, follow the steps below:
+vscode</a></i>, follow the steps below :
 
 - Make sure that your computer is connected
 to Internet;
+
 - Go to extensions section and tap `live server`
 within extensions search bar;
+
 - Then, install it. After installation, close
 your <i><a href = "https://code.visualstudio.com/download">
 vscode</a></i> and open it again;
+
 - When that is done, open `index.html` file
 inside `./public/index.html` and make a right
 click;
+
 - In the displayed contextual menu, click on
 `Open with Live Server...`
 
 Whether you don't using <i>
 <a href = "https://code.visualstudio.com/download">vscode</a></i>,
-go to the root folder of the project and run:
+go to the root folder of the project and run :
 ```sh
 yarn start
 ```
+
 Then, open your favorite browser and tap on
-the search bar, the following link:
+the search bar, the following link :
 ```sh
 http://localhost:5000/
 ```
