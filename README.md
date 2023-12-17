@@ -1,5 +1,5 @@
 # GitLab Home Page Clone
-![Front-end Development](https://img.shields.io/badge/frontend%20development-%23404d59.svg?style=for-the-badge)
+![Front-end Development](https://img.shields.io/badge/front-end%20development-%23404d59.svg?style=for-the-badge)
 ![Web Development](https://img.shields.io/badge/web%20development-%232671E5.svg?style=for-the-badge)
 ![Web Application](https://img.shields.io/badge/web%20application-6DA55F?style=for-the-badge)
 ![User Interface](https://img.shields.io/badge/user%20interface-%23323330.svg?style=for-the-badge)
@@ -27,17 +27,17 @@ GitLab home page only.
 
 ## Access links <a id = "links"></a>
 The project is already hosted on web and can be
-accessible through one of these links below :<br/>
+accessible through one of these links below :
 - https://obrymec.github.io/gitlab_home_page_clone
 - https://obrymec.gitlab.io/gitlab_home_page_clone
 - https://gitlab-home-page-clone.onrender.com
 
 ## Reference <a id = "ref"></a>
-The project can be found via the link below :<br/>
+The project can be found via the link below :
 - https://gitlab.com/obrymec/gitlab_home_page_clone
 
 ## Final result <a id = "result"></a>
-This is the final result of the project :<br/><br/>
+This is the final result of the project :
 ### Video <a id = "video"></a>
 [![Watch the project's video](https://img.youtube.com/vi/j7LeZvGRDzQ/maxresdefault.jpg)](https://youtu.be/j7LeZvGRDzQ)
 
