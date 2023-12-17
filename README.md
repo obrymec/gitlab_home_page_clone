@@ -1,5 +1,5 @@
 # GitLab Home Page Clone
-![Front-end Development](https://img.shields.io/badge/front-end%20development-%23404d59.svg?style=for-the-badge)
+![Front-end Development](https://img.shields.io/badge/frontend%20development-%23404d59.svg?style=for-the-badge)
 ![Web Development](https://img.shields.io/badge/web%20development-%232671E5.svg?style=for-the-badge)
 ![Web Application](https://img.shields.io/badge/web%20application-6DA55F?style=for-the-badge)
 ![User Interface](https://img.shields.io/badge/user%20interface-%23323330.svg?style=for-the-badge)
