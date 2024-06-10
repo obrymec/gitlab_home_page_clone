@@ -98,8 +98,7 @@ your <i><a href = "https://code.visualstudio.com/download">
 vscode</a></i> and open it again;
 
 - When that is done, open `index.html` file
-inside `./public/index.html` and make a right
-click;
+and make a right click;
 
 - In the displayed contextual menu, click on
 `Open with Live Server...`
