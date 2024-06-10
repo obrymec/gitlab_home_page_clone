@@ -1,7 +1,6 @@
 /**
+* @fileoverview Defines the service worker to manage app when it's offline.
 * @project GitLab - https://obrymec.github.io/gitlab_home_page_clone/
-* @fileoverview Defines the service worker to
-*  manage application when it's offline.
 * @author Obrymec - obrymecsprinces@gmail.com
 * @supported DESKTOP, MOBILE
 * @file service_worker.js

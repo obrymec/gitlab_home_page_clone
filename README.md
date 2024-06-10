@@ -1,8 +1,7 @@
 # GitLab Home Page Clone
 ![Front-end Development](https://img.shields.io/badge/frontend%20development-%23404d59.svg?style=for-the-badge)
-![Web Development](https://img.shields.io/badge/web%20development-%232671E5.svg?style=for-the-badge)
-![Web Application](https://img.shields.io/badge/web%20application-6DA55F?style=for-the-badge)
-![User Interface](https://img.shields.io/badge/user%20interface-%23323330.svg?style=for-the-badge)
+![Progressive Web App](https://img.shields.io/badge/progressive%20web%20app-%232671E5.svg?style=for-the-badge)
+![Landing Page](https://img.shields.io/badge/landing%20page-6DA55F?style=for-the-badge)
 ![GitLab](https://img.shields.io/badge/gitlab-%23181717.svg?style=for-the-badge)
 
 The project is academic. It's made to evaluate my level in
