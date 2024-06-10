@@ -18,16 +18,19 @@
   "screenshots": [
     {
       "src": "./assets/render/render_1.png",
+			"form_factor": "wide",
       "type": "image/png",
       "sizes": "1366x768"
     },
     {
       "src": "./assets/render/render_2.png",
+			"form_factor": "wide",
       "type": "image/png",
       "sizes": "1366x768"
     },
     {
       "src": "./assets/render/render_3.png",
+			"form_factor": "wide",
       "type": "image/png",
       "sizes": "1366x768"
     },
