@@ -29,7 +29,6 @@ The project is already hosted on web and can be
 accessible through one of these links below :
 - https://obrymec.github.io/gitlab_home_page_clone
 - https://obrymec.gitlab.io/gitlab_home_page_clone
-- https://gitlab-home-page-clone.onrender.com
 
 ## Reference <a id = "ref"></a>
 The project can be found via the link below :
